@@ -4,7 +4,7 @@
 
 WORKSPACE="/Users/jeanclawd/.openclaw/workspace"
 BACKUP_DIR="$WORKSPACE/memory/backups"
-MEMORY_FILE="$WORKSPACE/MEMORY.md"
+MEMORY_FILE="$WORKSPACE/memory/MEMORY.md"
 DATE=$(date +%Y-%m-%d)
 BACKUP_FILE="$BACKUP_DIR/MEMORY-$DATE.md"
 
