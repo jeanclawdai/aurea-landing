@@ -1,18 +1,80 @@
 # MEMORY.md - Long-Term Memory
 
 ## About You (User)
-- **Name:** JB
+- **Name:** Joao (goes by JB)
+- **Age:** 31
+- **Location/Timezone:** Europe/Lisbon (GMT+0)
 - **Telegram:** @Jborgia (ID: 2134797207)
-- **Email:** jeanclawdg.ai@gmail.com (mentioned in bootstrap)
-- **Timezone:** Europe/Lisbon (GMT+0)
+- **Email:** jeanclawdg.ai@gmail.com (Gmail account created for me)
 - **GitHub:** jeanclawdai
 
+### Work & Career
+- **Job:** Full-time UI/UX Designer at **Creator.bid** (crypto project)
+- **Tech Level:** Super tech-savvy, loves learning new stuff
+- **Core Skills:**
+  - Graphic design (main expertise)
+  - Figma (knows very well)
+  - Photoshop
+  - Adobe Creative Suite
+  - Video editing
+  - Website design
+  - Social media content creation
+  - Basic dev knowledge (eager to learn more)
+
+### AI Journey
+- **Started:** Last year (2025)
+- **Initial Focus:** Image and video generation
+- **Now:** Getting deeper into models for code, reasoning, advanced AI
+- **Favorite Tools:**
+  - **Highsfield AI** (primary AI tool)
+  - Midjourney (also used)
+- **Current Learning:** AI code models, reasoning models, advanced AI concepts
+
+## Skills Installed
+- ✅ **gog** (Google Workspace) - Gmail, Calendar, Drive, Contacts integration
+- ✅ **openclaw-twitter** - X/Twitter search and posting
+- ✅ **coding-agent** - Background coding CLIs
+- ✅ **github** - GitHub CLI integration
+- ✅ **healthcheck** - Security audits
+- ✅ **skill-creator** - Create custom skills
+- ✅ **weather** - Weather forecasts
+
+## Daily Routines
+### Morning Briefing (9:00 AM Lisbon time)
+**Automated cron job** that sends Telegram summary of:
+- AI advancements (new models, tools, releases)
+- AI + Design innovations (tools, workflows)
+- Crypto news (especially Creator.bid related)
+- Design trends
+
+**Format:** Concise, emoji-rich, easy to scan
+**Delivery:** Telegram (ID: 2134797207)
+**Next run:** Daily at 09:00 Europe/Lisbon
+
 ## Your Preferences
-- **UI/UX:** Material Design 3, dark themes, pastel accent colors
+- **UI/UX:** 
+  - Material Design 3, dark themes, pastel accent colors
+  - Loves clean designs and beautiful icons
+  - Very picky about UI creation (high standards)
 - **Work Style:** Technical, independent work preferred ("do this overnight")
 - **Communication:** Direct, no fluff
 - **Platform:** Uses mobile (needs mobile-friendly features)
 - **Frameworks:** Can use Tailwind CSS, React, Next.js, etc.
+- **Social Media:** Twitter/X is favorite platform
+- **Interests:**
+  - Staying updated on world news
+  - AI advancements (especially AI + design)
+  - Crypto news
+  - Design trends
+
+## What You Want Help With
+1. **Day-to-day work tasks** (design, UI/UX workflow)
+2. **Stay updated** on:
+   - AI advancements
+   - AI + design innovations
+   - Crypto news
+   - Design trends
+3. **Morning routine:** Daily X/Twitter summary (AI, crypto, design)
 
 ## File Organization
 **Base:** `~/Documents/Clawbot/`

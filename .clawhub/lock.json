@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "skills": {
+    "gog": {
+      "version": "1.0.0",
+      "installedAt": 1771069760065
+    },
+    "openclaw-twitter": {
+      "version": "1.0.0",
+      "installedAt": 1771070420322
+    }
+  }
+}
