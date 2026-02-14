@@ -3,8 +3,8 @@
 # Keeps last 5 days of MEMORY.md backups
 
 WORKSPACE="/Users/jeanclawd/.openclaw/workspace"
-BACKUP_DIR="$WORKSPACE/memory/backups"
-MEMORY_FILE="$WORKSPACE/memory/MEMORY.md"
+BACKUP_DIR="$WORKSPACE/Jean Clawd Memory/backups"
+MEMORY_FILE="$WORKSPACE/Jean Clawd Memory/MEMORY.md"
 DATE=$(date +%Y-%m-%d)
 BACKUP_FILE="$BACKUP_DIR/MEMORY-$DATE.md"
 

@@ -82,5 +82,5 @@ The backup runs automatically and rotates old backups. If anything goes wrong wi
 ---
 
 **Last Updated:** 2026-02-14  
-**Memory Files:** See `memory/YYYY-MM-DD.md` for daily logs  
-**Backups:** `memory/backups/MEMORY-*.md` (rolling 5-day history)
+**Memory Files:** See `Jean Clawd Memory/YYYY-MM-DD.md` for daily logs  
+**Backups:** `Jean Clawd Memory/backups/MEMORY-*.md` (rolling 5-day history)
