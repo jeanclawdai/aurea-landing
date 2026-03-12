@@ -142,15 +142,18 @@ export default function Hero() {
         <motion.div
           animate={{ y: [-10, 10, -10] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          className="bg-white/95 backdrop-blur-lg border border-cyan/20 rounded-2xl px-6 py-4 shadow-xl"
+          className="bg-white/10 backdrop-blur-xl border border-white/30 rounded-3xl px-7 py-5 shadow-2xl shadow-black/10"
+          style={{
+            background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05))',
+          }}
         >
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-cyan/20 flex items-center justify-center">
-              <TrendingUp className="w-5 h-5 text-ocean" />
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-white/30 to-white/10 backdrop-blur-sm flex items-center justify-center border border-white/20 shadow-lg">
+              <TrendingUp className="w-6 h-6 text-white drop-shadow-lg" />
             </div>
             <div>
-              <div className="text-2xl font-bold text-ocean">10x</div>
-              <div className="text-xs text-ocean/70">Growth Rate</div>
+              <div className="text-3xl font-bold text-white drop-shadow-lg tracking-tight">10x</div>
+              <div className="text-sm text-white/90 font-medium">Growth Rate</div>
             </div>
           </div>
         </motion.div>
@@ -167,15 +170,18 @@ export default function Hero() {
         <motion.div
           animate={{ y: [10, -10, 10] }}
           transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-          className="bg-white/95 backdrop-blur-lg border border-cyan/20 rounded-2xl px-6 py-4 shadow-xl"
+          className="bg-white/10 backdrop-blur-xl border border-white/30 rounded-3xl px-7 py-5 shadow-2xl shadow-black/10"
+          style={{
+            background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05))',
+          }}
         >
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-cyan/20 flex items-center justify-center">
-              <Target className="w-5 h-5 text-ocean" />
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-white/30 to-white/10 backdrop-blur-sm flex items-center justify-center border border-white/20 shadow-lg">
+              <Target className="w-6 h-6 text-white drop-shadow-lg" />
             </div>
             <div>
-              <div className="text-sm font-semibold text-ocean">Pattern Recognition</div>
-              <div className="text-xs text-ocean/70">AI-Powered</div>
+              <div className="text-base font-bold text-white drop-shadow-lg">Pattern Recognition</div>
+              <div className="text-sm text-white/90 font-medium">AI-Powered</div>
             </div>
           </div>
         </motion.div>
@@ -192,15 +198,18 @@ export default function Hero() {
         <motion.div
           animate={{ y: [-8, 8, -8] }}
           transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-          className="bg-white/95 backdrop-blur-lg border border-cyan/20 rounded-2xl px-6 py-4 shadow-xl"
+          className="bg-white/10 backdrop-blur-xl border border-white/30 rounded-3xl px-7 py-5 shadow-2xl shadow-black/10"
+          style={{
+            background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05))',
+          }}
         >
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-cyan/20 flex items-center justify-center">
-              <Zap className="w-5 h-5 text-ocean" />
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-white/30 to-white/10 backdrop-blur-sm flex items-center justify-center border border-white/20 shadow-lg">
+              <Zap className="w-6 h-6 text-white drop-shadow-lg" />
             </div>
             <div>
-              <div className="text-2xl font-bold text-ocean">847%</div>
-              <div className="text-xs text-ocean/70">Avg. Engagement</div>
+              <div className="text-3xl font-bold text-white drop-shadow-lg tracking-tight">847%</div>
+              <div className="text-sm text-white/90 font-medium">Avg. Engagement</div>
             </div>
           </div>
         </motion.div>
@@ -217,15 +226,18 @@ export default function Hero() {
         <motion.div
           animate={{ y: [12, -12, 12] }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="bg-white/95 backdrop-blur-lg border border-cyan/20 rounded-2xl px-6 py-4 shadow-xl"
+          className="bg-white/10 backdrop-blur-xl border border-white/30 rounded-3xl px-7 py-5 shadow-2xl shadow-black/10"
+          style={{
+            background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05))',
+          }}
         >
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-cyan/20 flex items-center justify-center">
-              <Brain className="w-5 h-5 text-ocean" />
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-white/30 to-white/10 backdrop-blur-sm flex items-center justify-center border border-white/20 shadow-lg">
+              <Brain className="w-6 h-6 text-white drop-shadow-lg" />
             </div>
             <div>
-              <div className="text-sm font-semibold text-ocean">10,000+</div>
-              <div className="text-xs text-ocean/70">Posts Analyzed</div>
+              <div className="text-base font-bold text-white drop-shadow-lg">10,000+</div>
+              <div className="text-sm text-white/90 font-medium">Posts Analyzed</div>
             </div>
           </div>
         </motion.div>
@@ -242,10 +254,13 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 backdrop-blur-md border border-ocean/20 text-sm font-medium text-ocean mb-8 shadow-lg"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-xl border border-white/30 text-sm font-semibold text-white mb-8 shadow-2xl shadow-black/10"
+          style={{
+            background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05))',
+          }}
         >
-          <div className="w-1.5 h-1.5 rounded-full bg-cyan animate-pulse" />
-          <span>Pattern Intelligence System</span>
+          <div className="w-2 h-2 rounded-full bg-white shadow-lg animate-pulse" />
+          <span className="drop-shadow-lg">Pattern Intelligence System</span>
         </motion.div>
 
         {/* Animated Gradient Title */}
@@ -288,7 +303,7 @@ export default function Hero() {
         >
           <form onSubmit={handleAudit} className="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto">
             <div className="relative flex-1">
-              <div className="absolute left-5 top-1/2 -translate-y-1/2 text-ocean/40 font-medium text-lg">
+              <div className="absolute left-5 top-1/2 -translate-y-1/2 text-white/60 font-semibold text-lg drop-shadow-lg">
                 @
               </div>
               <input
@@ -296,14 +311,17 @@ export default function Hero() {
                 value={instagramHandle}
                 onChange={(e) => setInstagramHandle(e.target.value)}
                 placeholder="your_profile"
-                className="w-full pl-11 pr-5 py-5 rounded-2xl border-2 border-ocean/20 bg-white/90 backdrop-blur-md focus:border-cyan focus:bg-white focus:outline-none text-lg font-medium transition-all text-ocean placeholder:text-ocean/40 shadow-lg"
+                className="w-full pl-11 pr-5 py-5 rounded-2xl border-2 border-white/30 bg-white/10 backdrop-blur-xl focus:border-white/50 focus:bg-white/15 focus:outline-none text-lg font-semibold transition-all text-white placeholder:text-white/50 shadow-2xl shadow-black/10"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05))',
+                }}
               />
             </div>
             <motion.button
               type="submit"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="group px-10 py-5 bg-gradient-to-r from-ocean to-cyan text-white rounded-2xl font-semibold text-lg shadow-xl hover:shadow-2xl transition-all flex items-center justify-center gap-2 whitespace-nowrap"
+              className="group px-10 py-5 bg-gradient-to-r from-white/25 to-white/15 backdrop-blur-xl border-2 border-white/30 text-white rounded-2xl font-bold text-lg shadow-2xl shadow-black/20 hover:shadow-3xl hover:border-white/40 hover:from-white/30 hover:to-white/20 transition-all flex items-center justify-center gap-2 whitespace-nowrap"
             >
               <span>Analyze Profile</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -311,13 +329,13 @@ export default function Hero() {
           </form>
           
           <div className="flex items-center justify-center gap-4 text-sm">
-            <p className="text-ocean/60">
+            <p className="text-white/70 drop-shadow-lg font-medium">
               Free pattern analysis · Predict your viral potential
             </p>
-            <span className="text-ocean/30">·</span>
+            <span className="text-white/30">·</span>
             <button
               onClick={scrollToPricing}
-              className="text-cyan hover:text-cyan/80 transition-colors font-medium"
+              className="text-white hover:text-white/80 transition-colors font-bold drop-shadow-lg"
             >
               View Pricing →
             </button>
@@ -332,22 +350,22 @@ export default function Hero() {
           className="mt-16 flex items-center justify-center gap-8 sm:gap-12"
         >
           <div>
-            <div className="text-3xl sm:text-4xl font-bold text-ocean mb-1">10,000+</div>
-            <div className="text-sm text-ocean/60">Posts Analyzed</div>
+            <div className="text-3xl sm:text-4xl font-bold text-white mb-1 drop-shadow-lg">10,000+</div>
+            <div className="text-sm text-white/80 font-medium drop-shadow">Posts Analyzed</div>
           </div>
           
-          <div className="w-px h-12 bg-ocean/20" />
+          <div className="w-px h-12 bg-white/20" />
           
           <div>
-            <div className="text-3xl sm:text-4xl font-bold text-ocean mb-1">847%</div>
-            <div className="text-sm text-ocean/60">Avg. Engagement</div>
+            <div className="text-3xl sm:text-4xl font-bold text-white mb-1 drop-shadow-lg">847%</div>
+            <div className="text-sm text-white/80 font-medium drop-shadow">Avg. Engagement</div>
           </div>
 
-          <div className="w-px h-12 bg-ocean/20" />
+          <div className="w-px h-12 bg-white/20" />
 
           <div>
-            <div className="text-3xl sm:text-4xl font-bold text-ocean mb-1">10x</div>
-            <div className="text-sm text-ocean/60">Growth Rate</div>
+            <div className="text-3xl sm:text-4xl font-bold text-white mb-1 drop-shadow-lg">10x</div>
+            <div className="text-sm text-white/80 font-medium drop-shadow">Growth Rate</div>
           </div>
         </motion.div>
 
