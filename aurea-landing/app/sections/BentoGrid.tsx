@@ -98,8 +98,8 @@ export default function BentoGrid() {
           ))}
         </div>
 
-        {/* Bottom Gradient Fade to Background */}
-        <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-[#F3F7FF] via-[#F3F7FF]/95 to-transparent pointer-events-none" />
+        {/* Bottom Gradient - Covers card endings */}
+        <div className="absolute bottom-0 left-0 right-0 h-[500px] bg-gradient-to-t from-[#F3F7FF] via-[#F3F7FF] via-60% to-transparent pointer-events-none" />
         
         {/* CTA Button - Centered */}
         <div className="relative mt-16 flex justify-center">
