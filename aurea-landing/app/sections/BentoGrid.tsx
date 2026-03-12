@@ -94,6 +94,9 @@ export default function BentoGrid() {
                     </div>
                   )}
 
+                  {/* Dark overlay on hover */}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300" />
+
                   {/* Creator Info - Shows on hover */}
                   <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                     <div className="flex items-center gap-3">
