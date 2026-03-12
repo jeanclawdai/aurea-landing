@@ -5,16 +5,18 @@ import { Check } from "lucide-react";
 
 const plans = [
   {
-    name: "Core",
+    name: "Starter",
     price: "$299",
     period: "/month",
-    description: "Perfect for solo practitioners getting started with AI marketing.",
+    description: "Perfect for solo practitioners ready to automate their social media.",
     features: [
-      "AI content generation (20 posts/month)",
-      "Social media scheduling",
+      "20 AI-generated videos/month",
+      "Voice cloning setup",
+      "Auto-editing with subtitles",
+      "Instagram & TikTok posting",
+      "Trend research & content planning",
       "Basic analytics dashboard",
       "Email support",
-      "1 clinic location",
     ],
     cta: "Start Free Trial",
     popular: false,
@@ -23,15 +25,17 @@ const plans = [
     name: "Growth",
     price: "$599",
     period: "/month",
-    description: "For growing clinics ready to scale their digital presence.",
+    description: "For clinics ready to scale with unlimited content and full automation.",
     features: [
-      "AI content generation (unlimited)",
-      "Video creation & editing",
-      "Advanced analytics & reporting",
+      "Unlimited AI-generated videos",
+      "Advanced voice cloning & customization",
+      "Auto-editing with premium templates",
+      "All platforms: IG, TikTok, YouTube",
+      "Real-time trend intelligence",
+      "AI content calendar & scheduling",
       "Priority support",
-      "Up to 3 clinic locations",
-      "Patient engagement automation",
-      "Reputation management",
+      "Conversational editing requests",
+      "Performance analytics & insights",
     ],
     cta: "Start Free Trial",
     popular: true,
@@ -43,12 +47,13 @@ const plans = [
     description: "Enterprise solution for multi-location aesthetic groups.",
     features: [
       "Everything in Growth",
+      "Multiple clinic locations",
       "Custom AI training",
-      "Dedicated account manager",
       "White-label options",
-      "Unlimited locations",
       "API access",
+      "Dedicated account manager",
       "Custom integrations",
+      "SLA guarantee",
     ],
     cta: "Contact Sales",
     popular: false,
@@ -74,7 +79,7 @@ export default function Pricing() {
             Simple, Transparent Pricing
           </h2>
           <p className="text-lg text-navy-light max-w-2xl mx-auto">
-            Choose the plan that fits your clinic. All plans include a 14-day free trial.
+            Choose your level of automation. All plans include a 14-day free trial.
           </p>
         </motion.div>
 
@@ -139,6 +144,17 @@ export default function Pricing() {
             </motion.div>
           ))}
         </div>
+
+        {/* Bottom note */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="text-center mt-12 text-navy-light"
+        >
+          All plans include voice cloning setup, trend monitoring, and hands-free posting. 
+          No hidden fees. Cancel anytime.
+        </motion.p>
       </div>
     </section>
   );

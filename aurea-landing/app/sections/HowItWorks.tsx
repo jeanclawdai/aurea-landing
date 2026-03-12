@@ -1,26 +1,26 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Search, Wand2, TrendingUp } from "lucide-react";
+import { Target, Cpu, Rocket } from "lucide-react";
 
 const steps = [
   {
-    icon: Search,
+    icon: Target,
     number: "01",
-    title: "Discovery",
-    description: "We analyze your clinic's unique brand, target audience, and competitive landscape to create a tailored strategy.",
+    title: "Define Your Vision",
+    description: "Tell us your niche, your voice, your brand standards. We learn what makes your clinic unique and who your ideal patients are.",
   },
   {
-    icon: Wand2,
+    icon: Cpu,
     number: "02",
-    title: "Creation",
-    description: "Our AI generates high-quality content, from social posts to video scripts, all matching your clinic's voice.",
+    title: "AI Takes Over",
+    description: "Our system monitors trends 24/7, generates videos with your cloned voice, auto-edits with subtitles, and plans your content calendar.",
   },
   {
-    icon: TrendingUp,
+    icon: Rocket,
     number: "03",
-    title: "Growth",
-    description: "Continuous optimization based on performance data ensures your marketing keeps improving and converting.",
+    title: "Publish & Grow",
+    description: "Review, approve, and watch as content automatically publishes across Instagram, TikTok, and YouTube—while you focus on your patients.",
   },
 ];
 
@@ -46,10 +46,11 @@ export default function HowItWorks() {
             How It Works
           </span>
           <h2 className="text-4xl sm:text-5xl font-bold text-navy mb-4">
-            Simple Process, Powerful Results
+            From Creator to Creative Director
           </h2>
-          <p className="text-lg text-navy-light max-w-2xl mx-auto">
-            Get started in minutes and watch your clinic's digital presence transform.
+          <p className="text-lg text-navy-light max-w-3xl mx-auto">
+            Stop grinding through editing software at 2 AM. Make strategic decisions 
+            while our invisible team handles research, production, and optimization.
           </p>
         </motion.div>
 
@@ -91,6 +92,19 @@ export default function HowItWorks() {
             </motion.div>
           ))}
         </div>
+
+        {/* Quote */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="mt-20 text-center"
+        >
+          <blockquote className="text-2xl sm:text-3xl font-light text-navy italic max-w-4xl mx-auto">
+            &ldquo;This is nothing like boring and soulless automation—it&apos;s amplification of your creative vision.&rdquo;
+          </blockquote>
+        </motion.div>
       </div>
     </section>
   );
