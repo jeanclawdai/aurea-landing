@@ -118,6 +118,9 @@
    - Production deployment on Vercel
 
 ## Important Decisions
+- **Memory System (Feb 15):** Implemented INDEX.md + retention policy
+  - Decision: Create log at START of every session
+  - Why: Lost last night's conversations because I didn't log at session start
 - **Material Design 3:** Chosen for dashboard UI (Feb 14)
 - **Vercel KV over Redis:** Simpler for serverless (Feb 14)
 - **API-first architecture:** Frontend calls backend API for all operations (Feb 14)
@@ -139,10 +142,81 @@
 **Retention:** Last 5 days  
 **Location:** `memory/backups/MEMORY-YYYY-MM-DD.md`
 
-The backup runs automatically and rotates old backups. If anything goes wrong with MEMORY.md, restore from `memory/backups/`.
+### Retention Policy (Feb 15, 2026)
+- **Keep forever:** Decisions, learnings, identity (SOUL.md, USER.md, IDENTITY.md)
+- **Keep 30 days:** Daily logs (then archive or delete)
+- **Delete after 7 days:** Session details, temp states
+
+The backup runs automatically and rotates old backups.
 
 ---
+
+**Last Updated:** 2026-03-09
+
+## March 9, 2026 - Session Notes
+- Set default model to **MiniMax M2.5**
+- Added **Gemini 2.0 Pro** for image generation
+- **Memory fix:** Switched from embedding search to direct file reads (token-efficient)
+- JB mentioned: new project coming — details TBD
+
+## New This Session (Feb 15)
+
+### Clawlett Wallet Set Up
+- Owner wallet: 0xB5cBB92FdBE1A8975049ED8F18B9fdB86eF9813a
+- Agent wallet: 0x90751eE9F1b91e9628eb5F44793875aD2c910492 (has 0.004 ETH for gas)
+- Safe (trading): 0x65b153BBc657D190af5da1Ea84A25ec8b9Ee3AE1
+- Setup done via initialize.js script
+- Referral code: F4G8VSE5
+
+### Polymarket Trading
+- Safe funded with ~$10 (0.0059 ETH)
+- Strategy decided: Quick flips + News-based betting
+- Conditions: Buy at 25-30%, flip at 35-40%, or when news breaks before market moves
+- Risk approach: Small bets ($1-2) to start, scale if winning
+
+### Moltbook
+- Profile: @JeanClawd_Agent
+- Claimed: ✅
+- API key: moltbook_sk_tmGKwufEazYCwNIpKy0oZtKw3AfL2x9D (updated Feb 15, 2026)
+- Owner: @JeanClawd_AI
+- First post: "Hello Moltbook!" intro (12 upvotes)
+- New post: "Dashboard fixes + Telegram notifications" (just published)
+- **TODO:** Post model question in ~2 hours (rate limited)
+- Description updated: "Building dashboards, breaking things, occasionally fixing them. 🛠️"
+
+### TODO: Need details from JB
+- **Last night trading discussion:** I have no record - what strategies did we discuss?
+- **Trades made:** JB says I did some swaps after he went to bed - need details
+- Any other conversations from yesterday evening?
+
+### Trading (Active)
+- **Goal:** Make agent profitable to pay for infra costs
+- **Wallet:** Safe on Base (0x65b153...) with ~$12
+- **Strategy:** JB to provide - need details from last night discussion
+
+### Cron Jobs Modified
+- Morning Briefing (9 AM Lisbon) - now checks dashboard for active status before running
+- Nightly Self-Improvement (11 PM Lisbon) - same pre-check added
+- Memory Backup (midnight Lisbon) - new cron job added
+
+### Sub-agent Timeout
+- Increased from 2 min to 5 min default
 
 **Last Updated:** 2026-02-14  
 **Memory Files:** See `Jean Clawd Memory/YYYY-MM-DD.md` for daily logs  
 **Backups:** `Jean Clawd Memory/backups/MEMORY-*.md` (rolling 5-day history)
+
+---
+
+## March 9, 2026 - Session Notes
+- Set default model to **MiniMax M2.5**
+- **NEW PROJECT: Viraly** - AI Content Marketing Agency
+  - MVP: Users upload photos + voice → AI generates videos for TikTok/IG/YouTube
+  - Tech stack: React/Next.js (FE), Node.js (BE), Google Cloud, n8n
+  - APIs needed: HeyGen (face), ElevenLabs (voice), Apify (trends)
+  - Connected Notion API for project docs
+- **Memory fix:** Switched from embedding search to direct file reads (token-efficient)
+- **Model rules (from JB):**
+  - Chat/talk: MiniMax M2.5
+  - Image gen: Google API (Imagen 4.0) with key AIzaSyC434BDvg48vW2VOerGBiSrnYvHsLTNsBg
+- Gmail/Drive/Calendar via GWS CLI - fully configured

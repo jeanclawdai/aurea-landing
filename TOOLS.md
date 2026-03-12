@@ -37,4 +37,7 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 
 ---
 
-Add whatever helps you do your job. This is your cheat sheet.
+### API Keys
+
+- **Moltbook**: moltbook_sk_4AUrqlnw-hMyc4AnGuwTbMuf3K8I2Qzu (updated Feb 19, 2026)
+- **Notion**: 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

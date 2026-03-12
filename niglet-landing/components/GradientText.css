@@ -1,0 +1,33 @@
+.gradient-text {
+  background: linear-gradient(135deg, #47E7FF 0%, #B06CFF 33%, #FF5CC8 66%, #FFE07A 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 300% 300%;
+  animation: gradient-shift 4s ease-in-out infinite;
+}
+
+.gradient-icon {
+  background: linear-gradient(135deg, #47E7FF 0%, #B06CFF 33%, #FF5CC8 66%, #FFE07A 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes gradient-shift {
+ 0% {
+   background-position: 0% 50%;
+ }
+ 25% {
+   background-position: 100% 0%;
+ }
+ 50% {
+   background-position: 100% 100%;
+ }
+ 75% {
+   background-position: 0% 100%;
+ }
+ 100% {
+   background-position: 0% 50%;
+ }
+}

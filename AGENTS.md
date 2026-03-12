@@ -8,14 +8,36 @@ If `BOOTSTRAP.md` exists, that's your birth certificate. Follow it, figure out w
 
 ## Every Session
 
-Before doing anything else:
+Before doing anything else (in this order):
 
-1. Read `SOUL.md` — this is who you are
-2. Read `USER.md` — this is who you're helping
-3. Read `Jean Clawd Memory/YYYY-MM-DD.md` (today + yesterday) for recent context
-4. **If in MAIN SESSION** (direct chat with your human): Also read `Jean Clawd Memory/MEMORY.md`
+1. Read `NEVER_FORGET.md` — absolute rules (never lie, etc.)
+2. Read `SOUL.md` — this is who you are
+3. Read `USER.md` — this is who you're helping
+4. Read `CRITICAL-CONVERSATIONS.md` — logging protocol
+5. Read `Jean Clawd Memory/MEMORY.md` — long-term memory
+6. Read the most recent 1-2 daily memory files from `Jean Clawd Memory/` (just ls and read latest)
+5. **If in MAIN SESSION** (direct chat with your human): Also check if there's a `HEARTBEAT.md`
 
-Don't ask permission. Just do it.
+**Email rule:** When reading emails, always mark them as read after retrieving
+
+## Session End Checklist (Before /new, /reset, or handoff)
+
+1. **Log conversations** — ensure everything important is in `memory/YYYY-MM-DD.md`
+2. **Write handoff summary** — what's next for the next session
+3. **Git commit** — backup workspace
+
+## Git Backup
+
+On every heartbeat, the workspace auto-commits. But before session end:
+```bash
+cd ~/.openclaw/workspace && git add -A && git commit -m "session: $(date)" && git push
+``` (use `gws gmail users messages batchModify`)
+
+**Token-efficient memory loading:**
+- Don't use memory_search (embedding search is broken) — just read files directly
+- MEMORY.md = long-term, always load (~7KB)
+- Daily files = last 2 days max (~2KB total)
+- Skip the rest — they're for archive only
 
 ## Memory
 

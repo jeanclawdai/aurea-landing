@@ -1,0 +1,6 @@
+{"level":"info","message":"Starting React Bits MCP Server...","service":"react-bits-mcp-server","timestamp":"2026-02-18T00:08:39.001Z"}
+{"level":"info","message":"GitHub API key provided (not used for file-based operations)","service":"react-bits-mcp-server","timestamp":"2026-02-18T00:08:39.006Z"}
+{"level":"info","message":"Setting up request handlers...","service":"react-bits-mcp-server","timestamp":"2026-02-18T00:08:39.013Z"}
+{"level":"info","message":"Handlers setup complete","service":"react-bits-mcp-server","timestamp":"2026-02-18T00:08:39.013Z"}
+{"level":"info","message":"Transport initialized: stdio","service":"react-bits-mcp-server","timestamp":"2026-02-18T00:08:39.014Z"}
+{"level":"info","message":"Server started successfully","service":"react-bits-mcp-server","timestamp":"2026-02-18T00:08:39.014Z"}
