@@ -1,271 +1,336 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Star } from "lucide-react";
-import { useRef } from "react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { ArrowRight, TrendingUp, Zap, Users, BarChart3 } from "lucide-react";
+import { useRef, useState } from "react";
 
 export default function Hero() {
   const ref = useRef(null);
+  const [instagramHandle, setInstagramHandle] = useState("");
+  
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"]
   });
 
   // Parallax transforms for floating cards
-  const card1Y = useTransform(scrollYProgress, [0, 1], [0, -150]);
-  const card2Y = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const card1Y = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const card2Y = useTransform(scrollYProgress, [0, 1], [0, -150]);
   const card3Y = useTransform(scrollYProgress, [0, 1], [0, -120]);
-  const card4Y = useTransform(scrollYProgress, [0, 1], [0, -180]);
-  
-  const card1Rotate = useTransform(scrollYProgress, [0, 1], [-15, -25]);
-  const card2Rotate = useTransform(scrollYProgress, [0, 1], [-25, -35]);
-  const card3Rotate = useTransform(scrollYProgress, [0, 1], [15, 25]);
-  const card4Rotate = useTransform(scrollYProgress, [0, 1], [25, 35]);
 
-  const scrollToFeatures = () => {
-    const featuresSection = document.getElementById("features");
-    if (featuresSection) {
-      featuresSection.scrollIntoView({ behavior: "smooth" });
-    }
+  const handleAudit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // TODO: Connect to audit API
+    console.log("Audit for:", instagramHandle);
   };
 
   return (
-    <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Aurora Background Gradient - More vibrant like reference */}
-      <div className="absolute inset-0 bg-gradient-to-br from-violet-100 via-purple-200 to-indigo-400" />
+    <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
       
+      {/* Grid Pattern Overlay - Premium feel */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:24px_24px]" />
 
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          
+          {/* Left Side - Content */}
+          <div className="space-y-8">
+            
+            {/* Modest Social Proof */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm border border-indigo-200/50 text-sm font-medium text-slate-700 shadow-sm"
+            >
+              <div className="flex -space-x-2">
+                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-pink-400 to-rose-500 border-2 border-white" />
+                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-400 to-indigo-500 border-2 border-white" />
+                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 border-2 border-white" />
+              </div>
+              <span>Trusted by aesthetic clinics worldwide</span>
+            </motion.div>
 
-      {/* Floating Feature Cards - Larger and Better Positioned */}
-      {/* Top Left Card - AI Content Creation */}
-      <motion.div
-        style={{ y: card1Y, rotate: card1Rotate }}
-        initial={{ opacity: 0, x: -100, rotate: -15 }}
-        animate={{ opacity: 1, x: 0, rotate: -15 }}
-        transition={{ duration: 0.8, delay: 0.6 }}
-        className="absolute top-32 left-24 w-64 h-64 z-20 hidden lg:block"
-      >
-        <motion.div 
-          animate={{ y: [-5, 5, -5] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          className="relative w-full h-full rounded-3xl backdrop-blur-md bg-gradient-to-br from-pink-200/90 via-purple-200/90 to-pink-300/90 border border-white/40 shadow-2xl shadow-purple-500/30 p-6"
-        >
-          {/* AI Content Image */}
-          <div className="w-full h-40 rounded-2xl overflow-hidden mb-4">
-            <img 
-              src="/images/hero-ai-content.svg" 
-              alt="AI Content Creation"
-              className="w-full h-full object-cover"
-            />
+            {/* Main Headline - Bold & Results-Focused */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="space-y-4"
+            >
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.1] text-slate-900">
+                Turn Your Instagram Into a{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600">
+                  Patient Magnet
+                </span>
+              </h1>
+              <p className="text-xl text-slate-600 leading-relaxed max-w-xl">
+                AI-powered automation that creates, edits, and posts premium content for your clinic—while you sleep.
+              </p>
+            </motion.div>
+
+            {/* Key Stats - Quick Impact */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="flex flex-wrap gap-6"
+            >
+              <div className="flex items-center gap-2 text-slate-700">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center shadow-lg">
+                  <TrendingUp className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-slate-900">470%</div>
+                  <div className="text-sm text-slate-600">Avg. reach growth</div>
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-2 text-slate-700">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center shadow-lg">
+                  <Zap className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-slate-900">100%</div>
+                  <div className="text-sm text-slate-600">Automated</div>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2 text-slate-700">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center shadow-lg">
+                  <Users className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-slate-900">24/7</div>
+                  <div className="text-sm text-slate-600">AI agents working</div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* CTA - Instagram Audit */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="space-y-3"
+            >
+              <form onSubmit={handleAudit} className="flex flex-col sm:flex-row gap-3">
+                <div className="relative flex-1">
+                  <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-medium">
+                    @
+                  </div>
+                  <input
+                    type="text"
+                    value={instagramHandle}
+                    onChange={(e) => setInstagramHandle(e.target.value)}
+                    placeholder="yourusername"
+                    className="w-full pl-10 pr-4 py-4 rounded-2xl border-2 border-slate-200 focus:border-indigo-500 focus:outline-none text-lg font-medium transition-all bg-white/80 backdrop-blur-sm"
+                  />
+                </div>
+                <motion.button
+                  type="submit"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="group px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-2xl font-semibold text-lg shadow-xl shadow-indigo-500/30 hover:shadow-2xl hover:shadow-indigo-500/40 transition-all flex items-center justify-center gap-2 whitespace-nowrap"
+                >
+                  <span>Get Free Audit</span>
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </motion.button>
+              </form>
+              <p className="text-sm text-slate-500">
+                ✨ We'll analyze your profile and show you exactly how to 10x your reach in 90 days
+              </p>
+            </motion.div>
+
           </div>
-          <div className="bg-white/30 backdrop-blur-sm rounded-lg p-3 text-center border border-white/40">
-            <h3 className="text-navy font-semibold text-sm">AI Content Creation</h3>
-            <p className="text-navy/70 text-xs mt-1">Automated posts & videos</p>
+
+          {/* Right Side - Visual Cards with Analytics */}
+          <div className="relative h-[600px] hidden lg:block">
+            
+            {/* Main Phone Mockup - Instagram Growth */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-[600px] rounded-[3rem] bg-slate-900 border-8 border-slate-800 shadow-2xl overflow-hidden z-30"
+            >
+              {/* Phone notch */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-7 bg-slate-900 rounded-b-3xl z-10" />
+              
+              {/* Instagram UI Mockup */}
+              <div className="w-full h-full bg-white p-4 overflow-hidden">
+                {/* Header */}
+                <div className="flex items-center justify-between mb-4 pt-4">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-pink-500 to-purple-600" />
+                    <span className="font-semibold text-sm">your_clinic</span>
+                  </div>
+                  <div className="text-xs font-medium text-slate-600">
+                    <motion.span
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 1, duration: 0.5 }}
+                    >
+                      🔥 Growing
+                    </motion.span>
+                  </div>
+                </div>
+
+                {/* Stats Row - Animated */}
+                <div className="grid grid-cols-3 gap-4 mb-4 text-center">
+                  <div>
+                    <motion.div 
+                      className="font-bold text-lg"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.6 }}
+                    >
+                      127K
+                    </motion.div>
+                    <div className="text-xs text-slate-600">posts</div>
+                  </div>
+                  <div>
+                    <motion.div 
+                      className="font-bold text-lg text-green-600"
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.8, type: "spring" }}
+                    >
+                      84.2K
+                    </motion.div>
+                    <div className="text-xs text-slate-600">followers</div>
+                  </div>
+                  <div>
+                    <motion.div 
+                      className="font-bold text-lg"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.7 }}
+                    >
+                      312
+                    </motion.div>
+                    <div className="text-xs text-slate-600">following</div>
+                  </div>
+                </div>
+
+                {/* Grid of Posts */}
+                <div className="grid grid-cols-3 gap-1">
+                  {[...Array(9)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 1 + (i * 0.05) }}
+                      className="aspect-square bg-gradient-to-br from-purple-200 via-pink-200 to-blue-200 rounded"
+                    />
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Floating Card 1 - Analytics Growth Chart */}
+            <motion.div
+              style={{ y: card1Y }}
+              initial={{ opacity: 0, x: -50, rotate: -8 }}
+              animate={{ opacity: 1, x: 0, rotate: -8 }}
+              transition={{ duration: 0.8, delay: 0.6, type: "spring" }}
+              className="absolute top-12 -left-8 w-64 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-2xl p-5 z-20"
+            >
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center">
+                  <BarChart3 className="w-4 h-4 text-white" />
+                </div>
+                <div>
+                  <div className="text-xs text-slate-600">Engagement Rate</div>
+                  <div className="text-lg font-bold text-green-600">+312%</div>
+                </div>
+              </div>
+              {/* Mini chart visualization */}
+              <div className="flex items-end gap-1 h-20">
+                {[20, 25, 30, 45, 55, 70, 85, 95].map((height, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ height: 0 }}
+                    animate={{ height: `${height}%` }}
+                    transition={{ delay: 1.2 + (i * 0.1), type: "spring" }}
+                    className="flex-1 bg-gradient-to-t from-green-400 to-emerald-500 rounded-t"
+                  />
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Floating Card 2 - Before/After */}
+            <motion.div
+              style={{ y: card2Y }}
+              initial={{ opacity: 0, x: 50, rotate: 8 }}
+              animate={{ opacity: 1, x: 0, rotate: 8 }}
+              transition={{ duration: 0.8, delay: 0.7, type: "spring" }}
+              className="absolute top-32 -right-12 w-56 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-2xl p-4 z-20"
+            >
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-medium text-slate-500">Before</span>
+                  <span className="text-lg font-bold text-slate-400">342</span>
+                </div>
+                <div className="h-1 bg-slate-200 rounded-full">
+                  <motion.div 
+                    className="h-full bg-slate-400 rounded-full"
+                    initial={{ width: "15%" }}
+                    animate={{ width: "15%" }}
+                    transition={{ delay: 1.5 }}
+                  />
+                </div>
+                
+                <div className="flex items-center justify-between mt-4">
+                  <span className="text-xs font-medium text-indigo-600">With Aurea</span>
+                  <span className="text-lg font-bold text-indigo-600">14.8K</span>
+                </div>
+                <div className="h-1 bg-slate-200 rounded-full">
+                  <motion.div 
+                    className="h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full"
+                    initial={{ width: "0%" }}
+                    animate={{ width: "92%" }}
+                    transition={{ delay: 1.7, duration: 1, type: "spring" }}
+                  />
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Floating Card 3 - AI Agent Status */}
+            <motion.div
+              style={{ y: card3Y }}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8, type: "spring" }}
+              className="absolute bottom-16 left-8 w-64 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-2xl p-4 z-20"
+            >
+              <div className="flex items-center gap-3 mb-3">
+                <motion.div 
+                  className="w-2 h-2 rounded-full bg-green-500"
+                  animate={{ opacity: [1, 0.3, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                />
+                <span className="text-sm font-semibold text-slate-700">AI Agents Active</span>
+              </div>
+              <div className="space-y-2 text-xs">
+                <div className="flex items-center justify-between">
+                  <span className="text-slate-600">📹 Creating video</span>
+                  <span className="text-indigo-600 font-medium">2 min left</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-slate-600">✂️ Auto-editing</span>
+                  <span className="text-green-600 font-medium">In progress</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-slate-600">📊 Analyzing trends</span>
+                  <span className="text-purple-600 font-medium">24/7</span>
+                </div>
+              </div>
+            </motion.div>
+
           </div>
-        </motion.div>
-      </motion.div>
 
-      {/* Bottom Left Card - Voice Cloning */}
-      <motion.div
-        style={{ y: card2Y, rotate: card2Rotate }}
-        initial={{ opacity: 0, x: -100, rotate: -25 }}
-        animate={{ opacity: 1, x: 0, rotate: -25 }}
-        transition={{ duration: 0.8, delay: 0.8 }}
-        className="absolute top-[420px] left-16 w-56 h-56 z-20 hidden lg:block"
-      >
-        <motion.div 
-          animate={{ y: [5, -5, 5] }}
-          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-          className="relative w-full h-full rounded-3xl backdrop-blur-md bg-gradient-to-br from-purple-300/90 via-pink-200/90 to-purple-400/90 border border-white/40 shadow-2xl shadow-pink-500/30 p-6"
-        >
-          {/* Voice Cloning Image */}
-          <div className="w-full h-36 rounded-2xl overflow-hidden mb-4">
-            <img 
-              src="/images/hero-voice-clone.svg" 
-              alt="Voice Cloning"
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="bg-white/30 backdrop-blur-sm rounded-lg p-3 text-center border border-white/40">
-            <h3 className="text-navy font-semibold text-sm">Voice Cloning</h3>
-            <p className="text-navy/70 text-xs mt-1">Your voice in every video</p>
-          </div>
-        </motion.div>
-      </motion.div>
-
-      {/* Top Right Card - Auto Editing */}
-      <motion.div
-        style={{ y: card3Y, rotate: card3Rotate }}
-        initial={{ opacity: 0, x: 100, rotate: 15 }}
-        animate={{ opacity: 1, x: 0, rotate: 15 }}
-        transition={{ duration: 0.8, delay: 0.7 }}
-        className="absolute top-40 right-24 w-60 h-60 z-20 hidden lg:block"
-      >
-        <motion.div 
-          animate={{ y: [-3, 7, -3] }}
-          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-          className="relative w-full h-full rounded-3xl backdrop-blur-md bg-gradient-to-br from-orange-200/90 via-pink-200/90 to-orange-300/90 border border-white/40 shadow-2xl shadow-orange-500/30 p-6"
-        >
-          {/* Auto Editing Image */}
-          <div className="w-full h-36 rounded-2xl overflow-hidden mb-4">
-            <img 
-              src="/images/hero-auto-edit.svg" 
-              alt="Auto Editing"
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="bg-white/30 backdrop-blur-sm rounded-lg p-3 text-center border border-white/40">
-            <h3 className="text-navy font-semibold text-sm">Auto Editing</h3>
-            <p className="text-navy/70 text-xs mt-1">Professional cuts & transitions</p>
-          </div>
-        </motion.div>
-      </motion.div>
-
-      {/* Bottom Right Card - Smart Posting */}
-      <motion.div
-        style={{ y: card4Y, rotate: card4Rotate }}
-        initial={{ opacity: 0, x: 100, rotate: 25 }}
-        animate={{ opacity: 1, x: 0, rotate: 25 }}
-        transition={{ duration: 0.8, delay: 0.9 }}
-        className="absolute top-[380px] right-16 w-52 h-52 z-20 hidden lg:block"
-      >
-        <motion.div 
-          animate={{ y: [7, -3, 7] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="relative w-full h-full rounded-3xl backdrop-blur-md bg-gradient-to-br from-pink-300/90 via-purple-200/90 to-indigo-300/90 border border-white/40 shadow-2xl shadow-purple-500/30 p-6"
-        >
-          {/* Smart Posting Image */}
-          <div className="w-full h-32 rounded-2xl overflow-hidden mb-4">
-            <img 
-              src="/images/hero-smart-post.svg" 
-              alt="Smart Posting"
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="bg-white/30 backdrop-blur-sm rounded-lg p-3 text-center border border-white/40">
-            <h3 className="text-navy font-semibold text-sm">Smart Posting</h3>
-            <p className="text-navy/70 text-xs mt-1">Schedule & optimize timing</p>
-          </div>
-        </motion.div>
-      </motion.div>
-
-      {/* AI Clone Profile Pictures */}
-      <motion.div
-        animate={{
-          y: [0, -8, 0],
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute top-48 left-1/4 w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 border-3 border-white flex items-center justify-center z-10 hidden lg:flex shadow-lg overflow-hidden"
-      >
-        <span className="text-lg">👩‍⚕️</span>
-      </motion.div>
-
-      <motion.div
-        animate={{
-          y: [0, -10, 0],
-        }}
-        transition={{
-          duration: 5,
-          delay: 0.5,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute top-56 right-1/4 w-14 h-14 rounded-full bg-gradient-to-br from-pink-400 to-rose-500 border-3 border-white flex items-center justify-center z-10 hidden lg:flex shadow-lg overflow-hidden"
-      >
-        <span className="text-xl">👨‍⚕️</span>
-      </motion.div>
-
-      <motion.div
-        animate={{
-          y: [0, -6, 0],
-        }}
-        transition={{
-          duration: 3.5,
-          delay: 1,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute top-72 left-20 w-10 h-10 rounded-full bg-gradient-to-br from-teal-400 to-cyan-500 border-2 border-white flex items-center justify-center z-10 hidden lg:flex shadow-lg overflow-hidden"
-      >
-        <span className="text-base">💁‍♀️</span>
-      </motion.div>
-
-      <motion.div
-        animate={{
-          y: [0, -12, 0],
-        }}
-        transition={{
-          duration: 4.5,
-          delay: 1.5,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute top-40 right-20 w-11 h-11 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 border-2 border-white flex items-center justify-center z-10 hidden lg:flex shadow-lg overflow-hidden"
-      >
-        <span className="text-lg">🧑‍⚕️</span>
-      </motion.div>
-
-      {/* Main Content */}
-      <div className="relative z-30 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        {/* Social Proof Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-3 px-6 py-3 rounded-full backdrop-blur-md bg-white/30 border border-white/40 text-navy font-medium text-sm mb-8 shadow-lg"
-        >
-          <div className="w-6 h-6 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center text-white text-xs font-bold">
-            G
-          </div>
-          <div className="flex text-yellow-400">
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} className="w-4 h-4 fill-current" />
-            ))}
-          </div>
-          <span>4.9/5 Rating</span>
-          <span className="text-navy/70">•</span>
-          <span>4800+ Reviews</span>
-        </motion.div>
-
-        {/* Main Headlines */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="space-y-6 mb-8"
-        >
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight">
-            <span className="text-navy block">Smarter Strategies Build</span>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">
-              Stronger Brands
-            </span>
-          </h1>
-          <p className="text-navy/70 text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed">
-            A creative-first team building bold brands, driving awareness, & scaling growth 
-            through design and data for aesthetic clinics worldwide.
-          </p>
-        </motion.div>
-
-        {/* CTA Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={scrollToFeatures}
-            className="group flex items-center gap-3 px-10 py-5 bg-indigo-600 text-white rounded-full font-semibold text-lg shadow-2xl shadow-indigo-600/40 hover:shadow-indigo-600/60 transition-all mx-auto"
-          >
-            <span>Free Brand Plan</span>
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </motion.button>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
