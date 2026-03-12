@@ -2,14 +2,15 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 const images = [
-  { id: 1, height: "h-[400px]", gradient: "from-violet-400/60 via-purple-400/40 to-pink-400/60", creator: "Dr. Sarah Chen", pfp: "SC" },
-  { id: 2, height: "h-[300px]", gradient: "from-blue-400/60 via-cyan-400/40 to-teal-400/60", creator: "MedSpa NYC", pfp: "MN" },
-  { id: 3, height: "h-[350px]", gradient: "from-pink-400/60 via-rose-400/40 to-orange-400/60", creator: "Aesthetic Plus", pfp: "AP" },
-  { id: 4, height: "h-[450px]", gradient: "from-amber-400/60 via-orange-400/40 to-red-400/60", creator: "Beauty Clinic LA", pfp: "BL" },
-  { id: 5, height: "h-[320px]", gradient: "from-emerald-400/60 via-teal-400/40 to-cyan-400/60", creator: "Skin Experts", pfp: "SE" },
-  { id: 6, height: "h-[380px]", gradient: "from-indigo-400/60 via-violet-400/40 to-purple-400/60", creator: "Glow Aesthetics", pfp: "GA" },
+  { id: 1, height: "h-[400px]", gradient: "from-violet-400/60 via-purple-400/40 to-pink-400/60", creator: "Dr. Sarah Chen", pfp: "SC", image: "/images/bento-doctor-1.jpg" },
+  { id: 2, height: "h-[300px]", gradient: "from-blue-400/60 via-cyan-400/40 to-teal-400/60", creator: "MedSpa NYC", pfp: "MN", image: "/images/bento-doctor-2.jpg" },
+  { id: 3, height: "h-[350px]", gradient: "from-pink-400/60 via-rose-400/40 to-orange-400/60", creator: "Aesthetic Plus", pfp: "AP", image: "/images/bento-doctor-3.jpg" },
+  { id: 4, height: "h-[450px]", gradient: "from-amber-400/60 via-orange-400/40 to-red-400/60", creator: "Beauty Clinic LA", pfp: "BL", image: "/images/bento-doctor-4.jpg" },
+  { id: 5, height: "h-[320px]", gradient: "from-emerald-400/60 via-teal-400/40 to-cyan-400/60", creator: "Skin Experts", pfp: "SE", image: "/images/bento-doctor-5.jpg" },
+  { id: 6, height: "h-[380px]", gradient: "from-indigo-400/60 via-violet-400/40 to-purple-400/60", creator: "Glow Aesthetics", pfp: "GA", image: "/images/bento-doctor-6.jpg" },
   { id: 7, height: "h-[280px]", gradient: "from-rose-400/60 via-pink-400/40 to-fuchsia-400/60", creator: "Luxe Med Spa", pfp: "LM" },
   { id: 8, height: "h-[420px]", gradient: "from-cyan-400/60 via-blue-400/40 to-indigo-400/60", creator: "Youth Clinic", pfp: "YC" },
   { id: 9, height: "h-[340px]", gradient: "from-teal-400/60 via-emerald-400/40 to-green-400/60", creator: "Radiance MD", pfp: "RM" },
@@ -76,12 +77,22 @@ export default function BentoGrid() {
                     </div>
                   </div>
 
-                  {/* Placeholder Content */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-14 h-14 rounded-xl bg-white/30 backdrop-blur-sm flex items-center justify-center border border-white/40">
-                      <span className="text-xl opacity-60">🖼️</span>
+                  {/* Image or Placeholder Content */}
+                  {image.image ? (
+                    <Image
+                      src={image.image}
+                      alt={image.creator}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-14 h-14 rounded-xl bg-white/30 backdrop-blur-sm flex items-center justify-center border border-white/40">
+                        <span className="text-xl opacity-60">🖼️</span>
+                      </div>
                     </div>
-                  </div>
+                  )}
 
                   {/* Creator Info - Shows on hover */}
                   <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
