@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, TrendingUp, Target, Zap, Brain } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
@@ -91,6 +91,21 @@ const NeuralMesh = () => {
 
 export default function Hero() {
   const [instagramHandle, setInstagramHandle] = useState("");
+  const sectionRef = useRef(null);
+
+  // Parallax scroll tracking
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"]
+  });
+
+  // Different parallax speeds for each element
+  const cardParallax1 = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const cardParallax2 = useTransform(scrollYProgress, [0, 1], [0, -150]);
+  const cardParallax3 = useTransform(scrollYProgress, [0, 1], [0, -120]);
+  const cardParallax4 = useTransform(scrollYProgress, [0, 1], [0, -180]);
+  const contentParallax = useTransform(scrollYProgress, [0, 1], [0, -80]);
+  const meshParallax = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
   const handleAudit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -105,17 +120,20 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
       
       {/* Smooth Water-Like Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#073653] via-[#03A7CA] to-[#E2E7EA]" />
 
-      {/* Neural Network Mesh */}
-      <NeuralMesh />
+      {/* Neural Network Mesh with Parallax */}
+      <motion.div style={{ y: meshParallax }} className="absolute inset-0">
+        <NeuralMesh />
+      </motion.div>
 
       {/* Floating Claim Cards */}
       {/* Top Left */}
       <motion.div
+        style={{ y: cardParallax1 }}
         initial={{ opacity: 0, x: -50, y: -50 }}
         animate={{ opacity: 1, x: 0, y: 0 }}
         transition={{ duration: 1, delay: 0.5 }}
@@ -140,6 +158,7 @@ export default function Hero() {
 
       {/* Top Right */}
       <motion.div
+        style={{ y: cardParallax2 }}
         initial={{ opacity: 0, x: 50, y: -50 }}
         animate={{ opacity: 1, x: 0, y: 0 }}
         transition={{ duration: 1, delay: 0.7 }}
@@ -164,6 +183,7 @@ export default function Hero() {
 
       {/* Bottom Left */}
       <motion.div
+        style={{ y: cardParallax3 }}
         initial={{ opacity: 0, x: -50, y: 50 }}
         animate={{ opacity: 1, x: 0, y: 0 }}
         transition={{ duration: 1, delay: 0.9 }}
@@ -188,6 +208,7 @@ export default function Hero() {
 
       {/* Bottom Right */}
       <motion.div
+        style={{ y: cardParallax4 }}
         initial={{ opacity: 0, x: 50, y: 50 }}
         animate={{ opacity: 1, x: 0, y: 0 }}
         transition={{ duration: 1, delay: 1.1 }}
@@ -210,8 +231,11 @@ export default function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Main Content - Centered */}
-      <div className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      {/* Main Content - Centered with Parallax */}
+      <motion.div 
+        style={{ y: contentParallax }}
+        className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
+      >
         
         {/* Premium Badge */}
         <motion.div
@@ -327,7 +351,7 @@ export default function Hero() {
           </div>
         </motion.div>
 
-      </div>
+      </motion.div>
     </section>
   );
 }
