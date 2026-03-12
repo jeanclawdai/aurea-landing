@@ -5,13 +5,17 @@
 ### Default Models by Task
 - **💬 Chat:** Minimax M2.5 (default)
 - **🖼️ Image Reading:** Kimi K2.5 (automatic)
+- **🎨 Frontend Development:** Kimi K2.5 (manual switch)
 - **🧑‍💻 Code Review:** Claude Sonnet 4
-- **🎨 Image Generation:** Gemini 2.5 Flash Image
+- **🖼️ Image Generation:** Gemini 2.5 Flash Image
 
 ### Model Switching
 ```bash
 # Default chat
 /model minimax/MiniMax-M2.5
+
+# Frontend development mode
+/model moonshot/kimi-k2.5
 
 # Code review mode  
 /model anthropic/claude-sonnet-4-20250514
@@ -52,17 +56,22 @@ if 'candidates' in d:
 
 ## Common Workflows
 
-### 1. Frontend Design Review
-1. `/model anthropic/claude-sonnet-4-20250514`
-2. Upload image/code for review
-3. Get detailed code analysis
+### 1. Frontend Development
+1. `/model moonshot/kimi-k2.5`
+2. Build components, layouts, styling
+3. Upload images for analysis/inspiration
 
-### 2. Image Analysis + Generation
+### 2. Frontend Code Review  
+1. `/model anthropic/claude-sonnet-4-20250514`
+2. Upload completed frontend code
+3. Get detailed code analysis & improvements
+
+### 3. Image Analysis + Generation
 1. Upload image (automatically uses Kimi)
 2. Get analysis
 3. Generate variations with image generation script
 
-### 3. Content Creation
+### 4. Content Creation
 1. Use Minimax for ideation
 2. Generate supporting images with Gemini
 3. Review with Claude for refinement
