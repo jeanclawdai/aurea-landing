@@ -2,44 +2,45 @@
 
 import { motion } from "framer-motion";
 import { useRef } from "react";
-import { ArrowRight, ChevronLeft, ChevronRight, Play } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
 
 const features = [
   {
     id: 1,
-    title: "AI Video Generation",
-    description: "Create professional videos with AI-generated visuals",
-    gradient: "from-violet-500/40 via-purple-500/30 to-pink-500/40",
+    title: "Pattern Intelligence",
+    description: "Built on 10,000+ analyzed viral posts. Extracts proven hooks, pacing, and CTAs from top-performing content in your niche.",
+    image: "/images/feature-ai-video.jpg",
   },
   {
     id: 2,
-    title: "Voice Cloning",
-    description: "Your voice, infinitely scalable across all content",
-    gradient: "from-blue-500/40 via-cyan-500/30 to-teal-500/40",
+    title: "Voice Synthesis",
+    description: "Clone your voice once, scale infinitely. Professional-grade audio that sounds authentically you across every piece of content.",
+    image: "/images/feature-voice-clone.jpg",
   },
   {
     id: 3,
-    title: "Auto Editing",
-    description: "Automatic editing with subtitles and transitions",
-    gradient: "from-pink-500/40 via-rose-500/30 to-orange-500/40",
+    title: "Intelligent Editing",
+    description: "AI recognizes optimal cut points, pacing rhythms, and subtitle placement. Edits like a seasoned video professional.",
+    image: "/images/feature-auto-edit.jpg",
   },
   {
     id: 4,
-    title: "Trend Intelligence",
-    description: "Scan viral posts daily in your niche",
-    gradient: "from-amber-500/40 via-orange-500/30 to-red-500/40",
+    title: "Viral Analysis",
+    description: "Daily pattern extraction from trending content. Identifies what's working now—hooks, formats, music, engagement tactics.",
+    image: "/images/feature-trend-intelligence.jpg",
   },
   {
     id: 5,
-    title: "Content Planner",
-    description: "AI plans your calendar based on trends",
-    gradient: "from-emerald-500/40 via-teal-500/30 to-cyan-500/40",
+    title: "Strategic Planning",
+    description: "AI curates your content calendar based on trend cycles and your audience's engagement patterns. Always timely, never random.",
+    image: "/images/feature-content-planner.jpg",
   },
   {
     id: 6,
-    title: "Auto Publishing",
-    description: "Hands-free across all platforms",
-    gradient: "from-indigo-500/40 via-violet-500/30 to-purple-500/40",
+    title: "Multi-Platform Distribution",
+    description: "Optimized publishing across Instagram, TikTok, and YouTube. Platform-specific formats, timing, and metadata—handled automatically.",
+    image: "/images/feature-auto-publish.jpg",
   },
 ];
 
@@ -64,7 +65,7 @@ export default function Features() {
   };
 
   return (
-    <section id="features" className="py-32 overflow-hidden">
+    <section id="features" className="py-32 overflow-hidden bg-slate-50">
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-12 gap-12 items-start">
           {/* Left Side - Title & CTA */}
@@ -74,23 +75,22 @@ export default function Features() {
             viewport={{ once: true }}
             className="lg:col-span-3 lg:sticky lg:top-32"
           >
-            <span className="text-sm font-medium text-primary tracking-wider uppercase mb-4 block">
-              Core Features
+            <span className="text-sm font-medium text-cyan-600 tracking-wide uppercase mb-4 block">
+              Intelligence Layer
             </span>
-            <h2 className="text-4xl sm:text-5xl font-bold text-navy mb-6 leading-tight">
-              Your AI
-              <br />
-              <span className="gradient-text">Studio</span>
+            <h2 className="text-4xl sm:text-5xl font-bold text-slate-950 mb-6 leading-tight">
+              Viral Science.<br />
+              Not Generic AI.
             </h2>
-            <p className="text-navy-light text-lg mb-8 leading-relaxed">
-              Everything you need to create, edit, and publish content—completely automated.
+            <p className="text-slate-600 text-lg mb-8 leading-relaxed">
+              Built on pattern analysis of 10,000+ viral posts. Your content follows proven formulas, not guesswork.
             </p>
             
             <motion.button
               onClick={scrollToPricing}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="group flex items-center gap-3 px-8 py-4 bg-primary text-white rounded-2xl font-semibold shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all"
+              className="group flex items-center gap-3 px-8 py-4 bg-slate-950 text-white rounded-2xl font-semibold hover:bg-slate-800 transition-all"
             >
               <span>View Pricing</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -99,17 +99,17 @@ export default function Features() {
             <div className="hidden lg:flex items-center gap-3 mt-12">
               <button
                 onClick={() => scroll("left")}
-                className="w-12 h-12 rounded-full glass-card flex items-center justify-center hover:bg-white/80 transition-colors"
+                className="w-12 h-12 rounded-full bg-white border border-slate-200 flex items-center justify-center hover:bg-slate-50 transition-colors"
               >
-                <ChevronLeft className="w-5 h-5 text-navy" />
+                <ChevronLeft className="w-5 h-5 text-slate-950" />
               </button>
               <button
                 onClick={() => scroll("right")}
-                className="w-12 h-12 rounded-full glass-card flex items-center justify-center hover:bg-white/80 transition-colors"
+                className="w-12 h-12 rounded-full bg-white border border-slate-200 flex items-center justify-center hover:bg-slate-50 transition-colors"
               >
-                <ChevronRight className="w-5 h-5 text-navy" />
+                <ChevronRight className="w-5 h-5 text-slate-950" />
               </button>
-              <span className="text-sm text-navy-light ml-2">Scroll</span>
+              <span className="text-sm text-slate-500 ml-2">Scroll</span>
             </div>
           </motion.div>
 
@@ -127,52 +127,42 @@ export default function Features() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="flex-shrink-0 w-[400px] snap-start"
+                  className="flex-shrink-0 w-[420px] snap-start"
                 >
                   <motion.div
                     whileHover={{ 
-                      scale: 1.03,
+                      scale: 1.02,
                       y: -8,
                     }}
                     transition={{ duration: 0.3 }}
-                    className="group h-full glass-card rounded-3xl overflow-hidden hover:shadow-2xl hover:shadow-primary/10 transition-shadow duration-500 cursor-pointer"
+                    className="group h-full bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-slate-950/5 transition-all duration-300 cursor-pointer"
                   >
-                    <div className={`relative h-[300px] bg-gradient-to-br ${feature.gradient} overflow-hidden`}>
-                      <motion.div
-                        animate={{ x: ["-100%", "100%"] }}
-                        transition={{ duration: 3, repeat: Infinity, repeatDelay: 2 }}
-                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12"
+                    {/* Image Container */}
+                    <div className="relative h-[280px] bg-slate-950 overflow-hidden">
+                      <Image
+                        src={feature.image}
+                        alt={feature.title}
+                        fill
+                        className="object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                       />
                       
-                      <div className="absolute inset-0 opacity-20">
-                        <div className="w-full h-full" style={{
-                          backgroundImage: `linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px),
-                                           linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px)`,
-                          backgroundSize: '30px 30px'
-                        }} />
-                      </div>
+                      {/* Gradient overlay for better text contrast */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-slate-950/20 to-transparent" />
 
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <motion.div
-                          whileHover={{ scale: 1.1 }}
-                          className="w-16 h-16 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-lg"
-                        >
-                          <Play className="w-6 h-6 text-navy ml-0.5" fill="currentColor" />
-                        </motion.div>
-                      </div>
-
-                      <div className="absolute top-4 left-4">
-                        <span className="text-4xl font-bold text-white/30">
+                      {/* Number badge */}
+                      <div className="absolute top-5 left-5">
+                        <span className="text-4xl font-bold text-white/20">
                           {String(feature.id).padStart(2, "0")}
                         </span>
                       </div>
                     </div>
 
-                    <div className="p-8">
-                      <h3 className="text-xl font-bold text-navy mb-3 group-hover:text-primary transition-colors">
+                    {/* Content */}
+                    <div className="p-7">
+                      <h3 className="text-xl font-bold text-slate-950 mb-3 group-hover:text-cyan-600 transition-colors">
                         {feature.title}
                       </h3>
-                      <p className="text-navy-light leading-relaxed">
+                      <p className="text-slate-600 leading-relaxed text-[15px]">
                         {feature.description}
                       </p>
                     </div>
@@ -181,7 +171,7 @@ export default function Features() {
               ))}
             </div>
 
-            <div className="lg:hidden flex items-center justify-center gap-2 mt-4 text-navy-light text-sm">
+            <div className="lg:hidden flex items-center justify-center gap-2 mt-4 text-slate-500 text-sm">
               <span>Swipe to explore</span>
               <ArrowRight className="w-4 h-4" />
             </div>

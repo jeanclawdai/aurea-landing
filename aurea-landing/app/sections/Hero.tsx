@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, TrendingUp, Zap, Bot } from "lucide-react";
+import { ArrowRight, TrendingUp, Layers, Bot } from "lucide-react";
 import { useRef, useState } from "react";
 
 export default function Hero() {
@@ -43,7 +43,7 @@ export default function Hero() {
           {/* Left Side - Content */}
           <div className="space-y-8">
             
-            {/* Minimal Badge */}
+            {/* Sophisticated Badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -51,10 +51,10 @@ export default function Hero() {
               className="inline-flex items-center gap-2 text-sm font-medium text-slate-600"
             >
               <div className="w-1.5 h-1.5 rounded-full bg-cyan-500" />
-              <span>For Aesthetic Doctors</span>
+              <span>Pattern Intelligence for Aesthetic Doctors</span>
             </motion.div>
 
-            {/* Main Headline - Bold & Minimal */}
+            {/* Main Headline - Sophisticated & Results-Focused */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -62,15 +62,15 @@ export default function Hero() {
               className="space-y-6"
             >
               <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tight text-slate-950">
-                10x Your Social<br />
-                in 90 Days.
+                10,000 Viral Posts.<br />
+                One System.
               </h1>
               <p className="text-2xl text-slate-500 leading-relaxed max-w-xl font-light">
-                AI automation that creates, edits, and publishes content for your profile—24/7.
+                Content that follows proven viral patterns—not generic AI templates. Your profile grows with precision, not luck.
               </p>
             </motion.div>
 
-            {/* Minimal Stats */}
+            {/* Intelligence Stats - Emphasize Science */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -78,22 +78,34 @@ export default function Hero() {
               className="flex items-center gap-8 text-sm"
             >
               <div>
-                <div className="text-3xl font-bold text-slate-950">10x</div>
-                <div className="text-slate-500">Growth in 90 days</div>
+                <div className="flex items-center gap-2 mb-1">
+                  <TrendingUp className="w-4 h-4 text-cyan-600" />
+                  <div className="text-xs font-medium text-slate-600 uppercase tracking-wide">Viral Patterns</div>
+                </div>
+                <div className="text-3xl font-bold text-slate-950">10,000+</div>
+                <div className="text-sm text-slate-500">Analyzed posts</div>
               </div>
               
-              <div className="w-px h-12 bg-slate-200" />
+              <div className="w-px h-16 bg-slate-200" />
               
               <div>
-                <div className="text-3xl font-bold text-slate-950">100%</div>
-                <div className="text-slate-500">Automated</div>
+                <div className="flex items-center gap-2 mb-1">
+                  <Layers className="w-4 h-4 text-cyan-600" />
+                  <div className="text-xs font-medium text-slate-600 uppercase tracking-wide">Learning System</div>
+                </div>
+                <div className="text-3xl font-bold text-slate-950">2-Layer</div>
+                <div className="text-sm text-slate-500">Base + Personal</div>
               </div>
 
-              <div className="w-px h-12 bg-slate-200" />
+              <div className="w-px h-16 bg-slate-200" />
 
               <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <Bot className="w-4 h-4 text-cyan-600" />
+                  <div className="text-xs font-medium text-slate-600 uppercase tracking-wide">Automation</div>
+                </div>
                 <div className="text-3xl font-bold text-slate-950">24/7</div>
-                <div className="text-slate-500">AI working</div>
+                <div className="text-sm text-slate-500">Continuous</div>
               </div>
             </motion.div>
 
@@ -123,194 +135,255 @@ export default function Hero() {
                   whileTap={{ scale: 0.98 }}
                   className="group px-10 py-5 bg-slate-950 text-white rounded-2xl font-semibold text-lg hover:bg-slate-800 transition-all flex items-center justify-center gap-2 whitespace-nowrap"
                 >
-                  <span>Get Free Audit</span>
+                  <span>Analyze Profile</span>
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </motion.button>
               </form>
               
               <div className="flex items-center gap-4 text-sm">
                 <p className="text-slate-500">
-                  See exactly how we'll grow your reach
+                  Free viral pattern audit · See what's missing from your content
                 </p>
-                <span className="text-slate-300">•</span>
+                <span className="text-slate-300">·</span>
                 <button
                   onClick={scrollToPricing}
                   className="text-cyan-600 hover:text-cyan-700 transition-colors font-medium"
                 >
-                  View Pricing →
+                  Pricing →
                 </button>
               </div>
             </motion.div>
 
           </div>
 
-          {/* Right Side - Minimal iPhone Mockup + Cards */}
+          {/* Right Side - Pattern Intelligence Visual */}
           <div className="relative h-[650px] hidden lg:block">
             
-            {/* Subtle backdrop glow - very minimal */}
+            {/* Subtle backdrop glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-500/5 blur-[120px] rounded-full" />
 
-            {/* Main iPhone Mockup - Minimal Shadow */}
+            {/* Main Dashboard Visual - Pattern Extraction */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[600px] rounded-[3rem] bg-slate-950 border border-slate-800 shadow-2xl shadow-slate-950/10 overflow-hidden z-30"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[600px] rounded-3xl bg-white border-2 border-slate-200 shadow-xl shadow-slate-950/5 overflow-hidden z-30 p-8"
             >
-              {/* Phone notch */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-7 bg-slate-950 rounded-b-3xl z-10" />
-              
-              {/* Instagram UI - Clean */}
-              <div className="w-full h-full bg-white p-4 overflow-hidden">
-                {/* Header */}
-                <div className="flex items-center justify-between mb-5 pt-4">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500" />
-                    <span className="font-semibold text-sm text-slate-950">dr.yourprofile</span>
-                  </div>
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 1, type: "spring" }}
-                    className="flex items-center gap-1.5"
-                  >
-                    <div className="w-1.5 h-1.5 rounded-full bg-cyan-500" />
-                    <span className="text-xs font-medium text-cyan-600">Growing</span>
-                  </motion.div>
+              {/* Header */}
+              <div className="mb-6">
+                <div className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-2">
+                  Pattern Analysis
                 </div>
+                <div className="text-2xl font-bold text-slate-950">
+                  dr.yourprofile
+                </div>
+              </div>
 
-                {/* Stats - Clean numbers */}
-                <div className="grid grid-cols-3 gap-6 mb-5 text-center">
-                  <div>
-                    <motion.div 
-                      className="font-bold text-lg text-slate-950"
+              {/* Viral Pattern Breakdown */}
+              <div className="space-y-5">
+                
+                {/* Hook Pattern */}
+                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs font-medium text-slate-600 uppercase">Hook Pattern</span>
+                    <motion.span 
+                      className="text-xs font-bold text-cyan-600"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
-                      transition={{ delay: 0.6 }}
+                      transition={{ delay: 1 }}
                     >
-                      347
-                    </motion.div>
-                    <div className="text-xs text-slate-500">posts</div>
+                      Identified
+                    </motion.span>
                   </div>
-                  <div>
-                    <motion.div 
-                      className="font-bold text-xl text-cyan-600"
-                      initial={{ opacity: 0, scale: 0.5 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.8, type: "spring", stiffness: 200 }}
-                    >
-                      142K
-                    </motion.div>
-                    <div className="text-xs text-slate-500">followers</div>
+                  <div className="text-sm text-slate-700 font-medium">
+                    Before/After Reveal
                   </div>
-                  <div>
-                    <motion.div 
-                      className="font-bold text-lg text-slate-950"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.7 }}
-                    >
-                      284
-                    </motion.div>
-                    <div className="text-xs text-slate-500">following</div>
+                  <div className="text-xs text-slate-500 mt-1">
+                    First 3 seconds · 847% avg. engagement
                   </div>
                 </div>
 
-                {/* Grid of Posts - Minimal */}
-                <div className="grid grid-cols-3 gap-1">
-                  {Array.from({ length: 9 }).map((_, i) => (
-                    <motion.div
-                      key={i}
+                {/* Pacing */}
+                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs font-medium text-slate-600 uppercase">Pacing Analysis</span>
+                    <motion.span 
+                      className="text-xs font-bold text-cyan-600"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
-                      transition={{ delay: 1 + (i * 0.05) }}
-                      className="aspect-square bg-slate-100 rounded"
-                    />
-                  ))}
+                      transition={{ delay: 1.2 }}
+                    >
+                      Optimized
+                    </motion.span>
+                  </div>
+                  <div className="text-sm text-slate-700 font-medium">
+                    6-8 cuts/minute
+                  </div>
+                  <div className="flex items-end gap-1 h-8 mt-2">
+                    {[40, 55, 70, 85, 95, 75, 60, 50].map((height, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ height: 0 }}
+                        animate={{ height: `${height}%` }}
+                        transition={{ delay: 1.4 + (i * 0.05) }}
+                        className="flex-1 bg-cyan-500/60 rounded-sm"
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Format */}
+                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs font-medium text-slate-600 uppercase">Content Format</span>
+                    <motion.span 
+                      className="text-xs font-bold text-cyan-600"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 1.6 }}
+                    >
+                      Matched
+                    </motion.span>
+                  </div>
+                  <div className="text-sm text-slate-700 font-medium">
+                    Transformation Story
+                  </div>
+                  <div className="text-xs text-slate-500 mt-1">
+                    Top format in aesthetic medicine
+                  </div>
+                </div>
+
+                {/* CTA Pattern */}
+                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs font-medium text-slate-600 uppercase">CTA Strategy</span>
+                    <motion.span 
+                      className="text-xs font-bold text-cyan-600"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 1.8 }}
+                    >
+                      Applied
+                    </motion.span>
+                  </div>
+                  <div className="text-sm text-slate-700 font-medium">
+                    "Save for later"
+                  </div>
+                  <div className="text-xs text-slate-500 mt-1">
+                    2.3x higher save rate
+                  </div>
+                </div>
+
+              </div>
+
+              {/* Pattern Library Note */}
+              <div className="mt-6 p-3 rounded-lg bg-cyan-50 border border-cyan-200">
+                <div className="text-xs text-cyan-900 font-medium">
+                  ✓ Based on 10,284 viral posts in your niche
                 </div>
               </div>
             </motion.div>
 
-            {/* Floating Card 1 - Growth Chart (Ultra Minimal) */}
+            {/* Floating Card 1 - Learning Progress */}
             <motion.div
               style={{ y: card1Y }}
               initial={{ opacity: 0, x: -40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="absolute top-16 left-0 w-52 rounded-2xl bg-white border border-slate-200 shadow-lg shadow-slate-950/5 p-5 z-20"
+              className="absolute top-16 left-0 w-56 rounded-2xl bg-white border border-slate-200 shadow-lg shadow-slate-950/5 p-5 z-20"
             >
               <div className="flex items-center gap-2 mb-3">
-                <TrendingUp className="w-5 h-5 text-cyan-600" />
-                <div className="text-sm font-semibold text-slate-950">Engagement</div>
+                <Layers className="w-5 h-5 text-cyan-600" />
+                <div className="text-sm font-semibold text-slate-950">Learning System</div>
               </div>
-              <div className="text-3xl font-bold text-slate-950 mb-3">+847%</div>
-              {/* Minimal bar chart */}
-              <div className="flex items-end gap-1 h-16">
-                {[20, 25, 35, 50, 65, 80, 90, 100].map((height, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ height: 0 }}
-                    animate={{ height: `${height}%` }}
-                    transition={{ delay: 1.2 + (i * 0.08) }}
-                    className="flex-1 bg-cyan-500/80 rounded-sm"
-                  />
-                ))}
+              <div className="space-y-2 text-xs">
+                <div className="flex items-center justify-between">
+                  <span className="text-slate-600">Base Patterns</span>
+                  <span className="font-medium text-slate-950">10,000+</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-slate-600">Your Style</span>
+                  <motion.span 
+                    className="font-medium text-cyan-600"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.5 }}
+                  >
+                    Learning...
+                  </motion.span>
+                </div>
+              </div>
+              <div className="mt-3 h-2 bg-slate-100 rounded-full overflow-hidden">
+                <motion.div 
+                  className="h-full bg-cyan-500"
+                  initial={{ width: "0%" }}
+                  animate={{ width: "65%" }}
+                  transition={{ delay: 1.2, duration: 1.5 }}
+                />
+              </div>
+              <div className="mt-2 text-xs text-slate-500">
+                65% personalized
               </div>
             </motion.div>
 
-            {/* Floating Card 2 - AI Status (Ultra Minimal) */}
+            {/* Floating Card 2 - Viral Score */}
             <motion.div
               style={{ y: card2Y }}
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.7 }}
-              className="absolute top-40 right-0 w-56 rounded-2xl bg-white border border-slate-200 shadow-lg shadow-slate-950/5 p-5 z-20"
+              className="absolute top-40 right-0 w-52 rounded-2xl bg-white border border-slate-200 shadow-lg shadow-slate-950/5 p-5 z-20"
+            >
+              <div className="flex items-center gap-2 mb-3">
+                <TrendingUp className="w-5 h-5 text-cyan-600" />
+                <div className="text-sm font-semibold text-slate-950">Viral Potential</div>
+              </div>
+              <div className="text-4xl font-bold text-slate-950 mb-2">8.7/10</div>
+              <div className="text-xs text-slate-500 mb-3">
+                Based on pattern alignment
+              </div>
+              <div className="flex items-end gap-[2px] h-12">
+                {[50, 60, 75, 85, 95, 87].map((height, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ height: 0 }}
+                    animate={{ height: `${height}%` }}
+                    transition={{ delay: 1.3 + (i * 0.08) }}
+                    className="flex-1 bg-cyan-500/70 rounded-sm"
+                  />
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Floating Card 3 - Next Generation */}
+            <motion.div
+              style={{ y: card3Y }}
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+              className="absolute bottom-20 left-8 w-64 rounded-2xl bg-white border border-slate-200 shadow-lg shadow-slate-950/5 p-5 z-20"
             >
               <div className="flex items-center gap-2 mb-4">
                 <Bot className="w-5 h-5 text-slate-950" />
-                <div className="text-sm font-semibold text-slate-950">AI Working</div>
+                <div className="text-sm font-semibold text-slate-950">Scheduled Generation</div>
                 <motion.div 
                   className="ml-auto w-2 h-2 rounded-full bg-cyan-500"
                   animate={{ opacity: [1, 0.3, 1] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 />
               </div>
-              <div className="space-y-2.5 text-sm">
-                <div className="flex items-center justify-between text-slate-600">
-                  <span>Creating</span>
-                  <span className="text-xs font-medium text-slate-950">Active</span>
-                </div>
-                <div className="flex items-center justify-between text-slate-600">
-                  <span>Editing</span>
-                  <span className="text-xs font-medium text-slate-950">Active</span>
-                </div>
-                <div className="flex items-center justify-between text-slate-600">
-                  <span>Publishing</span>
-                  <span className="text-xs font-medium text-slate-950">Active</span>
-                </div>
+              <div className="text-xs text-slate-600 mb-2">
+                Next content in 6 hours
               </div>
-            </motion.div>
-
-            {/* Floating Card 3 - Automation (Ultra Minimal) */}
-            <motion.div
-              style={{ y: card3Y }}
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              className="absolute bottom-20 left-8 w-60 rounded-2xl bg-white border border-slate-200 shadow-lg shadow-slate-950/5 p-5 z-20"
-            >
-              <div className="flex items-center gap-2 mb-3">
-                <Zap className="w-5 h-5 text-cyan-600" />
-                <div className="text-sm font-semibold text-slate-950">Fully Automated</div>
-              </div>
-              <div className="text-3xl font-bold text-slate-950 mb-3">100%</div>
-              <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
-                <motion.div 
-                  className="h-full bg-cyan-500"
-                  initial={{ width: "0%" }}
-                  animate={{ width: "100%" }}
-                  transition={{ delay: 1.5, duration: 1.2 }}
-                />
+              <div className="flex items-center gap-2 text-xs">
+                <div className="flex-1 h-1 bg-slate-100 rounded-full overflow-hidden">
+                  <motion.div 
+                    className="h-full bg-cyan-500"
+                    animate={{ width: ["0%", "75%"] }}
+                    transition={{ duration: 3, repeat: Infinity }}
+                  />
+                </div>
+                <span className="text-slate-500 font-medium">75%</span>
               </div>
             </motion.div>
 
