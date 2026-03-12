@@ -270,15 +270,10 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold leading-[1.05] tracking-tight mb-8">
-            <span className="block text-ocean mb-2">
+            <span className="block text-white mb-2 drop-shadow-xl">
               Predict What Works
             </span>
-            <span 
-              className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-ocean via-cyan to-sky animate-gradient"
-              style={{
-                backgroundSize: '200% auto',
-              }}
-            >
+            <span className="block gradient-text-animated">
               Before You Post.
             </span>
           </h1>

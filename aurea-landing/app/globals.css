@@ -19,6 +19,15 @@ body {
   min-height: 100vh;
 }
 
+@keyframes gradient-animation {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -45,6 +54,22 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+  
+  .gradient-text-animated {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(186, 224, 231, 1) 25%,
+      rgba(3, 167, 202, 1) 50%,
+      rgba(186, 224, 231, 1) 75%,
+      rgba(255, 255, 255, 1) 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-animation 4s linear infinite;
   }
   
   .gradient-border {
