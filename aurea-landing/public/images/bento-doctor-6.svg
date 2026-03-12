@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400">
+  <defs>
+    <linearGradient id="skin6" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E8C5A0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D4B08A;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="hair6" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#C0C0C0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#A0A0A0;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="coat6" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F0F8FF;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="bg6" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#F0F8FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E6F3FF;stop-opacity:1" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="300" height="400" fill="url(#bg6)"/>
+  
+  <!-- Distinguished medical coat -->
+  <path d="M70 200 Q70 180 85 170 L215 170 Q230 180 230 200 L230 400 L70 400 Z" fill="url(#coat6)" stroke="#E0E0E0" stroke-width="2"/>
+  
+  <!-- Dress shirt and tie -->
+  <rect x="140" y="170" width="20" height="60" fill="#2D5AA0"/>
+  <path d="M130 170 L150 185 L170 170 L170 195 L130 195 Z" fill="white"/>
+  
+  <!-- Neck -->
+  <ellipse cx="150" cy="190" rx="24" ry="12" fill="url(#skin6)"/>
+  
+  <!-- Face -->
+  <ellipse cx="150" cy="140" rx="48" ry="58" fill="url(#skin6)"/>
+  
+  <!-- Distinguished gray hair -->
+  <path d="M102 125 Q102 80 150 75 Q198 80 198 125 Q195 115 185 110 Q170 105 150 105 Q130 105 115 110 Q105 115 102 125 Z" fill="url(#hair6)"/>
+  <path d="M102 125 Q100 130 105 135 Q115 140 125 135" fill="url(#hair6)"/>
+  <path d="M198 125 Q200 130 195 135 Q185 140 175 135" fill="url(#hair6)"/>
+  
+  <!-- Glasses -->
+  <circle cx="135" cy="132" r="15" fill="none" stroke="silver" stroke-width="3"/>
+  <circle cx="165" cy="132" r="15" fill="none" stroke="silver" stroke-width="3"/>
+  <path d="M150 132 L155 132" stroke="silver" stroke-width="2"/>
+  <path d="M120 132 L115 135" stroke="silver" stroke-width="2"/>
+  <path d="M180 132 L185 135" stroke="silver" stroke-width="2"/>
+  
+  <!-- Eyes behind glasses -->
+  <ellipse cx="135" cy="132" rx="8" ry="6" fill="white"/>
+  <ellipse cx="165" cy="132" rx="8" ry="6" fill="white"/>
+  <circle cx="135" cy="132" r="4" fill="#4A90A4"/>
+  <circle cx="165" cy="132" r="4" fill="#4A90A4"/>
+  <circle cx="136" cy="130" r="2" fill="black"/>
+  <circle cx="166" cy="130" r="2" fill="black"/>
+  <circle cx="137" cy="129" r="1" fill="white"/>
+  <circle cx="167" cy="129" r="1" fill="white"/>
+  
+  <!-- Distinguished eyebrows -->
+  <path d="M120 120 Q135 118 150 120" stroke="#A0A0A0" stroke-width="3" fill="none"/>
+  <path d="M150 120 Q165 118 180 120" stroke="#A0A0A0" stroke-width="3" fill="none"/>
+  
+  <!-- Nose -->
+  <path d="M148 137 Q150 147 152 152" stroke="#C9A876" stroke-width="2" fill="none"/>
+  
+  <!-- Mouth -->
+  <path d="M140 165 Q150 170 160 165" stroke="#C67B7B" stroke-width="3" fill="none"/>
+  
+  <!-- High-end stethoscope -->
+  <circle cx="105" cy="235" r="12" fill="platinum"/>
+  <circle cx="105" cy="235" r="8" fill="silver"/>
+  <path d="M105 223 Q125 220 145 227 Q165 232 175 245" stroke="platinum" stroke-width="4" fill="none"/>
+  
+  <!-- Elegant coat details -->
+  <path d="M85 170 L115 205 L145 170" stroke="#D0D0D0" stroke-width="2" fill="none"/>
+  <path d="M215 170 L185 205 L155 170" stroke="#D0D0D0" stroke-width="2" fill="none"/>
+  
+  <!-- Award pins -->
+  <circle cx="200" cy="220" r="4" fill="gold"/>
+  <circle cx="200" cy="235" r="4" fill="gold"/>
+  <text x="200" y="223" text-anchor="middle" fill="white" font-size="4">★</text>
+  <text x="200" y="238" text-anchor="middle" fill="white" font-size="4">★</text>
+  
+  <!-- Professional badge -->
+  <rect x="75" y="260" width="50" height="35" rx="5" fill="white" stroke="#2D5AA0" stroke-width="1"/>
+  <text x="100" y="272" text-anchor="middle" fill="#2D5AA0" font-size="8" font-family="serif">Dr. Robert</text>
+  <text x="100" y="282" text-anchor="middle" fill="#2D5AA0" font-size="7" font-family="serif">Chief Surgeon</text>
+  <text x="100" y="290" text-anchor="middle" fill="#2D5AA0" font-size="6" font-family="serif">30+ Years</text>
+</svg>

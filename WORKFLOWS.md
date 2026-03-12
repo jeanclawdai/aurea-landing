@@ -2,12 +2,12 @@
 
 ## Quick Reference
 
-### Default Models by Task
-- **💬 Chat:** Minimax M2.5 (default)
-- **🖼️ Image Reading:** Kimi K2.5 (automatic)
+### Default Models by Task (Updated 2026-03-12 17:04)
+- **💬 General Tasks:** Claude Sonnet 4.5 (default)
+- **🖼️ Image/Video Reading:** Kimi K2.5 (automatic)
 - **🎨 Frontend Development:** Kimi K2.5 (manual switch)
 - **🧑‍💻 Code Review:** Claude Sonnet 4
-- **🖼️ Image Generation:** Gemini 2.5 Flash Image
+- **🖼️ Image Generation:** Gemini 2.5 Flash Image (with nano banana)
 
 ### Model Switching
 ```bash
