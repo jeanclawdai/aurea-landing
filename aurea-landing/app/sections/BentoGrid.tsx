@@ -11,12 +11,12 @@ const images = [
   { id: 4, height: "h-[450px]", gradient: "from-amber-400/60 via-orange-400/40 to-red-400/60", creator: "Beauty Clinic LA", pfp: "BL", image: "/images/bento-doctor-4.jpg" },
   { id: 5, height: "h-[320px]", gradient: "from-emerald-400/60 via-teal-400/40 to-cyan-400/60", creator: "Skin Experts", pfp: "SE", image: "/images/bento-doctor-5.jpg" },
   { id: 6, height: "h-[380px]", gradient: "from-indigo-400/60 via-violet-400/40 to-purple-400/60", creator: "Glow Aesthetics", pfp: "GA", image: "/images/bento-doctor-6.jpg" },
-  { id: 7, height: "h-[280px]", gradient: "from-rose-400/60 via-pink-400/40 to-fuchsia-400/60", creator: "Luxe Med Spa", pfp: "LM" },
-  { id: 8, height: "h-[420px]", gradient: "from-cyan-400/60 via-blue-400/40 to-indigo-400/60", creator: "Youth Clinic", pfp: "YC" },
-  { id: 9, height: "h-[340px]", gradient: "from-teal-400/60 via-emerald-400/40 to-green-400/60", creator: "Radiance MD", pfp: "RM" },
-  { id: 10, height: "h-[360px]", gradient: "from-orange-400/60 via-amber-400/40 to-yellow-400/60", creator: "Elite Aesthetics", pfp: "EA" },
-  { id: 11, height: "h-[310px]", gradient: "from-purple-400/60 via-violet-400/40 to-indigo-400/60", creator: "Pure Beauty", pfp: "PB" },
-  { id: 12, height: "h-[390px]", gradient: "from-red-400/60 via-rose-400/40 to-pink-400/60", creator: "Viva Clinic", pfp: "VC" },
+  { id: 7, height: "h-[280px]", gradient: "from-rose-400/60 via-pink-400/40 to-fuchsia-400/60", creator: "Luxe Med Spa", pfp: "LM", image: "/images/bento-doctor-7.jpg" },
+  { id: 8, height: "h-[420px]", gradient: "from-cyan-400/60 via-blue-400/40 to-indigo-400/60", creator: "Youth Clinic", pfp: "YC", image: "/images/bento-doctor-8.jpg" },
+  { id: 9, height: "h-[340px]", gradient: "from-teal-400/60 via-emerald-400/40 to-green-400/60", creator: "Radiance MD", pfp: "RM", image: "/images/bento-doctor-9.jpg" },
+  { id: 10, height: "h-[360px]", gradient: "from-orange-400/60 via-amber-400/40 to-yellow-400/60", creator: "Elite Aesthetics", pfp: "EA", image: "/images/bento-doctor-10.jpg" },
+  { id: 11, height: "h-[310px]", gradient: "from-purple-400/60 via-violet-400/40 to-indigo-400/60", creator: "Pure Beauty", pfp: "PB", image: "/images/bento-doctor-11.jpg" },
+  { id: 12, height: "h-[390px]", gradient: "from-red-400/60 via-rose-400/40 to-pink-400/60", creator: "Viva Clinic", pfp: "VC", image: "/images/bento-doctor-12.jpg" },
 ];
 
 export default function BentoGrid() {
