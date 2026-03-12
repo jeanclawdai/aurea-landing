@@ -20,7 +20,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-ocean via-ocean/80 to-mist">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#073653] via-[#0a5278] to-[#03A7CA]">
       
       {/* Neural Network Background Effect */}
       <div className="absolute inset-0 overflow-hidden">
