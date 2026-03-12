@@ -49,65 +49,67 @@ export default function BentoGrid() {
       </div>
 
       {/* Masonry Grid */}
-      <div className="relative px-4 sm:px-6 lg:px-8">
-        <div className="columns-2 md:columns-3 lg:columns-4 gap-3 space-y-3">
-          {images.map((image, index) => (
-            <motion.div
-              key={image.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.05 }}
-              className="break-inside-avoid"
-            >
-              <div
-                className={`group relative ${image.height} rounded-2xl overflow-hidden cursor-pointer shadow-lg shadow-primary/5 hover:shadow-xl hover:shadow-primary/10 transition-shadow`}
+      <div className="px-4 sm:px-6 lg:px-8 relative">
+        {/* Grid container with gradient overlay */}
+        <div className="relative">
+          <div className="columns-2 md:columns-3 lg:columns-4 gap-3 space-y-3">
+            {images.map((image, index) => (
+              <motion.div
+                key={image.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05 }}
+                className="break-inside-avoid"
               >
-                {/* Gradient Background */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${image.gradient} transition-all duration-300 group-hover:brightness-75`}>
-                  {/* Subtle pattern */}
-                  <div className="absolute inset-0 opacity-10">
-                    <div className="w-full h-full" style={{
-                      backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.5) 1px, transparent 0)`,
-                      backgroundSize: '20px 20px'
-                    }} />
-                  </div>
-                </div>
-
-                {/* Placeholder Content */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-14 h-14 rounded-xl bg-white/30 backdrop-blur-sm flex items-center justify-center border border-white/40">
-                    <span className="text-xl opacity-60">🖼️</span>
-                  </div>
-                </div>
-
-                {/* Creator Info - Shows on hover */}
-                <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                  <div className="flex items-center gap-3">
-                    {/* Circular PFP */}
-                    <div className="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center text-navy font-semibold text-sm shadow-lg">
-                      {image.pfp}
-                    </div>
-                    <div className="glass-card rounded-xl px-4 py-2">
-                      <span className="text-navy text-sm font-medium">{image.creator}</span>
+                <div
+                  className={`group relative ${image.height} rounded-2xl overflow-hidden cursor-pointer shadow-lg shadow-primary/5 hover:shadow-xl hover:shadow-primary/10 transition-shadow`}
+                >
+                  {/* Gradient Background */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${image.gradient} transition-all duration-300 group-hover:brightness-75`}>
+                    {/* Subtle pattern */}
+                    <div className="absolute inset-0 opacity-10">
+                      <div className="w-full h-full" style={{
+                        backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.5) 1px, transparent 0)`,
+                        backgroundSize: '20px 20px'
+                      }} />
                     </div>
                   </div>
+
+                  {/* Placeholder Content */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-14 h-14 rounded-xl bg-white/30 backdrop-blur-sm flex items-center justify-center border border-white/40">
+                      <span className="text-xl opacity-60">🖼️</span>
+                    </div>
+                  </div>
+
+                  {/* Creator Info - Shows on hover */}
+                  <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                    <div className="flex items-center gap-3">
+                      {/* Circular PFP */}
+                      <div className="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center text-navy font-semibold text-sm shadow-lg">
+                        {image.pfp}
+                      </div>
+                      <div className="glass-card rounded-xl px-4 py-2">
+                        <span className="text-navy text-sm font-medium">{image.creator}</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Bottom Gradient - Covers uneven card bottoms, matches page bg */}
+          <div className="absolute bottom-0 left-0 right-0 h-[420px] bg-gradient-to-t from-[#F3F7FF] via-[#F3F7FF] to-transparent pointer-events-none" />
         </div>
-
-        {/* Bottom Gradient - Covers card endings */}
-        <div className="absolute bottom-0 left-0 right-0 h-[500px] bg-gradient-to-t from-[#F3F7FF] via-[#F3F7FF] via-60% to-transparent pointer-events-none" />
         
-        {/* CTA Button - Centered */}
-        <div className="relative mt-16 flex justify-center">
+        {/* CTA Button - Positioned above the gradient */}
+        <div className="absolute bottom-32 left-0 right-0 flex justify-center z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="relative z-10"
           >
             <motion.button
               onClick={scrollToPricing}
