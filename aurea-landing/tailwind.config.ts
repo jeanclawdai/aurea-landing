@@ -11,17 +11,32 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        // New Premium Color Palette
+        ocean: {
+          DEFAULT: "#073653", // Deep ocean blue
+          light: "#0a5278",
+        },
+        cyan: {
+          DEFAULT: "#03A7CA", // Bright cyan
+          light: "#50c5e0",
+        },
+        sky: {
+          DEFAULT: "#BAE0E7", // Light sky blue
+          light: "#d4edf2",
+        },
+        mist: {
+          DEFAULT: "#E2E7EA", // Light gray-blue
+          light: "#f0f3f5",
+        },
+        // Legacy (for compatibility)
         primary: {
-          DEFAULT: "#6FA8FF",
-          light: "#CFE3FF",
+          DEFAULT: "#03A7CA",
+          light: "#BAE0E7",
         },
-        secondary: "#CFE3FF",
-        accent: "#A8B8FF",
         navy: {
-          DEFAULT: "#1A2A4A",
-          light: "#4A5A7A",
+          DEFAULT: "#073653",
+          light: "#0a5278",
         },
-        mist: "#F3F7FF",
       },
       fontFamily: {
         sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
@@ -31,12 +46,27 @@ const config: Config = {
         '3xl': '24px',
       },
       boxShadow: {
-        'glass': '0 4px 24px rgba(111, 168, 255, 0.1), 0 1px 2px rgba(0, 0, 0, 0.05)',
-        'glow': '0 0 60px rgba(111, 168, 255, 0.4), 0 0 120px rgba(168, 184, 255, 0.2)',
+        'glass': '0 4px 24px rgba(3, 167, 202, 0.1), 0 1px 2px rgba(0, 0, 0, 0.05)',
+        'glow': '0 0 60px rgba(3, 167, 202, 0.4), 0 0 120px rgba(186, 224, 231, 0.2)',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      },
+      animation: {
+        'gradient': 'gradient 8s linear infinite',
+      },
+      keyframes: {
+        gradient: {
+          '0%, 100%': {
+            'background-size': '200% 200%',
+            'background-position': 'left center'
+          },
+          '50%': {
+            'background-size': '200% 200%',
+            'background-position': 'right center'
+          },
+        },
       },
     },
   },
