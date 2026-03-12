@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { useRef } from "react";
 import { ArrowRight, ChevronLeft, ChevronRight, Play } from "lucide-react";
 
@@ -38,7 +38,7 @@ const features = [
   {
     id: 6,
     title: "Auto Publishing",
-    description: "Hands-free posting across all platforms",
+    description: "Hands-free across all platforms",
     gradient: "from-indigo-500/40 via-violet-500/30 to-purple-500/40",
   },
 ];
@@ -48,7 +48,7 @@ export default function Features() {
 
   const scroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
-      const scrollAmount = 400;
+      const scrollAmount = 440;
       scrollRef.current.scrollBy({
         left: direction === "left" ? -scrollAmount : scrollAmount,
         behavior: "smooth",
@@ -64,15 +64,15 @@ export default function Features() {
   };
 
   return (
-    <section id="features" className="py-24 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="features" className="py-32 overflow-hidden">
+      <div className="px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-12 gap-12 items-start">
           {/* Left Side - Title & CTA */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-4 lg:sticky lg:top-32"
+            className="lg:col-span-3 lg:sticky lg:top-32"
           >
             <span className="text-sm font-medium text-primary tracking-wider uppercase mb-4 block">
               Core Features
@@ -80,13 +80,12 @@ export default function Features() {
             <h2 className="text-4xl sm:text-5xl font-bold text-navy mb-6 leading-tight">
               Your AI
               <br />
-              Content Studio
+              <span className="gradient-text">Studio</span>
             </h2>
             <p className="text-navy-light text-lg mb-8 leading-relaxed">
               Everything you need to create, edit, and publish content—completely automated.
             </p>
             
-            {/* CTA Button */}
             <motion.button
               onClick={scrollToPricing}
               whileHover={{ scale: 1.02 }}
@@ -97,7 +96,6 @@ export default function Features() {
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </motion.button>
 
-            {/* Scroll indicators */}
             <div className="hidden lg:flex items-center gap-3 mt-12">
               <button
                 onClick={() => scroll("left")}
@@ -111,15 +109,15 @@ export default function Features() {
               >
                 <ChevronRight className="w-5 h-5 text-navy" />
               </button>
-              <span className="text-sm text-navy-light ml-2">Scroll to explore</span>
+              <span className="text-sm text-navy-light ml-2">Scroll</span>
             </div>
           </motion.div>
 
-          {/* Right Side - Horizontal Scroll Cards */}
-          <div className="lg:col-span-8">
+          {/* Right Side - Full Width Scroll */}
+          <div className="lg:col-span-9">
             <div
               ref={scrollRef}
-              className="flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-hide"
+              className="flex gap-6 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide py-4 -mx-4 px-4"
               style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
             >
               {features.map((feature, index) => (
@@ -129,22 +127,23 @@ export default function Features() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="flex-shrink-0 w-80 snap-start"
+                  className="flex-shrink-0 w-[400px] snap-start"
                 >
                   <motion.div
-                    whileHover={{ y: -8 }}
-                    className="group h-full glass-card rounded-3xl overflow-hidden hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 cursor-pointer"
+                    whileHover={{ 
+                      scale: 1.03,
+                      y: -8,
+                    }}
+                    transition={{ duration: 0.3 }}
+                    className="group h-full glass-card rounded-3xl overflow-hidden hover:shadow-2xl hover:shadow-primary/10 transition-shadow duration-500 cursor-pointer"
                   >
-                    {/* Preview Area */}
-                    <div className={`relative aspect-[4/3] bg-gradient-to-br ${feature.gradient} overflow-hidden`}>
-                      {/* Animated shine */}
+                    <div className={`relative h-[300px] bg-gradient-to-br ${feature.gradient} overflow-hidden`}>
                       <motion.div
                         animate={{ x: ["-100%", "100%"] }}
                         transition={{ duration: 3, repeat: Infinity, repeatDelay: 2 }}
                         className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12"
                       />
                       
-                      {/* Grid overlay */}
                       <div className="absolute inset-0 opacity-20">
                         <div className="w-full h-full" style={{
                           backgroundImage: `linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px),
@@ -153,17 +152,15 @@ export default function Features() {
                         }} />
                       </div>
 
-                      {/* Play button */}
                       <div className="absolute inset-0 flex items-center justify-center">
                         <motion.div
                           whileHover={{ scale: 1.1 }}
-                          className="w-14 h-14 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-lg"
+                          className="w-16 h-16 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-lg"
                         >
-                          <Play className="w-5 h-5 text-navy ml-0.5" fill="currentColor" />
+                          <Play className="w-6 h-6 text-navy ml-0.5" fill="currentColor" />
                         </motion.div>
                       </div>
 
-                      {/* Number badge */}
                       <div className="absolute top-4 left-4">
                         <span className="text-4xl font-bold text-white/30">
                           {String(feature.id).padStart(2, "0")}
@@ -171,12 +168,11 @@ export default function Features() {
                       </div>
                     </div>
 
-                    {/* Content */}
-                    <div className="p-6">
-                      <h3 className="text-lg font-bold text-navy mb-2 group-hover:text-primary transition-colors">
+                    <div className="p-8">
+                      <h3 className="text-xl font-bold text-navy mb-3 group-hover:text-primary transition-colors">
                         {feature.title}
                       </h3>
-                      <p className="text-navy-light text-sm leading-relaxed">
+                      <p className="text-navy-light leading-relaxed">
                         {feature.description}
                       </p>
                     </div>
@@ -185,7 +181,6 @@ export default function Features() {
               ))}
             </div>
 
-            {/* Mobile scroll hint */}
             <div className="lg:hidden flex items-center justify-center gap-2 mt-4 text-navy-light text-sm">
               <span>Swipe to explore</span>
               <ArrowRight className="w-4 h-4" />
