@@ -269,11 +269,11 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold leading-[1.05] tracking-tight mb-8">
-            <span className="block text-white mb-2 drop-shadow-xl">
+          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-light leading-[1.05] tracking-tight mb-8">
+            <span className="block text-white mb-2 drop-shadow-2xl" style={{ textShadow: '0 4px 20px rgba(0,0,0,0.3)' }}>
               Predict What Works
             </span>
-            <span className="block gradient-text-animated">
+            <span className="block gradient-text-animated font-normal" style={{ textShadow: '0 4px 20px rgba(0,0,0,0.2)' }}>
               Before You Post.
             </span>
           </h1>
@@ -284,7 +284,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-xl sm:text-2xl text-ocean/80 leading-relaxed max-w-3xl mx-auto mb-12 font-light"
+          className="text-xl sm:text-2xl text-white/80 leading-relaxed max-w-3xl mx-auto mb-12 font-light drop-shadow-lg"
         >
           A pattern intelligence system trained on 10,000+ top-performing posts from top creators.
         </motion.p>
