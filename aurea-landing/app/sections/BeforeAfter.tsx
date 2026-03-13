@@ -48,11 +48,16 @@ function AnimCount({ from, to, triggered }: { from: number; to: number; triggere
 // Instagram notification SVG component
 function LikeNotification({ count, className }: { count: string; className?: string }) {
   return (
-    <svg viewBox="0 0 60 52" fill="none" className={className}>
-      <path d="M4 4C4 1.79086 5.79086 0 8 0H52C54.2091 0 56 1.79086 56 4V36C56 38.2091 54.2091 40 52 40H34L30 52L26 40H8C5.79086 40 4 38.2091 4 36V4Z" fill="#ED4956"/>
-      <path d="M22 22C22 17.5817 25.5817 14 30 14C32.1217 14 34.1566 14.8429 35.6569 16.3431C37.1571 17.8434 38 19.8783 38 22C38 26 34 30 30 34C26 30 22 26 22 22Z" fill="white" stroke="white" strokeWidth="2"/>
-      <text x="42" y="28" fill="white" fontSize="16" fontWeight="600" fontFamily="system-ui">{count}</text>
-    </svg>
+    <div className={`${className}`}>
+      <svg viewBox="0 0 120 85" fill="none" className="w-full h-full drop-shadow-xl">
+        {/* Bubble background - wider to fit number */}
+        <path d="M 100 8 H 16 C 8 8 2 14 2 22 v 36 c 0 8 6 14 14 14 h 20 L 50 85 l 14 -13 h 36 c 8 0 14 -6 14 -14 V 22 C 114 14 108 8 100 8 z" fill="#EE5162"/>
+        {/* Heart icon - shifted left */}
+        <path d="M 46 28 c -3.6 -3.6 -9.5 -3.6 -13 0 L 30 31 l -3 -3 c -3.6 -3.6 -9.5 -3.6 -13 0 c -3.6 3.6 -3.6 9.5 0 13 l 3 3 L 30 57 L 43 44 l 3 -3 c 3.6 -3.6 3.6 -9.5 0 -13 z" fill="white"/>
+        {/* Number text */}
+        <text x="72" y="48" fill="white" fontSize="28" fontWeight="700" fontFamily="system-ui, -apple-system, sans-serif" textAnchor="middle">{count}</text>
+      </svg>
+    </div>
   );
 }
 
@@ -64,15 +69,36 @@ function IPhoneMockup({ isAfter, triggered }: { isAfter: boolean; triggered: boo
       {/* Floating notification icons - only on After state */}
       {isAfter && (
         <>
-          <div className="absolute -top-2 -right-8 z-20 float-card-1">
-            <LikeNotification count="47" className="w-14 h-12 drop-shadow-lg" />
-          </div>
-          <div className="absolute top-24 -left-10 z-20 float-card-2">
-            <LikeNotification count="128" className="w-16 h-14 drop-shadow-lg" />
-          </div>
-          <div className="absolute bottom-40 -right-6 z-20 float-card-3">
-            <LikeNotification count="89" className="w-12 h-10 drop-shadow-lg" />
-          </div>
+          <motion.div 
+            className="absolute top-20 -left-16 z-20"
+            initial={{ opacity: 0, y: 30, scale: 0.8 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ delay: 0.3, duration: 0.5, ease: [0.22,1,0.36,1] }}
+          >
+            <div className="float-card-1">
+              <LikeNotification count="128" className="w-14 h-14" />
+            </div>
+          </motion.div>
+          <motion.div 
+            className="absolute top-48 -right-14 z-20"
+            initial={{ opacity: 0, y: 30, scale: 0.8 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ delay: 0.5, duration: 0.5, ease: [0.22,1,0.36,1] }}
+          >
+            <div className="float-card-2">
+              <LikeNotification count="47" className="w-12 h-12" />
+            </div>
+          </motion.div>
+          <motion.div 
+            className="absolute bottom-48 -left-12 z-20"
+            initial={{ opacity: 0, y: 30, scale: 0.8 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ delay: 0.7, duration: 0.5, ease: [0.22,1,0.36,1] }}
+          >
+            <div className="float-card-3">
+              <LikeNotification count="89" className="w-11 h-11" />
+            </div>
+          </motion.div>
         </>
       )}
       
