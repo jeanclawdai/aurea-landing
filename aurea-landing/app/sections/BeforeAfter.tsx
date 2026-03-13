@@ -67,9 +67,11 @@ function IPhoneMockup({ isAfter, triggered }: { isAfter: boolean; triggered: boo
           <div className="bg-white px-4 pt-3 pb-2 border-b border-gray-100">
             <div className="flex items-center justify-between">
               <span className="text-xs text-gray-400">9:41</span>
-              <div className="w-6 h-6 rounded-full bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 flex items-center justify-center">
-                <span className="text-white text-[8px] font-bold">IG</span>
-              </div>
+              <img 
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/960px-Instagram_logo_2022.svg.png" 
+                alt="Instagram" 
+                className="w-6 h-6 object-contain"
+              />
             </div>
           </div>
 
