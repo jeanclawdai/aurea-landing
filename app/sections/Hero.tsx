@@ -7,7 +7,30 @@ export default function Hero() {
   const { lang } = useLang();
 
   return (
-    <section className="min-h-screen bg-white flex flex-col items-center justify-center px-6 pt-32 pb-24 text-center">
+    <section className="relative min-h-screen ai-grid-bg flex flex-col items-center justify-center px-6 pt-32 pb-24 text-center overflow-hidden">
+      {/* Floating metric cards */}
+      {[
+        { label: "Avg Growth", value: "847%", color: "text-emerald-600", icon: "📈", x: "-left-4 lg:-left-16", y: "top-32", delay: 0 },
+        { label: "Posts Analyzed", value: "10K+", color: "text-blue-600", icon: "🔬", x: "left-2 lg:left-4", y: "bottom-40", delay: 0.2 },
+        { label: "Faster Creation", value: "10×", color: "text-violet-600", icon: "⚡", x: "-right-4 lg:-right-16", y: "top-32", delay: 0.4 },
+        { label: "Engagement Rate", value: "8.7%", color: "text-rose-500", icon: "💡", x: "right-2 lg:right-4", y: "bottom-40", delay: 0.6 },
+      ].map((card, i) => (
+        <motion.div
+          key={i}
+          className={`absolute hidden lg:flex ${card.x} ${card.y} flex-col items-start bg-white rounded-2xl border border-gray-100 shadow-lg shadow-black/5 px-4 py-3 w-36 z-10`}
+          initial={{ opacity: 0, scale: 0.8, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: [0, -6, 0] }}
+          transition={{
+            opacity: { delay: card.delay + 0.5, duration: 0.5 },
+            scale: { delay: card.delay + 0.5, duration: 0.5 },
+            y: { type: "tween", delay: card.delay + 1, duration: 3 + i * 0.5, repeat: Infinity, ease: "easeInOut" }
+          }}
+        >
+          <span className="text-lg mb-1">{card.icon}</span>
+          <div className={`text-xl font-bold ${card.color}`}>{card.value}</div>
+          <div className="text-xs text-gray-400 font-medium">{card.label}</div>
+        </motion.div>
+      ))}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -21,7 +44,7 @@ export default function Hero() {
         </div>
 
         {/* Main headline — HUGE */}
-        <h1 className="text-6xl sm:text-7xl lg:text-8xl font-extrabold text-gray-950 leading-[1.05] tracking-tight mb-6">
+        <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold text-gray-950 leading-[1.05] tracking-tight mb-6">
           {lang === "pt" ? (
             <>Preveja o que <span className="font-serif-italic font-normal">resulta</span><br />antes de publicar.</>
           ) : (

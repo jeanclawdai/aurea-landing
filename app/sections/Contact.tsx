@@ -15,24 +15,30 @@ const floatingIcons = [
 export default function Contact() {
   const { lang } = useLang();
   return (
-    <section id="contact" className="py-32 px-6 bg-gray-50">
+    <section id="contact" className="py-32 px-6 bg-white relative overflow-hidden">
+      {/* Background gradient */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-50 via-violet-50 to-pink-50 rounded-full blur-3xl opacity-60" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-48 bg-gradient-to-t from-blue-100/40 to-transparent blur-2xl" />
+      </div>
       <div className="max-w-2xl mx-auto relative">
         {/* Floating icons */}
         {floatingIcons.map((item, i) => (
           <motion.div
             key={i}
             className="absolute hidden lg:flex items-center justify-center w-12 h-12 bg-white rounded-2xl shadow-lg border border-gray-100 text-xl pointer-events-none"
-            style={{ left: `calc(50% + ${item.x}px)`, top: `calc(50% + ${item.y}px)` }}
+            style={{ left: `calc(50% + ${item.x}px)`, top: `calc(50% + ${item.y}px)`, rotate: item.rotate }}
             initial={{ opacity: 0, scale: 0 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: item.delay, type: "spring", stiffness: 300 }}
-            animate={{
-              y: [0, -6, 0],
-              rotate: [item.rotate, item.rotate + 3, item.rotate],
-            }}
           >
-            {item.icon}
+            <motion.span
+              animate={{ y: [0, -6, 0] }}
+              transition={{ type: "tween", duration: 2 + i * 0.3, delay: item.delay, repeat: Infinity, ease: "easeInOut" }}
+            >
+              {item.icon}
+            </motion.span>
           </motion.div>
         ))}
 
@@ -45,7 +51,7 @@ export default function Contact() {
           <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-gray-100 text-gray-500 text-xs font-semibold tracking-widest uppercase mb-6">
             {lang === "pt" ? "CONTACTO" : "CONTACT"}
           </span>
-          <h2 className="text-5xl sm:text-6xl font-extrabold text-gray-950 leading-tight mb-6">
+          <h2 className="text-5xl sm:text-6xl font-bold text-gray-950 leading-tight mb-6">
             {lang === "pt" ? (
               <>Vamos <span className="font-serif-italic font-normal">falar.</span></>
             ) : (
@@ -127,7 +133,7 @@ export default function Contact() {
           <motion.div
             className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-32 -z-10"
             animate={{ opacity: [0.3, 0.7, 0.3], scale: [1, 1.1, 1] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            transition={{ type: "tween", duration: 3, repeat: Infinity, ease: "easeInOut" }}
             style={{ background: "radial-gradient(ellipse, rgba(111,168,255,0.25) 0%, transparent 70%)" }}
           />
         </motion.div>

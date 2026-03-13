@@ -53,7 +53,7 @@ export default function HowItWorks() {
           <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-gray-100 text-gray-500 text-xs font-semibold tracking-widest uppercase mb-6">
             {lang === "pt" ? "COMO FUNCIONA" : "HOW IT WORKS"}
           </span>
-          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-gray-950 leading-tight">
+          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-950 leading-tight">
             {lang === "pt"
               ? <>De Criador a <span className="font-serif-italic font-normal">Diretor Criativo</span></>
               : <>From Creator to <span className="font-serif-italic font-normal">Creative Director</span></>}
@@ -61,14 +61,15 @@ export default function HowItWorks() {
         </motion.div>
 
         {/* Steps */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {steps.map((step, i) => (
             <motion.div
               key={step.number}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
+              animate={{ y: [0, -8, 0] }}
+              transition={{ type: "tween", duration: 3, delay: i * 0.6, repeat: Infinity, ease: "easeInOut" }}
               whileHover={{ y: -6 }}
               className="bg-gray-50 rounded-3xl p-10 border border-gray-100"
             >
@@ -80,7 +81,7 @@ export default function HowItWorks() {
               >
                 <step.icon className="w-7 h-7 text-gray-700" strokeWidth={1.5} />
               </motion.div>
-              <div className="text-5xl font-bold text-gray-100 mb-4">{step.number}</div>
+              <div className="text-6xl sm:text-7xl font-bold text-gray-200 mb-4">{step.number}</div>
               <h3 className="text-2xl font-bold text-gray-950 mb-4">
                 {lang === "pt" ? step.titlePt : step.title}
               </h3>
@@ -98,7 +99,7 @@ export default function HowItWorks() {
               key={i}
               className="text-gray-200 text-xl"
               animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 1.2, delay: i * 0.15, repeat: Infinity, ease: "easeInOut" }}
+              transition={{ type: "tween", duration: 1.2, delay: i * 0.15, repeat: Infinity, ease: "easeInOut" }}
             >
               {s}
             </motion.span>
