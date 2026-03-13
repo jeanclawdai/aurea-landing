@@ -110,13 +110,11 @@ export default function BeforeAfter() {
           transition={{ duration: 0.6 }}
           className="text-center mb-14"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-amber-50 text-amber-600 text-xs font-semibold tracking-widest uppercase mb-4">
-            {t.beforeAfter.eyebrow}
-          </span>
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-            {t.beforeAfter.headline}
+          <span className="text-xs font-semibold tracking-widest text-gray-400 uppercase mb-4 block">REAL RESULTS</span>
+          <h2 className="text-5xl sm:text-6xl font-extrabold text-gray-950 mb-4 leading-tight">
+            The Aurea <span className="font-serif-italic font-normal">Effect.</span>
           </h2>
-          <p className="text-lg text-gray-500 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
             {t.beforeAfter.subtitle}
           </p>
         </motion.div>
@@ -206,6 +204,8 @@ export default function BeforeAfter() {
             {t.beforeAfter.dragLabel}
           </p>
         </motion.div>
+
+        <div className="sparkle-divider mt-16 text-xl">✦ ✦ ✦</div>
 
         {/* Disclaimer */}
         <p className="text-center text-xs text-gray-400 mt-6">

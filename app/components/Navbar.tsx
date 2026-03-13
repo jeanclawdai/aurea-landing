@@ -44,14 +44,14 @@ export default function Navbar() {
     >
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
         <div
-          className={`flex items-center justify-between transition-all duration-300 liquid-glass px-6 py-3`}
+          className={`flex items-center justify-between transition-all duration-300 bg-white/90 backdrop-blur-xl border border-gray-100 shadow-sm liquid-glass px-6 py-3`}
         >
           {/* Logo */}
           <a href="#" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-gray-950 flex items-center justify-center">
               <span className="text-white font-bold text-sm">A</span>
             </div>
-            <span className="text-xl font-semibold text-gray-900">Aurea</span>
+            <span className="text-xl font-bold text-gray-950">Aurea</span>
           </a>
 
           {/* Desktop Navigation */}
@@ -62,7 +62,7 @@ export default function Navbar() {
                 href={link.href}
                 whileHover={{ x: 2 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                className="text-gray-600 hover:text-gray-900 transition-colors text-sm font-medium"
+                className="text-gray-500 hover:text-gray-900 text-sm font-medium transition-colors"
               >
                 {t.nav[link.key]}
               </motion.a>
@@ -75,7 +75,7 @@ export default function Navbar() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
-              className="px-4 py-2 bg-gray-900 text-white rounded-lg text-sm font-medium hover:bg-gray-800 transition-all"
+              className="bg-gray-950 text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-gray-800 transition-colors"
             >
               {t.nav.cta}
             </motion.button>

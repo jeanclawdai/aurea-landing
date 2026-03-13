@@ -1,162 +1,114 @@
 "use client";
-
 import { motion } from "framer-motion";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useLang } from "../context/LanguageContext";
 
 export default function Contact() {
-  const { t } = useLang();
+  const { lang } = useLang();
   return (
-    <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden section-off">
-      {/* Background decoration */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute top-0 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
-      </div>
-
-      <div className="max-w-7xl mx-auto relative">
-        {/* Section Header */}
+    <section id="contact" className="py-32 px-6 bg-gray-50">
+      <div className="max-w-2xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-            {t.contact.eyebrow}
+          <span className="text-xs font-semibold tracking-widest text-gray-400 uppercase mb-4 block">
+            {lang === "pt" ? "CONTACTO" : "CONTACT"}
           </span>
-          <h2 className="text-4xl sm:text-5xl font-bold text-navy mb-4">
-            {t.contact.headline}
+          <h2 className="text-5xl sm:text-6xl font-extrabold text-gray-950 leading-tight mb-6">
+            {lang === "pt" ? (
+              <>Vamos <span className="font-serif-italic font-normal">falar.</span></>
+            ) : (
+              <>{"Let's"} <span className="font-serif-italic font-normal">talk.</span></>
+            )}
           </h2>
-          <p className="text-lg text-navy-light max-w-2xl mx-auto">
-            Ready to transform your clinic&apos;s marketing? Let&apos;s talk.
+          <p className="text-xl text-gray-400">
+            {lang === "pt"
+              ? "Pronto para transformar o marketing da sua clínica?"
+              : "Ready to transform your clinic's marketing?"}
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="glass-card rounded-3xl p-8">
-              <form className="space-y-6">
-                <div className="grid sm:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-navy mb-2">
-                      First Name
-                    </label>
-                    <input
-                      type="text"
-                      className="w-full px-4 py-3 rounded-xl bg-white border border-gray-300 focus:border-primary/50 focus:outline-none transition-colors"
-                      placeholder="John"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-navy mb-2">
-                      Last Name
-                    </label>
-                    <input
-                      type="text"
-                      className="w-full px-4 py-3 rounded-xl bg-white border border-gray-300 focus:border-primary/50 focus:outline-none transition-colors"
-                      placeholder="Doe"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-navy mb-2">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    className="w-full px-4 py-3 rounded-xl bg-white border border-gray-300 focus:border-primary/50 focus:outline-none transition-colors"
-                    placeholder="john@clinic.com"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-navy mb-2">
-                    Clinic Name
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full px-4 py-3 rounded-xl bg-white border border-gray-300 focus:border-primary/50 focus:outline-none transition-colors"
-                    placeholder="Your Aesthetic Clinic"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-navy mb-2">
-                    Message
-                  </label>
-                  <textarea
-                    rows={4}
-                    className="w-full px-4 py-3 rounded-xl bg-white border border-gray-300 focus:border-primary/50 focus:outline-none transition-colors resize-none"
-                    placeholder="Tell us about your clinic and goals..."
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full py-4 bg-primary text-white rounded-2xl font-medium shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all"
-                >
-                  Send Message
-                </button>
-              </form>
-            </div>
-          </motion.div>
-
-          {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="flex flex-col justify-center"
-          >
-            <div className="space-y-8">
-              <div className="glass-card rounded-3xl p-8">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <Mail className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-navy mb-1">Email</h3>
-                    <p className="text-navy-light">hello@aureaai.studio</p>
-                  </div>
-                </div>
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="bg-white rounded-3xl border border-gray-100 p-10"
+        >
+          <form className="space-y-6">
+            <div className="grid sm:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  {lang === "pt" ? "Nome" : "First Name"}
+                </label>
+                <input type="text"
+                  placeholder={lang === "pt" ? "João" : "John"}
+                  className="w-full px-5 py-4 rounded-2xl border border-gray-200 bg-gray-50 focus:border-gray-400 focus:bg-white focus:outline-none transition-all text-gray-900 placeholder:text-gray-300 text-base"
+                />
               </div>
-
-              <div className="glass-card rounded-3xl p-8">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-navy mb-1">Phone</h3>
-                    <p className="text-navy-light">+1 (555) 123-4567</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="glass-card rounded-3xl p-8">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-navy mb-1">Location</h3>
-                    <p className="text-navy-light">San Francisco, CA</p>
-                  </div>
-                </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  {lang === "pt" ? "Apelido" : "Last Name"}
+                </label>
+                <input type="text"
+                  placeholder={lang === "pt" ? "Silva" : "Doe"}
+                  className="w-full px-5 py-4 rounded-2xl border border-gray-200 bg-gray-50 focus:border-gray-400 focus:bg-white focus:outline-none transition-all text-gray-900 placeholder:text-gray-300 text-base"
+                />
               </div>
             </div>
-          </motion.div>
-        </div>
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">Email</label>
+              <input type="email"
+                placeholder={lang === "pt" ? "joao@clinica.pt" : "john@clinic.com"}
+                className="w-full px-5 py-4 rounded-2xl border border-gray-200 bg-gray-50 focus:border-gray-400 focus:bg-white focus:outline-none transition-all text-gray-900 placeholder:text-gray-300 text-base"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                {lang === "pt" ? "Nome da Clínica" : "Clinic Name"}
+              </label>
+              <input type="text"
+                placeholder={lang === "pt" ? "Clínica Estética Lisboa" : "Your Aesthetic Clinic"}
+                className="w-full px-5 py-4 rounded-2xl border border-gray-200 bg-gray-50 focus:border-gray-400 focus:bg-white focus:outline-none transition-all text-gray-900 placeholder:text-gray-300 text-base"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                {lang === "pt" ? "Mensagem" : "Message"}
+              </label>
+              <textarea rows={4}
+                placeholder={lang === "pt" ? "Conta-nos sobre a tua clínica e objetivos..." : "Tell us about your clinic and goals..."}
+                className="w-full px-5 py-4 rounded-2xl border border-gray-200 bg-gray-50 focus:border-gray-400 focus:bg-white focus:outline-none transition-all text-gray-900 placeholder:text-gray-300 text-base resize-none"
+              />
+            </div>
+            <motion.button type="submit"
+              whileHover={{ scale: 1.01 }}
+              whileTap={{ scale: 0.99 }}
+              transition={{ type: "spring", stiffness: 400, damping: 20 }}
+              className="btn-shimmer w-full py-5 bg-gray-950 text-white rounded-2xl font-semibold text-lg flex items-center justify-center gap-3"
+            >
+              {lang === "pt" ? "Enviar Mensagem" : "Send Message"}
+              <ArrowRight className="w-5 h-5" />
+            </motion.button>
+          </form>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-8 mt-12 text-gray-400 text-sm"
+        >
+          <span>hello@aureaai.studio</span>
+          <span className="hidden sm:block">·</span>
+          <span>{lang === "pt" ? "Lisboa, Portugal" : "Lisbon, Portugal"}</span>
+          <span className="hidden sm:block">·</span>
+          <span>{lang === "pt" ? "Resposta em 24h" : "Reply within 24h"}</span>
+        </motion.div>
       </div>
     </section>
   );

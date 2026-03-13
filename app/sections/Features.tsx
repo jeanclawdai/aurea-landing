@@ -67,7 +67,7 @@ export default function Features() {
   };
 
   return (
-    <section id="features" className="py-32 overflow-hidden bg-slate-50">
+    <section id="features" className="py-32 overflow-hidden bg-gray-50">
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-12 gap-12 items-start">
           {/* Left Side - Title & CTA */}
@@ -77,13 +77,11 @@ export default function Features() {
             viewport={{ once: true }}
             className="lg:col-span-3 lg:sticky lg:top-32"
           >
-            <span className="text-sm font-medium text-cyan-600 tracking-wide uppercase mb-4 block">
-              {t.features.eyebrow}
-            </span>
-            <h2 className="text-4xl sm:text-5xl font-bold text-slate-950 mb-6 leading-tight">
-              {t.features.headline}
+            <span className="text-xs font-semibold tracking-widest text-gray-400 uppercase mb-4 block">WHAT WE DO</span>
+            <h2 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-gray-950 mb-6 leading-tight">
+              Viral <span className="font-serif-italic font-normal">Science.</span><br />Not Generic AI.
             </h2>
-            <p className="text-slate-600 text-lg mb-8 leading-relaxed">
+            <p className="text-xl text-gray-400 mb-8 leading-relaxed">
               {t.features.subtitle}
             </p>
             
@@ -131,11 +129,8 @@ export default function Features() {
                   className="flex-shrink-0 w-[420px] snap-start"
                 >
                   <motion.div
-                    whileHover={{ 
-                      scale: 1.02,
-                      y: -8,
-                    }}
-                    transition={{ duration: 0.3 }}
+                    whileHover={{ y: -6 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
                     className="group h-full bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-slate-950/5 transition-all duration-300 cursor-pointer"
                   >
                     {/* Image Container */}
