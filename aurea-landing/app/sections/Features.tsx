@@ -152,8 +152,12 @@ export default function Features() {
         {/* Horizontal scroll cards */}
         <div
           ref={scrollRef}
-          className="flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory -mx-6 px-6"
-          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          className="flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory -mx-6 px-6 touch-pan-y"
+          style={{ 
+            scrollbarWidth: "none", 
+            msOverflowStyle: "none",
+            overscrollBehaviorX: "contain",
+          }}
         >
           {features.map((feature, index) => (
             <motion.div

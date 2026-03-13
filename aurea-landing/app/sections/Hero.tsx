@@ -1,11 +1,23 @@
 "use client";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { useEffect, useRef } from "react";
 import { useLang } from "../context/LanguageContext";
-import { AtomIcon } from "@/components/ui/atom-icon";
+import { AtomIcon, type AtomIconHandle } from "@/components/ui/atom-icon";
 
 export default function Hero() {
   const { lang } = useLang();
+  const atomRef = useRef<AtomIconHandle>(null);
+
+  // Auto-animate atom icon
+  useEffect(() => {
+    const interval = setInterval(() => {
+      atomRef.current?.startAnimation();
+    }, 2500);
+    // Start immediately
+    atomRef.current?.startAnimation();
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-32 pb-24 text-center overflow-hidden">
@@ -82,7 +94,7 @@ export default function Hero() {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             transition={{ type: "spring", stiffness: 400, damping: 20 }}
-            className="rotating-border-btn w-full sm:w-auto px-10 py-5 text-white text-lg font-semibold flex items-center justify-center gap-3 shadow-xl shadow-black/10"
+            className="rotating-border-btn w-full sm:w-auto sm:min-w-[280px] px-10 py-5 text-white text-lg font-semibold flex items-center justify-center gap-3 shadow-xl shadow-black/10"
             onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
           >
             {lang === "pt" ? "Começar" : "Get Started"}
@@ -92,10 +104,10 @@ export default function Hero() {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             transition={{ type: "spring", stiffness: 400, damping: 20 }}
-            className="iridescent-btn w-full sm:w-auto px-10 py-5 text-gray-700 text-lg font-semibold rounded-2xl flex items-center justify-center gap-3 shadow-md shadow-purple-200/40"
+            className="iridescent-btn w-full sm:w-auto sm:min-w-[280px] px-10 py-5 text-gray-700 text-lg font-semibold rounded-2xl flex items-center justify-center gap-3 shadow-md shadow-purple-200/40"
             onClick={() => document.getElementById("features")?.scrollIntoView({ behavior: "smooth" })}
           >
-            <AtomIcon size={22} className="text-violet-500" />
+            <AtomIcon ref={atomRef} size={22} className="text-violet-500" />
             {lang === "pt" ? "Ver Como Funciona" : "See How It Works"}
           </motion.button>
         </div>
