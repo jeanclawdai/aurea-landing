@@ -6,6 +6,8 @@ import HowItWorks from "./sections/HowItWorks";
 import Pricing from "./sections/Pricing";
 import Contact from "./sections/Contact";
 import Navbar from "./components/Navbar";
+import MobileCTA from "./components/MobileCTA";
+import Footer from "./components/Footer";
 
 export default function Home() {
   return (
@@ -18,6 +20,8 @@ export default function Home() {
       <HowItWorks />
       <Pricing />
       <Contact />
+      <MobileCTA />
+      <Footer />
     </main>
   );
 }

@@ -1,7 +1,6 @@
 "use client";
-
 import { motion } from "framer-motion";
-import { Target, Cpu, Rocket } from "lucide-react";
+import { Target, Cpu, Rocket, BarChart2 } from "lucide-react";
 import { useLang } from "../context/LanguageContext";
 
 const steps = [
@@ -9,103 +8,109 @@ const steps = [
     icon: Target,
     number: "01",
     title: "Define Your Vision",
-    description: "Tell us your niche, your voice, your brand standards. We learn what makes your clinic unique and who your ideal patients are.",
+    titlePt: "Defina a Sua Visão",
+    desc: "Tell us your niche, voice, and brand standards. We learn what makes your clinic unique.",
+    descPt: "Diz-nos o seu nicho, voz e padrões de marca. Aprendemos o que torna a sua clínica única.",
   },
   {
     icon: Cpu,
     number: "02",
     title: "AI Takes Over",
-    description: "Our system monitors trends 24/7, generates videos with your cloned voice, auto-edits with subtitles, and plans your content calendar.",
+    titlePt: "A IA Assume o Controlo",
+    desc: "Our system monitors trends 24/7, generates videos with your voice, and plans your content calendar.",
+    descPt: "O nosso sistema monitoriza tendências 24/7, gera vídeos com a sua voz e planeia o calendário de conteúdo.",
   },
   {
     icon: Rocket,
     number: "03",
     title: "Publish & Grow",
-    description: "Review, approve, and watch as content automatically publishes across Instagram, TikTok, and YouTube—while you focus on your patients.",
+    titlePt: "Publica e Cresce",
+    desc: "Review, approve, and watch as content publishes across Instagram, TikTok, and YouTube automatically.",
+    descPt: "Revê, aprova e vê o conteúdo a ser publicado no Instagram, TikTok e YouTube automaticamente.",
+  },
+  {
+    icon: BarChart2,
+    number: "04",
+    title: "Track & Optimise",
+    titlePt: "Acompanha e Otimiza",
+    desc: "Monitor performance across all platforms. Aurea learns from your top posts and doubles down on what works.",
+    descPt: "Monitoriza o desempenho em todas as plataformas. A Aurea aprende com as tuas melhores publicações e aposta no que funciona.",
   },
 ];
 
 export default function HowItWorks() {
-  const { t } = useLang();
+  const { lang } = useLang();
   return (
-    <section id="how-it-works" className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden section-off">
-      {/* Background decoration */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
-      </div>
-
-      <div className="max-w-7xl mx-auto relative">
-        {/* Section Header */}
+    <section id="how-it-works" className="py-32 px-6 bg-white">
+      <div className="max-w-6xl mx-auto">
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
           className="text-center mb-20"
         >
-          <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-            {t.howItWorks.eyebrow}
+          <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-gray-100 text-gray-500 text-xs font-semibold tracking-widest uppercase mb-6">
+            {lang === "pt" ? "COMO FUNCIONA" : "HOW IT WORKS"}
           </span>
-          <h2 className="text-4xl sm:text-5xl font-bold text-navy mb-4">
-            {t.howItWorks.headline}
+          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-gray-950 leading-tight">
+            {lang === "pt"
+              ? <>De Criador a <span className="font-serif-italic font-normal">Diretor Criativo</span></>
+              : <>From Creator to <span className="font-serif-italic font-normal">Creative Director</span></>}
           </h2>
-          <p className="text-lg text-navy-light max-w-3xl mx-auto">
-            {t.howItWorks.subtitle}
-          </p>
         </motion.div>
 
         {/* Steps */}
-        <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
-          {steps.map((step, index) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {steps.map((step, i) => (
             <motion.div
-              key={step.title}
-              initial={{ opacity: 0, y: 20 }}
+              key={step.number}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
-              className="relative"
+              transition={{ delay: i * 0.1 }}
+              whileHover={{ y: -6 }}
+              className="bg-gray-50 rounded-3xl p-10 border border-gray-100"
             >
-              {/* Connector line */}
-              {index < steps.length - 1 && (
-                <div className="hidden md:block absolute top-16 left-full w-full h-px bg-gradient-to-r from-primary/30 to-transparent" />
-              )}
-              
-              <div className="glass-card rounded-3xl p-8 h-full border border-gray-200 shadow-sm">
-                {/* Number */}
-                <div className="text-5xl font-bold text-primary/20 mb-4">
-                  {step.number}
-                </div>
-                
-                {/* Icon */}
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-6">
-                  <step.icon className="w-6 h-6 text-white" />
-                </div>
-                
-                {/* Content */}
-                <h3 className="text-2xl font-semibold text-navy mb-3">
-                  {step.title}
-                </h3>
-                <p className="text-navy-light leading-relaxed">
-                  {step.description}
-                </p>
-              </div>
+              {/* Icon box */}
+              <motion.div
+                className="w-14 h-14 rounded-2xl border-2 border-gray-200 bg-white flex items-center justify-center mb-8"
+                whileHover={{ rotate: 15, scale: 1.2 }}
+                transition={{ type: "spring", stiffness: 300, damping: 15 }}
+              >
+                <step.icon className="w-7 h-7 text-gray-700" strokeWidth={1.5} />
+              </motion.div>
+              <div className="text-5xl font-bold text-gray-100 mb-4">{step.number}</div>
+              <h3 className="text-2xl font-bold text-gray-950 mb-4">
+                {lang === "pt" ? step.titlePt : step.title}
+              </h3>
+              <p className="text-gray-500 leading-relaxed text-lg">
+                {lang === "pt" ? step.descPt : step.desc}
+              </p>
             </motion.div>
           ))}
         </div>
 
+        {/* Animated sparkle divider */}
+        <div className="flex items-center justify-center gap-4 my-20">
+          {["✦", "✦", "✦", "✦", "✦"].map((s, i) => (
+            <motion.span
+              key={i}
+              className="text-gray-200 text-xl"
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 1.2, delay: i * 0.15, repeat: Infinity, ease: "easeInOut" }}
+            >
+              {s}
+            </motion.span>
+          ))}
+        </div>
+
         {/* Quote */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-20 text-center"
-        >
-          <blockquote className="text-2xl sm:text-3xl font-light text-gray-700 italic max-w-4xl mx-auto">
-            &ldquo;This is nothing like boring and soulless automation—it&apos;s amplification of your creative vision.&rdquo;
-          </blockquote>
-        </motion.div>
+        <blockquote className="text-center text-3xl sm:text-4xl font-light text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          {lang === "pt"
+            ? <>&ldquo;Não é automação sem alma — é <span className="font-serif-italic">amplificação</span> da sua visão criativa.&rdquo;</>
+            : <>&ldquo;This is not soulless automation — it&apos;s <span className="font-serif-italic">amplification</span> of your creative vision.&rdquo;</>}
+        </blockquote>
       </div>
     </section>
   );

@@ -1,216 +1,229 @@
 "use client";
 
-import { useRef, useState, useCallback, useEffect } from "react";
-import { motion, useInView, animate } from "framer-motion";
+import { useState, useRef, useCallback, useEffect } from "react";
+import { motion } from "framer-motion";
 import { useLang } from "../context/LanguageContext";
 
-const beforeStats = [
-  { label: "Followers", value: "1,240", raw: 1240 },
-  { label: "Avg Views", value: "890", raw: 890 },
-  { label: "Engagement", value: "1.8%", raw: 1.8, isPercent: true },
-  { label: "Posts/week", value: "2", raw: 2 },
-  { label: "Monthly Reach", value: "4,200", raw: 4200 },
-];
+const beforeProfile = {
+  username: "clinica_aurora",
+  displayName: "Clínica Aurora",
+  followers: 1240,
+  following: 891,
+  posts: 47,
+  bio: "Medicina Estética ✨ Lisboa",
+};
 
-const afterStats = [
-  { label: "Followers", value: "28,400", raw: 28400 },
-  { label: "Avg Views", value: "47,200", raw: 47200 },
-  { label: "Engagement", value: "8.7%", raw: 8.7, isPercent: true },
-  { label: "Posts/week", value: "7", raw: 7 },
-  { label: "Monthly Reach", value: "312,000", raw: 312000 },
-];
+const afterProfile = {
+  username: "clinica_aurora",
+  displayName: "Clínica Aurora",
+  followers: 28400,
+  following: 891,
+  posts: 184,
+  bio: "Medicina Estética ✨ Lisboa 🏆 Top Creator",
+};
 
-function AnimatedNumber({ raw, isPercent, triggered }: { raw: number; isPercent?: boolean; triggered: boolean }) {
-  const [display, setDisplay] = useState(0);
-  const hasRun = useRef(false);
+function AnimCount({ from, to, triggered }: { from: number; to: number; triggered: boolean }) {
+  const [val, setVal] = useState(from);
+  const ran = useRef(false);
 
   useEffect(() => {
-    if (!triggered || hasRun.current) return;
-    hasRun.current = true;
-    const controls = animate(0, raw, {
-      duration: 1.4,
-      ease: "easeOut",
-      onUpdate: (v) => setDisplay(v),
-    });
-    return () => controls.stop();
-  }, [triggered, raw]);
+    if (!triggered || ran.current) return;
+    ran.current = true;
+    const start = Date.now();
+    const duration = 1600;
+    const tick = () => {
+      const elapsed = Date.now() - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setVal(Math.round(from + (to - from) * eased));
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }, [triggered, from, to]);
 
-  const formatted = isPercent
-    ? `${display.toFixed(1)}%`
-    : display >= 1000
-    ? display >= 100000
-      ? `${Math.round(display / 1000)}K`
-      : display >= 10000
-      ? `${(display / 1000).toFixed(1)}K`
-      : `${Math.round(display).toLocaleString()}`
-    : `${Math.round(display)}`;
-
-  return <span>{formatted}</span>;
+  const display = val >= 1000 ? `${(val / 1000).toFixed(val >= 10000 ? 0 : 1)}K` : val.toString();
+  return <span>{display}</span>;
 }
 
-export default function BeforeAfter() {
-  const { t } = useLang();
-  const [dividerX, setDividerX] = useState(50); // percent
-  const cardRef = useRef<HTMLDivElement>(null);
-  const isDragging = useRef(false);
-  const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true });
-
-  // animate after numbers when after panel is sufficiently visible
-  const afterVisible = dividerX > 20;
-
-  const getPercent = useCallback((clientX: number) => {
-    if (!cardRef.current) return dividerX;
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = clientX - rect.left;
-    return Math.max(5, Math.min(95, (x / rect.width) * 100));
-  }, [dividerX]);
-
-  const onMouseDown = (e: React.MouseEvent) => {
-    isDragging.current = true;
-    e.preventDefault();
-  };
-
-  useEffect(() => {
-    const onMouseMove = (e: MouseEvent) => {
-      if (!isDragging.current) return;
-      setDividerX(getPercent(e.clientX));
-    };
-    const onMouseUp = () => { isDragging.current = false; };
-    const onTouchMove = (e: TouchEvent) => {
-      if (!isDragging.current) return;
-      setDividerX(getPercent(e.touches[0].clientX));
-    };
-    const onTouchEnd = () => { isDragging.current = false; };
-
-    window.addEventListener("mousemove", onMouseMove);
-    window.addEventListener("mouseup", onMouseUp);
-    window.addEventListener("touchmove", onTouchMove, { passive: true });
-    window.addEventListener("touchend", onTouchEnd);
-    return () => {
-      window.removeEventListener("mousemove", onMouseMove);
-      window.removeEventListener("mouseup", onMouseUp);
-      window.removeEventListener("touchmove", onTouchMove);
-      window.removeEventListener("touchend", onTouchEnd);
-    };
-  }, [getPercent]);
-
-  const onTouchStart = () => {
-    isDragging.current = true;
-  };
+function IPhoneMockup({ isAfter, triggered }: { isAfter: boolean; triggered: boolean }) {
+  const target = isAfter ? afterProfile : beforeProfile;
 
   return (
-    <section ref={sectionRef} className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
-      <div className="max-w-4xl mx-auto">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-14"
-        >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-amber-50 text-amber-600 text-xs font-semibold tracking-widest uppercase mb-4">
-            {t.beforeAfter.eyebrow}
-          </span>
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-            {t.beforeAfter.headline}
-          </h2>
-          <p className="text-lg text-gray-500 max-w-2xl mx-auto">
-            {t.beforeAfter.subtitle}
-          </p>
-        </motion.div>
+    <div className="relative w-[260px] mx-auto">
+      {/* Label */}
+      <div className={`absolute -top-4 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-[11px] font-semibold z-10 whitespace-nowrap ${isAfter ? "bg-emerald-500 text-white" : "bg-gray-200 text-gray-600"}`}>
+        {isAfter ? "After Aurea ✨" : "Before Aurea"}
+      </div>
 
-        {/* Comparison Card */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-        >
-          <div
-            ref={cardRef}
-            className="relative h-[420px] sm:h-[380px] rounded-2xl overflow-hidden select-none cursor-col-resize shadow-2xl shadow-gray-900/10"
-            style={{ userSelect: "none" }}
-          >
-            {/* BEFORE panel — full width, clipped by after panel */}
-            <div className="absolute inset-0 bg-slate-900 flex flex-col justify-center px-8 sm:px-12">
-              <div className="flex items-center gap-2 mb-6">
-                <div className="w-2.5 h-2.5 rounded-full bg-red-500" />
-                <span className="text-white/60 text-sm font-medium">{t.beforeAfter.before}</span>
-              </div>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6">
-                {beforeStats.map((s) => (
-                  <div key={s.label}>
-                    <div className="text-2xl sm:text-3xl font-bold text-white/40">{s.value}</div>
-                    <div className="text-xs text-white/30 mt-0.5">{s.label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
+      {/* Phone frame */}
+      <div className="relative bg-gray-950 rounded-[44px] p-[3px] shadow-2xl shadow-black/40">
+        <div className="bg-white rounded-[42px] overflow-hidden" style={{ height: 520 }}>
+          {/* Notch */}
+          <div className="bg-gray-950 h-8 flex items-center justify-center">
+            <div className="w-20 h-4 bg-gray-950 rounded-full" />
+          </div>
 
-            {/* AFTER panel — clipped to right of divider */}
-            <div
-              className="absolute inset-y-0 right-0 flex flex-col justify-center px-8 sm:px-12 overflow-hidden"
-              style={{ left: `${dividerX}%`, background: "linear-gradient(135deg, #0f172a 0%, #1e1b0e 60%, #1a1200 100%)" }}
-            >
-              {/* Amber glow */}
-              <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 80% 60% at 70% 50%, rgba(245,158,11,0.18) 0%, transparent 70%)" }} />
-              <div className="relative">
-                <div className="flex items-center gap-2 mb-6">
-                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
-                  <span className="text-white/80 text-sm font-medium">{t.beforeAfter.after}</span>
-                </div>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6">
-                  {afterStats.map((s) => (
-                    <div key={s.label}>
-                      <div className="text-2xl sm:text-3xl font-bold text-amber-300">
-                        {afterVisible && isInView ? (
-                          <AnimatedNumber raw={s.raw} isPercent={s.isPercent} triggered={afterVisible && isInView} />
-                        ) : (
-                          <span>0{s.isPercent ? "%" : ""}</span>
-                        )}
-                      </div>
-                      <div className="text-xs text-white/40 mt-0.5">{s.label}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Divider handle */}
-            <div
-              className="absolute inset-y-0 z-10 flex items-center justify-center"
-              style={{ left: `${dividerX}%`, transform: "translateX(-50%)" }}
-              onMouseDown={onMouseDown}
-              onTouchStart={onTouchStart}
-            >
-              {/* line */}
-              <div className="absolute inset-y-0 w-px bg-white/30" />
-              {/* handle circle */}
-              <div className="relative w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center cursor-col-resize z-10 border border-gray-100">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M5 8L2 8M2 8L4 6M2 8L4 10" stroke="#374151" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M11 8L14 8M14 8L12 6M14 8L12 10" stroke="#374151" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+          {/* Instagram header */}
+          <div className="bg-white px-4 pt-3 pb-2 border-b border-gray-100">
+            <div className="flex items-center justify-between">
+              <span className="text-xs text-gray-400">9:41</span>
+              <div className="w-6 h-6 rounded-full bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 flex items-center justify-center">
+                <span className="text-white text-[8px] font-bold">IG</span>
               </div>
             </div>
           </div>
 
-          {/* Drag hint */}
-          <p className="text-center text-xs text-gray-400 mt-4 flex items-center justify-center gap-1.5">
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="opacity-60">
-              <path d="M5 8L2 8M2 8L4 6M2 8L4 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M11 8L14 8M14 8L12 6M14 8L12 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            {t.beforeAfter.dragLabel}
+          {/* Profile area */}
+          <div className="px-4 pt-4">
+            {/* Avatar + stats row */}
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 p-[2px] flex-shrink-0">
+                <div className="w-full h-full rounded-full bg-gray-200 flex items-center justify-center text-lg">
+                  🏥
+                </div>
+              </div>
+              <div className="flex gap-3 flex-1">
+                <div className="text-center flex-1">
+                  <div className="text-sm font-bold text-gray-950">
+                    {isAfter ? <AnimCount from={47} to={184} triggered={triggered} /> : <span>47</span>}
+                  </div>
+                  <div className="text-[9px] text-gray-400">posts</div>
+                </div>
+                <div className="text-center flex-1">
+                  <div className={`text-sm font-bold ${isAfter ? "text-emerald-600" : "text-gray-950"}`}>
+                    {isAfter ? <AnimCount from={1240} to={28400} triggered={triggered} /> : <span>1.2K</span>}
+                  </div>
+                  <div className="text-[9px] text-gray-400">followers</div>
+                </div>
+                <div className="text-center flex-1">
+                  <div className="text-sm font-bold text-gray-950">891</div>
+                  <div className="text-[9px] text-gray-400">following</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Name + bio */}
+            <div className="mb-3">
+              <div className="text-xs font-bold text-gray-950">{target.displayName}</div>
+              <div className="text-[10px] text-gray-500">{target.bio}</div>
+            </div>
+
+            {/* Follow button */}
+            <button className={`w-full py-1.5 rounded-lg text-xs font-semibold mb-4 ${isAfter ? "bg-blue-500 text-white" : "bg-gray-100 text-gray-700"}`}>
+              {isAfter ? "Following ✓" : "Follow"}
+            </button>
+
+            {/* Stats pills */}
+            <div className="grid grid-cols-3 gap-1.5 mb-3">
+              {[
+                { label: "Engagement", before: "1.8%", after: "8.7%" },
+                { label: "Avg Views", before: "890", after: "47.2K" },
+                { label: "Posts/wk", before: "2", after: "7" },
+              ].map((stat) => (
+                <div key={stat.label} className={`rounded-xl p-2 text-center ${isAfter ? "bg-emerald-50 border border-emerald-100" : "bg-gray-50 border border-gray-100"}`}>
+                  <div className={`text-[11px] font-bold ${isAfter ? "text-emerald-600" : "text-gray-700"}`}>
+                    {isAfter ? stat.after : stat.before}
+                  </div>
+                  <div className="text-[8px] text-gray-400">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* Grid placeholder posts */}
+            <div className="grid grid-cols-3 gap-0.5">
+              {Array.from({ length: 9 }).map((_, i) => (
+                <div key={i} className={`aspect-square rounded-sm ${isAfter ? "bg-gradient-to-br from-purple-200 to-pink-200" : "bg-gray-100"} flex items-center justify-center`}>
+                  {isAfter && <span className="text-[10px]">🔥</span>}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function BeforeAfter() {
+  const { lang } = useLang();
+  const [showAfter, setShowAfter] = useState(false);
+  const [triggered, setTriggered] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  const handleToggle = useCallback(() => {
+    setShowAfter(prev => {
+      if (!prev) setTriggered(true);
+      return !prev;
+    });
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="py-32 px-6 bg-white overflow-hidden">
+      <div className="max-w-5xl mx-auto">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-20"
+        >
+          <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-gray-100 text-gray-500 text-xs font-semibold tracking-widest uppercase mb-6">
+            {lang === "pt" ? "RESULTADOS REAIS" : "REAL RESULTS"}
+          </span>
+          <h2 className="text-6xl sm:text-7xl font-extrabold text-gray-950 leading-tight mb-6">
+            {lang === "pt"
+              ? <>O Efeito <span className="font-serif-italic font-normal">Aurea.</span></>
+              : <>The Aurea <span className="font-serif-italic font-normal">Effect.</span></>}
+          </h2>
+          <p className="text-xl text-gray-400 max-w-xl mx-auto">
+            {lang === "pt"
+              ? "Veja a transformação de uma conta real com a Aurea."
+              : "See what a real account looks like with Aurea."}
           </p>
         </motion.div>
 
-        {/* Disclaimer */}
-        <p className="text-center text-xs text-gray-400 mt-6">
-          Results from real Aurea clients. Individual results may vary.
-        </p>
+        {/* iPhone comparison */}
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="relative"
+        >
+          {/* Toggle button */}
+          <div className="flex justify-center mb-12">
+            <button
+              onClick={handleToggle}
+              className="relative flex items-center gap-1 p-1 bg-gray-100 rounded-full"
+            >
+              <span className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all ${!showAfter ? "bg-white shadow-sm text-gray-950" : "text-gray-400"}`}>
+                {lang === "pt" ? "Antes" : "Before"}
+              </span>
+              <span className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all ${showAfter ? "bg-gray-950 text-white" : "text-gray-400"}`}>
+                {lang === "pt" ? "Depois ✨" : "After ✨"}
+              </span>
+            </button>
+          </div>
+
+          {/* Phone mockup */}
+          <div className="flex justify-center">
+            <motion.div
+              key={showAfter ? "after" : "before"}
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+            >
+              <IPhoneMockup isAfter={showAfter} triggered={triggered} />
+            </motion.div>
+          </div>
+
+          {/* Glow effect */}
+          <div className={`absolute inset-0 -z-10 transition-all duration-1000 ${showAfter ? "opacity-100" : "opacity-0"}`}>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-emerald-300/20 rounded-full blur-3xl" />
+          </div>
+        </motion.div>
+
+        <div className="sparkle-divider mt-20 text-xl">✦ ✦ ✦</div>
       </div>
     </section>
   );

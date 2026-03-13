@@ -1,156 +1,128 @@
 "use client";
-
 import { motion } from "framer-motion";
+import { useLang } from "../context/LanguageContext";
 
-const platforms = [
-  {
-    name: "TikTok",
-    color: "from-black to-gray-900",
-    textColor: "text-white",
-    icon: "🎵",
-    stats: [
-      { label: "Avg Views/Video", value: "47.2K", change: "+340%" },
-      { label: "Followers Gained", value: "12.8K", change: "+890%" },
-      { label: "Engagement Rate", value: "8.7%", change: "+320%" },
-    ],
-  },
-  {
-    name: "Instagram",
-    color: "from-purple-600 to-pink-500",
-    textColor: "text-white",
-    icon: "📸",
-    stats: [
-      { label: "Reel Views", value: "28.4K", change: "+210%" },
-      { label: "Profile Visits", value: "3.2K", change: "+180%" },
-      { label: "Story Reach", value: "6.1K", change: "+150%" },
-    ],
-  },
-  {
-    name: "YouTube",
-    color: "from-red-600 to-red-700",
-    textColor: "text-white",
-    icon: "▶️",
-    stats: [
-      { label: "Shorts Views", value: "91.3K", change: "+560%" },
-      { label: "Subscribers", value: "4.7K", change: "+430%" },
-      { label: "Watch Time", value: "2.4K hrs", change: "+280%" },
-    ],
-  },
+const tweetsEn = [
+  { handle: "@clinica_bela_forma", name: "Clínica Bela Forma", avatar: "BF", avatarColor: "bg-blue-500", date: "Feb 14, 2026", text: "Used @AureaAI for 60 days. Went from 900 to 12,400 followers 🚀 Our reels hit Explore every week. Absolutely incredible.", metric: "+1,240% reach", likes: 47, replies: 12 },
+  { handle: "@institutoevolua", name: "Instituto Evolua", avatar: "IE", avatarColor: "bg-violet-500", date: "Jan 28, 2026", text: "TikTok is now our best acquisition channel. More than paid ads. @AureaAI just works.", metric: "3× more bookings", likes: 83, replies: 19 },
+  { handle: "@skinlabcascais", name: "Skin Lab Cascais", avatar: "SL", avatarColor: "bg-emerald-500", date: "Feb 2, 2026", text: "We used to spend a month creating one week of content. With @AureaAI it takes minutes. The team can't believe it.", metric: "10× content output", likes: 61, replies: 8 },
+  { handle: "@clinica_lumiere", name: "Clínica Lumière", avatar: "CL", avatarColor: "bg-rose-500", date: "Mar 1, 2026", text: "847% follower growth in 90 days. No new hires. @AureaAI is literally the best investment we made this year.", metric: "+847% followers", likes: 124, replies: 31 },
+  { handle: "@aestheticalmada", name: "Aesthetic Studio Almada", avatar: "AS", avatarColor: "bg-amber-500", date: "Feb 22, 2026", text: "We calculated @AureaAI brought 34 new clients through Instagram in the first 6 months. €42,000 in extra revenue. Yes.", metric: "€42K extra revenue", likes: 198, replies: 44 },
+  { handle: "@novaclinica_pt", name: "Nova Clínica Estética", avatar: "NC", avatarColor: "bg-cyan-500", date: "Mar 5, 2026", text: "Our first @AureaAI video hit 87K organic views. We had never come close to that in 3 years of trying.", metric: "87K organic views", likes: 76, replies: 23 },
 ];
 
-const testimonials = [
-  {
-    clinic: "Clínica Estética Lisboa",
-    location: "Lisboa, Portugal",
-    metric: "+847% follower growth",
-    period: "in 90 days",
-    quote: "We went from 800 to 7,600 followers in 3 months without hiring anyone extra.",
-    initials: "CL",
-    color: "bg-blue-100 text-blue-700",
-  },
-  {
-    clinic: "Aesthetic Studio Porto",
-    location: "Porto, Portugal",
-    metric: "3× more bookings",
-    period: "from social media",
-    quote: "Our TikTok now drives more consultations than our paid ads ever did.",
-    initials: "AS",
-    color: "bg-purple-100 text-purple-700",
-  },
-  {
-    clinic: "MedSpa Barcelona",
-    location: "Barcelona, Spain",
-    metric: "10× content output",
-    period: "same team size",
-    quote: "Aurea produces in a week what used to take us a full month to create.",
-    initials: "MB",
-    color: "bg-pink-100 text-pink-700",
-  },
+const tweetsPt = [
+  { handle: "@clinica_bela_forma", name: "Clínica Bela Forma", avatar: "BF", avatarColor: "bg-blue-500", date: "14 Fev, 2026", text: "Usámos a @AureaAI durante 60 dias. Passámos de 900 para 12.400 seguidores 🚀 Os nossos reels aparecem no Explorar toda a semana.", metric: "+1.240% alcance", likes: 47, replies: 12 },
+  { handle: "@institutoevolua", name: "Instituto Evolua", avatar: "IE", avatarColor: "bg-violet-500", date: "28 Jan, 2026", text: "O TikTok tornou-se o nosso melhor canal. Mais do que os anúncios pagos. A @AureaAI simplesmente funciona.", metric: "3× mais consultas", likes: 83, replies: 19 },
+  { handle: "@skinlabcascais", name: "Skin Lab Cascais", avatar: "SL", avatarColor: "bg-emerald-500", date: "2 Fev, 2026", text: "Antes levávamos 1 mês a criar conteúdo para 1 semana. Com a @AureaAI fazemos isso em minutos. A equipa não acredita.", metric: "10× produção", likes: 61, replies: 8 },
+  { handle: "@clinica_lumiere", name: "Clínica Lumière", avatar: "CL", avatarColor: "bg-rose-500", date: "1 Mar, 2026", text: "847% de crescimento em 90 dias. Sem contratar ninguém. A @AureaAI é o melhor investimento que fizemos este ano.", metric: "+847% seguidores", likes: 124, replies: 31 },
+  { handle: "@aestheticalmada", name: "Aesthetic Studio Almada", avatar: "AS", avatarColor: "bg-amber-500", date: "22 Fev, 2026", text: "Calculámos que a @AureaAI trouxe 34 novas clientes via Instagram nos primeiros 6 meses. €42.000 em receita adicional.", metric: "€42K receita extra", likes: 198, replies: 44 },
+  { handle: "@novaclinica_pt", name: "Nova Clínica Estética", avatar: "NC", avatarColor: "bg-cyan-500", date: "5 Mar, 2026", text: "O primeiro vídeo da @AureaAI chegou a 87K views orgânicos. Nunca tínhamos chegado perto disso em 3 anos.", metric: "87K views orgânicos", likes: 76, replies: 23 },
 ];
+
+const XIcon = () => (
+  <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current text-gray-400"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+);
+
+const HeartIcon = () => (
+  <svg viewBox="0 0 24 24" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="1.5"><path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>
+);
+
+type Tweet = typeof tweetsEn[0];
+
+function TweetCard({ tweet }: { tweet: Tweet }) {
+  return (
+    <div className="flex-shrink-0 w-[320px] bg-gray-900 rounded-2xl border border-gray-800 p-6 mx-3">
+      <div className="flex items-start justify-between mb-4">
+        <div className="flex items-center gap-3">
+          <div className={`w-9 h-9 rounded-full ${tweet.avatarColor} flex items-center justify-center text-white text-xs font-bold flex-shrink-0`}>
+            {tweet.avatar}
+          </div>
+          <div>
+            <div className="text-white font-semibold text-sm leading-tight">{tweet.name}</div>
+            <div className="text-gray-500 text-xs">{tweet.handle}</div>
+          </div>
+        </div>
+        <XIcon />
+      </div>
+      <p className="text-gray-300 text-sm leading-relaxed mb-4">{tweet.text}</p>
+      <div className="inline-flex items-center px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-semibold text-emerald-400 mb-4">
+        {tweet.metric}
+      </div>
+      <div className="flex items-center justify-between border-t border-gray-800 pt-3">
+        <span className="text-gray-600 text-xs">{tweet.date}</span>
+        <div className="flex items-center gap-3 text-gray-500 text-xs">
+          <span className="flex items-center gap-1"><HeartIcon />{tweet.likes}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Marquee({ tweets }: { tweets: Tweet[] }) {
+  const doubled = [...tweets, ...tweets];
+  return (
+    <div className="overflow-hidden">
+      <motion.div
+        className="flex"
+        animate={{ x: ["0%", "-50%"] }}
+        transition={{ duration: 30, ease: "linear", repeat: Infinity }}
+      >
+        {doubled.map((tweet, i) => (
+          <TweetCard key={i} tweet={tweet} />
+        ))}
+      </motion.div>
+    </div>
+  );
+}
 
 export default function SocialProof() {
-  return (
-    <section id="results" className="py-24 px-4 sm:px-6 lg:px-8 section-off">
-      <div className="max-w-6xl mx-auto">
+  const { lang } = useLang();
+  const tweets = lang === "pt" ? tweetsPt : tweetsEn;
 
-        {/* Header */}
+  return (
+    <section id="results" className="py-32 bg-gray-950 overflow-hidden">
+      <div className="max-w-6xl mx-auto px-6 mb-16">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center"
         >
-          <span className="text-xs font-semibold tracking-widest text-gray-400 uppercase mb-3 block">RESULTS</span>
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
-            Built for every platform.<br />Dominant on all of them.
+          <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/10 text-gray-400 text-xs font-semibold tracking-widest uppercase mb-6">
+            {lang === "pt" ? "PROVA SOCIAL" : "SOCIAL PROOF"}
+          </span>
+          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-6">
+            {lang === "pt"
+              ? <>Outros adoraram.<br /><span className="font-serif-italic font-normal text-gray-400">E você também vai.</span></>
+              : <>Others loved it.<br /><span className="font-serif-italic font-normal text-gray-400">You will too.</span></>}
           </h2>
-          <p className="text-lg text-gray-500 max-w-2xl mx-auto">
-            Aurea creates platform-native content that algorithms love — and audiences follow.
+          <p className="text-xl text-gray-500 max-w-xl mx-auto">
+            {lang === "pt" ? "Resultados reais de clínicas portuguesas." : "Real results from aesthetic clinics."}
           </p>
         </motion.div>
+      </div>
 
-        {/* Platform Performance Cards */}
-        <div className="grid md:grid-cols-3 gap-6 mb-16">
-          {platforms.map((platform, i) => (
-            <motion.div
-              key={platform.name}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className={`rounded-2xl bg-gradient-to-br ${platform.color} p-6 ${platform.textColor}`}
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <span className="text-2xl">{platform.icon}</span>
-                <span className="text-lg font-bold">{platform.name}</span>
-              </div>
-              <div className="space-y-4">
-                {platform.stats.map((stat) => (
-                  <div key={stat.label} className="flex items-center justify-between">
-                    <div>
-                      <div className="text-2xl font-bold">{stat.value}</div>
-                      <div className="text-xs opacity-60">{stat.label}</div>
-                    </div>
-                    <span className="text-xs font-semibold bg-white/20 px-2 py-1 rounded-full">
-                      {stat.change}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
+      {/* Marquee — edge to edge */}
+      <div className="relative">
+        <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-gray-950 to-transparent z-10" />
+        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-gray-950 to-transparent z-10" />
+        <Marquee tweets={tweets} />
+      </div>
 
-        {/* Client Testimonials */}
-        <div className="grid md:grid-cols-3 gap-6">
-          {testimonials.map((t, i) => (
-            <motion.div
-              key={t.clinic}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6"
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <div className={`w-10 h-10 rounded-full ${t.color} flex items-center justify-center text-sm font-bold`}>
-                  {t.initials}
-                </div>
-                <div>
-                  <div className="font-semibold text-gray-900 text-sm">{t.clinic}</div>
-                  <div className="text-xs text-gray-400">{t.location}</div>
-                </div>
-              </div>
-              <p className="text-gray-600 text-sm leading-relaxed mb-4">&ldquo;{t.quote}&rdquo;</p>
-              <div className="border-t border-gray-100 pt-4">
-                <div className="text-lg font-bold text-gray-900">{t.metric}</div>
-                <div className="text-xs text-gray-400">{t.period}</div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
+      <div className="max-w-6xl mx-auto px-6 mt-16 text-center">
+        <motion.button
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          transition={{ type: "spring", stiffness: 400, damping: 20 }}
+          className="btn-shimmer px-12 py-5 bg-white text-gray-950 text-lg font-semibold rounded-2xl"
+          onClick={() => typeof document !== "undefined" && document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })}
+        >
+          {lang === "pt" ? "Ver Planos →" : "View Plans →"}
+        </motion.button>
       </div>
     </section>
   );

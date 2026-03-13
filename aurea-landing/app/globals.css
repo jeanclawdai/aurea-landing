@@ -179,3 +179,61 @@ body {
   z-index: 0;
 }
 .mesh-bg > * { position: relative; z-index: 1; }
+
+/* Shimmer button effect */
+@keyframes shimmer {
+  0% { transform: translateX(-100%) skewX(-12deg); }
+  100% { transform: translateX(200%) skewX(-12deg); }
+}
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+  transform: translateX(-100%) skewX(-12deg);
+}
+.btn-shimmer:hover::after {
+  animation: shimmer 0.7s ease forwards;
+}
+
+/* Floating animation for decorative elements */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+.float-slow { animation: float 4s ease-in-out infinite; }
+.float-medium { animation: float 3s ease-in-out infinite 0.5s; }
+
+/* Pulse ring */
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+.pulse-ring::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  border: 2px solid currentColor;
+  animation: pulse-ring 2s ease-out infinite;
+}
+
+.font-serif-italic {
+  font-family: var(--font-playfair);
+  font-style: italic;
+}
+
+/* Sparkle divider */
+.sparkle-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #d1d5db;
+  font-size: 18px;
+  letter-spacing: 8px;
+}
