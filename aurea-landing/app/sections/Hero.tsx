@@ -81,7 +81,7 @@ export default function Hero() {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             transition={{ type: "spring", stiffness: 400, damping: 20 }}
-            className="btn-shimmer w-full sm:w-auto px-10 py-5 bg-gray-950 text-white text-lg font-semibold rounded-2xl flex items-center justify-center gap-3 shadow-xl shadow-black/10"
+            className="rotating-border-btn w-full sm:w-auto px-10 py-5 text-white text-lg font-semibold flex items-center justify-center gap-3 shadow-xl shadow-black/10"
             onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
           >
             {lang === "pt" ? "Começar Gratuitamente" : "Start Free Trial"}
