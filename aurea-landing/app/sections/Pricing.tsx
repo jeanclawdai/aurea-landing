@@ -76,7 +76,7 @@ export default function Pricing() {
           <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-gray-100 text-gray-500 text-xs font-semibold tracking-widest uppercase mb-6">
             {lang === "pt" ? "PREÇOS" : "PRICING"}
           </span>
-          <h2 className="text-6xl sm:text-7xl font-extrabold text-gray-950 leading-tight mb-6">
+          <h2 className="text-6xl sm:text-7xl font-bold text-gray-950 leading-tight mb-6">
             {lang === "pt"
               ? <>Simples, <span className="font-serif-italic font-normal">sem surpresas.</span></>
               : <>Simple, <span className="font-serif-italic font-normal">no surprises.</span></>}
@@ -98,7 +98,7 @@ export default function Pricing() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
               whileHover={{ y: -6, transition: { type: "spring", stiffness: 300, damping: 20 } }}
-              className={`rounded-3xl p-10 flex flex-col ${plan.popular ? "bg-gray-950" : "bg-gray-100"}`}
+              className={`rounded-3xl p-10 flex flex-col ${plan.popular ? "bg-gray-950 holographic-border" : "bg-gray-100"}`}
             >
               {/* Top badge */}
               <div className="mb-8">
@@ -117,7 +117,7 @@ export default function Pricing() {
 
               {/* Price */}
               <div className="mb-10">
-                <span className={`text-6xl font-extrabold ${plan.price === "Custom" ? (plan.popular ? "text-white" : "text-gray-950") : "text-green-600"}`}>
+                <span className={`text-6xl font-extrabold ${plan.popular ? "text-white" : "text-gray-950"}`}>
                   {plan.price}
                 </span>
                 {plan.pricePeriod && (
@@ -160,7 +160,7 @@ export default function Pricing() {
                     <ul className="space-y-2">
                       {(lang === "pt" ? plan.getsPt : plan.gets).map((item) => (
                         <li key={item} className={`text-xs flex items-start gap-2 ${plan.popular ? "text-gray-300" : "text-gray-600"}`}>
-                          <Check className="w-3 h-3 mt-0.5 text-green-500 flex-shrink-0" />
+                          <Check className={`w-3 h-3 mt-0.5 flex-shrink-0 ${plan.popular ? "text-gray-500" : "text-gray-400"}`} />
                           {item}
                         </li>
                       ))}

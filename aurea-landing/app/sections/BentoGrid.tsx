@@ -21,7 +21,7 @@ const tweetsPt = [
 ];
 
 const XIcon = () => (
-  <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current text-gray-400"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+  <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current text-gray-300"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
 );
 
 const HeartIcon = () => (
@@ -32,30 +32,34 @@ type Tweet = typeof tweetsEn[0];
 
 function TweetCard({ tweet }: { tweet: Tweet }) {
   return (
-    <div className="flex-shrink-0 w-[320px] bg-gray-900 rounded-2xl border border-gray-800 p-6 mx-3">
+    <motion.div
+      whileHover={{ y: -4, boxShadow: "0 20px 40px rgba(0,0,0,0.10)" }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      className="flex-shrink-0 w-[320px] bg-white rounded-2xl border border-gray-100 p-6 mx-3 shadow-sm cursor-pointer"
+    >
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-3">
           <div className={`w-9 h-9 rounded-full ${tweet.avatarColor} flex items-center justify-center text-white text-xs font-bold flex-shrink-0`}>
             {tweet.avatar}
           </div>
           <div>
-            <div className="text-white font-semibold text-sm leading-tight">{tweet.name}</div>
-            <div className="text-gray-500 text-xs">{tweet.handle}</div>
+            <div className="text-gray-900 font-semibold text-sm leading-tight">{tweet.name}</div>
+            <div className="text-gray-400 text-xs">{tweet.handle}</div>
           </div>
         </div>
         <XIcon />
       </div>
-      <p className="text-gray-300 text-sm leading-relaxed mb-4">{tweet.text}</p>
-      <div className="inline-flex items-center px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-semibold text-emerald-400 mb-4">
+      <p className="text-gray-700 text-sm leading-relaxed mb-4">{tweet.text}</p>
+      <div className="inline-flex items-center px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-100 text-xs font-semibold text-emerald-600 mb-4">
         {tweet.metric}
       </div>
-      <div className="flex items-center justify-between border-t border-gray-800 pt-3">
-        <span className="text-gray-600 text-xs">{tweet.date}</span>
-        <div className="flex items-center gap-3 text-gray-500 text-xs">
-          <span className="flex items-center gap-1"><HeartIcon />{tweet.likes}</span>
+      <div className="flex items-center justify-between border-t border-gray-50 pt-3">
+        <span className="text-gray-300 text-xs">{tweet.date}</span>
+        <div className="flex items-center gap-3 text-gray-300 text-xs">
+          <span className="flex items-center gap-1 hover:text-rose-400 transition-colors cursor-pointer"><HeartIcon />{tweet.likes}</span>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
@@ -89,15 +93,15 @@ export default function SocialProof() {
           viewport={{ once: true }}
           className="text-center"
         >
-          <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/10 text-gray-400 text-xs font-semibold tracking-widest uppercase mb-6">
+          <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/10 text-gray-400 border-0 text-xs font-semibold tracking-widest uppercase mb-6">
             {lang === "pt" ? "PROVA SOCIAL" : "SOCIAL PROOF"}
           </span>
-          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-6">
+          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
             {lang === "pt"
-              ? <>Outros adoraram.<br /><span className="font-serif-italic font-normal text-gray-400">E você também vai.</span></>
-              : <>Others loved it.<br /><span className="font-serif-italic font-normal text-gray-400">You will too.</span></>}
+              ? <>Outros <span className="font-serif-italic font-normal">adoraram.</span><br />E você também vai.</>
+              : <>Others <span className="font-serif-italic font-normal">loved</span> it.<br />You will too.</>}
           </h2>
-          <p className="text-xl text-gray-500 max-w-xl mx-auto">
+          <p className="text-xl text-gray-400 max-w-xl mx-auto">
             {lang === "pt" ? "Resultados reais de clínicas portuguesas." : "Real results from aesthetic clinics."}
           </p>
         </motion.div>
@@ -118,7 +122,7 @@ export default function SocialProof() {
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           transition={{ type: "spring", stiffness: 400, damping: 20 }}
-          className="btn-shimmer px-12 py-5 bg-white text-gray-950 text-lg font-semibold rounded-2xl"
+          className="btn-shimmer px-12 py-5 bg-gray-950 text-white text-lg font-semibold rounded-2xl"
           onClick={() => typeof document !== "undefined" && document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })}
         >
           {lang === "pt" ? "Ver Planos →" : "View Plans →"}

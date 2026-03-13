@@ -49,7 +49,7 @@ function IPhoneMockup({ isAfter, triggered }: { isAfter: boolean; triggered: boo
   const target = isAfter ? afterProfile : beforeProfile;
 
   return (
-    <div className="relative w-[260px] mx-auto">
+    <div className="relative w-[300px] mx-auto">
       {/* Label */}
       <div className={`absolute -top-4 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-[11px] font-semibold z-10 whitespace-nowrap ${isAfter ? "bg-emerald-500 text-white" : "bg-gray-200 text-gray-600"}`}>
         {isAfter ? "After Aurea ✨" : "Before Aurea"}
@@ -57,7 +57,7 @@ function IPhoneMockup({ isAfter, triggered }: { isAfter: boolean; triggered: boo
 
       {/* Phone frame */}
       <div className="relative bg-gray-950 rounded-[44px] p-[3px] shadow-2xl shadow-black/40">
-        <div className="bg-white rounded-[42px] overflow-hidden" style={{ height: 520 }}>
+        <div className="bg-white rounded-[42px] overflow-hidden" style={{ height: 580 }}>
           {/* Notch */}
           <div className="bg-gray-950 h-8 flex items-center justify-center">
             <div className="w-20 h-4 bg-gray-950 rounded-full" />
@@ -78,8 +78,8 @@ function IPhoneMockup({ isAfter, triggered }: { isAfter: boolean; triggered: boo
             {/* Avatar + stats row */}
             <div className="flex items-center gap-3 mb-3">
               <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 p-[2px] flex-shrink-0">
-                <div className="w-full h-full rounded-full bg-gray-200 flex items-center justify-center text-lg">
-                  🏥
+                <div className={`w-full h-full rounded-full flex items-center justify-center text-lg ${isAfter ? "bg-gradient-to-br from-purple-400 to-pink-500" : "bg-gray-200"}`}>
+                  {isAfter ? "✨" : "🏥"}
                 </div>
               </div>
               <div className="flex gap-3 flex-1">
@@ -131,11 +131,25 @@ function IPhoneMockup({ isAfter, triggered }: { isAfter: boolean; triggered: boo
 
             {/* Grid placeholder posts */}
             <div className="grid grid-cols-3 gap-0.5">
-              {Array.from({ length: 9 }).map((_, i) => (
-                <div key={i} className={`aspect-square rounded-sm ${isAfter ? "bg-gradient-to-br from-purple-200 to-pink-200" : "bg-gray-100"} flex items-center justify-center`}>
-                  {isAfter && <span className="text-[10px]">🔥</span>}
-                </div>
-              ))}
+              {(() => {
+                const afterColors = [
+                  "bg-gradient-to-br from-pink-200 to-rose-300",
+                  "bg-gradient-to-br from-purple-200 to-violet-300",
+                  "bg-gradient-to-br from-blue-200 to-cyan-300",
+                  "bg-gradient-to-br from-orange-200 to-amber-300",
+                  "bg-gradient-to-br from-emerald-200 to-teal-300",
+                  "bg-gradient-to-br from-pink-300 to-purple-400",
+                  "bg-gradient-to-br from-yellow-200 to-orange-300",
+                  "bg-gradient-to-br from-cyan-200 to-blue-300",
+                  "bg-gradient-to-br from-rose-200 to-pink-300",
+                ];
+                return Array.from({ length: 9 }).map((_, i) => (
+                  <div key={i} className={`aspect-square rounded-sm ${isAfter ? afterColors[i] : "bg-gray-100"} flex items-center justify-center`}>
+                    {isAfter && i < 3 && <span className="text-[8px]">🔥</span>}
+                    {isAfter && i >= 3 && <span className="text-[8px]">✨</span>}
+                  </div>
+                ));
+              })()}
             </div>
           </div>
         </div>
@@ -170,7 +184,7 @@ export default function BeforeAfter() {
           <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-gray-100 text-gray-500 text-xs font-semibold tracking-widest uppercase mb-6">
             {lang === "pt" ? "RESULTADOS REAIS" : "REAL RESULTS"}
           </span>
-          <h2 className="text-6xl sm:text-7xl font-extrabold text-gray-950 leading-tight mb-6">
+          <h2 className="text-6xl sm:text-7xl font-bold text-gray-950 leading-tight mb-6">
             {lang === "pt"
               ? <>O Efeito <span className="font-serif-italic font-normal">Aurea.</span></>
               : <>The Aurea <span className="font-serif-italic font-normal">Effect.</span></>}
