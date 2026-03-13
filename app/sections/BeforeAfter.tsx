@@ -3,6 +3,8 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useLang } from "../context/LanguageContext";
+// lucide-animated icons disabled - causing hydration issues
+// import { RocketIcon, EyeIcon, SparklesIcon, InstagramIcon } from "lucide-animated";
 
 const beforeProfile = {
   username: "clinica_aurora",
@@ -290,7 +292,7 @@ export default function BeforeAfter() {
                 }}
                 transition={{ delay: showAfter ? 0.1 + i * 0.1 : 0, duration: 0.5, ease: [0.22,1,0.36,1] }}
               >
-                <div className="glass-stat-card rounded-2xl px-5 py-4 cursor-pointer">
+                <div className="glass-stat-card rounded-2xl px-5 py-4 cursor-pointer group">
                   <div className="text-2xl mb-1">{card.icon}</div>
                   <div className="text-2xl font-bold text-gray-900">{card.value}</div>
                   <div className="text-xs text-gray-500 font-medium uppercase tracking-wide">{card.label}</div>
@@ -302,14 +304,18 @@ export default function BeforeAfter() {
               key={showAfter ? "after" : "before"}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ type: "spring", stiffness: 300, damping: 25 }}
-              className={`relative transition-all duration-700 ${showAfter ? "phone-pop-shadow" : ""}`}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className={`relative will-change-transform ${showAfter ? "phone-pop-shadow" : ""}`}
+              style={{ willChange: 'transform, opacity' }}
             >
               <IPhoneMockup isAfter={showAfter} triggered={triggered} />
               
-              {/* Iridescent radial glow behind phone */}
-              <div className={`absolute inset-0 -z-20 transition-opacity duration-700 ${showAfter ? "opacity-100" : "opacity-0"}`}>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[700px] iridescent-glow blur-[80px]" />
+              {/* Iridescent radial glow behind phone - optimized for Safari */}
+              <div 
+                className={`absolute inset-0 -z-20 transition-opacity duration-500 ${showAfter ? "opacity-100" : "opacity-0"}`}
+                style={{ willChange: 'opacity' }}
+              >
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[650px] iridescent-glow-optimized rounded-full" />
               </div>
             </motion.div>
           </div>

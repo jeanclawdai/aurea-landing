@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useRef } from "react";
-import { ChevronLeftIcon, ChevronRightIcon } from "lucide-animated";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useLang } from "../context/LanguageContext";
 
 const featuresEn = [
@@ -139,21 +139,25 @@ export default function Features() {
             onClick={() => scroll("left")}
             className="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"
           >
-            <ChevronLeftIcon size={20} className="text-gray-700" />
+            <ChevronLeft size={20} className="text-gray-700" />
           </button>
           <button
             onClick={() => scroll("right")}
             className="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"
           >
-            <ChevronRightIcon size={20} className="text-gray-700" />
+            <ChevronRight size={20} className="text-gray-700" />
           </button>
         </div>
 
         {/* Horizontal scroll cards */}
         <div
           ref={scrollRef}
-          className="flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory -mx-6 px-6"
-          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          className="flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory -mx-6 px-6 touch-pan-y"
+          style={{ 
+            scrollbarWidth: "none", 
+            msOverflowStyle: "none",
+            overscrollBehaviorX: "contain",
+          }}
         >
           {features.map((feature, index) => (
             <motion.div

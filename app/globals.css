@@ -429,6 +429,20 @@ body {
   animation: iridescentGlow 4s ease-in-out infinite;
 }
 
+/* Optimized glow for Safari - uses CSS gradient instead of blur */
+.iridescent-glow-optimized {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(200, 160, 255, 0.5) 0%,
+    rgba(160, 200, 255, 0.35) 30%,
+    rgba(255, 180, 220, 0.2) 50%,
+    transparent 70%
+  );
+  filter: blur(40px);
+  transform: translateZ(0); /* GPU acceleration */
+  -webkit-transform: translateZ(0);
+}
+
 /* Phone pop shadow for After state */
 .phone-pop-shadow {
   filter: drop-shadow(0 30px 60px rgba(180, 160, 255, 0.45)) 
@@ -495,4 +509,19 @@ body {
     0 12px 40px rgba(180, 160, 255, 0.35),
     0 6px 20px rgba(160, 220, 240, 0.25),
     inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+/* Pastel iridescent button */
+.iridescent-btn {
+  background: linear-gradient(135deg, #f5f0ff 0%, #e8f4ff 50%, #fff0f8 100%);
+  border: 1px solid rgba(200, 180, 255, 0.4);
+  transition: all 0.3s ease;
+}
+
+.iridescent-btn:hover {
+  background: linear-gradient(135deg, #ede5ff 0%, #dceeff 50%, #ffe5f2 100%);
+  border-color: rgba(180, 160, 255, 0.6);
+  box-shadow: 
+    0 8px 24px rgba(180, 160, 255, 0.3),
+    0 4px 12px rgba(160, 200, 255, 0.2);
 }
