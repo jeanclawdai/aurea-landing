@@ -2,10 +2,12 @@
 
 import { motion } from "framer-motion";
 import { Mail, MapPin, Phone } from "lucide-react";
+import { useLang } from "../context/LanguageContext";
 
 export default function Contact() {
+  const { t } = useLang();
   return (
-    <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden section-off">
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
@@ -22,10 +24,10 @@ export default function Contact() {
           className="text-center mb-16"
         >
           <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-            Contact
+            {t.contact.eyebrow}
           </span>
           <h2 className="text-4xl sm:text-5xl font-bold text-navy mb-4">
-            Get in Touch
+            {t.contact.headline}
           </h2>
           <p className="text-lg text-navy-light max-w-2xl mx-auto">
             Ready to transform your clinic&apos;s marketing? Let&apos;s talk.
@@ -49,7 +51,7 @@ export default function Contact() {
                     </label>
                     <input
                       type="text"
-                      className="w-full px-4 py-3 rounded-xl bg-white/50 border border-white/50 focus:border-primary/50 focus:outline-none transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-white border border-gray-300 focus:border-primary/50 focus:outline-none transition-colors"
                       placeholder="John"
                     />
                   </div>
@@ -59,7 +61,7 @@ export default function Contact() {
                     </label>
                     <input
                       type="text"
-                      className="w-full px-4 py-3 rounded-xl bg-white/50 border border-white/50 focus:border-primary/50 focus:outline-none transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-white border border-gray-300 focus:border-primary/50 focus:outline-none transition-colors"
                       placeholder="Doe"
                     />
                   </div>
@@ -71,7 +73,7 @@ export default function Contact() {
                   </label>
                   <input
                     type="email"
-                    className="w-full px-4 py-3 rounded-xl bg-white/50 border border-white/50 focus:border-primary/50 focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 rounded-xl bg-white border border-gray-300 focus:border-primary/50 focus:outline-none transition-colors"
                     placeholder="john@clinic.com"
                   />
                 </div>
@@ -82,7 +84,7 @@ export default function Contact() {
                   </label>
                   <input
                     type="text"
-                    className="w-full px-4 py-3 rounded-xl bg-white/50 border border-white/50 focus:border-primary/50 focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 rounded-xl bg-white border border-gray-300 focus:border-primary/50 focus:outline-none transition-colors"
                     placeholder="Your Aesthetic Clinic"
                   />
                 </div>
@@ -93,7 +95,7 @@ export default function Contact() {
                   </label>
                   <textarea
                     rows={4}
-                    className="w-full px-4 py-3 rounded-xl bg-white/50 border border-white/50 focus:border-primary/50 focus:outline-none transition-colors resize-none"
+                    className="w-full px-4 py-3 rounded-xl bg-white border border-gray-300 focus:border-primary/50 focus:outline-none transition-colors resize-none"
                     placeholder="Tell us about your clinic and goals..."
                   />
                 </div>

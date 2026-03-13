@@ -1,141 +1,156 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
-import Image from "next/image";
 
-const images = [
-  { id: 1, height: "h-[400px]", gradient: "from-violet-400/60 via-purple-400/40 to-pink-400/60", creator: "Dr. Sarah Chen", pfp: "SC", image: "/images/bento-doctor-1.jpg" },
-  { id: 2, height: "h-[300px]", gradient: "from-blue-400/60 via-cyan-400/40 to-teal-400/60", creator: "MedSpa NYC", pfp: "MN", image: "/images/bento-doctor-2.jpg" },
-  { id: 3, height: "h-[350px]", gradient: "from-pink-400/60 via-rose-400/40 to-orange-400/60", creator: "Aesthetic Plus", pfp: "AP", image: "/images/bento-doctor-3.jpg" },
-  { id: 4, height: "h-[450px]", gradient: "from-amber-400/60 via-orange-400/40 to-red-400/60", creator: "Beauty Clinic LA", pfp: "BL", image: "/images/bento-doctor-4.jpg" },
-  { id: 5, height: "h-[320px]", gradient: "from-emerald-400/60 via-teal-400/40 to-cyan-400/60", creator: "Skin Experts", pfp: "SE", image: "/images/bento-doctor-5.jpg" },
-  { id: 6, height: "h-[380px]", gradient: "from-indigo-400/60 via-violet-400/40 to-purple-400/60", creator: "Glow Aesthetics", pfp: "GA", image: "/images/bento-doctor-6.jpg" },
-  { id: 7, height: "h-[280px]", gradient: "from-rose-400/60 via-pink-400/40 to-fuchsia-400/60", creator: "Luxe Med Spa", pfp: "LM", image: "/images/bento-doctor-7.jpg" },
-  { id: 8, height: "h-[420px]", gradient: "from-cyan-400/60 via-blue-400/40 to-indigo-400/60", creator: "Youth Clinic", pfp: "YC", image: "/images/bento-doctor-8.jpg" },
-  { id: 9, height: "h-[340px]", gradient: "from-teal-400/60 via-emerald-400/40 to-green-400/60", creator: "Radiance MD", pfp: "RM", image: "/images/bento-doctor-9.jpg" },
-  { id: 10, height: "h-[360px]", gradient: "from-orange-400/60 via-amber-400/40 to-yellow-400/60", creator: "Elite Aesthetics", pfp: "EA", image: "/images/bento-doctor-10.jpg" },
-  { id: 11, height: "h-[310px]", gradient: "from-purple-400/60 via-violet-400/40 to-indigo-400/60", creator: "Pure Beauty", pfp: "PB", image: "/images/bento-doctor-11.jpg" },
-  { id: 12, height: "h-[390px]", gradient: "from-red-400/60 via-rose-400/40 to-pink-400/60", creator: "Viva Clinic", pfp: "VC", image: "/images/bento-doctor-12.jpg" },
+const platforms = [
+  {
+    name: "TikTok",
+    color: "from-black to-gray-900",
+    textColor: "text-white",
+    icon: "🎵",
+    stats: [
+      { label: "Avg Views/Video", value: "47.2K", change: "+340%" },
+      { label: "Followers Gained", value: "12.8K", change: "+890%" },
+      { label: "Engagement Rate", value: "8.7%", change: "+320%" },
+    ],
+  },
+  {
+    name: "Instagram",
+    color: "from-purple-600 to-pink-500",
+    textColor: "text-white",
+    icon: "📸",
+    stats: [
+      { label: "Reel Views", value: "28.4K", change: "+210%" },
+      { label: "Profile Visits", value: "3.2K", change: "+180%" },
+      { label: "Story Reach", value: "6.1K", change: "+150%" },
+    ],
+  },
+  {
+    name: "YouTube",
+    color: "from-red-600 to-red-700",
+    textColor: "text-white",
+    icon: "▶️",
+    stats: [
+      { label: "Shorts Views", value: "91.3K", change: "+560%" },
+      { label: "Subscribers", value: "4.7K", change: "+430%" },
+      { label: "Watch Time", value: "2.4K hrs", change: "+280%" },
+    ],
+  },
 ];
 
-export default function BentoGrid() {
-  const scrollToPricing = () => {
-    const pricingSection = document.getElementById("pricing");
-    if (pricingSection) {
-      pricingSection.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+const testimonials = [
+  {
+    clinic: "Clínica Estética Lisboa",
+    location: "Lisboa, Portugal",
+    metric: "+847% follower growth",
+    period: "in 90 days",
+    quote: "We went from 800 to 7,600 followers in 3 months without hiring anyone extra.",
+    initials: "CL",
+    color: "bg-blue-100 text-blue-700",
+  },
+  {
+    clinic: "Aesthetic Studio Porto",
+    location: "Porto, Portugal",
+    metric: "3× more bookings",
+    period: "from social media",
+    quote: "Our TikTok now drives more consultations than our paid ads ever did.",
+    initials: "AS",
+    color: "bg-purple-100 text-purple-700",
+  },
+  {
+    clinic: "MedSpa Barcelona",
+    location: "Barcelona, Spain",
+    metric: "10× content output",
+    period: "same team size",
+    quote: "Aurea produces in a week what used to take us a full month to create.",
+    initials: "MB",
+    color: "bg-pink-100 text-pink-700",
+  },
+];
 
+export default function SocialProof() {
   return (
-    <section className="py-24 relative overflow-hidden">
-      {/* Header */}
-      <div className="px-4 sm:px-6 lg:px-8 mb-16">
+    <section id="results" className="py-24 px-4 sm:px-6 lg:px-8 section-off">
+      <div className="max-w-6xl mx-auto">
+
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
         >
-          <span className="text-sm font-medium text-primary tracking-wider uppercase mb-4 block">
-            AI Gallery
-          </span>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-navy mb-4">
-            Content Previews
+          <span className="text-xs font-semibold tracking-widest text-gray-400 uppercase mb-3 block">RESULTS</span>
+          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
+            Built for every platform.<br />Dominant on all of them.
           </h2>
-          <p className="text-navy-light text-lg max-w-2xl mx-auto">
-            Examples of AI-generated content Aurea creates for aesthetic clinics
+          <p className="text-lg text-gray-500 max-w-2xl mx-auto">
+            Aurea creates platform-native content that algorithms love — and audiences follow.
           </p>
         </motion.div>
-      </div>
 
-      {/* Masonry Grid */}
-      <div className="px-4 sm:px-6 lg:px-8 relative">
-        {/* Grid container with gradient overlay */}
-        <div className="relative">
-          <div className="columns-2 md:columns-3 lg:columns-4 gap-3 space-y-3">
-            {images.map((image, index) => (
-              <motion.div
-                key={image.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-                className="break-inside-avoid"
-              >
-                <div
-                  className={`group relative ${image.height} rounded-2xl overflow-hidden cursor-pointer shadow-lg shadow-primary/5 hover:shadow-xl hover:shadow-primary/10 transition-shadow`}
-                >
-                  {/* Gradient Background */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${image.gradient} transition-all duration-300 group-hover:brightness-75`}>
-                    {/* Subtle pattern */}
-                    <div className="absolute inset-0 opacity-10">
-                      <div className="w-full h-full" style={{
-                        backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.5) 1px, transparent 0)`,
-                        backgroundSize: '20px 20px'
-                      }} />
-                    </div>
-                  </div>
-
-                  {/* Image or Placeholder Content */}
-                  {image.image ? (
-                    <Image
-                      src={image.image}
-                      alt={image.creator}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                    />
-                  ) : (
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-14 h-14 rounded-xl bg-white/30 backdrop-blur-sm flex items-center justify-center border border-white/40">
-                        <span className="text-xl opacity-60">🖼️</span>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Dark overlay on hover */}
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300" />
-
-                  {/* Creator Info - Shows on hover */}
-                  <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                    <div className="flex items-center gap-3">
-                      {/* Circular PFP */}
-                      <div className="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center text-navy font-semibold text-sm shadow-lg">
-                        {image.pfp}
-                      </div>
-                      <div className="glass-card rounded-xl px-4 py-2">
-                        <span className="text-navy text-sm font-medium">{image.creator}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Bottom Gradient - Covers uneven card bottoms, matches page bg */}
-          <div className="absolute bottom-0 left-0 right-0 h-[420px] bg-gradient-to-t from-[#F3F7FF] via-[#F3F7FF] to-transparent pointer-events-none" />
-        </div>
-        
-        {/* CTA Button - Positioned above the gradient */}
-        <div className="absolute bottom-32 left-0 right-0 flex justify-center z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <motion.button
-              onClick={scrollToPricing}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="group flex items-center gap-3 px-10 py-5 bg-primary text-white rounded-2xl font-semibold text-lg shadow-2xl shadow-primary/40 hover:shadow-primary/60 transition-all"
+        {/* Platform Performance Cards */}
+        <div className="grid md:grid-cols-3 gap-6 mb-16">
+          {platforms.map((platform, i) => (
+            <motion.div
+              key={platform.name}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className={`rounded-2xl bg-gradient-to-br ${platform.color} p-6 ${platform.textColor}`}
             >
-              <span>Create Yours</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </motion.button>
-          </motion.div>
+              <div className="flex items-center gap-3 mb-6">
+                <span className="text-2xl">{platform.icon}</span>
+                <span className="text-lg font-bold">{platform.name}</span>
+              </div>
+              <div className="space-y-4">
+                {platform.stats.map((stat) => (
+                  <div key={stat.label} className="flex items-center justify-between">
+                    <div>
+                      <div className="text-2xl font-bold">{stat.value}</div>
+                      <div className="text-xs opacity-60">{stat.label}</div>
+                    </div>
+                    <span className="text-xs font-semibold bg-white/20 px-2 py-1 rounded-full">
+                      {stat.change}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          ))}
         </div>
+
+        {/* Client Testimonials */}
+        <div className="grid md:grid-cols-3 gap-6">
+          {testimonials.map((t, i) => (
+            <motion.div
+              key={t.clinic}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className={`w-10 h-10 rounded-full ${t.color} flex items-center justify-center text-sm font-bold`}>
+                  {t.initials}
+                </div>
+                <div>
+                  <div className="font-semibold text-gray-900 text-sm">{t.clinic}</div>
+                  <div className="text-xs text-gray-400">{t.location}</div>
+                </div>
+              </div>
+              <p className="text-gray-600 text-sm leading-relaxed mb-4">&ldquo;{t.quote}&rdquo;</p>
+              <div className="border-t border-gray-100 pt-4">
+                <div className="text-lg font-bold text-gray-900">{t.metric}</div>
+                <div className="text-xs text-gray-400">{t.period}</div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
       </div>
     </section>
   );

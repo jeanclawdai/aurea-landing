@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Target, Cpu, Rocket } from "lucide-react";
+import { useLang } from "../context/LanguageContext";
 
 const steps = [
   {
@@ -25,8 +26,9 @@ const steps = [
 ];
 
 export default function HowItWorks() {
+  const { t } = useLang();
   return (
-    <section id="how-it-works" className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <section id="how-it-works" className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden section-off">
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
@@ -43,14 +45,13 @@ export default function HowItWorks() {
           className="text-center mb-20"
         >
           <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-            How It Works
+            {t.howItWorks.eyebrow}
           </span>
           <h2 className="text-4xl sm:text-5xl font-bold text-navy mb-4">
-            From Creator to Creative Director
+            {t.howItWorks.headline}
           </h2>
           <p className="text-lg text-navy-light max-w-3xl mx-auto">
-            Stop grinding through editing software at 2 AM. Make strategic decisions 
-            while our invisible team handles research, production, and optimization.
+            {t.howItWorks.subtitle}
           </p>
         </motion.div>
 
@@ -70,7 +71,7 @@ export default function HowItWorks() {
                 <div className="hidden md:block absolute top-16 left-full w-full h-px bg-gradient-to-r from-primary/30 to-transparent" />
               )}
               
-              <div className="glass-card rounded-3xl p-8 h-full">
+              <div className="glass-card rounded-3xl p-8 h-full border border-gray-200 shadow-sm">
                 {/* Number */}
                 <div className="text-5xl font-bold text-primary/20 mb-4">
                   {step.number}
@@ -101,7 +102,7 @@ export default function HowItWorks() {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="mt-20 text-center"
         >
-          <blockquote className="text-2xl sm:text-3xl font-light text-navy italic max-w-4xl mx-auto">
+          <blockquote className="text-2xl sm:text-3xl font-light text-gray-700 italic max-w-4xl mx-auto">
             &ldquo;This is nothing like boring and soulless automation—it&apos;s amplification of your creative vision.&rdquo;
           </blockquote>
         </motion.div>

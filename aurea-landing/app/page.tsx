@@ -1,6 +1,7 @@
 import Hero from "./sections/Hero";
 import Features from "./sections/Features";
-import BentoGrid from "./sections/BentoGrid";
+import BeforeAfter from "./sections/BeforeAfter";
+import SocialProof from "./sections/BentoGrid";
 import HowItWorks from "./sections/HowItWorks";
 import Pricing from "./sections/Pricing";
 import Contact from "./sections/Contact";
@@ -12,7 +13,8 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Features />
-      <BentoGrid />
+      <BeforeAfter />
+      <SocialProof />
       <HowItWorks />
       <Pricing />
       <Contact />
