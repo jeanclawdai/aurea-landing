@@ -3,18 +3,46 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useLang } from "../context/LanguageContext";
 
+const floatingIcons = [
+  { icon: "✉", x: -140, y: -60, delay: 0, rotate: -12 },
+  { icon: "⭐", x: 160, y: -80, delay: 0.3, rotate: 8 },
+  { icon: "💬", x: -160, y: 100, delay: 0.6, rotate: -6 },
+  { icon: "✨", x: 150, y: 120, delay: 0.9, rotate: 15 },
+  { icon: "📈", x: -120, y: 200, delay: 1.2, rotate: -10 },
+  { icon: "🏆", x: 130, y: 220, delay: 1.5, rotate: 5 },
+];
+
 export default function Contact() {
   const { lang } = useLang();
   return (
     <section id="contact" className="py-32 px-6 bg-gray-50">
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-2xl mx-auto relative">
+        {/* Floating icons */}
+        {floatingIcons.map((item, i) => (
+          <motion.div
+            key={i}
+            className="absolute hidden lg:flex items-center justify-center w-12 h-12 bg-white rounded-2xl shadow-lg border border-gray-100 text-xl pointer-events-none"
+            style={{ left: `calc(50% + ${item.x}px)`, top: `calc(50% + ${item.y}px)` }}
+            initial={{ opacity: 0, scale: 0 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: item.delay, type: "spring", stiffness: 300 }}
+            animate={{
+              y: [0, -6, 0],
+              rotate: [item.rotate, item.rotate + 3, item.rotate],
+            }}
+          >
+            {item.icon}
+          </motion.div>
+        ))}
+
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="text-xs font-semibold tracking-widest text-gray-400 uppercase mb-4 block">
+          <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-gray-100 text-gray-500 text-xs font-semibold tracking-widest uppercase mb-6">
             {lang === "pt" ? "CONTACTO" : "CONTACT"}
           </span>
           <h2 className="text-5xl sm:text-6xl font-extrabold text-gray-950 leading-tight mb-6">
@@ -36,7 +64,7 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="bg-white rounded-3xl border border-gray-100 p-10"
+          className="relative bg-white rounded-3xl border border-gray-100 p-10"
         >
           <form className="space-y-6">
             <div className="grid sm:grid-cols-2 gap-6">
@@ -94,6 +122,14 @@ export default function Contact() {
               <ArrowRight className="w-5 h-5" />
             </motion.button>
           </form>
+
+          {/* Pulsing gradient glow */}
+          <motion.div
+            className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-32 -z-10"
+            animate={{ opacity: [0.3, 0.7, 0.3], scale: [1, 1.1, 1] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            style={{ background: "radial-gradient(ellipse, rgba(111,168,255,0.25) 0%, transparent 70%)" }}
+          />
         </motion.div>
 
         <motion.div

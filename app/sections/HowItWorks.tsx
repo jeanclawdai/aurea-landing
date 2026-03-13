@@ -1,19 +1,48 @@
 "use client";
 import { motion } from "framer-motion";
-import { Target, Cpu, Rocket } from "lucide-react";
+import { Target, Cpu, Rocket, BarChart2 } from "lucide-react";
 import { useLang } from "../context/LanguageContext";
 
 const steps = [
-  { icon: Target, number: "01", title: "Define Your Vision", titlePt: "Defina a Sua Visão", desc: "Tell us your niche, voice, and brand standards. We learn what makes your clinic unique.", descPt: "Diz-nos o seu nicho, voz e padrões de marca. Aprendemos o que torna a sua clínica única." },
-  { icon: Cpu, number: "02", title: "AI Takes Over", titlePt: "A IA Assume o Controlo", desc: "Our system monitors trends 24/7, generates videos with your voice, and plans your content calendar.", descPt: "O nosso sistema monitoriza tendências 24/7, gera vídeos com a sua voz e planeia o calendário de conteúdo." },
-  { icon: Rocket, number: "03", title: "Publish & Grow", titlePt: "Publica e Cresce", desc: "Review, approve, and watch as content publishes across Instagram, TikTok, and YouTube automatically.", descPt: "Revê, aprova e vê o conteúdo a ser publicado no Instagram, TikTok e YouTube automaticamente." },
+  {
+    icon: Target,
+    number: "01",
+    title: "Define Your Vision",
+    titlePt: "Defina a Sua Visão",
+    desc: "Tell us your niche, voice, and brand standards. We learn what makes your clinic unique.",
+    descPt: "Diz-nos o seu nicho, voz e padrões de marca. Aprendemos o que torna a sua clínica única.",
+  },
+  {
+    icon: Cpu,
+    number: "02",
+    title: "AI Takes Over",
+    titlePt: "A IA Assume o Controlo",
+    desc: "Our system monitors trends 24/7, generates videos with your voice, and plans your content calendar.",
+    descPt: "O nosso sistema monitoriza tendências 24/7, gera vídeos com a sua voz e planeia o calendário de conteúdo.",
+  },
+  {
+    icon: Rocket,
+    number: "03",
+    title: "Publish & Grow",
+    titlePt: "Publica e Cresce",
+    desc: "Review, approve, and watch as content publishes across Instagram, TikTok, and YouTube automatically.",
+    descPt: "Revê, aprova e vê o conteúdo a ser publicado no Instagram, TikTok e YouTube automaticamente.",
+  },
+  {
+    icon: BarChart2,
+    number: "04",
+    title: "Track & Optimise",
+    titlePt: "Acompanha e Otimiza",
+    desc: "Monitor performance across all platforms. Aurea learns from your top posts and doubles down on what works.",
+    descPt: "Monitoriza o desempenho em todas as plataformas. A Aurea aprende com as tuas melhores publicações e aposta no que funciona.",
+  },
 ];
 
 export default function HowItWorks() {
   const { lang } = useLang();
   return (
     <section id="how-it-works" className="py-32 px-6 bg-white">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -21,16 +50,18 @@ export default function HowItWorks() {
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-          <span className="text-xs font-semibold tracking-widest text-gray-400 uppercase mb-4 block">
+          <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-gray-100 text-gray-500 text-xs font-semibold tracking-widest uppercase mb-6">
             {lang === "pt" ? "COMO FUNCIONA" : "HOW IT WORKS"}
           </span>
           <h2 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-gray-950 leading-tight">
-            {lang === "pt" ? <>De Criador a <span className="font-serif-italic font-normal">Diretor Criativo</span></> : <>From Creator to <span className="font-serif-italic font-normal">Creative Director</span></>}
+            {lang === "pt"
+              ? <>De Criador a <span className="font-serif-italic font-normal">Diretor Criativo</span></>
+              : <>From Creator to <span className="font-serif-italic font-normal">Creative Director</span></>}
           </h2>
         </motion.div>
 
         {/* Steps */}
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {steps.map((step, i) => (
             <motion.div
               key={step.number}
@@ -42,9 +73,13 @@ export default function HowItWorks() {
               className="bg-gray-50 rounded-3xl p-10 border border-gray-100"
             >
               {/* Icon box */}
-              <div className="w-14 h-14 rounded-2xl border-2 border-gray-200 bg-white flex items-center justify-center mb-8">
+              <motion.div
+                className="w-14 h-14 rounded-2xl border-2 border-gray-200 bg-white flex items-center justify-center mb-8"
+                whileHover={{ rotate: 15, scale: 1.2 }}
+                transition={{ type: "spring", stiffness: 300, damping: 15 }}
+              >
                 <step.icon className="w-7 h-7 text-gray-700" strokeWidth={1.5} />
-              </div>
+              </motion.div>
               <div className="text-5xl font-bold text-gray-100 mb-4">{step.number}</div>
               <h3 className="text-2xl font-bold text-gray-950 mb-4">
                 {lang === "pt" ? step.titlePt : step.title}
@@ -56,8 +91,19 @@ export default function HowItWorks() {
           ))}
         </div>
 
-        {/* Sparkle divider */}
-        <div className="sparkle-divider my-20 text-2xl">✦ ✦ ✦ ✦ ✦</div>
+        {/* Animated sparkle divider */}
+        <div className="flex items-center justify-center gap-4 my-20">
+          {["✦", "✦", "✦", "✦", "✦"].map((s, i) => (
+            <motion.span
+              key={i}
+              className="text-gray-200 text-xl"
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 1.2, delay: i * 0.15, repeat: Infinity, ease: "easeInOut" }}
+            >
+              {s}
+            </motion.span>
+          ))}
+        </div>
 
         {/* Quote */}
         <blockquote className="text-center text-3xl sm:text-4xl font-light text-gray-600 max-w-3xl mx-auto leading-relaxed">
