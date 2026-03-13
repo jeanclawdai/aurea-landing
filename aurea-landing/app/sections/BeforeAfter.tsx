@@ -304,14 +304,18 @@ export default function BeforeAfter() {
               key={showAfter ? "after" : "before"}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ type: "spring", stiffness: 300, damping: 25 }}
-              className={`relative transition-all duration-700 ${showAfter ? "phone-pop-shadow" : ""}`}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className={`relative will-change-transform ${showAfter ? "phone-pop-shadow" : ""}`}
+              style={{ willChange: 'transform, opacity' }}
             >
               <IPhoneMockup isAfter={showAfter} triggered={triggered} />
               
-              {/* Iridescent radial glow behind phone */}
-              <div className={`absolute inset-0 -z-20 transition-opacity duration-700 ${showAfter ? "opacity-100" : "opacity-0"}`}>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[700px] iridescent-glow blur-[80px]" />
+              {/* Iridescent radial glow behind phone - optimized for Safari */}
+              <div 
+                className={`absolute inset-0 -z-20 transition-opacity duration-500 ${showAfter ? "opacity-100" : "opacity-0"}`}
+                style={{ willChange: 'opacity' }}
+              >
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[650px] iridescent-glow-optimized rounded-full" />
               </div>
             </motion.div>
           </div>

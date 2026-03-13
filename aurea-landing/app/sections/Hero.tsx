@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useLang } from "../context/LanguageContext";
+import { AtomIcon } from "@/components/ui/atom-icon";
 
 export default function Hero() {
   const { lang } = useLang();
@@ -91,9 +92,10 @@ export default function Hero() {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             transition={{ type: "spring", stiffness: 400, damping: 20 }}
-            className="w-full sm:w-auto px-10 py-5 bg-gray-900 text-white text-lg font-semibold rounded-2xl hover:bg-gray-800 transition-colors"
+            className="iridescent-btn w-full sm:w-auto px-10 py-5 text-gray-700 text-lg font-semibold rounded-2xl flex items-center justify-center gap-3 shadow-md shadow-purple-200/40"
             onClick={() => document.getElementById("features")?.scrollIntoView({ behavior: "smooth" })}
           >
+            <AtomIcon size={22} className="text-violet-500" />
             {lang === "pt" ? "Ver Como Funciona" : "See How It Works"}
           </motion.button>
         </div>
