@@ -251,7 +251,7 @@ export default function BeforeAfter() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
-              className={`relative transition-all duration-700 ${showAfter ? "phone-pop-shadow rotating-border-phone" : ""}`}
+              className={`relative transition-all duration-700 ${showAfter ? "phone-pop-shadow" : ""}`}
             >
               <IPhoneMockup isAfter={showAfter} triggered={triggered} />
               
