@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRightIcon } from "lucide-animated";
 import { useLang } from "../context/LanguageContext";
 
 const floatingIcons = [
@@ -125,7 +125,7 @@ export default function Contact() {
               className="btn-shimmer w-full py-5 bg-gray-950 text-white rounded-2xl font-semibold text-lg flex items-center justify-center gap-3"
             >
               {lang === "pt" ? "Enviar Mensagem" : "Send Message"}
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRightIcon size={20} className="text-white" />
             </motion.button>
           </form>
 

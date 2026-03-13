@@ -45,11 +45,63 @@ function AnimCount({ from, to, triggered }: { from: number; to: number; triggere
   return <span>{display}</span>;
 }
 
+// Instagram notification SVG component
+function LikeNotification({ count, className }: { count: string; className?: string }) {
+  return (
+    <div className={`${className}`}>
+      <svg viewBox="0 0 130 85" fill="none" className="w-full h-full drop-shadow-xl">
+        {/* Bubble background - wider for spacing */}
+        <path d="M 110 8 H 16 C 8 8 2 14 2 22 v 36 c 0 8 6 14 14 14 h 20 L 50 85 l 14 -13 h 46 c 8 0 14 -6 14 -14 V 22 C 124 14 118 8 110 8 z" fill="#EE5162"/>
+        {/* Heart icon - left side */}
+        <path d="M 42 28 c -3.6 -3.6 -9.5 -3.6 -13 0 L 26 31 l -3 -3 c -3.6 -3.6 -9.5 -3.6 -13 0 c -3.6 3.6 -3.6 9.5 0 13 l 3 3 L 26 57 L 39 44 l 3 -3 c 3.6 -3.6 3.6 -9.5 0 -13 z" fill="white"/>
+        {/* Number text - more spacing */}
+        <text x="82" y="48" fill="white" fontSize="28" fontWeight="700" fontFamily="system-ui, -apple-system, sans-serif" textAnchor="middle">{count}</text>
+      </svg>
+    </div>
+  );
+}
+
 function IPhoneMockup({ isAfter, triggered }: { isAfter: boolean; triggered: boolean }) {
   const target = isAfter ? afterProfile : beforeProfile;
 
   return (
     <div className="relative w-[380px] mx-auto">
+      {/* Floating notification icons - only on After state */}
+      {isAfter && (
+        <>
+          <motion.div 
+            className="absolute top-16 -left-20 z-20"
+            initial={{ opacity: 0, y: 40, scale: 0.6 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ delay: 0.3, duration: 0.6, type: "spring", stiffness: 200, damping: 15 }}
+          >
+            <div className="float-card-1">
+              <LikeNotification count="128" className="w-20 h-16" />
+            </div>
+          </motion.div>
+          <motion.div 
+            className="absolute top-44 -right-20 z-20"
+            initial={{ opacity: 0, y: 40, scale: 0.6 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ delay: 0.5, duration: 0.6, type: "spring", stiffness: 200, damping: 15 }}
+          >
+            <div className="float-card-2">
+              <LikeNotification count="47" className="w-18 h-14" />
+            </div>
+          </motion.div>
+          <motion.div 
+            className="absolute bottom-44 -left-16 z-20"
+            initial={{ opacity: 0, y: 40, scale: 0.6 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ delay: 0.7, duration: 0.6, type: "spring", stiffness: 200, damping: 15 }}
+          >
+            <div className="float-card-3">
+              <LikeNotification count="89" className="w-16 h-12" />
+            </div>
+          </motion.div>
+        </>
+      )}
+      
       {/* Label */}
       <div className={`absolute -top-4 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-[11px] font-semibold z-10 whitespace-nowrap ${isAfter ? "bg-emerald-500 text-white" : "bg-gray-200 text-gray-600"}`}>
         {isAfter ? "After Aurea ✨" : "Before Aurea"}
@@ -67,9 +119,11 @@ function IPhoneMockup({ isAfter, triggered }: { isAfter: boolean; triggered: boo
           <div className="bg-white px-4 pt-3 pb-2 border-b border-gray-100">
             <div className="flex items-center justify-between">
               <span className="text-xs text-gray-400">9:41</span>
-              <div className="w-6 h-6 rounded-full bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 flex items-center justify-center">
-                <span className="text-white text-[8px] font-bold">IG</span>
-              </div>
+              <img 
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/960px-Instagram_logo_2022.svg.png" 
+                alt="Instagram" 
+                className="w-6 h-6 object-contain"
+              />
             </div>
           </div>
 
@@ -129,27 +183,21 @@ function IPhoneMockup({ isAfter, triggered }: { isAfter: boolean; triggered: boo
               ))}
             </div>
 
-            {/* Grid placeholder posts */}
+            {/* Grid posts */}
             <div className="grid grid-cols-3 gap-0.5">
-              {(() => {
-                const afterColors = [
-                  "bg-gradient-to-br from-pink-200 to-rose-300",
-                  "bg-gradient-to-br from-purple-200 to-violet-300",
-                  "bg-gradient-to-br from-blue-200 to-cyan-300",
-                  "bg-gradient-to-br from-orange-200 to-amber-300",
-                  "bg-gradient-to-br from-emerald-200 to-teal-300",
-                  "bg-gradient-to-br from-pink-300 to-purple-400",
-                  "bg-gradient-to-br from-yellow-200 to-orange-300",
-                  "bg-gradient-to-br from-cyan-200 to-blue-300",
-                  "bg-gradient-to-br from-rose-200 to-pink-300",
-                ];
-                return Array.from({ length: 9 }).map((_, i) => (
-                  <div key={i} className={`aspect-square rounded-sm ${isAfter ? afterColors[i] : "bg-gray-100"} flex items-center justify-center`}>
-                    {isAfter && i < 3 && <span className="text-[8px]">🔥</span>}
-                    {isAfter && i >= 3 && <span className="text-[8px]">✨</span>}
-                  </div>
-                ));
-              })()}
+              {Array.from({ length: 9 }).map((_, i) => (
+                <div key={i} className="aspect-square rounded-sm overflow-hidden bg-gray-100">
+                  {isAfter ? (
+                    <img 
+                      src={`/images/feed/feed-${i + 1}.jpg`} 
+                      alt="" 
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gray-100" />
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -225,14 +273,14 @@ export default function BeforeAfter() {
           <div className="relative">
             {/* Floating stat cards — appear on After */}
             {[
-              { value: "+2,200%", label: "Growth", icon: "🚀", x: "-left-32 lg:-left-44", y: "top-16", rotate: -4, breathClass: "card-breathe-1" },
-              { value: "47.2K", label: "Views/day", icon: "👁️", x: "-left-28 lg:-left-40", y: "bottom-24", rotate: 3, breathClass: "card-breathe-2" },
-              { value: "8.7%", label: "Engagement", icon: "💎", x: "-right-32 lg:-right-44", y: "top-20", rotate: 4, breathClass: "card-breathe-3" },
-              { value: "+184", label: "Posts/mo", icon: "📸", x: "-right-28 lg:-right-40", y: "bottom-28", rotate: -3, breathClass: "card-breathe-4" },
+              { value: "+2,200%", label: "Growth", icon: "🚀", x: "-left-36 lg:-left-52", y: "top-12", rotate: -4, floatClass: "float-card-1" },
+              { value: "47.2K", label: "Views/day", icon: "👁️", x: "-left-32 lg:-left-48", y: "bottom-20", rotate: 3, floatClass: "float-card-2" },
+              { value: "8.7%", label: "Engagement", icon: "💎", x: "-right-36 lg:-right-52", y: "top-16", rotate: 4, floatClass: "float-card-3" },
+              { value: "+184", label: "Posts/mo", icon: "📸", x: "-right-32 lg:-right-48", y: "bottom-24", rotate: -3, floatClass: "float-card-4" },
             ].map((card, i) => (
               <motion.div
                 key={i}
-                className={`absolute hidden md:block ${card.x} ${card.y} ${card.breathClass}`}
+                className={`absolute hidden md:block ${card.x} ${card.y} ${showAfter ? card.floatClass : ""}`}
                 initial={{ opacity: 0, scale: 0.8, y: 20 }}
                 animate={{ 
                   opacity: showAfter ? 1 : 0, 
@@ -242,10 +290,10 @@ export default function BeforeAfter() {
                 }}
                 transition={{ delay: showAfter ? 0.1 + i * 0.1 : 0, duration: 0.5, ease: [0.22,1,0.36,1] }}
               >
-                <div className="bg-gradient-to-br from-emerald-50 to-teal-100 rounded-xl border border-white/60 px-4 py-3 shadow-lg shadow-emerald-200/40 backdrop-blur-sm">
-                  <div className="text-lg mb-0.5">{card.icon}</div>
-                  <div className="text-xl font-bold text-gray-900">{card.value}</div>
-                  <div className="text-[10px] text-gray-500 font-medium uppercase tracking-wide">{card.label}</div>
+                <div className="glass-stat-card rounded-2xl px-5 py-4 cursor-pointer">
+                  <div className="text-2xl mb-1">{card.icon}</div>
+                  <div className="text-2xl font-bold text-gray-900">{card.value}</div>
+                  <div className="text-xs text-gray-500 font-medium uppercase tracking-wide">{card.label}</div>
                 </div>
               </motion.div>
             ))}
@@ -255,13 +303,13 @@ export default function BeforeAfter() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
-              className="relative"
+              className={`relative transition-all duration-700 ${showAfter ? "phone-pop-shadow" : ""}`}
             >
               <IPhoneMockup isAfter={showAfter} triggered={triggered} />
               
-              {/* Glow effect behind phone */}
-              <div className={`absolute inset-0 -z-10 transition-all duration-1000 ${showAfter ? "opacity-100" : "opacity-0"}`}>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-emerald-300/25 rounded-full blur-3xl" />
+              {/* Iridescent radial glow behind phone */}
+              <div className={`absolute inset-0 -z-20 transition-opacity duration-700 ${showAfter ? "opacity-100" : "opacity-0"}`}>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[700px] iridescent-glow blur-[80px]" />
               </div>
             </motion.div>
           </div>

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { MenuIcon, XIcon, ChevronDownIcon } from "lucide-animated";
 import { useLang } from "../context/LanguageContext";
 
 const navHrefs = [
@@ -88,7 +88,7 @@ export default function Navbar() {
               >
                 <span>{currentLang.flag}</span>
                 <span>{currentLang.label}</span>
-                <ChevronDown className={`w-3 h-3 transition-transform ${isLangOpen ? "rotate-180" : ""}`} />
+                <ChevronDownIcon size={12} className={`transition-transform ${isLangOpen ? "rotate-180" : ""}`} />
               </button>
               {isLangOpen && (
                 <motion.div
@@ -117,7 +117,7 @@ export default function Navbar() {
             className="md:hidden p-2 text-gray-700"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMobileMenuOpen ? <XIcon size={24} className="text-gray-700" /> : <MenuIcon size={24} className="text-gray-700" />}
           </button>
         </div>
 
