@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import Image from "next/image";
 import { useLang } from "../context/LanguageContext";
 
 const featuresEn = [
@@ -84,6 +83,16 @@ const featuresPt = [
   },
 ];
 
+const gradients = [
+  "bg-gradient-to-br from-violet-200 via-purple-100 to-blue-200",
+  "bg-gradient-to-br from-blue-200 via-cyan-100 to-teal-200",
+  "bg-gradient-to-br from-pink-200 via-rose-100 to-orange-200",
+  "bg-gradient-to-br from-emerald-200 via-teal-100 to-cyan-200",
+  "bg-gradient-to-br from-amber-200 via-yellow-100 to-orange-200",
+  "bg-gradient-to-br from-purple-200 via-pink-100 to-rose-200",
+];
+const featureIcons = ["🔬", "🎙️", "✂️", "📊", "📅", "🚀"];
+
 export default function Features() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const { lang } = useLang();
@@ -107,7 +116,7 @@ export default function Features() {
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-8"
         >
           <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-gray-100 text-gray-500 text-xs font-semibold tracking-widest uppercase mb-6">
             {lang === "pt" ? "O QUE FAZEMOS" : "WHAT WE DO"}
@@ -161,19 +170,11 @@ export default function Features() {
                 className="group h-full bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-lg shadow-gray-900/8 cursor-pointer"
               >
                 {/* Image */}
-                <div className="relative h-[260px] bg-gray-100 rounded-2xl overflow-hidden m-3">
-                  <Image
-                    src={feature.image}
-                    alt={feature.title}
-                    fill
-                    sizes="380px"
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-                  {/* Number badge */}
-                  <span className="absolute top-4 left-4 text-6xl font-black text-white/15 leading-none">
-                    {String(feature.id).padStart(2, "0")}
-                  </span>
+                <div className={`relative h-[220px] rounded-2xl overflow-hidden m-3 ${gradients[feature.id - 1] || gradients[0]}`}>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-5xl opacity-40">{featureIcons[feature.id - 1] || '✦'}</span>
+                  </div>
+                  <span className="absolute top-4 left-4 text-6xl font-black text-white/20 leading-none">0{feature.id}</span>
                 </div>
 
                 {/* Content */}

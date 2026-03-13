@@ -237,13 +237,7 @@ body {
     linear-gradient(90deg, rgba(111,168,255,0.07) 1px, transparent 1px);
   background-size: 40px 40px;
 }
-.ai-grid-bg::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,255,255,0) 0%, rgba(255,255,255,0.95) 70%);
-  pointer-events: none;
-}
+/* ai-grid-bg overlay removed — was washing out text */
 
 /* Holographic border for pricing popular card */
 @keyframes holographic {
@@ -252,9 +246,12 @@ body {
   100% { background-position: 0% 50%; }
 }
 
+/* Holographic border — only the border glows, card bg stays solid */
 .holographic-border {
   position: relative;
   z-index: 0;
+  background: #030712 !important; /* force dark bg over the gradient */
+  isolation: isolate;
 }
 
 .holographic-border::before {
@@ -262,30 +259,57 @@ body {
   position: absolute;
   inset: -2px;
   border-radius: 26px;
-  background: linear-gradient(
-    135deg,
-    #ff0080, #ff8c00, #ffd700, #00ff88, #00cfff, #a855f7, #ff0080
-  );
+  background: linear-gradient(135deg, #c3a8ff, #a8d8ff, #a8f0e8, #e8a8d8, #ffffff, #d8c8ff, #c3a8ff);
   background-size: 300% 300%;
-  animation: holographic 3s ease infinite;
+  animation: iridescent 3s ease infinite;
   z-index: -1;
-  opacity: 0.85;
+  filter: blur(0.5px) brightness(1.1);
 }
 
 .holographic-border::after {
   content: '';
   position: absolute;
-  inset: -2px;
-  border-radius: 26px;
-  background: linear-gradient(
-    135deg,
-    #ff0080, #ff8c00, #ffd700, #00ff88, #00cfff, #a855f7, #ff0080
-  );
+  inset: 0;
+  border-radius: 24px;
+  background: #030712; /* solid mask so only the 2px border shows */
+  z-index: -1;
+}
+
+@keyframes iridescent {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.iridescent-hover {
+  position: relative;
+  z-index: 0;
+}
+
+.iridescent-hover::before {
+  content: '';
+  position: absolute;
+  inset: -1.5px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, #c3a8ff, #a8d8ff, #a8f0e8, #e8a8d8, #ffffff, #d8c8ff, #c3a8ff);
   background-size: 300% 300%;
-  animation: holographic 3s ease infinite;
-  z-index: -2;
-  opacity: 0.3;
-  filter: blur(8px);
+  animation: iridescent 4s ease infinite;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.iridescent-hover:hover::before {
+  opacity: 1;
+}
+
+.iridescent-hover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: inherit;
+  z-index: -1;
 }
 
 /* Sparkle divider */

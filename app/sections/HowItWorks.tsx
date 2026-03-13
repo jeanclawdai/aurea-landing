@@ -42,7 +42,7 @@ export default function HowItWorks() {
   const { lang } = useLang();
   return (
     <section id="how-it-works" className="py-32 px-6 bg-white">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -61,27 +61,26 @@ export default function HowItWorks() {
         </motion.div>
 
         {/* Steps */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {steps.map((step, i) => (
             <motion.div
               key={step.number}
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              animate={{ y: [0, -8, 0] }}
-              transition={{ type: "tween", duration: 3, delay: i * 0.6, repeat: Infinity, ease: "easeInOut" }}
+              transition={{ delay: i * 0.1 }}
               whileHover={{ y: -6 }}
-              className="bg-gray-50 rounded-3xl p-10 border border-gray-100"
+              className="bg-gray-50 rounded-3xl p-8 border border-gray-100 iridescent-hover"
             >
               {/* Icon box */}
               <motion.div
                 className="w-14 h-14 rounded-2xl border-2 border-gray-200 bg-white flex items-center justify-center mb-8"
-                whileHover={{ rotate: 15, scale: 1.2 }}
+                whileHover={{ rotate: 10, scale: 1.15 }}
                 transition={{ type: "spring", stiffness: 300, damping: 15 }}
               >
                 <step.icon className="w-7 h-7 text-gray-700" strokeWidth={1.5} />
               </motion.div>
-              <div className="text-6xl sm:text-7xl font-bold text-gray-200 mb-4">{step.number}</div>
+              <div className="text-7xl font-bold mb-4" style={{ color: '#e8e8e8' }}>{step.number}</div>
               <h3 className="text-2xl font-bold text-gray-950 mb-4">
                 {lang === "pt" ? step.titlePt : step.title}
               </h3>

@@ -7,28 +7,35 @@ export default function Hero() {
   const { lang } = useLang();
 
   return (
-    <section className="relative min-h-screen ai-grid-bg flex flex-col items-center justify-center px-6 pt-32 pb-24 text-center overflow-hidden">
+    <section
+      className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-32 pb-24 text-center"
+      style={{ background: 'linear-gradient(135deg, #fafafa 0%, #f0f4ff 40%, #faf0ff 70%, #fff0f8 100%)' }}
+    >
+      {/* Grid lines overlay */}
+      <div className="absolute inset-0 pointer-events-none" style={{
+        backgroundImage: 'linear-gradient(rgba(111,168,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(111,168,255,0.06) 1px, transparent 1px)',
+        backgroundSize: '40px 40px'
+      }} />
       {/* Floating metric cards */}
       {[
-        { label: "Avg Growth", value: "847%", color: "text-emerald-600", icon: "📈", x: "-left-4 lg:-left-16", y: "top-32", delay: 0 },
-        { label: "Posts Analyzed", value: "10K+", color: "text-blue-600", icon: "🔬", x: "left-2 lg:left-4", y: "bottom-40", delay: 0.2 },
-        { label: "Faster Creation", value: "10×", color: "text-violet-600", icon: "⚡", x: "-right-4 lg:-right-16", y: "top-32", delay: 0.4 },
-        { label: "Engagement Rate", value: "8.7%", color: "text-rose-500", icon: "💡", x: "right-2 lg:right-4", y: "bottom-40", delay: 0.6 },
+        { label: "Avg Growth", value: "847%", color: "text-gray-900", accent: "from-violet-100 to-blue-100", shadow: "shadow-violet-200/60", icon: "↑", delay: 0 },
+        { label: "Posts Analyzed", value: "10K+", color: "text-gray-900", accent: "from-blue-100 to-cyan-100", shadow: "shadow-blue-200/60", icon: "◉", delay: 0.2 },
+        { label: "Faster Creation", value: "10×", color: "text-gray-900", accent: "from-purple-100 to-pink-100", shadow: "shadow-purple-200/60", icon: "⚡", delay: 0.4 },
+        { label: "Engagement", value: "8.7%", color: "text-gray-900", accent: "from-pink-100 to-rose-100", shadow: "shadow-pink-200/60", icon: "♡", delay: 0.6 },
       ].map((card, i) => (
         <motion.div
           key={i}
-          className={`absolute hidden lg:flex ${card.x} ${card.y} flex-col items-start bg-white rounded-2xl border border-gray-100 shadow-lg shadow-black/5 px-4 py-3 w-36 z-10`}
-          initial={{ opacity: 0, scale: 0.8, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: [0, -6, 0] }}
-          transition={{
-            opacity: { delay: card.delay + 0.5, duration: 0.5 },
-            scale: { delay: card.delay + 0.5, duration: 0.5 },
-            y: { type: "tween", delay: card.delay + 1, duration: 3 + i * 0.5, repeat: Infinity, ease: "easeInOut" }
-          }}
+          className={`absolute hidden xl:block ${i < 2 ? 'left-12' : 'right-12'} ${i % 2 === 0 ? 'top-1/3' : 'bottom-1/3'} iridescent-hover`}
+          style={{ borderRadius: 20 }}
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: card.delay + 0.8, duration: 0.6, ease: [0.22,1,0.36,1] }}
         >
-          <span className="text-lg mb-1">{card.icon}</span>
-          <div className={`text-xl font-bold ${card.color}`}>{card.value}</div>
-          <div className="text-xs text-gray-400 font-medium">{card.label}</div>
+          <div className={`bg-gradient-to-br ${card.accent} rounded-2xl border border-white/80 px-5 py-4 w-40 shadow-lg ${card.shadow}`}>
+            <div className="text-2xl mb-1">{card.icon}</div>
+            <div className="text-2xl font-bold text-gray-900 tracking-tight">{card.value}</div>
+            <div className="text-xs text-gray-500 font-medium mt-0.5">{card.label}</div>
+          </div>
         </motion.div>
       ))}
       <motion.div

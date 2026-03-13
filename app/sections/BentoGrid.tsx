@@ -35,7 +35,7 @@ function TweetCard({ tweet }: { tweet: Tweet }) {
     <motion.div
       whileHover={{ y: -4, boxShadow: "0 20px 40px rgba(0,0,0,0.10)" }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      className="flex-shrink-0 w-[320px] bg-white rounded-2xl border border-gray-100 p-6 mx-3 shadow-sm cursor-pointer"
+      className="flex-shrink-0 w-[300px] bg-white rounded-2xl border border-gray-100 p-5 mx-3 shadow-sm cursor-pointer"
     >
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-3">
@@ -85,23 +85,23 @@ export default function SocialProof() {
   const tweets = lang === "pt" ? tweetsPt : tweetsEn;
 
   return (
-    <section id="results" className="py-32 bg-gray-50 overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 mb-16">
+    <section id="results" className="py-20 bg-gray-950 overflow-hidden">
+      <div className="max-w-6xl mx-auto px-6 mb-10">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center"
         >
-          <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-white border border-gray-200 text-gray-500 text-xs font-semibold tracking-widest uppercase mb-6">
+          <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/10 text-gray-400 border-0 text-xs font-semibold tracking-widest uppercase mb-6">
             {lang === "pt" ? "PROVA SOCIAL" : "SOCIAL PROOF"}
           </span>
-          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-950 leading-tight mb-6">
+          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
             {lang === "pt"
               ? <>Outros <span className="font-serif-italic font-normal">adoraram.</span><br />E você também vai.</>
               : <>Others <span className="font-serif-italic font-normal">loved</span> it.<br />You will too.</>}
           </h2>
-          <p className="text-xl text-gray-500 max-w-xl mx-auto">
+          <p className="text-xl text-gray-400 max-w-xl mx-auto">
             {lang === "pt" ? "Resultados reais de clínicas portuguesas." : "Real results from aesthetic clinics."}
           </p>
         </motion.div>
@@ -109,12 +109,12 @@ export default function SocialProof() {
 
       {/* Marquee — edge to edge */}
       <div className="relative">
-        <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-gray-50 to-transparent z-10" />
-        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-gray-50 to-transparent z-10" />
+        <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-gray-950 to-transparent z-10" />
+        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-gray-950 to-transparent z-10" />
         <Marquee tweets={tweets} />
       </div>
 
-      <div className="max-w-6xl mx-auto px-6 mt-16 text-center">
+      <div className="max-w-6xl mx-auto px-6 mt-10 text-center">
         <motion.button
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}

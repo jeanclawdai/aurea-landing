@@ -70,7 +70,7 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="relative bg-white rounded-3xl border border-gray-100 p-10"
+          className="relative bg-white rounded-3xl border border-gray-100 p-10 shadow-xl shadow-gray-200/60"
         >
           <form className="space-y-6">
             <div className="grid sm:grid-cols-2 gap-6">
