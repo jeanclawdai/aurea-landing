@@ -45,11 +45,37 @@ function AnimCount({ from, to, triggered }: { from: number; to: number; triggere
   return <span>{display}</span>;
 }
 
+// Instagram notification SVG component
+function LikeNotification({ count, className }: { count: string; className?: string }) {
+  return (
+    <svg viewBox="0 0 60 52" fill="none" className={className}>
+      <path d="M4 4C4 1.79086 5.79086 0 8 0H52C54.2091 0 56 1.79086 56 4V36C56 38.2091 54.2091 40 52 40H34L30 52L26 40H8C5.79086 40 4 38.2091 4 36V4Z" fill="#ED4956"/>
+      <path d="M22 22C22 17.5817 25.5817 14 30 14C32.1217 14 34.1566 14.8429 35.6569 16.3431C37.1571 17.8434 38 19.8783 38 22C38 26 34 30 30 34C26 30 22 26 22 22Z" fill="white" stroke="white" strokeWidth="2"/>
+      <text x="42" y="28" fill="white" fontSize="16" fontWeight="600" fontFamily="system-ui">{count}</text>
+    </svg>
+  );
+}
+
 function IPhoneMockup({ isAfter, triggered }: { isAfter: boolean; triggered: boolean }) {
   const target = isAfter ? afterProfile : beforeProfile;
 
   return (
     <div className="relative w-[380px] mx-auto">
+      {/* Floating notification icons - only on After state */}
+      {isAfter && (
+        <>
+          <div className="absolute -top-2 -right-8 z-20 float-card-1">
+            <LikeNotification count="47" className="w-14 h-12 drop-shadow-lg" />
+          </div>
+          <div className="absolute top-24 -left-10 z-20 float-card-2">
+            <LikeNotification count="128" className="w-16 h-14 drop-shadow-lg" />
+          </div>
+          <div className="absolute bottom-40 -right-6 z-20 float-card-3">
+            <LikeNotification count="89" className="w-12 h-10 drop-shadow-lg" />
+          </div>
+        </>
+      )}
+      
       {/* Label */}
       <div className={`absolute -top-4 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-[11px] font-semibold z-10 whitespace-nowrap ${isAfter ? "bg-emerald-500 text-white" : "bg-gray-200 text-gray-600"}`}>
         {isAfter ? "After Aurea ✨" : "Before Aurea"}
