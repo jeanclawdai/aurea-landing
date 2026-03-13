@@ -49,15 +49,15 @@ function IPhoneMockup({ isAfter, triggered }: { isAfter: boolean; triggered: boo
   const target = isAfter ? afterProfile : beforeProfile;
 
   return (
-    <div className="relative w-[340px] mx-auto">
+    <div className="relative w-[380px] mx-auto">
       {/* Label */}
       <div className={`absolute -top-4 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-[11px] font-semibold z-10 whitespace-nowrap ${isAfter ? "bg-emerald-500 text-white" : "bg-gray-200 text-gray-600"}`}>
         {isAfter ? "After Aurea ✨" : "Before Aurea"}
       </div>
 
       {/* Phone frame */}
-      <div className="relative bg-gray-950 rounded-[48px] p-[3px] shadow-2xl shadow-black/40">
-        <div className="bg-white rounded-[46px] overflow-hidden" style={{ height: 640 }}>
+      <div className="relative bg-gray-950 rounded-[52px] p-[3px] shadow-2xl shadow-black/40">
+        <div className="bg-white rounded-[50px] overflow-hidden" style={{ height: 720 }}>
           {/* Notch */}
           <div className="bg-gray-950 h-8 flex items-center justify-center">
             <div className="w-20 h-4 bg-gray-950 rounded-full" />
@@ -168,8 +168,10 @@ export default function BeforeAfter() {
     target: containerRef,
     offset: ["start end", "center center"]
   });
-  const rawScale = useTransform(scrollYProgress, [0, 1], [0.7, 1]);
-  const scale = useSpring(rawScale, { stiffness: 100, damping: 30 });
+  
+  // Simple scale: grows as you scroll into view
+  const rawScale = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
+  const scale = useSpring(rawScale, { stiffness: 120, damping: 20 });
 
   const handleToggle = useCallback(() => {
     setShowAfter(prev => {
@@ -179,72 +181,93 @@ export default function BeforeAfter() {
   }, []);
 
   return (
-    <section ref={containerRef} className="py-32 px-6 bg-white overflow-hidden">
+    <section ref={containerRef} className="py-24 px-6 bg-white overflow-hidden">
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-16"
         >
           <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-gray-100 text-gray-500 text-xs font-semibold tracking-widest uppercase mb-6">
             {lang === "pt" ? "RESULTADOS REAIS" : "REAL RESULTS"}
           </span>
-          <h2 className="text-6xl sm:text-7xl font-bold text-gray-950 leading-tight mb-6">
+          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-950 leading-tight mb-4">
             {lang === "pt"
               ? <>O Efeito <span className="font-serif-italic font-normal">Aurea.</span></>
               : <>The Aurea <span className="font-serif-italic font-normal">Effect.</span></>}
           </h2>
-          <p className="text-xl text-gray-400 max-w-xl mx-auto">
+          <p className="text-lg text-gray-400 max-w-xl mx-auto">
             {lang === "pt"
               ? "Veja a transformação de uma conta real com a Aurea."
               : "See what a real account looks like with Aurea."}
           </p>
         </motion.div>
 
-        {/* iPhone comparison */}
-        <motion.div
-          initial={{ opacity: 0, y: 32 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="relative"
-        >
-          {/* Toggle button */}
-          <div className="flex justify-center mb-12">
-            <button
-              onClick={handleToggle}
-              className="relative flex items-center gap-1 p-1 bg-gray-100 rounded-full"
-            >
-              <span className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all ${!showAfter ? "bg-white shadow-sm text-gray-950" : "text-gray-400"}`}>
-                {lang === "pt" ? "Antes" : "Before"}
-              </span>
-              <span className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all ${showAfter ? "bg-gray-950 text-white" : "text-gray-400"}`}>
-                {lang === "pt" ? "Depois ✨" : "After ✨"}
-              </span>
-            </button>
-          </div>
+        {/* Toggle button — bigger */}
+        <div className="flex justify-center mb-10">
+          <button
+            onClick={handleToggle}
+            className="relative flex items-center gap-2 p-1.5 bg-gray-100 rounded-full shadow-md"
+          >
+            <span className={`px-8 py-3.5 rounded-full text-base font-semibold transition-all ${!showAfter ? "bg-white shadow-sm text-gray-950" : "text-gray-400"}`}>
+              {lang === "pt" ? "Antes" : "Before"}
+            </span>
+            <span className={`px-8 py-3.5 rounded-full text-base font-semibold transition-all ${showAfter ? "bg-gray-950 text-white" : "text-gray-400"}`}>
+              {lang === "pt" ? "Depois ✨" : "After ✨"}
+            </span>
+          </button>
+        </div>
 
-          {/* Phone mockup */}
-          <motion.div style={{ scale }} className="flex justify-center">
+        {/* Phone mockup — scales smoothly as you scroll in */}
+        <motion.div style={{ scale }} className="flex justify-center">
+          <div className="relative">
+            {/* Floating stat cards — appear on After */}
+            {[
+              { value: "+2,200%", label: "Growth", icon: "🚀", x: "-left-32 lg:-left-44", y: "top-16", rotate: -4, breathClass: "card-breathe-1" },
+              { value: "47.2K", label: "Views/day", icon: "👁️", x: "-left-28 lg:-left-40", y: "bottom-24", rotate: 3, breathClass: "card-breathe-2" },
+              { value: "8.7%", label: "Engagement", icon: "💎", x: "-right-32 lg:-right-44", y: "top-20", rotate: 4, breathClass: "card-breathe-3" },
+              { value: "+184", label: "Posts/mo", icon: "📸", x: "-right-28 lg:-right-40", y: "bottom-28", rotate: -3, breathClass: "card-breathe-4" },
+            ].map((card, i) => (
+              <motion.div
+                key={i}
+                className={`absolute hidden md:block ${card.x} ${card.y} ${card.breathClass}`}
+                initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                animate={{ 
+                  opacity: showAfter ? 1 : 0, 
+                  scale: showAfter ? 1 : 0.8, 
+                  y: showAfter ? 0 : 20,
+                  rotate: card.rotate 
+                }}
+                transition={{ delay: showAfter ? 0.1 + i * 0.1 : 0, duration: 0.5, ease: [0.22,1,0.36,1] }}
+              >
+                <div className="bg-gradient-to-br from-emerald-50 to-teal-100 rounded-xl border border-white/60 px-4 py-3 shadow-lg shadow-emerald-200/40 backdrop-blur-sm">
+                  <div className="text-lg mb-0.5">{card.icon}</div>
+                  <div className="text-xl font-bold text-gray-900">{card.value}</div>
+                  <div className="text-[10px] text-gray-500 font-medium uppercase tracking-wide">{card.label}</div>
+                </div>
+              </motion.div>
+            ))}
+            
             <motion.div
               key={showAfter ? "after" : "before"}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              className="relative"
             >
               <IPhoneMockup isAfter={showAfter} triggered={triggered} />
+              
+              {/* Glow effect behind phone */}
+              <div className={`absolute inset-0 -z-10 transition-all duration-1000 ${showAfter ? "opacity-100" : "opacity-0"}`}>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-emerald-300/25 rounded-full blur-3xl" />
+              </div>
             </motion.div>
-          </motion.div>
-
-          {/* Glow effect */}
-          <div className={`absolute inset-0 -z-10 transition-all duration-1000 ${showAfter ? "opacity-100" : "opacity-0"}`}>
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-emerald-300/20 rounded-full blur-3xl" />
           </div>
         </motion.div>
 
-        <div className="sparkle-divider mt-20 text-xl">✦ ✦ ✦</div>
+        <div className="sparkle-divider mt-16 text-xl">✦ ✦ ✦</div>
       </div>
     </section>
   );

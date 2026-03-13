@@ -322,3 +322,42 @@ body {
   font-size: 18px;
   letter-spacing: 8px;
 }
+
+/* Hero animated gradient background */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.hero-gradient-animated {
+  background: linear-gradient(
+    135deg,
+    #fafafa,
+    #f0f4ff,
+    #faf0ff,
+    #fff0f8,
+    #f0f8ff,
+    #f8f0ff,
+    #fafafa
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 20s ease infinite;
+}
+
+/* Card breathing animations */
+@keyframes cardBreathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+
+.card-breathe-1 { animation: cardBreathe 4s ease-in-out infinite; }
+.card-breathe-2 { animation: cardBreathe 4.5s ease-in-out infinite 0.5s; }
+.card-breathe-3 { animation: cardBreathe 5s ease-in-out infinite 1s; }
+.card-breathe-4 { animation: cardBreathe 4.2s ease-in-out infinite 1.5s; }
