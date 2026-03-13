@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
+import { useLang } from "../context/LanguageContext";
 
 const plans = [
   {
@@ -61,8 +62,9 @@ const plans = [
 ];
 
 export default function Pricing() {
+  const { t } = useLang();
   return (
-    <section id="pricing" className="py-24 px-4 sm:px-6 lg:px-8">
+    <section id="pricing" className="py-24 px-4 sm:px-6 lg:px-8 section-white">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <motion.div
@@ -73,10 +75,10 @@ export default function Pricing() {
           className="text-center mb-16"
         >
           <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-            Pricing
+            {t.pricing.eyebrow}
           </span>
           <h2 className="text-4xl sm:text-5xl font-bold text-navy mb-4">
-            Simple, Transparent Pricing
+            {t.pricing.headline}
           </h2>
           <p className="text-lg text-navy-light max-w-2xl mx-auto">
             Choose your level of automation. All plans include a 14-day free trial.
@@ -84,7 +86,7 @@ export default function Pricing() {
         </motion.div>
 
         {/* Pricing Cards */}
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {plans.map((plan, index) => (
             <motion.div
               key={plan.name}
@@ -94,8 +96,8 @@ export default function Pricing() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className={`relative rounded-3xl ${
                 plan.popular
-                  ? "bg-gradient-to-b from-primary/5 to-accent/5 border-2 border-primary/20"
-                  : "glass-card"
+                  ? "bg-gray-900 text-white border border-gray-900 shadow-md"
+                  : "bg-white border border-gray-200 shadow-sm"
               }`}
             >
               {/* Popular badge */}
@@ -109,23 +111,23 @@ export default function Pricing() {
 
               <div className="p-8">
                 {/* Plan name */}
-                <h3 className="text-xl font-semibold text-navy mb-2">{plan.name}</h3>
-                <p className="text-navy-light text-sm mb-6">{plan.description}</p>
+                <h3 className={`text-xl font-semibold mb-2 ${plan.popular ? "text-white" : "text-gray-900"}`}>{plan.name}</h3>
+                <p className={`text-sm mb-6 ${plan.popular ? "text-white/70" : "text-gray-500"}`}>{plan.description}</p>
 
                 {/* Price */}
                 <div className="mb-8">
-                  <span className="text-5xl font-bold text-navy">{plan.price}</span>
-                  <span className="text-navy-light">{plan.period}</span>
+                  <span className={`text-5xl font-bold ${plan.popular ? "text-white" : "text-gray-900"}`}>{plan.price}</span>
+                  <span className={plan.popular ? "text-white/60" : "text-gray-400"}>{plan.period}</span>
                 </div>
 
                 {/* Features */}
                 <ul className="space-y-4 mb-8">
                   {plan.features.map((feature) => (
                     <li key={feature} className="flex items-start gap-3">
-                      <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <Check className="w-3 h-3 text-primary" />
+                      <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 ${plan.popular ? "bg-white/20" : "bg-primary/10"}`}>
+                        <Check className={`w-3 h-3 ${plan.popular ? "text-white" : "text-primary"}`} />
                       </div>
-                      <span className="text-navy-light text-sm">{feature}</span>
+                      <span className={`text-sm ${plan.popular ? "text-white/80" : "text-gray-500"}`}>{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -134,8 +136,8 @@ export default function Pricing() {
                 <button
                   className={`w-full py-4 rounded-2xl font-medium transition-all ${
                     plan.popular
-                      ? "bg-primary text-white shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30"
-                      : "glass-card text-navy hover:bg-white/80"
+                      ? "bg-white text-gray-900 shadow-lg hover:bg-white/90"
+                      : "bg-gray-900 text-white hover:bg-gray-800"
                   }`}
                 >
                   {plan.cta}
@@ -150,7 +152,7 @@ export default function Pricing() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-center mt-12 text-navy-light"
+          className="text-center mt-12 text-gray-400"
         >
           All plans include voice cloning setup, trend monitoring, and hands-free posting. 
           No hidden fees. Cancel anytime.

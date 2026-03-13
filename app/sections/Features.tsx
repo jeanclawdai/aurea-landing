@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useRef } from "react";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
+import { useLang } from "../context/LanguageContext";
 
 const features = [
   {
@@ -46,6 +47,7 @@ const features = [
 
 export default function Features() {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const { t } = useLang();
 
   const scroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
@@ -76,14 +78,13 @@ export default function Features() {
             className="lg:col-span-3 lg:sticky lg:top-32"
           >
             <span className="text-sm font-medium text-cyan-600 tracking-wide uppercase mb-4 block">
-              Intelligence Layer
+              {t.features.eyebrow}
             </span>
             <h2 className="text-4xl sm:text-5xl font-bold text-slate-950 mb-6 leading-tight">
-              Viral Science.<br />
-              Not Generic AI.
+              {t.features.headline}
             </h2>
             <p className="text-slate-600 text-lg mb-8 leading-relaxed">
-              Built on pattern analysis of 10,000+ viral posts. Your content follows proven formulas, not guesswork.
+              {t.features.subtitle}
             </p>
             
             <motion.button
@@ -143,6 +144,7 @@ export default function Features() {
                         src={feature.image}
                         alt={feature.title}
                         fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 420px"
                         className="object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                       />
                       
