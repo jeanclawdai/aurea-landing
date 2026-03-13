@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useCallback, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useLang } from "../context/LanguageContext";
 
 const beforeProfile = {
@@ -49,15 +49,15 @@ function IPhoneMockup({ isAfter, triggered }: { isAfter: boolean; triggered: boo
   const target = isAfter ? afterProfile : beforeProfile;
 
   return (
-    <div className="relative w-[300px] mx-auto">
+    <div className="relative w-[340px] mx-auto">
       {/* Label */}
       <div className={`absolute -top-4 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-[11px] font-semibold z-10 whitespace-nowrap ${isAfter ? "bg-emerald-500 text-white" : "bg-gray-200 text-gray-600"}`}>
         {isAfter ? "After Aurea ✨" : "Before Aurea"}
       </div>
 
       {/* Phone frame */}
-      <div className="relative bg-gray-950 rounded-[44px] p-[3px] shadow-2xl shadow-black/40">
-        <div className="bg-white rounded-[42px] overflow-hidden" style={{ height: 580 }}>
+      <div className="relative bg-gray-950 rounded-[48px] p-[3px] shadow-2xl shadow-black/40">
+        <div className="bg-white rounded-[46px] overflow-hidden" style={{ height: 640 }}>
           {/* Notch */}
           <div className="bg-gray-950 h-8 flex items-center justify-center">
             <div className="w-20 h-4 bg-gray-950 rounded-full" />
@@ -162,7 +162,14 @@ export default function BeforeAfter() {
   const { lang } = useLang();
   const [showAfter, setShowAfter] = useState(false);
   const [triggered, setTriggered] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "center center"]
+  });
+  const rawScale = useTransform(scrollYProgress, [0, 1], [0.7, 1]);
+  const scale = useSpring(rawScale, { stiffness: 100, damping: 30 });
 
   const handleToggle = useCallback(() => {
     setShowAfter(prev => {
@@ -172,7 +179,7 @@ export default function BeforeAfter() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-32 px-6 bg-white overflow-hidden">
+    <section ref={containerRef} className="py-32 px-6 bg-white overflow-hidden">
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <motion.div
@@ -220,16 +227,16 @@ export default function BeforeAfter() {
           </div>
 
           {/* Phone mockup */}
-          <div className="flex justify-center">
+          <motion.div style={{ scale }} className="flex justify-center">
             <motion.div
               key={showAfter ? "after" : "before"}
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
             >
               <IPhoneMockup isAfter={showAfter} triggered={triggered} />
             </motion.div>
-          </div>
+          </motion.div>
 
           {/* Glow effect */}
           <div className={`absolute inset-0 -z-10 transition-all duration-1000 ${showAfter ? "opacity-100" : "opacity-0"}`}>

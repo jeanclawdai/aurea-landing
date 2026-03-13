@@ -35,7 +35,7 @@ function TweetCard({ tweet }: { tweet: Tweet }) {
     <motion.div
       whileHover={{ y: -4, boxShadow: "0 20px 40px rgba(0,0,0,0.10)" }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      className="flex-shrink-0 w-[320px] bg-white rounded-2xl border border-gray-100 p-6 mx-3 shadow-sm cursor-pointer"
+      className="flex-shrink-0 w-[300px] bg-white rounded-2xl border border-gray-100 p-5 mx-3 shadow-sm cursor-pointer"
     >
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-3">
@@ -85,8 +85,8 @@ export default function SocialProof() {
   const tweets = lang === "pt" ? tweetsPt : tweetsEn;
 
   return (
-    <section id="results" className="py-32 bg-gray-950 overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 mb-16">
+    <section id="results" className="py-20 bg-gray-950 overflow-hidden">
+      <div className="max-w-6xl mx-auto px-6 mb-10">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -114,7 +114,7 @@ export default function SocialProof() {
         <Marquee tweets={tweets} />
       </div>
 
-      <div className="max-w-6xl mx-auto px-6 mt-16 text-center">
+      <div className="max-w-6xl mx-auto px-6 mt-10 text-center">
         <motion.button
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}

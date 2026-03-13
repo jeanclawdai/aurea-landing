@@ -170,19 +170,11 @@ export default function Features() {
                 className="group h-full bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-lg shadow-gray-900/8 cursor-pointer"
               >
                 {/* Image */}
-                <div className="relative h-[260px] bg-gray-100 rounded-2xl overflow-hidden m-3">
-                  <Image
-                    src={feature.image}
-                    alt={feature.title}
-                    fill
-                    sizes="380px"
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-                  {/* Number badge */}
-                  <span className="absolute top-4 left-4 text-6xl font-black text-white/15 leading-none">
-                    {String(feature.id).padStart(2, "0")}
-                  </span>
+                <div className={`relative h-[220px] rounded-2xl overflow-hidden m-3 ${gradients[feature.id - 1] || gradients[0]}`}>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-5xl opacity-40">{featureIcons[feature.id - 1] || '✦'}</span>
+                  </div>
+                  <span className="absolute top-4 left-4 text-6xl font-black text-white/20 leading-none">0{feature.id}</span>
                 </div>
 
                 {/* Content */}
