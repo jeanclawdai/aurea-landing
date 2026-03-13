@@ -11,37 +11,37 @@ const featuresEn = [
     id: 1,
     title: "Pattern Intelligence",
     description: "Built on 10,000+ analyzed viral posts. Extracts proven hooks, pacing, and CTAs from top-performing content in your niche.",
-    image: "/images/feature-ai-video.jpg",
+    image: "/images/feature-ai-video.svg",
   },
   {
     id: 2,
     title: "Voice Synthesis",
     description: "Clone your voice once, scale infinitely. Professional-grade audio that sounds authentically you across every piece of content.",
-    image: "/images/feature-voice-clone.jpg",
+    image: "/images/feature-voice-clone.svg",
   },
   {
     id: 3,
     title: "Intelligent Editing",
     description: "AI recognizes optimal cut points, pacing rhythms, and subtitle placement. Edits like a seasoned video professional.",
-    image: "/images/feature-auto-edit.jpg",
+    image: "/images/feature-auto-edit.svg",
   },
   {
     id: 4,
     title: "Viral Analysis",
     description: "Daily pattern extraction from trending content. Identifies what's working now—hooks, formats, music, engagement tactics.",
-    image: "/images/feature-trend-intelligence.jpg",
+    image: "/images/feature-trend-intelligence.svg",
   },
   {
     id: 5,
     title: "Strategic Planning",
     description: "AI curates your content calendar based on trend cycles and your audience's engagement patterns. Always timely, never random.",
-    image: "/images/feature-content-planner.jpg",
+    image: "/images/feature-content-planner.svg",
   },
   {
     id: 6,
     title: "Multi-Platform Distribution",
     description: "Optimized publishing across Instagram, TikTok, and YouTube. Platform-specific formats, timing, and metadata—handled automatically.",
-    image: "/images/feature-auto-publish.jpg",
+    image: "/images/feature-auto-publish.svg",
   },
 ];
 
@@ -50,37 +50,37 @@ const featuresPt = [
     id: 1,
     title: "Inteligência de Padrões",
     description: "Baseado em mais de 10.000 publicações virais analisadas. Extrai hooks, ritmo e CTAs comprovados do conteúdo mais eficaz no teu nicho.",
-    image: "/images/feature-ai-video.jpg",
+    image: "/images/feature-ai-video.svg",
   },
   {
     id: 2,
     title: "Síntese de Voz",
     description: "Clona a tua voz uma vez, escala infinitamente. Áudio profissional que soa autenticamente a ti em cada conteúdo.",
-    image: "/images/feature-voice-clone.jpg",
+    image: "/images/feature-voice-clone.svg",
   },
   {
     id: 3,
     title: "Edição Inteligente",
     description: "A IA reconhece os melhores pontos de corte, ritmos de pacing e posicionamento de legendas. Edita como um profissional experiente.",
-    image: "/images/feature-auto-edit.jpg",
+    image: "/images/feature-auto-edit.svg",
   },
   {
     id: 4,
     title: "Análise Viral",
     description: "Extração diária de padrões de conteúdo em tendência. Identifica o que está a funcionar agora — hooks, formatos, música, táticas de engagement.",
-    image: "/images/feature-trend-intelligence.jpg",
+    image: "/images/feature-trend-intelligence.svg",
   },
   {
     id: 5,
     title: "Planeamento Estratégico",
     description: "A IA organiza o teu calendário de conteúdo com base em ciclos de tendências e padrões de engagement da tua audiência. Sempre oportuno.",
-    image: "/images/feature-content-planner.jpg",
+    image: "/images/feature-content-planner.svg",
   },
   {
     id: 6,
     title: "Distribuição Multi-Plataforma",
     description: "Publicação otimizada no Instagram, TikTok e YouTube. Formatos, timings e metadados específicos de cada plataforma — tudo automático.",
-    image: "/images/feature-auto-publish.jpg",
+    image: "/images/feature-auto-publish.svg",
   },
 ];
 
@@ -112,7 +112,7 @@ export default function Features() {
           <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-gray-100 text-gray-500 text-xs font-semibold tracking-widest uppercase mb-6">
             {lang === "pt" ? "O QUE FAZEMOS" : "WHAT WE DO"}
           </span>
-          <h2 className="text-6xl sm:text-7xl font-extrabold text-gray-950 leading-tight mb-6">
+          <h2 className="text-6xl sm:text-7xl font-bold text-gray-950 leading-tight mb-6">
             Viral <span className="font-serif-italic font-normal">Science.</span>
             <br />
             Not Generic AI.
