@@ -405,3 +405,32 @@ body {
   border-radius: 13px;
   z-index: -1;
 }
+
+/* Iridescent radial glow - animated hue shift */
+@keyframes iridescentGlow {
+  0% {
+    background: radial-gradient(circle, rgba(200,180,255,0.6) 0%, rgba(180,220,255,0.4) 40%, transparent 70%);
+  }
+  25% {
+    background: radial-gradient(circle, rgba(180,240,240,0.6) 0%, rgba(240,180,220,0.4) 40%, transparent 70%);
+  }
+  50% {
+    background: radial-gradient(circle, rgba(240,180,220,0.6) 0%, rgba(200,180,255,0.4) 40%, transparent 70%);
+  }
+  75% {
+    background: radial-gradient(circle, rgba(180,220,255,0.6) 0%, rgba(180,240,240,0.4) 40%, transparent 70%);
+  }
+  100% {
+    background: radial-gradient(circle, rgba(200,180,255,0.6) 0%, rgba(180,220,255,0.4) 40%, transparent 70%);
+  }
+}
+
+.iridescent-glow {
+  animation: iridescentGlow 4s ease-in-out infinite;
+}
+
+/* Phone pop shadow for After state */
+.phone-pop-shadow {
+  filter: drop-shadow(0 30px 60px rgba(180, 160, 255, 0.35)) 
+          drop-shadow(0 15px 30px rgba(160, 220, 240, 0.25));
+}

@@ -255,13 +255,13 @@ export default function BeforeAfter() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
-              className="relative"
+              className={`relative transition-all duration-700 ${showAfter ? "phone-pop-shadow" : ""}`}
             >
               <IPhoneMockup isAfter={showAfter} triggered={triggered} />
               
-              {/* Glow effect behind phone */}
-              <div className={`absolute inset-0 -z-10 transition-all duration-1000 ${showAfter ? "opacity-100" : "opacity-0"}`}>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-emerald-300/25 rounded-full blur-3xl" />
+              {/* Iridescent radial glow behind phone */}
+              <div className={`absolute inset-0 -z-10 transition-opacity duration-700 ${showAfter ? "opacity-100" : "opacity-0"}`}>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] iridescent-glow blur-3xl" />
               </div>
             </motion.div>
           </div>
