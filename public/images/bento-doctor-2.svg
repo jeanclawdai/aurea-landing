@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400">
+  <defs>
+    <linearGradient id="skin2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F7D7C4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#EBCBB0;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="hair2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2C1810;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1A0F08;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="scrubs2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E8D5FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D6BBFB;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="bg2" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#F0E6FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D4C5F9;stop-opacity:1" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="300" height="400" fill="url(#bg2)"/>
+  
+  <!-- Medical scrubs -->
+  <path d="M80 190 Q80 175 95 165 L205 165 Q220 175 220 190 L220 400 L80 400 Z" fill="url(#scrubs2)" stroke="#C4A7F7" stroke-width="2"/>
+  
+  <!-- Neck -->
+  <ellipse cx="150" cy="185" rx="20" ry="12" fill="url(#skin2)"/>
+  
+  <!-- Face -->
+  <ellipse cx="150" cy="135" rx="42" ry="50" fill="url(#skin2)"/>
+  
+  <!-- Hair (elegant updo) -->
+  <ellipse cx="150" cy="105" rx="50" ry="30" fill="url(#hair2)"/>
+  <circle cx="150" cy="95" r="15" fill="url(#hair2)"/>
+  
+  <!-- Eyes -->
+  <ellipse cx="137" cy="125" rx="7" ry="5" fill="white"/>
+  <ellipse cx="163" cy="125" rx="7" ry="5" fill="white"/>
+  <circle cx="137" cy="125" r="3.5" fill="#8B4513"/>
+  <circle cx="163" cy="125" r="3.5" fill="#8B4513"/>
+  <circle cx="138" cy="123" r="1.5" fill="black"/>
+  <circle cx="164" cy="123" r="1.5" fill="black"/>
+  <circle cx="139" cy="122" r="0.8" fill="white"/>
+  <circle cx="165" cy="122" r="0.8" fill="white"/>
+  
+  <!-- Eyelashes -->
+  <path d="M130 120 L132 118 M134 119 L136 117 M140 119 L142 117 M144 120 L146 118" stroke="#2C1810" stroke-width="1"/>
+  <path d="M154 118 L156 120 M158 117 L160 119 M162 117 L164 119 M166 118 L168 120" stroke="#2C1810" stroke-width="1"/>
+  
+  <!-- Eyebrows -->
+  <path d="M130 115 Q137 113 144 115" stroke="#2C1810" stroke-width="2" fill="none"/>
+  <path d="M156 115 Q163 113 170 115" stroke="#2C1810" stroke-width="2" fill="none"/>
+  
+  <!-- Nose -->
+  <path d="M148 130 Q150 140 152 145" stroke="#E0C4A8" stroke-width="2" fill="none"/>
+  
+  <!-- Lips -->
+  <ellipse cx="150" cy="155" rx="8" ry="4" fill="#D4748A"/>
+  <path d="M142 155 Q150 160 158 155" stroke="#B85C70" stroke-width="1" fill="none"/>
+  
+  <!-- Medical gloves -->
+  <ellipse cx="100" cy="250" rx="12" ry="8" fill="#A8E6CF"/>
+  <ellipse cx="200" cy="250" rx="12" ry="8" fill="#A8E6CF"/>
+  
+  <!-- V-neck scrub design -->
+  <path d="M140 170 L150 185 L160 170" stroke="#B8A1E8" stroke-width="2" fill="none"/>
+  
+  <!-- Professional name tag -->
+  <rect x="190" y="210" width="35" height="25" rx="3" fill="white" stroke="#7C3AED" stroke-width="1"/>
+  <text x="207" y="220" text-anchor="middle" fill="#7C3AED" font-size="6" font-family="Arial">Dr. Sarah</text>
+  <text x="207" y="228" text-anchor="middle" fill="#7C3AED" font-size="6" font-family="Arial">Aesthetics</text>
+</svg>
