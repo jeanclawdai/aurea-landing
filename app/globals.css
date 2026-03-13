@@ -221,3 +221,19 @@ body {
   border: 2px solid currentColor;
   animation: pulse-ring 2s ease-out infinite;
 }
+
+.font-serif-italic {
+  font-family: var(--font-playfair);
+  font-style: italic;
+}
+
+/* Sparkle divider */
+.sparkle-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #d1d5db;
+  font-size: 18px;
+  letter-spacing: 8px;
+}
