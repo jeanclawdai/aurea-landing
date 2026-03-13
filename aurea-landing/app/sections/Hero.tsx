@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRightIcon } from "lucide-animated";
 import { useLang } from "../context/LanguageContext";
 
 export default function Hero() {
@@ -85,7 +85,7 @@ export default function Hero() {
             onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
           >
             {lang === "pt" ? "Começar" : "Get Started"}
-            <ArrowRight className="w-5 h-5" />
+            <ArrowRightIcon size={20} className="text-white" />
           </motion.button>
           <motion.button
             whileHover={{ scale: 1.02 }}

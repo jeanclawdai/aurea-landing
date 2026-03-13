@@ -3,6 +3,7 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useLang } from "../context/LanguageContext";
+import { RocketIcon, EyeIcon, SparklesIcon, InstagramIcon } from "lucide-animated";
 
 const beforeProfile = {
   username: "clinica_aurora",
@@ -273,10 +274,10 @@ export default function BeforeAfter() {
           <div className="relative">
             {/* Floating stat cards — appear on After */}
             {[
-              { value: "+2,200%", label: "Growth", icon: "🚀", x: "-left-36 lg:-left-52", y: "top-12", rotate: -4, floatClass: "float-card-1" },
-              { value: "47.2K", label: "Views/day", icon: "👁️", x: "-left-32 lg:-left-48", y: "bottom-20", rotate: 3, floatClass: "float-card-2" },
-              { value: "8.7%", label: "Engagement", icon: "💎", x: "-right-36 lg:-right-52", y: "top-16", rotate: 4, floatClass: "float-card-3" },
-              { value: "+184", label: "Posts/mo", icon: "📸", x: "-right-32 lg:-right-48", y: "bottom-24", rotate: -3, floatClass: "float-card-4" },
+              { value: "+2,200%", label: "Growth", Icon: RocketIcon, color: "text-violet-500", x: "-left-36 lg:-left-52", y: "top-12", rotate: -4, floatClass: "float-card-1" },
+              { value: "47.2K", label: "Views/day", Icon: EyeIcon, color: "text-blue-500", x: "-left-32 lg:-left-48", y: "bottom-20", rotate: 3, floatClass: "float-card-2" },
+              { value: "8.7%", label: "Engagement", Icon: SparklesIcon, color: "text-pink-500", x: "-right-36 lg:-right-52", y: "top-16", rotate: 4, floatClass: "float-card-3" },
+              { value: "+184", label: "Posts/mo", Icon: InstagramIcon, color: "text-emerald-500", x: "-right-32 lg:-right-48", y: "bottom-24", rotate: -3, floatClass: "float-card-4" },
             ].map((card, i) => (
               <motion.div
                 key={i}
@@ -290,8 +291,10 @@ export default function BeforeAfter() {
                 }}
                 transition={{ delay: showAfter ? 0.1 + i * 0.1 : 0, duration: 0.5, ease: [0.22,1,0.36,1] }}
               >
-                <div className="glass-stat-card rounded-2xl px-5 py-4 cursor-pointer">
-                  <div className="text-2xl mb-1">{card.icon}</div>
+                <div className="glass-stat-card rounded-2xl px-5 py-4 cursor-pointer group">
+                  <div className={`mb-1 ${card.color}`}>
+                    <card.Icon size={28} />
+                  </div>
                   <div className="text-2xl font-bold text-gray-900">{card.value}</div>
                   <div className="text-xs text-gray-500 font-medium uppercase tracking-wide">{card.label}</div>
                 </div>
