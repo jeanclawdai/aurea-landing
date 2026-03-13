@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useRef } from "react";
-import { ChevronLeftIcon, ChevronRightIcon } from "lucide-animated";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useLang } from "../context/LanguageContext";
 
 const featuresEn = [
@@ -139,13 +139,13 @@ export default function Features() {
             onClick={() => scroll("left")}
             className="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"
           >
-            <ChevronLeftIcon size={20} className="text-gray-700" />
+            <ChevronLeft size={20} className="text-gray-700" />
           </button>
           <button
             onClick={() => scroll("right")}
             className="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"
           >
-            <ChevronRightIcon size={20} className="text-gray-700" />
+            <ChevronRight size={20} className="text-gray-700" />
           </button>
         </div>
 

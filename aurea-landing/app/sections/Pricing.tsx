@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { CheckIcon } from "lucide-animated";
+import { Check } from "lucide-react";
 import { useLang } from "../context/LanguageContext";
 
 const plans = [
@@ -160,7 +160,7 @@ export default function Pricing() {
                     <ul className="space-y-2">
                       {(lang === "pt" ? plan.getsPt : plan.gets).map((item) => (
                         <li key={item} className={`text-xs flex items-start gap-2 ${plan.popular ? "text-gray-300" : "text-gray-600"}`}>
-                          <CheckIcon size={12} className={`mt-0.5 flex-shrink-0 ${plan.popular ? "text-gray-500" : "text-gray-400"}`} />
+                          <Check size={12} className={`mt-0.5 flex-shrink-0 ${plan.popular ? "text-gray-500" : "text-gray-400"}`} />
                           {item}
                         </li>
                       ))}
