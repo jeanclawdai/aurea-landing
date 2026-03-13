@@ -131,27 +131,21 @@ function IPhoneMockup({ isAfter, triggered }: { isAfter: boolean; triggered: boo
               ))}
             </div>
 
-            {/* Grid placeholder posts */}
+            {/* Grid posts */}
             <div className="grid grid-cols-3 gap-0.5">
-              {(() => {
-                const afterColors = [
-                  "bg-gradient-to-br from-pink-200 to-rose-300",
-                  "bg-gradient-to-br from-purple-200 to-violet-300",
-                  "bg-gradient-to-br from-blue-200 to-cyan-300",
-                  "bg-gradient-to-br from-orange-200 to-amber-300",
-                  "bg-gradient-to-br from-emerald-200 to-teal-300",
-                  "bg-gradient-to-br from-pink-300 to-purple-400",
-                  "bg-gradient-to-br from-yellow-200 to-orange-300",
-                  "bg-gradient-to-br from-cyan-200 to-blue-300",
-                  "bg-gradient-to-br from-rose-200 to-pink-300",
-                ];
-                return Array.from({ length: 9 }).map((_, i) => (
-                  <div key={i} className={`aspect-square rounded-sm ${isAfter ? afterColors[i] : "bg-gray-100"} flex items-center justify-center`}>
-                    {isAfter && i < 3 && <span className="text-[8px]">🔥</span>}
-                    {isAfter && i >= 3 && <span className="text-[8px]">✨</span>}
-                  </div>
-                ));
-              })()}
+              {Array.from({ length: 9 }).map((_, i) => (
+                <div key={i} className="aspect-square rounded-sm overflow-hidden bg-gray-100">
+                  {isAfter ? (
+                    <img 
+                      src={`/images/feed/feed-${i + 1}.jpg`} 
+                      alt="" 
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gray-100" />
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         </div>
