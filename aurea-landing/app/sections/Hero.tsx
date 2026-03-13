@@ -7,34 +7,43 @@ export default function Hero() {
   const { lang } = useLang();
 
   return (
-    <section
-      className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-32 pb-24 text-center"
-      style={{ background: 'linear-gradient(135deg, #fafafa 0%, #f0f4ff 40%, #faf0ff 70%, #fff0f8 100%)' }}
-    >
+    <section className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-32 pb-24 text-center overflow-hidden">
+      {/* Animated gradient background */}
+      <div className="absolute inset-0 -z-10 hero-gradient-animated" />
       {/* Grid lines overlay */}
-      <div className="absolute inset-0 pointer-events-none" style={{
-        backgroundImage: 'linear-gradient(rgba(111,168,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(111,168,255,0.06) 1px, transparent 1px)',
+      <div className="absolute inset-0 -z-10 pointer-events-none" style={{
+        backgroundImage: 'linear-gradient(rgba(111,168,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(111,168,255,0.05) 1px, transparent 1px)',
         backgroundSize: '40px 40px'
       }} />
-      {/* Floating metric cards */}
+      {/* Floating metric cards — positioned around the title */}
       {[
-        { label: "Avg Growth", value: "847%", color: "text-gray-900", accent: "from-violet-100 to-blue-100", shadow: "shadow-violet-200/60", icon: "↑", delay: 0 },
-        { label: "Posts Analyzed", value: "10K+", color: "text-gray-900", accent: "from-blue-100 to-cyan-100", shadow: "shadow-blue-200/60", icon: "◉", delay: 0.2 },
-        { label: "Faster Creation", value: "10×", color: "text-gray-900", accent: "from-purple-100 to-pink-100", shadow: "shadow-purple-200/60", icon: "⚡", delay: 0.4 },
-        { label: "Engagement", value: "8.7%", color: "text-gray-900", accent: "from-pink-100 to-rose-100", shadow: "shadow-pink-200/60", icon: "♡", delay: 0.6 },
+        { label: "With Aurea", value: "+847%", sub: "follower growth", accent: "from-violet-100 to-blue-100", shadow: "shadow-violet-200/60", icon: "📈", x: "left-8 xl:left-24", y: "top-[38%]", rotate: -3, delay: 0, breathClass: "card-breathe-1" },
+        { label: "AI-Optimized", value: "10K+", sub: "posts created", accent: "from-blue-100 to-cyan-100", shadow: "shadow-blue-200/60", icon: "✨", x: "left-4 xl:left-16", y: "top-[58%]", rotate: 2, delay: 0.15, breathClass: "card-breathe-2" },
+        { label: "Time Saved", value: "10×", sub: "faster workflow", accent: "from-purple-100 to-pink-100", shadow: "shadow-purple-200/60", icon: "⚡", x: "right-8 xl:right-24", y: "top-[36%]", rotate: 3, delay: 0.3, breathClass: "card-breathe-3" },
+        { label: "Avg Result", value: "8.7%", sub: "engagement rate", accent: "from-pink-100 to-rose-100", shadow: "shadow-pink-200/60", icon: "💎", x: "right-4 xl:right-16", y: "top-[56%]", rotate: -2, delay: 0.45, breathClass: "card-breathe-4" },
       ].map((card, i) => (
         <motion.div
           key={i}
-          className={`absolute hidden xl:block ${i < 2 ? 'left-12' : 'right-12'} ${i % 2 === 0 ? 'top-1/3' : 'bottom-1/3'} iridescent-hover`}
-          style={{ borderRadius: 20 }}
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: card.delay + 0.8, duration: 0.6, ease: [0.22,1,0.36,1] }}
+          className={`absolute hidden lg:block ${card.x} ${card.y} z-10 ${card.breathClass}`}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0, rotate: card.rotate }}
+          whileHover={{ 
+            scale: 1.1, 
+            rotate: 0, 
+            y: -8,
+            boxShadow: "0 20px 40px rgba(0,0,0,0.12)"
+          }}
+          transition={{ 
+            default: { delay: card.delay + 0.6, duration: 0.7, ease: [0.22,1,0.36,1] },
+            scale: { type: "spring", stiffness: 400, damping: 25 },
+            y: { type: "spring", stiffness: 400, damping: 25 },
+          }}
         >
-          <div className={`bg-gradient-to-br ${card.accent} rounded-2xl border border-white/80 px-5 py-4 w-40 shadow-lg ${card.shadow}`}>
-            <div className="text-2xl mb-1">{card.icon}</div>
+          <div className={`bg-gradient-to-br ${card.accent} rounded-2xl border border-white/60 px-5 py-4 w-40 shadow-lg ${card.shadow} backdrop-blur-sm cursor-pointer iridescent-hover`} style={{ borderRadius: 16 }}>
+            <div className="text-xl mb-1">{card.icon}</div>
             <div className="text-2xl font-bold text-gray-900 tracking-tight">{card.value}</div>
-            <div className="text-xs text-gray-500 font-medium mt-0.5">{card.label}</div>
+            <div className="text-[10px] text-gray-500 font-medium uppercase tracking-wide">{card.sub}</div>
+            <div className="text-[9px] text-gray-400 mt-1">{card.label}</div>
           </div>
         </motion.div>
       ))}
