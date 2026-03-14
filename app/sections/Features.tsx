@@ -979,13 +979,11 @@ export default function Features() {
                 {(() => {
                   const TitleIcon = iconComponents[activeFeature.id];
                   return TitleIcon ? (
-                    <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl border border-gray-200 bg-white shadow-md mb-5">
-                      <TitleIcon
-                        ref={(el: IconHandle | null) => { titleIconRef.current = el; }}
-                        size={28}
-                        className="text-gray-900"
-                      />
-                    </div>
+                    <TitleIcon
+                      ref={(el: IconHandle | null) => { titleIconRef.current = el; }}
+                      size={36}
+                      className="text-gray-900 mb-4"
+                    />
                   ) : null;
                 })()}
                 {activeFeature.comingSoon && (
