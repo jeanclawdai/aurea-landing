@@ -946,3 +946,15 @@ body {
     @apply font-sans;
   }
 }
+/* Feature filter pill hover glow */
+.pill-glow-hover {
+  background: linear-gradient(90deg, #6FA8FF, #A8B8FF, #D4A8FF, #FFA8D4, #6FA8FF);
+  background-size: 300% 100%;
+  animation: pill-glow-slide 4s ease infinite;
+  filter: blur(12px);
+  z-index: -1;
+}
+
+button:hover .pill-glow-hover {
+  opacity: 0.5 !important;
+}
