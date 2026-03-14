@@ -345,9 +345,8 @@ function BentoPattern() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
-        className="relative bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex flex-col justify-between overflow-hidden"
+        className="bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex flex-col justify-between"
       >
-        <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-full" />
         <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Niches</span>
         <div>
           <span className="text-2xl font-bold text-gray-900"><AnimatedCounter value={47} /></span>
@@ -360,9 +359,8 @@ function BentoPattern() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4 }}
-        className="relative bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex flex-col justify-between overflow-hidden"
+        className="bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex flex-col justify-between"
       >
-        <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-violet-100 to-transparent rounded-bl-full" />
         <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Accuracy</span>
         <div>
           <span className="text-2xl font-bold text-gray-900"><AnimatedCounter value={94} suffix="%" /></span>
@@ -430,9 +428,8 @@ function BentoContent() {
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.2 }}
-        className="relative bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col justify-between overflow-hidden"
+        className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col justify-between"
       >
-        <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-full" />
         <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Generated</span>
         <div>
           <span className="text-2xl font-bold text-gray-900">30+</span>
@@ -444,9 +441,8 @@ function BentoContent() {
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.3 }}
-        className="relative bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col justify-between overflow-hidden"
+        className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col justify-between"
       >
-        <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-violet-100 to-transparent rounded-bl-full" />
         <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Control</span>
         <div>
           <span className="text-2xl font-bold text-gray-900">100%</span>
@@ -537,9 +533,8 @@ function BentoScheduling() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="relative bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex flex-col justify-between overflow-hidden"
+        className="bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex flex-col justify-between"
       >
-        <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-full" />
         <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Platforms</span>
         <div>
           <span className="text-2xl font-bold text-gray-900">3</span>
@@ -558,9 +553,8 @@ function BentoScheduling() {
           repeat: Infinity,
           ease: "easeInOut"
         }}
-        className="relative bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex flex-col justify-between overflow-hidden"
+        className="bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex flex-col justify-between"
       >
-        <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-violet-100 to-transparent rounded-bl-full" />
         <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Effort</span>
         <div>
           <span className="text-2xl font-bold text-gray-900">Zero</span>
@@ -622,9 +616,8 @@ function BentoAnalytics() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
-        className="relative bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col justify-between overflow-hidden"
+        className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col justify-between"
       >
-        <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-full" />
         <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Engagement</span>
         <span className="text-2xl font-bold text-gray-900"><AnimatedCounter value={8} suffix=".7%" /></span>
       </motion.div>
@@ -633,9 +626,8 @@ function BentoAnalytics() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4 }}
-        className="relative bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col justify-between overflow-hidden"
+        className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col justify-between"
       >
-        <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-violet-100 to-transparent rounded-bl-full" />
         <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Views/Day</span>
         <span className="text-2xl font-bold text-gray-900">47K</span>
       </motion.div>
@@ -691,8 +683,7 @@ function BentoBrand() {
       </div>
 
       {/* Stats */}
-      <div className="relative bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex flex-col justify-between overflow-hidden">
-        <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-full" />
+      <div className="bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex flex-col justify-between">
         <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Setup</span>
         <div>
           <span className="text-2xl font-bold text-gray-900">1×</span>
@@ -700,8 +691,7 @@ function BentoBrand() {
         </div>
       </div>
 
-      <div className="relative bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex flex-col justify-between overflow-hidden">
-        <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-violet-100 to-transparent rounded-bl-full" />
+      <div className="bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex flex-col justify-between">
         <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Result</span>
         <div>
           <span className="text-2xl font-bold text-gray-900">∞</span>
@@ -758,9 +748,8 @@ function BentoCaption() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="relative bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col justify-between overflow-hidden"
+        className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col justify-between"
       >
-        <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-full" />
         <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Updated</span>
         <div>
           <span className="text-2xl font-bold text-gray-900">Daily</span>
@@ -772,9 +761,8 @@ function BentoCaption() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
-        className="relative bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col justify-between overflow-hidden"
+        className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col justify-between"
       >
-        <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-violet-100 to-transparent rounded-bl-full" />
         <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Platforms</span>
         <div>
           <span className="text-2xl font-bold text-gray-900">3×</span>
@@ -826,8 +814,7 @@ function BentoVoice() {
       </div>
 
       {/* Stats */}
-      <div className="relative bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col justify-between overflow-hidden">
-        <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-full" />
+      <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col justify-between">
         <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Setup</span>
         <div>
           <span className="text-2xl font-bold text-gray-900">5min</span>
@@ -835,8 +822,7 @@ function BentoVoice() {
         </div>
       </div>
 
-      <div className="relative bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col justify-between overflow-hidden">
-        <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-violet-100 to-transparent rounded-bl-full" />
+      <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col justify-between">
         <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Launch</span>
         <div>
           <span className="text-2xl font-bold text-gray-900">2026</span>
@@ -993,11 +979,13 @@ export default function Features() {
                 {(() => {
                   const TitleIcon = iconComponents[activeFeature.id];
                   return TitleIcon ? (
-                    <TitleIcon
-                      ref={(el: IconHandle | null) => { titleIconRef.current = el; }}
-                      size={36}
-                      className="text-gray-900 mb-4"
-                    />
+                    <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl border border-gray-200 bg-white shadow-md mb-5">
+                      <TitleIcon
+                        ref={(el: IconHandle | null) => { titleIconRef.current = el; }}
+                        size={28}
+                        className="text-gray-900"
+                      />
+                    </div>
                   ) : null;
                 })()}
                 {activeFeature.comingSoon && (
