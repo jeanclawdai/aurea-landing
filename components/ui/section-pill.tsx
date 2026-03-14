@@ -26,9 +26,9 @@ export function SectionPill({ children, variant = "light", className = "" }: Sec
   `;
 
   const dark = `
-    text-white/70
+    text-white
     border border-transparent
-    [background-image:linear-gradient(rgba(255,255,255,0.07),rgba(255,255,255,0.07)),linear-gradient(135deg,#6FA8FF,#A8B8FF,#D4A8FF,#FFA8D4,#6FA8FF)]
+    [background-image:linear-gradient(transparent,transparent),linear-gradient(135deg,#6FA8FF,#A8B8FF,#D4A8FF,#FFA8D4,#6FA8FF)]
     [background-origin:border-box]
     [background-clip:padding-box,border-box]
     shadow-[0_2px_8px_rgba(111,168,255,0.15)]
