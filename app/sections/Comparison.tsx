@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useLang } from "../context/LanguageContext";
+import { SectionPill } from "@/components/ui/section-pill";
 import { AnimatedArrowRight } from "@/components/ui/animated-arrow";
 
 const comparisonDataEn = [
@@ -112,9 +113,7 @@ export default function Comparison() {
         {/* Section header */}
         <div className="text-center mb-14">
           {/* Section pill */}
-          <span className="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase mb-6 bg-white/80 backdrop-blur-sm border border-purple-200/50 text-gray-600 shadow-sm">
-            {lang === "pt" ? "COMPARAÇÃO" : "COMPARISON"}
-          </span>
+          <SectionPill className="mb-6">{lang === "pt" ? "COMPARAÇÃO" : "COMPARISON"}</SectionPill>
 
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-950 leading-tight mb-5">
             {lang === "pt" ? "Porquê " : "Why "}

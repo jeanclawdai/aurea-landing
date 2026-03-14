@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { useLang } from "../context/LanguageContext";
+import { SectionPill } from "@/components/ui/section-pill";
 
 const tweetsEn = [
   { handle: "@clinica_bela_forma", name: "Clínica Bela Forma", avatar: "BF", avatarColor: "bg-blue-500", date: "Feb 14, 2026", text: "Used @AureaAI for 60 days. Went from 900 to 12,400 followers 🚀 Our reels hit Explore every week. Absolutely incredible.", metric: "+1,240% reach", likes: 47, replies: 12 },
@@ -94,9 +95,7 @@ export default function SocialProof() {
           viewport={{ once: true }}
           className="text-center"
         >
-          <span className="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase mb-6 bg-white/10 backdrop-blur-sm border border-white/20 text-white/70 shadow-sm">
-            {lang === "pt" ? "PROVA SOCIAL" : "SOCIAL PROOF"}
-          </span>
+          <SectionPill variant="dark" className="mb-6">{lang === "pt" ? "PROVA SOCIAL" : "SOCIAL PROOF"}</SectionPill>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-5">
             {lang === "pt"
               ? <>Outros <span className="font-serif-italic font-normal">adoraram.</span><br />E você também vai.</>

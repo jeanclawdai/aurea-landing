@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { Target, Cpu, Rocket, BarChart2 } from "lucide-react";
 import { useLang } from "../context/LanguageContext";
+import { SectionPill } from "@/components/ui/section-pill";
 
 const steps = [
   {
@@ -50,9 +51,7 @@ export default function HowItWorks() {
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-          <span className="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase mb-6 bg-white/80 backdrop-blur-sm border border-purple-200/50 text-gray-600 shadow-sm">
-            {lang === "pt" ? "COMO FUNCIONA" : "HOW IT WORKS"}
-          </span>
+          <SectionPill className="mb-6">{lang === "pt" ? "COMO FUNCIONA" : "HOW IT WORKS"}</SectionPill>
           <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-950 leading-tight">
             {lang === "pt"
               ? <>De Criador a <span className="font-serif-italic font-normal">Diretor Criativo</span></>

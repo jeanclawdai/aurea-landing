@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useLang } from "../context/LanguageContext";
+import { SectionPill } from "@/components/ui/section-pill";
 
 const floatingIcons = [
   { icon: "✉", x: -140, y: -60, delay: 0, rotate: -12 },
@@ -48,9 +49,7 @@ export default function Contact() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase mb-6 bg-white/80 backdrop-blur-sm border border-purple-200/50 text-gray-600 shadow-sm">
-            {lang === "pt" ? "CONTACTO" : "CONTACT"}
-          </span>
+          <SectionPill className="mb-6">{lang === "pt" ? "CONTACTO" : "CONTACT"}</SectionPill>
           <h2 className="text-5xl sm:text-6xl font-bold text-gray-950 leading-tight mb-6">
             {lang === "pt" ? (
               <>Vamos <span className="font-serif-italic font-normal">falar.</span></>

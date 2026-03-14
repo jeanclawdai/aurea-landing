@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useLang } from "../context/LanguageContext";
+import { SectionPill } from "@/components/ui/section-pill";
 
 const integrations = [
   {
@@ -121,9 +122,7 @@ export default function Integrations() {
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 text-center mb-14">
         {/* Section pill */}
-        <span className="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase mb-6 bg-white/10 backdrop-blur-sm border border-white/20 text-white/70 shadow-sm">
-          {lang === "pt" ? "INTEGRAÇÕES" : "INTEGRATIONS"}
-        </span>
+        <SectionPill variant="dark" className="mb-6">{lang === "pt" ? "INTEGRAÇÕES" : "INTEGRATIONS"}</SectionPill>
 
         {/* Title - same size as BentoGrid: text-4xl sm:text-5xl lg:text-6xl */}
         <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-5">
