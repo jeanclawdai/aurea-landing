@@ -4,6 +4,7 @@ import BeforeAfter from "./sections/BeforeAfter";
 import SocialProof from "./sections/BentoGrid";
 import HowItWorks from "./sections/HowItWorks";
 import Integrations from "./sections/Integrations";
+import Comparison from "./sections/Comparison";
 import Pricing from "./sections/Pricing";
 import Contact from "./sections/Contact";
 import Navbar from "./components/Navbar";
@@ -20,6 +21,7 @@ export default function Home() {
       <SocialProof />
       <HowItWorks />
       <Integrations />
+      <Comparison />
       <Pricing />
       <Contact />
       <MobileCTA />

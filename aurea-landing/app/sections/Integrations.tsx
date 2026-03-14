@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useLang } from "../context/LanguageContext";
 
 const integrations = [
   {
@@ -68,9 +69,11 @@ const integrations = [
   },
 ];
 
-// Split into rows
-const row1 = integrations.slice(0, 4); // IG, TikTok, YT, Notion
-const row2 = integrations.slice(3, 7); // Notion, FB, WhatsApp, Telegram
+// Create rows with all 7 logos each, repeated 6 times for seamless scroll
+const allLogos = integrations;
+const row1Logos = [...allLogos, ...allLogos, ...allLogos, ...allLogos, ...allLogos, ...allLogos];
+const row2Logos = [...allLogos.slice(3), ...allLogos.slice(0, 3), ...allLogos.slice(3), ...allLogos.slice(0, 3), ...allLogos.slice(3), ...allLogos.slice(0, 3), ...allLogos.slice(3), ...allLogos.slice(0, 3), ...allLogos.slice(3), ...allLogos.slice(0, 3), ...allLogos.slice(3), ...allLogos.slice(0, 3)];
+const row3Logos = [...allLogos.slice(5), ...allLogos.slice(0, 5), ...allLogos.slice(5), ...allLogos.slice(0, 5), ...allLogos.slice(5), ...allLogos.slice(0, 5), ...allLogos.slice(5), ...allLogos.slice(0, 5), ...allLogos.slice(5), ...allLogos.slice(0, 5), ...allLogos.slice(5), ...allLogos.slice(0, 5)];
 
 function LogoRow({
   logos,
@@ -81,20 +84,17 @@ function LogoRow({
   direction?: "left" | "right";
   duration?: number;
 }) {
-  // Triple the logos for seamless infinite scroll
-  const tripled = [...logos, ...logos, ...logos];
-  
   return (
     <div 
-      className="flex gap-6 w-max"
+      className="flex gap-8 w-max"
       style={{ 
         animation: `${direction === "left" ? "scroll-left" : "scroll-right"} ${duration}s linear infinite`,
       }}
     >
-      {tripled.map((logo, i) => (
+      {logos.map((logo, i) => (
         <div
           key={`${logo.name}-${i}`}
-          className="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300 cursor-pointer"
+          className="flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300 cursor-pointer"
           style={{ 
             background: logo.bg, 
             border: "1px solid rgba(255,255,255,0.1)",
@@ -110,6 +110,8 @@ function LogoRow({
 }
 
 export default function Integrations() {
+  const { lang } = useLang();
+  
   return (
     <section className="section-dark-soft py-20 overflow-hidden relative">
       {/* Subtle background glow */}
@@ -120,30 +122,37 @@ export default function Integrations() {
       <div className="relative z-10 max-w-6xl mx-auto px-6 text-center mb-14">
         {/* Section pill */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-white/60 text-sm font-medium mb-6 backdrop-blur-sm">
-          Integrations
+          {lang === "pt" ? "Integrações" : "Integrations"}
         </div>
 
         {/* Title - same size as BentoGrid: text-4xl sm:text-5xl lg:text-6xl */}
         <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-5">
-          Integrations{" "}
-          <span className="font-serif-italic font-normal">supported.</span>
+          {lang === "pt" ? "Integrações " : "Integrations "}
+          <span className="font-serif-italic font-normal">
+            {lang === "pt" ? "suportadas." : "supported."}
+          </span>
         </h2>
         <p className="text-xl text-gray-400 max-w-xl mx-auto">
-          From social platforms to productivity tools — Aurea connects with everything you already use.
+          {lang === "pt" 
+            ? "Das redes sociais às ferramentas de produtividade — a Aurea conecta-se a tudo o que já usa."
+            : "From social platforms to productivity tools — Aurea connects with everything you already use."}
         </p>
       </div>
 
-      {/* Logo rows - constrained width, centered */}
-      <div className="relative z-10 max-w-4xl mx-auto overflow-hidden">
+      {/* Logo rows - with gradient mask on edges */}
+      <div 
+        className="relative z-10 overflow-hidden max-w-4xl mx-auto"
+        style={{
+          maskImage: "linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)",
+          WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)",
+        }}
+      >
         <div className="flex flex-col gap-6 items-center">
-          <LogoRow logos={row1} direction="left" duration={30} />
-          <LogoRow logos={row2} direction="right" duration={35} />
+          <LogoRow logos={row1Logos} direction="left" duration={40} />
+          <LogoRow logos={row2Logos} direction="right" duration={45} />
+          <LogoRow logos={row3Logos} direction="left" duration={38} />
         </div>
       </div>
-
-      {/* Edge fades */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-[#0F1117] to-transparent z-20" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-40 bg-gradient-to-l from-[#0F1117] to-transparent z-20" />
     </section>
   );
 }

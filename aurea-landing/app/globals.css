@@ -611,9 +611,9 @@ body {
 /* Integrations scroll animations */
 @keyframes scroll-left {
   0% { transform: translateX(0); }
-  100% { transform: translateX(calc(-100% / 3)); }
+  100% { transform: translateX(calc(-100% / 6)); }
 }
 @keyframes scroll-right {
-  0% { transform: translateX(calc(-100% / 3)); }
+  0% { transform: translateX(calc(-100% / 6)); }
   100% { transform: translateX(0); }
 }
