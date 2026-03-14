@@ -95,7 +95,7 @@ export default function SocialProof() {
           viewport={{ once: true }}
           className="text-center"
         >
-          <SectionPill variant="dark" className="mb-6">{lang === "pt" ? "PROVA SOCIAL" : "SOCIAL PROOF"}</SectionPill>
+          <SectionPill className="mb-6">{lang === "pt" ? "PROVA SOCIAL" : "SOCIAL PROOF"}</SectionPill>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-5">
             {lang === "pt"
               ? <>Outros <span className="font-serif-italic font-normal">adoraram.</span><br />E você também vai.</>
