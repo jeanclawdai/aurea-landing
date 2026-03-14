@@ -25,11 +25,7 @@ const featuresEn = [
     comingSoon: false,
     headline: "Know what goes viral before you post",
     description: "Our core engine is trained on 10,000+ viral posts across aesthetic clinics and beauty brands. It extracts the exact hooks, pacing, caption structures, and CTAs that make content explode — so every post you publish is built on data, not guesswork.",
-    stats: [
-      { value: "10K+", label: "Posts analyzed" },
-      { value: "94%", label: "Hook accuracy" },
-      { value: "3.2×", label: "Avg reach boost" },
-    ],
+    badge: { title: "10,000+ Viral Posts Analyzed", subtitle: "Hooks, pacing & CTAs extracted from top performers" },
     bento: "pattern",
   },
   {
@@ -38,11 +34,7 @@ const featuresEn = [
     comingSoon: false,
     headline: "From idea to published post in minutes",
     description: "Generate static posts, carousels, and Reels scripts automatically. Every piece is fully editable via our Canva integration — tweak fonts, colors, and layouts with full creative control. Approve, edit, or reject. You stay the creative director.",
-    stats: [
-      { value: "30+", label: "Posts/month" },
-      { value: "100%", label: "Editable" },
-      { value: "5min", label: "Avg creation time" },
-    ],
+    badge: { title: "Posts, Carousels & Reels Scripts", subtitle: "30+ pieces/month, fully editable in Canva" },
     bento: "content",
   },
   {
@@ -51,11 +43,7 @@ const featuresEn = [
     comingSoon: false,
     headline: "Post at the perfect moment, every time",
     description: "AI predicts the best days and times to post based on your audience's behaviour patterns. One click schedules and publishes simultaneously across Instagram, TikTok, and YouTube — with platform-optimised formats and metadata handled automatically.",
-    stats: [
-      { value: "3×", label: "Platforms at once" },
-      { value: "AI", label: "Time prediction" },
-      { value: "0", label: "Manual effort" },
-    ],
+    badge: { title: "AI-Optimized Timing", subtitle: "Posts when your audience is most active" },
     bento: "scheduling",
   },
   {
@@ -64,11 +52,7 @@ const featuresEn = [
     comingSoon: false,
     headline: "See what works. Double down on it",
     description: "Track reach, engagement, follower growth, and booking conversions across all platforms from one dashboard. Aurea learns from your top-performing posts and automatically feeds those patterns back into future content — a self-improving content loop.",
-    stats: [
-      { value: "All", label: "Platforms unified" },
-      { value: "Live", label: "Data feed" },
-      { value: "↑", label: "Self-improving AI" },
-    ],
+    badge: { title: "Unified Dashboard", subtitle: "Reach, engagement & bookings across all platforms" },
     bento: "analytics",
   },
   {
@@ -77,11 +61,7 @@ const featuresEn = [
     comingSoon: false,
     headline: "Always on-brand. Zero effort",
     description: "Upload your logo, fonts, and brand colors once. Every piece of content Aurea generates — forever — is automatically styled to your brand. No more off-brand posts, no more manual formatting. Your identity, baked in at the foundation.",
-    stats: [
-      { value: "1×", label: "Setup" },
-      { value: "∞", label: "On-brand posts" },
-      { value: "0", label: "Rework needed" },
-    ],
+    badge: { title: "Logo, Fonts & Colors", subtitle: "Upload once, applied forever — zero rework" },
     bento: "brand",
   },
   {
@@ -90,11 +70,7 @@ const featuresEn = [
     comingSoon: false,
     headline: "Captions that sound like you",
     description: "Aurea writes captions in your unique brand voice — not generic AI copy. Each caption is paired with a data-driven hashtag set optimised per platform and niche, updated daily based on what's trending in aesthetic medicine right now.",
-    stats: [
-      { value: "Your", label: "Brand voice" },
-      { value: "Daily", label: "Hashtag updates" },
-      { value: "3×", label: "Platforms optimised" },
-    ],
+    badge: { title: "Daily Trending Hashtags", subtitle: "Platform-optimized, niche-specific, auto-updated" },
     bento: "caption",
   },
   {
@@ -103,11 +79,7 @@ const featuresEn = [
     comingSoon: true,
     headline: "Your voice. Your face. Zero filming",
     description: "Coming soon: Clone your voice with a 5-minute recording. Generate talking-head videos with your likeness using AI. Publish Reels and TikToks featuring you — without ever picking up a camera. The future of personal brand content.",
-    stats: [
-      { value: "5min", label: "Voice clone setup" },
-      { value: "AI", label: "Video generation" },
-      { value: "Soon", label: "Launching 2026" },
-    ],
+    badge: { title: "5-Min Voice Clone", subtitle: "Generate talking-head videos with your likeness" , soon: true },
     bento: "voice",
   },
 ];
@@ -119,11 +91,7 @@ const featuresPt = [
     comingSoon: false,
     headline: "Sabe o que fica viral antes de publicar",
     description: "O motor central da Aurea é treinado em mais de 10.000 publicações virais de clínicas estéticas e marcas de beleza. Extrai os hooks exactos, ritmos, estruturas de legenda e CTAs que fazem o conteúdo explodir.",
-    stats: [
-      { value: "10K+", label: "Posts analisados" },
-      { value: "94%", label: "Precisão de hooks" },
-      { value: "3.2×", label: "Aumento de alcance" },
-    ],
+    badge: { title: "10.000+ Posts Virais Analisados", subtitle: "Hooks, ritmo e CTAs extraídos dos melhores" },
     bento: "pattern",
   },
   {
@@ -132,11 +100,7 @@ const featuresPt = [
     comingSoon: false,
     headline: "De ideia a post publicado em minutos",
     description: "Gera posts estáticos, carrosséis e scripts de Reels automaticamente. Cada peça é totalmente editável via integração Canva — ajusta fontes, cores e layouts com controlo criativo total.",
-    stats: [
-      { value: "30+", label: "Posts/mês" },
-      { value: "100%", label: "Editável" },
-      { value: "5min", label: "Tempo de criação" },
-    ],
+    badge: { title: "Posts, Carrosséis & Scripts", subtitle: "30+ peças/mês, totalmente editáveis no Canva" },
     bento: "content",
   },
   {
@@ -145,11 +109,7 @@ const featuresPt = [
     comingSoon: false,
     headline: "Publica no momento perfeito, sempre",
     description: "A IA prevê os melhores dias e horas para publicar com base nos padrões de comportamento da tua audiência. Um clique agenda e publica simultaneamente no Instagram, TikTok e YouTube.",
-    stats: [
-      { value: "3×", label: "Plataformas" },
-      { value: "IA", label: "Previsão de horário" },
-      { value: "0", label: "Esforço manual" },
-    ],
+    badge: { title: "Timing Optimizado por IA", subtitle: "Publica quando a tua audiência está mais activa" },
     bento: "scheduling",
   },
   {
@@ -158,11 +118,7 @@ const featuresPt = [
     comingSoon: false,
     headline: "Vê o que funciona. Aposta nisso",
     description: "Acompanha alcance, engagement, crescimento de seguidores e conversões de reservas em todas as plataformas num único dashboard. A Aurea aprende com os teus melhores posts.",
-    stats: [
-      { value: "Tudo", label: "Plataformas unificadas" },
-      { value: "Live", label: "Feed de dados" },
-      { value: "↑", label: "IA auto-melhorável" },
-    ],
+    badge: { title: "Dashboard Unificado", subtitle: "Alcance, engagement e reservas em todas as plataformas" },
     bento: "analytics",
   },
   {
@@ -171,11 +127,7 @@ const featuresPt = [
     comingSoon: false,
     headline: "Sempre na identidade da marca",
     description: "Faz upload do teu logotipo, fontes e cores uma vez. Todo o conteúdo que a Aurea gerar — para sempre — será automaticamente estilizado com a tua marca.",
-    stats: [
-      { value: "1×", label: "Configuração" },
-      { value: "∞", label: "Posts on-brand" },
-      { value: "0", label: "Retrabalho" },
-    ],
+    badge: { title: "Logo, Fontes & Cores", subtitle: "Carrega uma vez, aplicado para sempre" },
     bento: "brand",
   },
   {
@@ -184,11 +136,7 @@ const featuresPt = [
     comingSoon: false,
     headline: "Legendas que soam a ti",
     description: "A Aurea escreve legendas na tua voz de marca única — não copy genérico de IA. Cada legenda é acompanhada de hashtags baseados em dados, optimizados por plataforma e nicho.",
-    stats: [
-      { value: "A tua", label: "Voz de marca" },
-      { value: "Diário", label: "Actualização" },
-      { value: "3×", label: "Plataformas" },
-    ],
+    badge: { title: "Hashtags Trending Diários", subtitle: "Optimizados por plataforma, actualizados automaticamente" },
     bento: "caption",
   },
   {
@@ -197,11 +145,7 @@ const featuresPt = [
     comingSoon: true,
     headline: "A tua voz. A tua cara. Sem filmar",
     description: "Em breve: clona a tua voz com uma gravação de 5 minutos. Gera vídeos talking-head com a tua aparência usando IA. Publica Reels e TikToks com a tua presença — sem câmara.",
-    stats: [
-      { value: "5min", label: "Clone de voz" },
-      { value: "IA", label: "Geração de vídeo" },
-      { value: "Breve", label: "2026" },
-    ],
+    badge: { title: "Clone de Voz em 5min", subtitle: "Gera vídeos talking-head com a tua aparência", soon: true },
     bento: "voice",
   },
 ];
@@ -266,6 +210,7 @@ function AnimatedCounter({ value, suffix = "" }: { value: number; suffix?: strin
 function TypewriterText({ text, className }: { text: string; className?: string }) {
   const [displayText, setDisplayText] = useState("");
   const [isTyping, setIsTyping] = useState(true);
+  const [cycle, setCycle] = useState(0);
   
   useEffect(() => {
     let index = 0;
@@ -279,17 +224,15 @@ function TypewriterText({ text, className }: { text: string; className?: string 
       } else {
         setIsTyping(false);
         clearInterval(typeTimer);
-        // Restart after pause
+        // Restart after pause by triggering a new cycle
         setTimeout(() => {
-          index = 0;
-          setDisplayText("");
-          setIsTyping(true);
+          setCycle(c => c + 1);
         }, 3000);
       }
     }, 40);
     
     return () => clearInterval(typeTimer);
-  }, [text]);
+  }, [text, cycle]);
   
   return (
     <span className={className}>
@@ -450,14 +393,6 @@ function BentoContent() {
         </div>
       </motion.div>
 
-      {/* Feature badge */}
-      <div className="col-span-3 bg-gradient-to-r from-primary/5 to-violet-50 rounded-2xl p-4 shadow-sm border border-primary/20 flex items-center justify-between">
-        <div>
-          <p className="text-sm font-semibold text-gray-900">Full Canva Integration</p>
-          <p className="text-xs text-gray-500">Edit any generated content with your existing tools</p>
-        </div>
-        <Check className="w-5 h-5 text-primary" />
-      </div>
     </div>
   );
 }
@@ -562,14 +497,6 @@ function BentoScheduling() {
         </div>
       </motion.div>
 
-      {/* One-click badge */}
-      <div className="col-span-3 bg-gradient-to-r from-primary/5 to-violet-50 rounded-2xl p-4 shadow-sm border border-primary/20 flex items-center justify-between">
-        <div>
-          <p className="text-sm font-semibold text-gray-900">One-Click Multi-Platform Publish</p>
-          <p className="text-xs text-gray-500">IG, TikTok & YouTube in a single action</p>
-        </div>
-        <Check className="w-5 h-5 text-primary" />
-      </div>
     </div>
   );
 }
@@ -632,14 +559,6 @@ function BentoAnalytics() {
         <span className="text-2xl font-bold text-gray-900">47K</span>
       </motion.div>
 
-      {/* Self-improving badge */}
-      <div className="col-span-3 bg-gradient-to-r from-primary/5 to-violet-50 rounded-2xl p-4 shadow-sm border border-primary/20 flex items-center justify-between">
-        <div>
-          <p className="text-sm font-semibold text-gray-900">Self-Improving AI</p>
-          <p className="text-xs text-gray-500">Learns from your top posts automatically</p>
-        </div>
-        <Check className="w-5 h-5 text-primary" />
-      </div>
     </div>
   );
 }
@@ -699,14 +618,6 @@ function BentoBrand() {
         </div>
       </div>
 
-      {/* Badge with AI Brand Creator mention */}
-      <div className="col-span-3 bg-gradient-to-r from-primary/5 to-violet-50 rounded-2xl p-4 shadow-sm border border-primary/20 flex items-center justify-between">
-        <div>
-          <p className="text-sm font-semibold text-gray-900">AI Brand Kit Creator Coming Soon</p>
-          <p className="text-xs text-gray-500">Auto-generate your brand identity with AI</p>
-        </div>
-        <span className="text-xs bg-amber-100 text-amber-600 px-2 py-1 rounded-full font-semibold">Soon</span>
-      </div>
     </div>
   );
 }
@@ -770,14 +681,6 @@ function BentoCaption() {
         </div>
       </motion.div>
 
-      {/* Badge */}
-      <div className="col-span-3 bg-gradient-to-r from-primary/5 to-violet-50 rounded-2xl p-4 shadow-sm border border-primary/20 flex items-center justify-between">
-        <div>
-          <p className="text-sm font-semibold text-gray-900">Brand Voice Matching</p>
-          <p className="text-xs text-gray-500">Captions that sound authentically you</p>
-        </div>
-        <Check className="w-5 h-5 text-primary" />
-      </div>
     </div>
   );
 }
@@ -785,8 +688,34 @@ function BentoCaption() {
 function BentoVoice() {
   return (
     <div className="grid grid-cols-3 gap-4 h-full opacity-90">
+      {/* AI Video demo */}
+      <div className="col-span-2 rounded-2xl shadow-lg overflow-hidden relative h-32">
+        <video
+          src="/ai-video-demo.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover"
+        />
+        
+        {/* Label overlay */}
+        <div className="absolute bottom-2 left-3 right-3">
+          <p className="text-white font-medium text-xs drop-shadow-md">AI Video Preview</p>
+        </div>
+      </div>
+
+      {/* Stats */}
+      <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col justify-between">
+        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Setup</span>
+        <div>
+          <span className="text-2xl font-bold text-gray-900">5min</span>
+          <p className="text-xs text-gray-500">recording</p>
+        </div>
+      </div>
+
       {/* Voice waveform */}
-      <div className="col-span-2 row-span-2 bg-gradient-to-br from-gray-900 to-gray-950 rounded-2xl p-5 shadow-md relative overflow-hidden">
+      <div className="col-span-2 bg-gradient-to-br from-gray-900 to-gray-950 rounded-2xl p-5 shadow-md relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-violet-900/30" />
         <div className="relative z-10">
           <div className="flex items-center gap-2 mb-4">
@@ -795,7 +724,7 @@ function BentoVoice() {
           </div>
           
           {/* Waveform */}
-          <div className="flex items-center gap-0.5 h-20 mb-4">
+          <div className="flex items-center gap-0.5 h-16 mb-3">
             {Array.from({length: 50}).map((_, i) => {
               const h = Math.sin(i * 0.4) * 50 + 50;
               return (
@@ -809,16 +738,7 @@ function BentoVoice() {
             })}
           </div>
           
-          <p className="text-white/60 text-sm">5-minute recording → unlimited content in your voice</p>
-        </div>
-      </div>
-
-      {/* Stats */}
-      <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col justify-between">
-        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Setup</span>
-        <div>
-          <span className="text-2xl font-bold text-gray-900">5min</span>
-          <p className="text-xs text-gray-500">recording</p>
+          <p className="text-white/60 text-xs">5-minute recording → unlimited content</p>
         </div>
       </div>
 
@@ -830,14 +750,6 @@ function BentoVoice() {
         </div>
       </div>
 
-      {/* Badge - cleaner coming soon */}
-      <div className="col-span-3 bg-gradient-to-r from-primary/5 to-violet-50 rounded-2xl p-4 shadow-sm border border-primary/20 flex items-center justify-between">
-        <div>
-          <p className="text-sm font-semibold text-gray-900">AI Video Generation</p>
-          <p className="text-xs text-gray-500">Your face, your voice — zero filming required</p>
-        </div>
-        <span className="text-xs bg-gray-100 text-gray-500 px-2.5 py-1 rounded-full font-medium border border-gray-200">Soon</span>
-      </div>
     </div>
   );
 }
@@ -876,10 +788,19 @@ export default function Features() {
         }
       }
     });
-    // Start title icon animation
+    // Start title icon animation and keep it looping
     if (titleIconRef.current) {
       titleIconRef.current.startAnimation();
     }
+    
+    // Loop the title icon animation
+    const interval = setInterval(() => {
+      if (titleIconRef.current) {
+        titleIconRef.current.startAnimation();
+      }
+    }, 2000);
+    
+    return () => clearInterval(interval);
   }, [active]);
 
   return (
@@ -996,6 +917,21 @@ export default function Features() {
                   {activeFeature.description}
                 </p>
               </div>
+
+              {/* Badge card */}
+              {activeFeature.badge && (
+                <div className="bg-gradient-to-r from-primary/5 to-violet-50 rounded-2xl p-4 shadow-sm border border-primary/20 flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-semibold text-gray-900">{activeFeature.badge.title}</p>
+                    <p className="text-xs text-gray-500">{activeFeature.badge.subtitle}</p>
+                  </div>
+                  {activeFeature.badge.soon ? (
+                    <span className="text-xs bg-gray-100 text-gray-500 px-2.5 py-1 rounded-full font-medium border border-gray-200">Soon</span>
+                  ) : (
+                    <Check className="w-5 h-5 text-primary" />
+                  )}
+                </div>
+              )}
             </div>
 
             {/* Right: bento visual */}
