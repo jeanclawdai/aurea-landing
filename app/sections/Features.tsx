@@ -118,7 +118,7 @@ export default function Features() {
           viewport={{ once: true }}
           className="text-center mb-8"
         >
-          <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-gray-100 text-gray-500 text-xs font-semibold tracking-widest uppercase mb-6">
+          <span className="section-pill inline-flex items-center px-4 py-1.5 text-xs font-semibold tracking-widest uppercase mb-6">
             {lang === "pt" ? "O QUE FAZEMOS" : "WHAT WE DO"}
           </span>
           <h2 className="text-5xl sm:text-6xl font-bold text-gray-950 leading-tight mb-5">

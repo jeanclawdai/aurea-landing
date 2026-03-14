@@ -94,7 +94,7 @@ export default function SocialProof() {
           viewport={{ once: true }}
           className="text-center"
         >
-          <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/10 text-gray-400 border-0 text-xs font-semibold tracking-widest uppercase mb-6">
+          <span className="section-pill inline-flex items-center px-4 py-1.5 text-xs font-semibold tracking-widest uppercase mb-6">
             {lang === "pt" ? "PROVA SOCIAL" : "SOCIAL PROOF"}
           </span>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-5">

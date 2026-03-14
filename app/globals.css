@@ -558,3 +558,43 @@ body {
     0 0 60px rgba(255, 180, 220, 0.15),
     0 8px 32px rgba(0, 0, 0, 0.1);
 }
+
+/* Section title pill with rotating iridescent border */
+.section-pill {
+  position: relative;
+  z-index: 0;
+  background: #fff0f5;
+  color: #9f7aea;
+  overflow: hidden;
+  border-radius: 9999px;
+}
+
+.section-pill::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  height: 150%;
+  background: conic-gradient(
+    from 0deg,
+    #c3a8ff,
+    #a8d8ff,
+    #ffc8e8,
+    #a8f0e8,
+    #d8c8ff,
+    #c3a8ff
+  );
+  transform: translate(-50%, -50%);
+  animation: borderRotate 4s linear infinite;
+  z-index: -2;
+}
+
+.section-pill::after {
+  content: '';
+  position: absolute;
+  inset: 1.5px;
+  background: #fff0f5;
+  border-radius: 9999px;
+  z-index: -1;
+}
