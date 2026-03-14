@@ -118,7 +118,7 @@ export default function Features() {
           viewport={{ once: true }}
           className="text-center mb-8"
         >
-          <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-gray-100 text-gray-500 text-xs font-semibold tracking-widest uppercase mb-6">
+          <span className="section-pill inline-flex items-center px-4 py-1.5 text-xs font-semibold tracking-widest uppercase mb-6">
             {lang === "pt" ? "O QUE FAZEMOS" : "WHAT WE DO"}
           </span>
           <h2 className="text-5xl sm:text-6xl font-bold text-gray-950 leading-tight mb-5">
@@ -152,11 +152,13 @@ export default function Features() {
         {/* Horizontal scroll cards */}
         <div
           ref={scrollRef}
-          className="flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory -mx-6 px-6 touch-pan-y"
+          className="flex gap-5 pt-4 pb-6 -mx-6 px-6"
           style={{ 
+            overflowX: "auto",
+            overflowY: "visible",
             scrollbarWidth: "none", 
             msOverflowStyle: "none",
-            overscrollBehaviorX: "contain",
+            WebkitOverflowScrolling: "touch",
           }}
         >
           {features.map((feature, index) => (

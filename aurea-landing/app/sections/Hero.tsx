@@ -67,7 +67,7 @@ export default function Hero() {
         className="max-w-4xl mx-auto"
       >
         {/* Eyebrow */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 text-gray-500 text-sm font-medium mb-10">
+        <div className="section-pill-hero inline-flex items-center gap-2 px-4 py-2 text-sm font-medium mb-10">
           <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
           {lang === "pt" ? "Sistema de Inteligência de Padrões" : "Pattern Intelligence System"}
         </div>
@@ -126,6 +126,11 @@ export default function Hero() {
           ))}
         </div>
       </motion.div>
+      
+      {/* Iridescent divider */}
+      <div className="absolute bottom-0 left-0 right-0">
+        <div className="iridescent-divider mx-auto" style={{ maxWidth: '80%' }} />
+      </div>
     </section>
   );
 }
