@@ -4,7 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { SectionPill } from "@/components/ui/section-pill";
 import { useState, useRef, useEffect } from "react";
 import { useLang } from "../context/LanguageContext";
-import { Check } from "lucide-react";
+import { Check, Instagram, Youtube } from "lucide-react";
+import Image from "next/image";
 
 // Animated icons
 import { BrainIcon, type BrainIconHandle } from "@/components/ui/brain";
@@ -223,6 +224,81 @@ const iconComponents: Record<string, React.ComponentType<any>> = {
   voice: ClapIcon,
 };
 
+// ─── TikTok Icon ─────────────────────────────────────────────────────────────
+
+function TikTokIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/>
+    </svg>
+  );
+}
+
+// ─── Animated Counter ────────────────────────────────────────────────────────
+
+function AnimatedCounter({ value, suffix = "" }: { value: number; suffix?: string }) {
+  const [count, setCount] = useState(0);
+  
+  useEffect(() => {
+    const duration = 1500;
+    const steps = 30;
+    const increment = value / steps;
+    let current = 0;
+    
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= value) {
+        setCount(value);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(current));
+      }
+    }, duration / steps);
+    
+    return () => clearInterval(timer);
+  }, [value]);
+  
+  return <span>{count}{suffix}</span>;
+}
+
+// ─── Typewriter Effect ───────────────────────────────────────────────────────
+
+function TypewriterText({ text, className }: { text: string; className?: string }) {
+  const [displayText, setDisplayText] = useState("");
+  const [isTyping, setIsTyping] = useState(true);
+  
+  useEffect(() => {
+    let index = 0;
+    setDisplayText("");
+    setIsTyping(true);
+    
+    const typeTimer = setInterval(() => {
+      if (index < text.length) {
+        setDisplayText(text.slice(0, index + 1));
+        index++;
+      } else {
+        setIsTyping(false);
+        clearInterval(typeTimer);
+        // Restart after pause
+        setTimeout(() => {
+          index = 0;
+          setDisplayText("");
+          setIsTyping(true);
+        }, 3000);
+      }
+    }, 40);
+    
+    return () => clearInterval(typeTimer);
+  }, [text]);
+  
+  return (
+    <span className={className}>
+      {displayText}
+      {isTyping && <span className="inline-block w-0.5 h-5 bg-primary ml-0.5 animate-pulse" />}
+    </span>
+  );
+}
+
 // ─── Bento Visuals ───────────────────────────────────────────────────────────
 
 function BentoPattern() {
@@ -232,55 +308,81 @@ function BentoPattern() {
     { text: "Before & after 30 days", score: "11.3%" },
   ];
   
+  // Deterministic heatmap values
+  const heatmapValues = [0.9, 0.3, 0.7, 0.5, 0.8, 0.2, 0.6, 0.4, 0.85, 0.1, 0.75, 0.55, 0.95, 0.35, 0.65, 0.45, 0.8, 0.25, 0.7, 0.5, 0.9, 0.15, 0.6, 0.4, 0.85, 0.3, 0.75, 0.55, 0.92, 0.2, 0.68, 0.48, 0.88, 0.28, 0.72];
+  
   return (
     <div className="grid grid-cols-3 gap-4 h-full">
       {/* Main heatmap card */}
       <div className="col-span-2 row-span-2 bg-white rounded-2xl p-5 shadow-md border border-gray-100">
         <div className="flex items-center justify-between mb-4">
           <span className="text-sm font-semibold text-gray-900">Viral Score Heatmap</span>
-          <span className="text-xs font-medium text-emerald-600 bg-emerald-50 px-2 py-1 rounded-full">Live</span>
+          <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full">Live</span>
         </div>
         <div className="grid grid-cols-7 gap-1.5 mb-4">
-          {Array.from({length: 35}).map((_, i) => {
-            const intensity = Math.random();
-            const bg = intensity > 0.75 ? "bg-emerald-500" : intensity > 0.5 ? "bg-emerald-300" : intensity > 0.25 ? "bg-blue-200" : "bg-gray-100";
-            return <div key={i} className={`h-5 rounded-md ${bg}`} />;
+          {heatmapValues.map((intensity, i) => {
+            const bg = intensity > 0.75 ? "bg-primary" : intensity > 0.5 ? "bg-primary/60" : intensity > 0.25 ? "bg-primary/30" : "bg-gray-100";
+            return (
+              <motion.div
+                key={i}
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: i * 0.02, duration: 0.3 }}
+                className={`h-5 rounded-md ${bg}`}
+              />
+            );
           })}
         </div>
         <div className="flex items-center gap-4 text-xs text-gray-500">
-          <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-emerald-500" />High</span>
-          <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-emerald-300" />Medium</span>
+          <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-primary" />High</span>
+          <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-primary/60" />Medium</span>
           <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-gray-100" />Low</span>
         </div>
       </div>
 
-      {/* Stat card 1 */}
-      <div className="bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex flex-col justify-between">
-        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Analyzed</span>
+      {/* Stat card 1 - Niches */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+        className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-4 shadow-md border border-primary/20 flex flex-col justify-between"
+      >
+        <span className="text-xs font-medium text-primary uppercase tracking-wide">Niches</span>
         <div>
-          <span className="text-2xl font-bold text-gray-900">10K+</span>
-          <p className="text-xs text-gray-400">viral posts</p>
+          <span className="text-2xl font-bold text-gray-900"><AnimatedCounter value={47} /></span>
+          <p className="text-xs text-gray-500">industries covered</p>
         </div>
-      </div>
+      </motion.div>
 
-      {/* Stat card 2 */}
-      <div className="bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex flex-col justify-between">
-        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Accuracy</span>
+      {/* Stat card 2 - Accuracy */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+        className="bg-gradient-to-br from-violet-50 to-purple-50 rounded-2xl p-4 shadow-md border border-purple-100 flex flex-col justify-between"
+      >
+        <span className="text-xs font-medium text-purple-600 uppercase tracking-wide">Accuracy</span>
         <div>
-          <span className="text-2xl font-bold text-emerald-600">94%</span>
-          <p className="text-xs text-gray-400">hook detection</p>
+          <span className="text-2xl font-bold text-purple-700"><AnimatedCounter value={94} suffix="%" /></span>
+          <p className="text-xs text-purple-500">hook detection</p>
         </div>
-      </div>
+      </motion.div>
 
       {/* Top hooks */}
       <div className="col-span-3 bg-white rounded-2xl p-5 shadow-md border border-gray-100">
         <span className="text-sm font-semibold text-gray-900 block mb-3">Top Performing Hooks</span>
         <div className="space-y-2.5">
           {hooks.map((h, i) => (
-            <div key={i} className="flex items-center justify-between">
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.5 + i * 0.1 }}
+              className="flex items-center justify-between"
+            >
               <span className="text-sm text-gray-600 truncate flex-1">{h.text}</span>
-              <span className="text-sm font-semibold text-emerald-600 ml-3">{h.score}</span>
-            </div>
+              <span className="text-sm font-semibold text-primary ml-3">{h.score}</span>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -309,7 +411,7 @@ function BentoContent() {
               </div>
             ))}
           </div>
-          <div className="flex-1 bg-gradient-to-br from-violet-100 via-purple-50 to-blue-100 rounded-xl flex items-center justify-center min-h-[180px]">
+          <div className="flex-1 bg-gradient-to-br from-primary/10 via-purple-50 to-violet-100 rounded-xl flex items-center justify-center min-h-[180px]">
             <div className="text-center">
               <div className="w-12 h-12 rounded-xl bg-white/80 shadow-sm flex items-center justify-center mx-auto mb-2">
                 <span className="text-xl">✦</span>
@@ -321,30 +423,40 @@ function BentoContent() {
         </div>
       </div>
 
-      {/* Stats */}
-      <div className="bg-emerald-50 rounded-2xl p-4 shadow-sm border border-emerald-100 flex flex-col justify-between">
-        <span className="text-xs font-medium text-emerald-700 uppercase tracking-wide">Generated</span>
+      {/* Stats - updated colors */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.2 }}
+        className="bg-gradient-to-br from-primary/5 to-primary/15 rounded-2xl p-4 shadow-sm border border-primary/20 flex flex-col justify-between"
+      >
+        <span className="text-xs font-medium text-primary uppercase tracking-wide">Generated</span>
         <div>
-          <span className="text-2xl font-bold text-emerald-700">30+</span>
-          <p className="text-xs text-emerald-600">posts/month</p>
+          <span className="text-2xl font-bold text-gray-900">30+</span>
+          <p className="text-xs text-gray-500">posts/month</p>
         </div>
-      </div>
+      </motion.div>
 
-      <div className="bg-blue-50 rounded-2xl p-4 shadow-sm border border-blue-100 flex flex-col justify-between">
-        <span className="text-xs font-medium text-blue-700 uppercase tracking-wide">Control</span>
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.3 }}
+        className="bg-gradient-to-br from-violet-50 to-purple-100 rounded-2xl p-4 shadow-sm border border-purple-200 flex flex-col justify-between"
+      >
+        <span className="text-xs font-medium text-purple-600 uppercase tracking-wide">Control</span>
         <div>
-          <span className="text-2xl font-bold text-blue-700">100%</span>
-          <p className="text-xs text-blue-600">editable</p>
+          <span className="text-2xl font-bold text-purple-700">100%</span>
+          <p className="text-xs text-purple-500">editable</p>
         </div>
-      </div>
+      </motion.div>
 
       {/* Feature badge */}
-      <div className="col-span-3 bg-gradient-to-r from-violet-50 to-blue-50 rounded-2xl p-4 shadow-sm border border-purple-100 flex items-center justify-between">
+      <div className="col-span-3 bg-gradient-to-r from-primary/5 to-violet-50 rounded-2xl p-4 shadow-sm border border-primary/20 flex items-center justify-between">
         <div>
           <p className="text-sm font-semibold text-gray-900">Full Canva Integration</p>
           <p className="text-xs text-gray-500">Edit any generated content with your existing tools</p>
         </div>
-        <Check className="w-5 h-5 text-emerald-500" />
+        <Check className="w-5 h-5 text-primary" />
       </div>
     </div>
   );
@@ -353,13 +465,24 @@ function BentoContent() {
 function BentoScheduling() {
   const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
   const posts = [
-    { day: "Mon", time: "09:00", platform: "IG", title: "Before/After Reel", ai: true },
-    { day: "Tue", time: "18:00", platform: "TT", title: "Hook Series #4", ai: true },
-    { day: "Wed", time: "12:00", platform: "YT", title: "Treatment Guide", ai: false },
-    { day: "Thu", time: "09:00", platform: "IG", title: "Client Story", ai: true },
-    { day: "Fri", time: "17:00", platform: "TT", title: "POV Content", ai: true },
+    { day: "Mon", time: "09:00", platform: "ig", title: "Before/After Reel", ai: true },
+    { day: "Tue", time: "18:00", platform: "tt", title: "Hook Series #4", ai: true },
+    { day: "Wed", time: "12:00", platform: "yt", title: "Treatment Guide", ai: false },
+    { day: "Thu", time: "09:00", platform: "ig", title: "Client Story", ai: true },
+    { day: "Fri", time: "17:00", platform: "tt", title: "POV Content", ai: true },
   ];
-  const platformColors: Record<string, string> = { IG: "bg-pink-500", TT: "bg-gray-900", YT: "bg-red-500" };
+
+  const platformIcons: Record<string, React.ReactNode> = {
+    ig: <Instagram className="w-4 h-4" />,
+    tt: <TikTokIcon className="w-4 h-4" />,
+    yt: <Youtube className="w-4 h-4" />,
+  };
+  
+  const platformColors: Record<string, string> = {
+    ig: "bg-gradient-to-r from-purple-500 to-pink-500 text-white",
+    tt: "bg-gray-900 text-white",
+    yt: "bg-red-500 text-white",
+  };
 
   return (
     <div className="grid grid-cols-3 gap-4 h-full">
@@ -379,49 +502,73 @@ function BentoScheduling() {
           ))}
         </div>
 
-        {/* Posts list */}
+        {/* Posts list - animated rows */}
         <div className="space-y-2">
           {posts.map((p, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, x: -8 }}
+              initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: i * 0.08 }}
+              transition={{ 
+                delay: i * 0.15,
+                duration: 0.4,
+                repeat: Infinity,
+                repeatDelay: 5,
+              }}
               className="flex items-center gap-3 py-2 px-3 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors"
             >
               <span className="text-xs text-gray-400 w-10">{p.time}</span>
-              <span className={`text-[10px] text-white font-bold px-2 py-0.5 rounded ${platformColors[p.platform]}`}>{p.platform}</span>
+              <span className={`p-1.5 rounded-lg ${platformColors[p.platform]}`}>
+                {platformIcons[p.platform]}
+              </span>
               <span className="text-sm text-gray-700 flex-1">{p.title}</span>
-              {p.ai && <span className="text-xs text-emerald-600 font-medium">✦ AI</span>}
+              {p.ai && <span className="text-xs text-primary font-medium">✦ AI</span>}
             </motion.div>
           ))}
         </div>
       </div>
 
-      {/* Stats */}
-      <div className="bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex flex-col justify-between">
-        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Platforms</span>
+      {/* Stats - updated colors */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+        className="bg-gradient-to-br from-primary/5 to-primary/15 rounded-2xl p-4 shadow-md border border-primary/20 flex flex-col justify-between"
+      >
+        <span className="text-xs font-medium text-primary uppercase tracking-wide">Platforms</span>
         <div>
           <span className="text-2xl font-bold text-gray-900">3</span>
-          <p className="text-xs text-gray-400">simultaneous</p>
+          <p className="text-xs text-gray-500">simultaneous</p>
         </div>
-      </div>
+      </motion.div>
 
-      <div className="bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex flex-col justify-between">
-        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Effort</span>
+      {/* Effort card - animated grow/rotate */}
+      <motion.div
+        animate={{ 
+          scale: [1, 1.02, 1],
+          rotate: [0, 1, 0, -1, 0],
+        }}
+        transition={{ 
+          duration: 3,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+        className="bg-gradient-to-br from-violet-50 to-purple-100 rounded-2xl p-4 shadow-md border border-purple-200 flex flex-col justify-between"
+      >
+        <span className="text-xs font-medium text-purple-600 uppercase tracking-wide">Effort</span>
         <div>
-          <span className="text-2xl font-bold text-emerald-600">Zero</span>
-          <p className="text-xs text-gray-400">manual work</p>
+          <span className="text-2xl font-bold text-purple-700">Zero</span>
+          <p className="text-xs text-purple-500">manual work</p>
         </div>
-      </div>
+      </motion.div>
 
       {/* One-click badge */}
-      <div className="col-span-3 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl p-4 shadow-sm border border-emerald-100 flex items-center justify-between">
+      <div className="col-span-3 bg-gradient-to-r from-primary/5 to-violet-50 rounded-2xl p-4 shadow-sm border border-primary/20 flex items-center justify-between">
         <div>
           <p className="text-sm font-semibold text-gray-900">One-Click Multi-Platform Publish</p>
           <p className="text-xs text-gray-500">IG, TikTok & YouTube in a single action</p>
         </div>
-        <Check className="w-5 h-5 text-emerald-500" />
+        <Check className="w-5 h-5 text-primary" />
       </div>
     </div>
   );
@@ -430,23 +577,32 @@ function BentoScheduling() {
 function BentoAnalytics() {
   const weeks = [22, 31, 28, 45, 38, 67, 89, 72, 95, 88, 102, 118];
   const max = Math.max(...weeks);
+  const [animationKey, setAnimationKey] = useState(0);
+
+  // Restart animation periodically
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setAnimationKey(prev => prev + 1);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="grid grid-cols-3 gap-4 h-full">
-      {/* Growth chart */}
-      <div className="col-span-2 row-span-2 bg-gray-950 rounded-2xl p-5 shadow-md">
+      {/* Growth chart - updated colors */}
+      <div className="col-span-2 row-span-2 bg-gradient-to-br from-gray-900 to-gray-950 rounded-2xl p-5 shadow-md">
         <div className="flex items-center justify-between mb-4">
           <span className="text-sm font-semibold text-white">Follower Growth</span>
-          <span className="text-sm font-bold text-emerald-400">+847%</span>
+          <span className="text-sm font-bold text-primary">+847%</span>
         </div>
         <div className="flex items-end gap-1.5 h-24 mb-3">
           {weeks.map((v, i) => (
             <motion.div
-              key={i}
+              key={`${animationKey}-${i}`}
               initial={{ height: 0 }}
               animate={{ height: `${(v / max) * 100}%` }}
-              transition={{ delay: i * 0.05, duration: 0.4 }}
-              className={`flex-1 rounded-sm ${i === weeks.length - 1 ? "bg-emerald-400" : "bg-white/20"}`}
+              transition={{ delay: i * 0.08, duration: 0.5 }}
+              className={`flex-1 rounded-sm ${i === weeks.length - 1 ? "bg-primary" : "bg-primary/30"}`}
             />
           ))}
         </div>
@@ -455,24 +611,34 @@ function BentoAnalytics() {
         </div>
       </div>
 
-      {/* Metric cards */}
-      {[
-        { label: "Engagement", value: "8.7%", color: "text-blue-600", bg: "bg-blue-50 border-blue-100" },
-        { label: "Views/Day", value: "47K", color: "text-purple-600", bg: "bg-purple-50 border-purple-100" },
-      ].map((m, i) => (
-        <div key={i} className={`rounded-2xl p-4 shadow-sm border flex flex-col justify-between ${m.bg}`}>
-          <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">{m.label}</span>
-          <span className={`text-2xl font-bold ${m.color}`}>{m.value}</span>
-        </div>
-      ))}
+      {/* Metric cards - updated colors */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+        className="bg-gradient-to-br from-primary/5 to-primary/15 rounded-2xl p-4 shadow-sm border border-primary/20 flex flex-col justify-between"
+      >
+        <span className="text-xs font-medium text-primary uppercase tracking-wide">Engagement</span>
+        <span className="text-2xl font-bold text-gray-900"><AnimatedCounter value={8} suffix=".7%" /></span>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+        className="bg-gradient-to-br from-violet-50 to-purple-100 rounded-2xl p-4 shadow-sm border border-purple-200 flex flex-col justify-between"
+      >
+        <span className="text-xs font-medium text-purple-600 uppercase tracking-wide">Views/Day</span>
+        <span className="text-2xl font-bold text-purple-700">47K</span>
+      </motion.div>
 
       {/* Self-improving badge */}
-      <div className="col-span-3 bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-4 shadow-sm border border-purple-100 flex items-center justify-between">
+      <div className="col-span-3 bg-gradient-to-r from-primary/5 to-violet-50 rounded-2xl p-4 shadow-sm border border-primary/20 flex items-center justify-between">
         <div>
           <p className="text-sm font-semibold text-gray-900">Self-Improving AI</p>
           <p className="text-xs text-gray-500">Learns from your top posts automatically</p>
         </div>
-        <Check className="w-5 h-5 text-emerald-500" />
+        <Check className="w-5 h-5 text-primary" />
       </div>
     </div>
   );
@@ -486,10 +652,10 @@ function BentoBrand() {
         <span className="text-sm font-semibold text-gray-900 block mb-4">Brand Kit Preview</span>
         
         <div className="flex items-center gap-4 mb-5">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-400 to-blue-400 flex items-center justify-center text-white font-bold text-xl shadow-md">A</div>
+          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-violet-500 flex items-center justify-center text-white font-bold text-xl shadow-md">A</div>
           <div>
             <p className="font-semibold text-gray-900">Clínica Aurora</p>
-            <p className="text-xs text-emerald-600 font-medium">Brand identity loaded ✓</p>
+            <p className="text-xs text-primary font-medium">Brand identity loaded ✓</p>
           </div>
         </div>
 
@@ -497,7 +663,14 @@ function BentoBrand() {
         <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">Colors</p>
         <div className="flex gap-2 mb-5">
           {["#6FA8FF","#A8B8FF","#D4A8FF","#1A2A4A","#FFFFFF"].map((c, i) => (
-            <div key={i} className="w-9 h-9 rounded-xl border border-gray-100 shadow-sm" style={{ background: c }} />
+            <motion.div
+              key={i}
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: i * 0.1 }}
+              className="w-9 h-9 rounded-xl border border-gray-100 shadow-sm"
+              style={{ background: c }}
+            />
           ))}
         </div>
 
@@ -510,35 +683,37 @@ function BentoBrand() {
       </div>
 
       {/* Stats */}
-      <div className="bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex flex-col justify-between">
-        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Setup</span>
+      <div className="bg-gradient-to-br from-primary/5 to-primary/15 rounded-2xl p-4 shadow-md border border-primary/20 flex flex-col justify-between">
+        <span className="text-xs font-medium text-primary uppercase tracking-wide">Setup</span>
         <div>
           <span className="text-2xl font-bold text-gray-900">1×</span>
-          <p className="text-xs text-gray-400">one time</p>
+          <p className="text-xs text-gray-500">one time</p>
         </div>
       </div>
 
-      <div className="bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex flex-col justify-between">
-        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Result</span>
+      <div className="bg-gradient-to-br from-violet-50 to-purple-100 rounded-2xl p-4 shadow-md border border-purple-200 flex flex-col justify-between">
+        <span className="text-xs font-medium text-purple-600 uppercase tracking-wide">Result</span>
         <div>
-          <span className="text-2xl font-bold text-emerald-600">∞</span>
-          <p className="text-xs text-gray-400">on-brand posts</p>
+          <span className="text-2xl font-bold text-purple-700">∞</span>
+          <p className="text-xs text-purple-500">on-brand posts</p>
         </div>
       </div>
 
-      {/* Badge */}
-      <div className="col-span-3 bg-gradient-to-r from-violet-50 to-blue-50 rounded-2xl p-4 shadow-sm border border-purple-100 flex items-center justify-between">
+      {/* Badge with AI Brand Creator mention */}
+      <div className="col-span-3 bg-gradient-to-r from-primary/5 to-violet-50 rounded-2xl p-4 shadow-sm border border-primary/20 flex items-center justify-between">
         <div>
-          <p className="text-sm font-semibold text-gray-900">Auto-Applied to Every Post</p>
-          <p className="text-xs text-gray-500">No manual formatting needed</p>
+          <p className="text-sm font-semibold text-gray-900">AI Brand Kit Creator Coming Soon</p>
+          <p className="text-xs text-gray-500">Auto-generate your brand identity with AI</p>
         </div>
-        <Check className="w-5 h-5 text-emerald-500" />
+        <span className="text-xs bg-amber-100 text-amber-600 px-2 py-1 rounded-full font-semibold">Soon</span>
       </div>
     </div>
   );
 }
 
 function BentoCaption() {
+  const captionText = "Your skin tells a story of resilience. After years of searching, you finally found the right care. This is what transformation looks like when science meets artistry.";
+  
   return (
     <div className="grid grid-cols-3 gap-4 h-full">
       {/* Caption preview */}
@@ -548,42 +723,60 @@ function BentoCaption() {
           <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full font-medium">Your voice</span>
         </div>
         
-        <p className="text-gray-700 leading-relaxed mb-4">
-          "Your skin has been through a lot this winter. Time to give it the reset it deserves. ✨ Booking link in bio — spaces filling fast."
+        <p className="text-gray-700 leading-relaxed mb-4 min-h-[80px]">
+          <TypewriterText text={captionText} />
         </p>
 
         <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">Optimised Hashtags</p>
         <div className="flex flex-wrap gap-1.5">
-          {["#clinicaestética", "#skincare", "#médicinaestética", "#lisboa", "#beleza"].map((tag, i) => (
-            <span key={i} className="text-xs text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full">{tag}</span>
+          {["#esteticaavancada", "#peleperfeita", "#tratamentofacial", "#clinicapremium", "#resultadosreais"].map((tag, i) => (
+            <motion.span
+              key={i}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5 + i * 0.1 }}
+              className="text-xs text-primary bg-primary/10 px-2.5 py-1 rounded-full"
+            >
+              {tag}
+            </motion.span>
           ))}
         </div>
       </div>
 
-      {/* Stats */}
-      <div className="bg-emerald-50 rounded-2xl p-4 shadow-sm border border-emerald-100 flex flex-col justify-between">
-        <span className="text-xs font-medium text-emerald-700 uppercase tracking-wide">Updated</span>
+      {/* Stats - updated colors */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+        className="bg-gradient-to-br from-primary/5 to-primary/15 rounded-2xl p-4 shadow-sm border border-primary/20 flex flex-col justify-between"
+      >
+        <span className="text-xs font-medium text-primary uppercase tracking-wide">Updated</span>
         <div>
-          <span className="text-2xl font-bold text-emerald-700">Daily</span>
-          <p className="text-xs text-emerald-600">hashtags</p>
+          <span className="text-2xl font-bold text-gray-900">Daily</span>
+          <p className="text-xs text-gray-500">hashtags</p>
         </div>
-      </div>
+      </motion.div>
 
-      <div className="bg-pink-50 rounded-2xl p-4 shadow-sm border border-pink-100 flex flex-col justify-between">
-        <span className="text-xs font-medium text-pink-700 uppercase tracking-wide">Platforms</span>
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+        className="bg-gradient-to-br from-violet-50 to-purple-100 rounded-2xl p-4 shadow-sm border border-purple-200 flex flex-col justify-between"
+      >
+        <span className="text-xs font-medium text-purple-600 uppercase tracking-wide">Platforms</span>
         <div>
-          <span className="text-2xl font-bold text-pink-700">3×</span>
-          <p className="text-xs text-pink-600">optimised</p>
+          <span className="text-2xl font-bold text-purple-700">3×</span>
+          <p className="text-xs text-purple-500">optimised</p>
         </div>
-      </div>
+      </motion.div>
 
       {/* Badge */}
-      <div className="col-span-3 bg-gradient-to-r from-pink-50 to-orange-50 rounded-2xl p-4 shadow-sm border border-pink-100 flex items-center justify-between">
+      <div className="col-span-3 bg-gradient-to-r from-primary/5 to-violet-50 rounded-2xl p-4 shadow-sm border border-primary/20 flex items-center justify-between">
         <div>
           <p className="text-sm font-semibold text-gray-900">Brand Voice Matching</p>
           <p className="text-xs text-gray-500">Captions that sound authentically you</p>
         </div>
-        <Check className="w-5 h-5 text-emerald-500" />
+        <Check className="w-5 h-5 text-primary" />
       </div>
     </div>
   );
@@ -593,8 +786,8 @@ function BentoVoice() {
   return (
     <div className="grid grid-cols-3 gap-4 h-full opacity-90">
       {/* Voice waveform */}
-      <div className="col-span-2 row-span-2 bg-gray-950 rounded-2xl p-5 shadow-md relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 to-blue-900/30" />
+      <div className="col-span-2 row-span-2 bg-gradient-to-br from-gray-900 to-gray-950 rounded-2xl p-5 shadow-md relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-violet-900/30" />
         <div className="relative z-10">
           <div className="flex items-center gap-2 mb-4">
             <span className="text-sm font-semibold text-white">Voice Synthesis</span>
@@ -605,7 +798,14 @@ function BentoVoice() {
           <div className="flex items-center gap-0.5 h-20 mb-4">
             {Array.from({length: 50}).map((_, i) => {
               const h = Math.sin(i * 0.4) * 50 + 50;
-              return <div key={i} className="flex-1 rounded-full bg-purple-400/60" style={{ height: `${h}%` }} />;
+              return (
+                <motion.div
+                  key={i}
+                  animate={{ height: [`${h}%`, `${100 - h}%`, `${h}%`] }}
+                  transition={{ duration: 2, repeat: Infinity, delay: i * 0.05 }}
+                  className="flex-1 rounded-full bg-primary/60"
+                />
+              );
             })}
           </div>
           
@@ -614,24 +814,24 @@ function BentoVoice() {
       </div>
 
       {/* Stats */}
-      <div className="bg-purple-50 rounded-2xl p-4 shadow-sm border border-purple-100 flex flex-col justify-between">
-        <span className="text-xs font-medium text-purple-700 uppercase tracking-wide">Setup</span>
+      <div className="bg-gradient-to-br from-primary/5 to-primary/15 rounded-2xl p-4 shadow-sm border border-primary/20 flex flex-col justify-between">
+        <span className="text-xs font-medium text-primary uppercase tracking-wide">Setup</span>
         <div>
-          <span className="text-2xl font-bold text-purple-700">5min</span>
-          <p className="text-xs text-purple-600">recording</p>
+          <span className="text-2xl font-bold text-gray-900">5min</span>
+          <p className="text-xs text-gray-500">recording</p>
         </div>
       </div>
 
-      <div className="bg-blue-50 rounded-2xl p-4 shadow-sm border border-blue-100 flex flex-col justify-between">
-        <span className="text-xs font-medium text-blue-700 uppercase tracking-wide">Launch</span>
+      <div className="bg-gradient-to-br from-violet-50 to-purple-100 rounded-2xl p-4 shadow-sm border border-purple-200 flex flex-col justify-between">
+        <span className="text-xs font-medium text-purple-600 uppercase tracking-wide">Launch</span>
         <div>
-          <span className="text-2xl font-bold text-blue-700">2026</span>
-          <p className="text-xs text-blue-600">coming soon</p>
+          <span className="text-2xl font-bold text-purple-700">2026</span>
+          <p className="text-xs text-purple-500">coming soon</p>
         </div>
       </div>
 
       {/* Badge */}
-      <div className="col-span-3 bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-4 shadow-sm border border-purple-100 flex items-center justify-between">
+      <div className="col-span-3 bg-gradient-to-r from-primary/5 to-violet-50 rounded-2xl p-4 shadow-sm border border-primary/20 flex items-center justify-between">
         <div>
           <p className="text-sm font-semibold text-gray-900">AI Video Generation</p>
           <p className="text-xs text-gray-500">Your face, your voice — zero filming required</p>
@@ -717,9 +917,6 @@ export default function Features() {
                     : "bg-white border border-gray-200 text-gray-600 hover:border-transparent hover:shadow-md"
                   }
                 `}
-                style={!isActive ? {
-                  // Iridescent hover glow effect
-                } : {}}
                 onMouseEnter={() => {
                   if (!isActive && iconRefs.current[f.id]) {
                     iconRefs.current[f.id]?.startAnimation();
