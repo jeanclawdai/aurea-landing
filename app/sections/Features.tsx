@@ -907,7 +907,7 @@ export default function Features() {
         </motion.div>
 
         {/* Filter pills */}
-        <div className="flex flex-wrap justify-center gap-3 mb-16">
+        <div className="flex flex-wrap justify-center gap-3 mb-20">
           {features.map((f) => {
             const isActive = active === f.id;
             const IconComponent = iconComponents[f.id];
@@ -976,24 +976,22 @@ export default function Features() {
             {/* Left: copy */}
             <div className="flex flex-col gap-6">
               <div>
+                {(() => {
+                  const TitleIcon = iconComponents[activeFeature.id];
+                  return TitleIcon ? (
+                    <TitleIcon
+                      ref={(el: IconHandle | null) => { titleIconRef.current = el; }}
+                      size={36}
+                      className="text-gray-900 mb-4"
+                    />
+                  ) : null;
+                })()}
                 {activeFeature.comingSoon && (
                   <span className="inline-block text-xs bg-gray-100 text-gray-500 px-2.5 py-1 rounded-full font-medium border border-gray-200 mb-3">Coming Soon</span>
                 )}
-                <div className="flex items-center gap-3 mb-4">
-                  {(() => {
-                    const TitleIcon = iconComponents[activeFeature.id];
-                    return TitleIcon ? (
-                      <TitleIcon
-                        ref={(el: IconHandle | null) => { titleIconRef.current = el; }}
-                        size={32}
-                        className="text-primary flex-shrink-0"
-                      />
-                    ) : null;
-                  })()}
-                  <h3 className="text-3xl sm:text-4xl font-bold text-gray-950 leading-tight">
-                    {activeFeature.headline}
-                  </h3>
-                </div>
+                <h3 className="text-3xl sm:text-4xl font-bold text-gray-950 leading-tight mb-4">
+                  {activeFeature.headline}
+                </h3>
                 <p className="text-gray-500 text-lg leading-relaxed">
                   {activeFeature.description}
                 </p>
