@@ -996,16 +996,6 @@ export default function Features() {
                   {activeFeature.description}
                 </p>
               </div>
-
-              {/* Stats row */}
-              <div className="grid grid-cols-3 gap-4">
-                {activeFeature.stats.map((s, i) => (
-                  <div key={i} className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm text-center">
-                    <div className="text-2xl font-bold text-gray-900">{s.value}</div>
-                    <div className="text-xs text-gray-500 mt-1">{s.label}</div>
-                  </div>
-                ))}
-              </div>
             </div>
 
             {/* Right: bento visual */}
