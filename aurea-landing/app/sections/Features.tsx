@@ -4,7 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { SectionPill } from "@/components/ui/section-pill";
 import { useState, useRef, useEffect } from "react";
 import { useLang } from "../context/LanguageContext";
-import { Check } from "lucide-react";
+import { Check, Instagram, Youtube } from "lucide-react";
+import Image from "next/image";
 
 // Animated icons
 import { BrainIcon, type BrainIconHandle } from "@/components/ui/brain";
@@ -24,11 +25,7 @@ const featuresEn = [
     comingSoon: false,
     headline: "Know what goes viral before you post",
     description: "Our core engine is trained on 10,000+ viral posts across aesthetic clinics and beauty brands. It extracts the exact hooks, pacing, caption structures, and CTAs that make content explode — so every post you publish is built on data, not guesswork.",
-    stats: [
-      { value: "10K+", label: "Posts analyzed" },
-      { value: "94%", label: "Hook accuracy" },
-      { value: "3.2×", label: "Avg reach boost" },
-    ],
+    badge: { title: "10,000+ Viral Posts Analyzed", subtitle: "Hooks, pacing & CTAs extracted from top performers" },
     bento: "pattern",
   },
   {
@@ -37,11 +34,7 @@ const featuresEn = [
     comingSoon: false,
     headline: "From idea to published post in minutes",
     description: "Generate static posts, carousels, and Reels scripts automatically. Every piece is fully editable via our Canva integration — tweak fonts, colors, and layouts with full creative control. Approve, edit, or reject. You stay the creative director.",
-    stats: [
-      { value: "30+", label: "Posts/month" },
-      { value: "100%", label: "Editable" },
-      { value: "5min", label: "Avg creation time" },
-    ],
+    badge: { title: "Posts, Carousels & Reels Scripts", subtitle: "30+ pieces/month, fully editable in Canva" },
     bento: "content",
   },
   {
@@ -50,11 +43,7 @@ const featuresEn = [
     comingSoon: false,
     headline: "Post at the perfect moment, every time",
     description: "AI predicts the best days and times to post based on your audience's behaviour patterns. One click schedules and publishes simultaneously across Instagram, TikTok, and YouTube — with platform-optimised formats and metadata handled automatically.",
-    stats: [
-      { value: "3×", label: "Platforms at once" },
-      { value: "AI", label: "Time prediction" },
-      { value: "0", label: "Manual effort" },
-    ],
+    badge: { title: "AI-Optimized Timing", subtitle: "Posts when your audience is most active" },
     bento: "scheduling",
   },
   {
@@ -63,11 +52,7 @@ const featuresEn = [
     comingSoon: false,
     headline: "See what works. Double down on it",
     description: "Track reach, engagement, follower growth, and booking conversions across all platforms from one dashboard. Aurea learns from your top-performing posts and automatically feeds those patterns back into future content — a self-improving content loop.",
-    stats: [
-      { value: "All", label: "Platforms unified" },
-      { value: "Live", label: "Data feed" },
-      { value: "↑", label: "Self-improving AI" },
-    ],
+    badge: { title: "Unified Dashboard", subtitle: "Reach, engagement & bookings across all platforms" },
     bento: "analytics",
   },
   {
@@ -76,11 +61,7 @@ const featuresEn = [
     comingSoon: false,
     headline: "Always on-brand. Zero effort",
     description: "Upload your logo, fonts, and brand colors once. Every piece of content Aurea generates — forever — is automatically styled to your brand. No more off-brand posts, no more manual formatting. Your identity, baked in at the foundation.",
-    stats: [
-      { value: "1×", label: "Setup" },
-      { value: "∞", label: "On-brand posts" },
-      { value: "0", label: "Rework needed" },
-    ],
+    badge: { title: "Logo, Fonts & Colors", subtitle: "Upload once, applied forever — zero rework" },
     bento: "brand",
   },
   {
@@ -89,11 +70,7 @@ const featuresEn = [
     comingSoon: false,
     headline: "Captions that sound like you",
     description: "Aurea writes captions in your unique brand voice — not generic AI copy. Each caption is paired with a data-driven hashtag set optimised per platform and niche, updated daily based on what's trending in aesthetic medicine right now.",
-    stats: [
-      { value: "Your", label: "Brand voice" },
-      { value: "Daily", label: "Hashtag updates" },
-      { value: "3×", label: "Platforms optimised" },
-    ],
+    badge: { title: "Daily Trending Hashtags", subtitle: "Platform-optimized, niche-specific, auto-updated" },
     bento: "caption",
   },
   {
@@ -102,11 +79,7 @@ const featuresEn = [
     comingSoon: true,
     headline: "Your voice. Your face. Zero filming",
     description: "Coming soon: Clone your voice with a 5-minute recording. Generate talking-head videos with your likeness using AI. Publish Reels and TikToks featuring you — without ever picking up a camera. The future of personal brand content.",
-    stats: [
-      { value: "5min", label: "Voice clone setup" },
-      { value: "AI", label: "Video generation" },
-      { value: "Soon", label: "Launching 2026" },
-    ],
+    badge: { title: "5-Min Voice Clone", subtitle: "Generate talking-head videos with your likeness" , soon: true },
     bento: "voice",
   },
 ];
@@ -118,11 +91,7 @@ const featuresPt = [
     comingSoon: false,
     headline: "Sabe o que fica viral antes de publicar",
     description: "O motor central da Aurea é treinado em mais de 10.000 publicações virais de clínicas estéticas e marcas de beleza. Extrai os hooks exactos, ritmos, estruturas de legenda e CTAs que fazem o conteúdo explodir.",
-    stats: [
-      { value: "10K+", label: "Posts analisados" },
-      { value: "94%", label: "Precisão de hooks" },
-      { value: "3.2×", label: "Aumento de alcance" },
-    ],
+    badge: { title: "10.000+ Posts Virais Analisados", subtitle: "Hooks, ritmo e CTAs extraídos dos melhores" },
     bento: "pattern",
   },
   {
@@ -131,11 +100,7 @@ const featuresPt = [
     comingSoon: false,
     headline: "De ideia a post publicado em minutos",
     description: "Gera posts estáticos, carrosséis e scripts de Reels automaticamente. Cada peça é totalmente editável via integração Canva — ajusta fontes, cores e layouts com controlo criativo total.",
-    stats: [
-      { value: "30+", label: "Posts/mês" },
-      { value: "100%", label: "Editável" },
-      { value: "5min", label: "Tempo de criação" },
-    ],
+    badge: { title: "Posts, Carrosséis & Scripts", subtitle: "30+ peças/mês, totalmente editáveis no Canva" },
     bento: "content",
   },
   {
@@ -144,11 +109,7 @@ const featuresPt = [
     comingSoon: false,
     headline: "Publica no momento perfeito, sempre",
     description: "A IA prevê os melhores dias e horas para publicar com base nos padrões de comportamento da tua audiência. Um clique agenda e publica simultaneamente no Instagram, TikTok e YouTube.",
-    stats: [
-      { value: "3×", label: "Plataformas" },
-      { value: "IA", label: "Previsão de horário" },
-      { value: "0", label: "Esforço manual" },
-    ],
+    badge: { title: "Timing Optimizado por IA", subtitle: "Publica quando a tua audiência está mais activa" },
     bento: "scheduling",
   },
   {
@@ -157,11 +118,7 @@ const featuresPt = [
     comingSoon: false,
     headline: "Vê o que funciona. Aposta nisso",
     description: "Acompanha alcance, engagement, crescimento de seguidores e conversões de reservas em todas as plataformas num único dashboard. A Aurea aprende com os teus melhores posts.",
-    stats: [
-      { value: "Tudo", label: "Plataformas unificadas" },
-      { value: "Live", label: "Feed de dados" },
-      { value: "↑", label: "IA auto-melhorável" },
-    ],
+    badge: { title: "Dashboard Unificado", subtitle: "Alcance, engagement e reservas em todas as plataformas" },
     bento: "analytics",
   },
   {
@@ -170,11 +127,7 @@ const featuresPt = [
     comingSoon: false,
     headline: "Sempre na identidade da marca",
     description: "Faz upload do teu logotipo, fontes e cores uma vez. Todo o conteúdo que a Aurea gerar — para sempre — será automaticamente estilizado com a tua marca.",
-    stats: [
-      { value: "1×", label: "Configuração" },
-      { value: "∞", label: "Posts on-brand" },
-      { value: "0", label: "Retrabalho" },
-    ],
+    badge: { title: "Logo, Fontes & Cores", subtitle: "Carrega uma vez, aplicado para sempre" },
     bento: "brand",
   },
   {
@@ -183,11 +136,7 @@ const featuresPt = [
     comingSoon: false,
     headline: "Legendas que soam a ti",
     description: "A Aurea escreve legendas na tua voz de marca única — não copy genérico de IA. Cada legenda é acompanhada de hashtags baseados em dados, optimizados por plataforma e nicho.",
-    stats: [
-      { value: "A tua", label: "Voz de marca" },
-      { value: "Diário", label: "Actualização" },
-      { value: "3×", label: "Plataformas" },
-    ],
+    badge: { title: "Hashtags Trending Diários", subtitle: "Optimizados por plataforma, actualizados automaticamente" },
     bento: "caption",
   },
   {
@@ -196,11 +145,7 @@ const featuresPt = [
     comingSoon: true,
     headline: "A tua voz. A tua cara. Sem filmar",
     description: "Em breve: clona a tua voz com uma gravação de 5 minutos. Gera vídeos talking-head com a tua aparência usando IA. Publica Reels e TikToks com a tua presença — sem câmara.",
-    stats: [
-      { value: "5min", label: "Clone de voz" },
-      { value: "IA", label: "Geração de vídeo" },
-      { value: "Breve", label: "2026" },
-    ],
+    badge: { title: "Clone de Voz em 5min", subtitle: "Gera vídeos talking-head com a tua aparência", soon: true },
     bento: "voice",
   },
 ];
@@ -223,6 +168,80 @@ const iconComponents: Record<string, React.ComponentType<any>> = {
   voice: ClapIcon,
 };
 
+// ─── TikTok Icon ─────────────────────────────────────────────────────────────
+
+function TikTokIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/>
+    </svg>
+  );
+}
+
+// ─── Animated Counter ────────────────────────────────────────────────────────
+
+function AnimatedCounter({ value, suffix = "" }: { value: number; suffix?: string }) {
+  const [count, setCount] = useState(0);
+  
+  useEffect(() => {
+    const duration = 1500;
+    const steps = 30;
+    const increment = value / steps;
+    let current = 0;
+    
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= value) {
+        setCount(value);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(current));
+      }
+    }, duration / steps);
+    
+    return () => clearInterval(timer);
+  }, [value]);
+  
+  return <span>{count}{suffix}</span>;
+}
+
+// ─── Typewriter Effect ───────────────────────────────────────────────────────
+
+function TypewriterText({ text, className }: { text: string; className?: string }) {
+  const [displayText, setDisplayText] = useState("");
+  const [isTyping, setIsTyping] = useState(true);
+  const [cycle, setCycle] = useState(0);
+  
+  useEffect(() => {
+    let index = 0;
+    setDisplayText("");
+    setIsTyping(true);
+    
+    const typeTimer = setInterval(() => {
+      if (index < text.length) {
+        setDisplayText(text.slice(0, index + 1));
+        index++;
+      } else {
+        setIsTyping(false);
+        clearInterval(typeTimer);
+        // Restart after pause by triggering a new cycle
+        setTimeout(() => {
+          setCycle(c => c + 1);
+        }, 3000);
+      }
+    }, 40);
+    
+    return () => clearInterval(typeTimer);
+  }, [text, cycle]);
+  
+  return (
+    <span className={className}>
+      {displayText}
+      {isTyping && <span className="inline-block w-0.5 h-5 bg-primary ml-0.5 animate-pulse" />}
+    </span>
+  );
+}
+
 // ─── Bento Visuals ───────────────────────────────────────────────────────────
 
 function BentoPattern() {
@@ -232,55 +251,81 @@ function BentoPattern() {
     { text: "Before & after 30 days", score: "11.3%" },
   ];
   
+  // Deterministic heatmap values
+  const heatmapValues = [0.9, 0.3, 0.7, 0.5, 0.8, 0.2, 0.6, 0.4, 0.85, 0.1, 0.75, 0.55, 0.95, 0.35, 0.65, 0.45, 0.8, 0.25, 0.7, 0.5, 0.9, 0.15, 0.6, 0.4, 0.85, 0.3, 0.75, 0.55, 0.92, 0.2, 0.68, 0.48, 0.88, 0.28, 0.72];
+  
   return (
     <div className="grid grid-cols-3 gap-4 h-full">
       {/* Main heatmap card */}
       <div className="col-span-2 row-span-2 bg-white rounded-2xl p-5 shadow-md border border-gray-100">
         <div className="flex items-center justify-between mb-4">
           <span className="text-sm font-semibold text-gray-900">Viral Score Heatmap</span>
-          <span className="text-xs font-medium text-emerald-600 bg-emerald-50 px-2 py-1 rounded-full">Live</span>
+          <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full">Live</span>
         </div>
         <div className="grid grid-cols-7 gap-1.5 mb-4">
-          {Array.from({length: 35}).map((_, i) => {
-            const intensity = Math.random();
-            const bg = intensity > 0.75 ? "bg-emerald-500" : intensity > 0.5 ? "bg-emerald-300" : intensity > 0.25 ? "bg-blue-200" : "bg-gray-100";
-            return <div key={i} className={`h-5 rounded-md ${bg}`} />;
+          {heatmapValues.map((intensity, i) => {
+            const bg = intensity > 0.75 ? "bg-primary" : intensity > 0.5 ? "bg-primary/60" : intensity > 0.25 ? "bg-primary/30" : "bg-gray-100";
+            return (
+              <motion.div
+                key={i}
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: i * 0.02, duration: 0.3 }}
+                className={`h-5 rounded-md ${bg}`}
+              />
+            );
           })}
         </div>
         <div className="flex items-center gap-4 text-xs text-gray-500">
-          <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-emerald-500" />High</span>
-          <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-emerald-300" />Medium</span>
+          <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-primary" />High</span>
+          <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-primary/60" />Medium</span>
           <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-gray-100" />Low</span>
         </div>
       </div>
 
-      {/* Stat card 1 */}
-      <div className="bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex flex-col justify-between">
-        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Analyzed</span>
+      {/* Stat card 1 - Niches */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+        className="bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex flex-col justify-between"
+      >
+        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Niches</span>
         <div>
-          <span className="text-2xl font-bold text-gray-900">10K+</span>
-          <p className="text-xs text-gray-400">viral posts</p>
+          <span className="text-2xl font-bold text-gray-900"><AnimatedCounter value={47} /></span>
+          <p className="text-xs text-gray-500">industries covered</p>
         </div>
-      </div>
+      </motion.div>
 
-      {/* Stat card 2 */}
-      <div className="bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex flex-col justify-between">
+      {/* Stat card 2 - Accuracy */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+        className="bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex flex-col justify-between"
+      >
         <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Accuracy</span>
         <div>
-          <span className="text-2xl font-bold text-emerald-600">94%</span>
-          <p className="text-xs text-gray-400">hook detection</p>
+          <span className="text-2xl font-bold text-gray-900"><AnimatedCounter value={94} suffix="%" /></span>
+          <p className="text-xs text-gray-500">hook detection</p>
         </div>
-      </div>
+      </motion.div>
 
       {/* Top hooks */}
       <div className="col-span-3 bg-white rounded-2xl p-5 shadow-md border border-gray-100">
         <span className="text-sm font-semibold text-gray-900 block mb-3">Top Performing Hooks</span>
         <div className="space-y-2.5">
           {hooks.map((h, i) => (
-            <div key={i} className="flex items-center justify-between">
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.5 + i * 0.1 }}
+              className="flex items-center justify-between"
+            >
               <span className="text-sm text-gray-600 truncate flex-1">{h.text}</span>
-              <span className="text-sm font-semibold text-emerald-600 ml-3">{h.score}</span>
-            </div>
+              <span className="text-sm font-semibold text-primary ml-3">{h.score}</span>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -309,7 +354,7 @@ function BentoContent() {
               </div>
             ))}
           </div>
-          <div className="flex-1 bg-gradient-to-br from-violet-100 via-purple-50 to-blue-100 rounded-xl flex items-center justify-center min-h-[180px]">
+          <div className="flex-1 bg-gradient-to-br from-primary/10 via-purple-50 to-violet-100 rounded-xl flex items-center justify-center min-h-[180px]">
             <div className="text-center">
               <div className="w-12 h-12 rounded-xl bg-white/80 shadow-sm flex items-center justify-center mx-auto mb-2">
                 <span className="text-xl">✦</span>
@@ -322,30 +367,32 @@ function BentoContent() {
       </div>
 
       {/* Stats */}
-      <div className="bg-emerald-50 rounded-2xl p-4 shadow-sm border border-emerald-100 flex flex-col justify-between">
-        <span className="text-xs font-medium text-emerald-700 uppercase tracking-wide">Generated</span>
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.2 }}
+        className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col justify-between"
+      >
+        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Generated</span>
         <div>
-          <span className="text-2xl font-bold text-emerald-700">30+</span>
-          <p className="text-xs text-emerald-600">posts/month</p>
+          <span className="text-2xl font-bold text-gray-900">30+</span>
+          <p className="text-xs text-gray-500">posts/month</p>
         </div>
-      </div>
+      </motion.div>
 
-      <div className="bg-blue-50 rounded-2xl p-4 shadow-sm border border-blue-100 flex flex-col justify-between">
-        <span className="text-xs font-medium text-blue-700 uppercase tracking-wide">Control</span>
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.3 }}
+        className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col justify-between"
+      >
+        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Control</span>
         <div>
-          <span className="text-2xl font-bold text-blue-700">100%</span>
-          <p className="text-xs text-blue-600">editable</p>
+          <span className="text-2xl font-bold text-gray-900">100%</span>
+          <p className="text-xs text-gray-500">editable</p>
         </div>
-      </div>
+      </motion.div>
 
-      {/* Feature badge */}
-      <div className="col-span-3 bg-gradient-to-r from-violet-50 to-blue-50 rounded-2xl p-4 shadow-sm border border-purple-100 flex items-center justify-between">
-        <div>
-          <p className="text-sm font-semibold text-gray-900">Full Canva Integration</p>
-          <p className="text-xs text-gray-500">Edit any generated content with your existing tools</p>
-        </div>
-        <Check className="w-5 h-5 text-emerald-500" />
-      </div>
     </div>
   );
 }
@@ -353,13 +400,24 @@ function BentoContent() {
 function BentoScheduling() {
   const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
   const posts = [
-    { day: "Mon", time: "09:00", platform: "IG", title: "Before/After Reel", ai: true },
-    { day: "Tue", time: "18:00", platform: "TT", title: "Hook Series #4", ai: true },
-    { day: "Wed", time: "12:00", platform: "YT", title: "Treatment Guide", ai: false },
-    { day: "Thu", time: "09:00", platform: "IG", title: "Client Story", ai: true },
-    { day: "Fri", time: "17:00", platform: "TT", title: "POV Content", ai: true },
+    { day: "Mon", time: "09:00", platform: "ig", title: "Before/After Reel", ai: true },
+    { day: "Tue", time: "18:00", platform: "tt", title: "Hook Series #4", ai: true },
+    { day: "Wed", time: "12:00", platform: "yt", title: "Treatment Guide", ai: false },
+    { day: "Thu", time: "09:00", platform: "ig", title: "Client Story", ai: true },
+    { day: "Fri", time: "17:00", platform: "tt", title: "POV Content", ai: true },
   ];
-  const platformColors: Record<string, string> = { IG: "bg-pink-500", TT: "bg-gray-900", YT: "bg-red-500" };
+
+  const platformIcons: Record<string, React.ReactNode> = {
+    ig: <Instagram className="w-4 h-4" />,
+    tt: <TikTokIcon className="w-4 h-4" />,
+    yt: <Youtube className="w-4 h-4" />,
+  };
+  
+  const platformColors: Record<string, string> = {
+    ig: "bg-gradient-to-r from-purple-500 to-pink-500 text-white",
+    tt: "bg-gray-900 text-white",
+    yt: "bg-red-500 text-white",
+  };
 
   return (
     <div className="grid grid-cols-3 gap-4 h-full">
@@ -379,50 +437,66 @@ function BentoScheduling() {
           ))}
         </div>
 
-        {/* Posts list */}
+        {/* Posts list - animated rows */}
         <div className="space-y-2">
           {posts.map((p, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, x: -8 }}
+              initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: i * 0.08 }}
+              transition={{ 
+                delay: i * 0.15,
+                duration: 0.4,
+                repeat: Infinity,
+                repeatDelay: 5,
+              }}
               className="flex items-center gap-3 py-2 px-3 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors"
             >
               <span className="text-xs text-gray-400 w-10">{p.time}</span>
-              <span className={`text-[10px] text-white font-bold px-2 py-0.5 rounded ${platformColors[p.platform]}`}>{p.platform}</span>
+              <span className={`p-1.5 rounded-lg ${platformColors[p.platform]}`}>
+                {platformIcons[p.platform]}
+              </span>
               <span className="text-sm text-gray-700 flex-1">{p.title}</span>
-              {p.ai && <span className="text-xs text-emerald-600 font-medium">✦ AI</span>}
+              {p.ai && <span className="text-xs text-primary font-medium">✦ AI</span>}
             </motion.div>
           ))}
         </div>
       </div>
 
       {/* Stats */}
-      <div className="bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex flex-col justify-between">
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+        className="bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex flex-col justify-between"
+      >
         <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Platforms</span>
         <div>
           <span className="text-2xl font-bold text-gray-900">3</span>
-          <p className="text-xs text-gray-400">simultaneous</p>
+          <p className="text-xs text-gray-500">simultaneous</p>
         </div>
-      </div>
+      </motion.div>
 
-      <div className="bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex flex-col justify-between">
+      {/* Effort card - animated grow/rotate */}
+      <motion.div
+        animate={{ 
+          scale: [1, 1.02, 1],
+          rotate: [0, 1, 0, -1, 0],
+        }}
+        transition={{ 
+          duration: 3,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+        className="bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex flex-col justify-between"
+      >
         <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Effort</span>
         <div>
-          <span className="text-2xl font-bold text-emerald-600">Zero</span>
-          <p className="text-xs text-gray-400">manual work</p>
+          <span className="text-2xl font-bold text-gray-900">Zero</span>
+          <p className="text-xs text-gray-500">manual work</p>
         </div>
-      </div>
+      </motion.div>
 
-      {/* One-click badge */}
-      <div className="col-span-3 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl p-4 shadow-sm border border-emerald-100 flex items-center justify-between">
-        <div>
-          <p className="text-sm font-semibold text-gray-900">One-Click Multi-Platform Publish</p>
-          <p className="text-xs text-gray-500">IG, TikTok & YouTube in a single action</p>
-        </div>
-        <Check className="w-5 h-5 text-emerald-500" />
-      </div>
     </div>
   );
 }
@@ -430,23 +504,32 @@ function BentoScheduling() {
 function BentoAnalytics() {
   const weeks = [22, 31, 28, 45, 38, 67, 89, 72, 95, 88, 102, 118];
   const max = Math.max(...weeks);
+  const [animationKey, setAnimationKey] = useState(0);
+
+  // Restart animation periodically
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setAnimationKey(prev => prev + 1);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="grid grid-cols-3 gap-4 h-full">
-      {/* Growth chart */}
-      <div className="col-span-2 row-span-2 bg-gray-950 rounded-2xl p-5 shadow-md">
+      {/* Growth chart - updated colors */}
+      <div className="col-span-2 row-span-2 bg-gradient-to-br from-gray-900 to-gray-950 rounded-2xl p-5 shadow-md">
         <div className="flex items-center justify-between mb-4">
           <span className="text-sm font-semibold text-white">Follower Growth</span>
-          <span className="text-sm font-bold text-emerald-400">+847%</span>
+          <span className="text-sm font-bold text-primary">+847%</span>
         </div>
         <div className="flex items-end gap-1.5 h-24 mb-3">
           {weeks.map((v, i) => (
             <motion.div
-              key={i}
+              key={`${animationKey}-${i}`}
               initial={{ height: 0 }}
               animate={{ height: `${(v / max) * 100}%` }}
-              transition={{ delay: i * 0.05, duration: 0.4 }}
-              className={`flex-1 rounded-sm ${i === weeks.length - 1 ? "bg-emerald-400" : "bg-white/20"}`}
+              transition={{ delay: i * 0.08, duration: 0.5 }}
+              className={`flex-1 rounded-sm ${i === weeks.length - 1 ? "bg-primary" : "bg-primary/30"}`}
             />
           ))}
         </div>
@@ -456,24 +539,26 @@ function BentoAnalytics() {
       </div>
 
       {/* Metric cards */}
-      {[
-        { label: "Engagement", value: "8.7%", color: "text-blue-600", bg: "bg-blue-50 border-blue-100" },
-        { label: "Views/Day", value: "47K", color: "text-purple-600", bg: "bg-purple-50 border-purple-100" },
-      ].map((m, i) => (
-        <div key={i} className={`rounded-2xl p-4 shadow-sm border flex flex-col justify-between ${m.bg}`}>
-          <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">{m.label}</span>
-          <span className={`text-2xl font-bold ${m.color}`}>{m.value}</span>
-        </div>
-      ))}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+        className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col justify-between"
+      >
+        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Engagement</span>
+        <span className="text-2xl font-bold text-gray-900"><AnimatedCounter value={8} suffix=".7%" /></span>
+      </motion.div>
 
-      {/* Self-improving badge */}
-      <div className="col-span-3 bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-4 shadow-sm border border-purple-100 flex items-center justify-between">
-        <div>
-          <p className="text-sm font-semibold text-gray-900">Self-Improving AI</p>
-          <p className="text-xs text-gray-500">Learns from your top posts automatically</p>
-        </div>
-        <Check className="w-5 h-5 text-emerald-500" />
-      </div>
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+        className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col justify-between"
+      >
+        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Views/Day</span>
+        <span className="text-2xl font-bold text-gray-900">47K</span>
+      </motion.div>
+
     </div>
   );
 }
@@ -486,10 +571,10 @@ function BentoBrand() {
         <span className="text-sm font-semibold text-gray-900 block mb-4">Brand Kit Preview</span>
         
         <div className="flex items-center gap-4 mb-5">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-400 to-blue-400 flex items-center justify-center text-white font-bold text-xl shadow-md">A</div>
+          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-violet-500 flex items-center justify-center text-white font-bold text-xl shadow-md">A</div>
           <div>
             <p className="font-semibold text-gray-900">Clínica Aurora</p>
-            <p className="text-xs text-emerald-600 font-medium">Brand identity loaded ✓</p>
+            <p className="text-xs text-primary font-medium">Brand identity loaded ✓</p>
           </div>
         </div>
 
@@ -497,7 +582,14 @@ function BentoBrand() {
         <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">Colors</p>
         <div className="flex gap-2 mb-5">
           {["#6FA8FF","#A8B8FF","#D4A8FF","#1A2A4A","#FFFFFF"].map((c, i) => (
-            <div key={i} className="w-9 h-9 rounded-xl border border-gray-100 shadow-sm" style={{ background: c }} />
+            <motion.div
+              key={i}
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: i * 0.1 }}
+              className="w-9 h-9 rounded-xl border border-gray-100 shadow-sm"
+              style={{ background: c }}
+            />
           ))}
         </div>
 
@@ -514,31 +606,25 @@ function BentoBrand() {
         <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Setup</span>
         <div>
           <span className="text-2xl font-bold text-gray-900">1×</span>
-          <p className="text-xs text-gray-400">one time</p>
+          <p className="text-xs text-gray-500">one time</p>
         </div>
       </div>
 
       <div className="bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex flex-col justify-between">
         <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Result</span>
         <div>
-          <span className="text-2xl font-bold text-emerald-600">∞</span>
-          <p className="text-xs text-gray-400">on-brand posts</p>
+          <span className="text-2xl font-bold text-gray-900">∞</span>
+          <p className="text-xs text-gray-500">on-brand posts</p>
         </div>
       </div>
 
-      {/* Badge */}
-      <div className="col-span-3 bg-gradient-to-r from-violet-50 to-blue-50 rounded-2xl p-4 shadow-sm border border-purple-100 flex items-center justify-between">
-        <div>
-          <p className="text-sm font-semibold text-gray-900">Auto-Applied to Every Post</p>
-          <p className="text-xs text-gray-500">No manual formatting needed</p>
-        </div>
-        <Check className="w-5 h-5 text-emerald-500" />
-      </div>
     </div>
   );
 }
 
 function BentoCaption() {
+  const captionText = "Your skin tells a story of resilience. After years of searching, you finally found the right care. This is what transformation looks like when science meets artistry.";
+  
   return (
     <div className="grid grid-cols-3 gap-4 h-full">
       {/* Caption preview */}
@@ -548,43 +634,53 @@ function BentoCaption() {
           <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full font-medium">Your voice</span>
         </div>
         
-        <p className="text-gray-700 leading-relaxed mb-4">
-          "Your skin has been through a lot this winter. Time to give it the reset it deserves. ✨ Booking link in bio — spaces filling fast."
+        <p className="text-gray-700 leading-relaxed mb-4 min-h-[80px]">
+          <TypewriterText text={captionText} />
         </p>
 
         <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">Optimised Hashtags</p>
         <div className="flex flex-wrap gap-1.5">
-          {["#clinicaestética", "#skincare", "#médicinaestética", "#lisboa", "#beleza"].map((tag, i) => (
-            <span key={i} className="text-xs text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full">{tag}</span>
+          {["#esteticaavancada", "#peleperfeita", "#tratamentofacial", "#clinicapremium", "#resultadosreais"].map((tag, i) => (
+            <motion.span
+              key={i}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5 + i * 0.1 }}
+              className="text-xs text-primary bg-primary/10 px-2.5 py-1 rounded-full"
+            >
+              {tag}
+            </motion.span>
           ))}
         </div>
       </div>
 
       {/* Stats */}
-      <div className="bg-emerald-50 rounded-2xl p-4 shadow-sm border border-emerald-100 flex flex-col justify-between">
-        <span className="text-xs font-medium text-emerald-700 uppercase tracking-wide">Updated</span>
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+        className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col justify-between"
+      >
+        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Updated</span>
         <div>
-          <span className="text-2xl font-bold text-emerald-700">Daily</span>
-          <p className="text-xs text-emerald-600">hashtags</p>
+          <span className="text-2xl font-bold text-gray-900">Daily</span>
+          <p className="text-xs text-gray-500">hashtags</p>
         </div>
-      </div>
+      </motion.div>
 
-      <div className="bg-pink-50 rounded-2xl p-4 shadow-sm border border-pink-100 flex flex-col justify-between">
-        <span className="text-xs font-medium text-pink-700 uppercase tracking-wide">Platforms</span>
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+        className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col justify-between"
+      >
+        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Platforms</span>
         <div>
-          <span className="text-2xl font-bold text-pink-700">3×</span>
-          <p className="text-xs text-pink-600">optimised</p>
+          <span className="text-2xl font-bold text-gray-900">3×</span>
+          <p className="text-xs text-gray-500">optimised</p>
         </div>
-      </div>
+      </motion.div>
 
-      {/* Badge */}
-      <div className="col-span-3 bg-gradient-to-r from-pink-50 to-orange-50 rounded-2xl p-4 shadow-sm border border-pink-100 flex items-center justify-between">
-        <div>
-          <p className="text-sm font-semibold text-gray-900">Brand Voice Matching</p>
-          <p className="text-xs text-gray-500">Captions that sound authentically you</p>
-        </div>
-        <Check className="w-5 h-5 text-emerald-500" />
-      </div>
     </div>
   );
 }
@@ -592,52 +688,68 @@ function BentoCaption() {
 function BentoVoice() {
   return (
     <div className="grid grid-cols-3 gap-4 h-full opacity-90">
-      {/* Voice waveform */}
-      <div className="col-span-2 row-span-2 bg-gray-950 rounded-2xl p-5 shadow-md relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 to-blue-900/30" />
-        <div className="relative z-10">
-          <div className="flex items-center gap-2 mb-4">
-            <span className="text-sm font-semibold text-white">Voice Synthesis</span>
-            <span className="text-xs bg-amber-400/20 text-amber-400 px-2 py-1 rounded-full font-semibold">Coming Soon</span>
-          </div>
-          
-          {/* Waveform */}
-          <div className="flex items-center gap-0.5 h-20 mb-4">
-            {Array.from({length: 50}).map((_, i) => {
-              const h = Math.sin(i * 0.4) * 50 + 50;
-              return <div key={i} className="flex-1 rounded-full bg-purple-400/60" style={{ height: `${h}%` }} />;
-            })}
-          </div>
-          
-          <p className="text-white/60 text-sm">5-minute recording → unlimited content in your voice</p>
+      {/* AI Video demo */}
+      <div className="col-span-2 rounded-2xl shadow-lg overflow-hidden relative h-32">
+        <video
+          src="/ai-video-demo.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover"
+        />
+        
+        {/* Label overlay */}
+        <div className="absolute bottom-2 left-3 right-3">
+          <p className="text-white font-medium text-xs drop-shadow-md">AI Video Preview</p>
         </div>
       </div>
 
       {/* Stats */}
-      <div className="bg-purple-50 rounded-2xl p-4 shadow-sm border border-purple-100 flex flex-col justify-between">
-        <span className="text-xs font-medium text-purple-700 uppercase tracking-wide">Setup</span>
+      <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col justify-between">
+        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Setup</span>
         <div>
-          <span className="text-2xl font-bold text-purple-700">5min</span>
-          <p className="text-xs text-purple-600">recording</p>
+          <span className="text-2xl font-bold text-gray-900">5min</span>
+          <p className="text-xs text-gray-500">recording</p>
         </div>
       </div>
 
-      <div className="bg-blue-50 rounded-2xl p-4 shadow-sm border border-blue-100 flex flex-col justify-between">
-        <span className="text-xs font-medium text-blue-700 uppercase tracking-wide">Launch</span>
-        <div>
-          <span className="text-2xl font-bold text-blue-700">2026</span>
-          <p className="text-xs text-blue-600">coming soon</p>
+      {/* Voice waveform */}
+      <div className="col-span-2 bg-gradient-to-br from-gray-900 to-gray-950 rounded-2xl p-5 shadow-md relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-violet-900/30" />
+        <div className="relative z-10">
+          <div className="flex items-center gap-2 mb-4">
+            <span className="text-sm font-semibold text-white">Voice Synthesis</span>
+            <span className="text-xs bg-white/10 text-white/70 px-2 py-1 rounded-full font-medium border border-white/20">Coming Soon</span>
+          </div>
+          
+          {/* Waveform */}
+          <div className="flex items-center gap-0.5 h-16 mb-3">
+            {Array.from({length: 50}).map((_, i) => {
+              const h = Math.sin(i * 0.4) * 50 + 50;
+              return (
+                <motion.div
+                  key={i}
+                  animate={{ height: [`${h}%`, `${100 - h}%`, `${h}%`] }}
+                  transition={{ duration: 2, repeat: Infinity, delay: i * 0.05 }}
+                  className="flex-1 rounded-full bg-primary/60"
+                />
+              );
+            })}
+          </div>
+          
+          <p className="text-white/60 text-xs">5-minute recording → unlimited content</p>
         </div>
       </div>
 
-      {/* Badge */}
-      <div className="col-span-3 bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-4 shadow-sm border border-purple-100 flex items-center justify-between">
+      <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col justify-between">
+        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Launch</span>
         <div>
-          <p className="text-sm font-semibold text-gray-900">AI Video Generation</p>
-          <p className="text-xs text-gray-500">Your face, your voice — zero filming required</p>
+          <span className="text-2xl font-bold text-gray-900">2026</span>
+          <p className="text-xs text-gray-500">coming soon</p>
         </div>
-        <span className="text-xs bg-amber-100 text-amber-600 px-2 py-1 rounded-full font-semibold">Soon</span>
       </div>
+
     </div>
   );
 }
@@ -660,8 +772,10 @@ export default function Features() {
   const [active, setActive] = useState(features[0].id);
   const activeFeature = features.find(f => f.id === active)!;
 
-  // Icon refs for controlled animations
+  // Icon refs for controlled animations (pills)
   const iconRefs = useRef<Record<string, IconHandle | null>>({});
+  // Icon ref for the detail panel title
+  const titleIconRef = useRef<IconHandle | null>(null);
 
   // Animate active icon on change
   useEffect(() => {
@@ -674,6 +788,19 @@ export default function Features() {
         }
       }
     });
+    // Start title icon animation and keep it looping
+    if (titleIconRef.current) {
+      titleIconRef.current.startAnimation();
+    }
+    
+    // Loop the title icon animation
+    const interval = setInterval(() => {
+      if (titleIconRef.current) {
+        titleIconRef.current.startAnimation();
+      }
+    }, 2000);
+    
+    return () => clearInterval(interval);
   }, [active]);
 
   return (
@@ -701,7 +828,7 @@ export default function Features() {
         </motion.div>
 
         {/* Filter pills */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
+        <div className="flex flex-wrap justify-center gap-3 mb-20">
           {features.map((f) => {
             const isActive = active === f.id;
             const IconComponent = iconComponents[f.id];
@@ -717,9 +844,6 @@ export default function Features() {
                     : "bg-white border border-gray-200 text-gray-600 hover:border-transparent hover:shadow-md"
                   }
                 `}
-                style={!isActive ? {
-                  // Iridescent hover glow effect
-                } : {}}
                 onMouseEnter={() => {
                   if (!isActive && iconRefs.current[f.id]) {
                     iconRefs.current[f.id]?.startAnimation();
@@ -753,7 +877,7 @@ export default function Features() {
                 <span>{f.label}</span>
                 
                 {f.comingSoon && (
-                  <span className="text-[10px] bg-amber-100 text-amber-600 px-1.5 py-0.5 rounded-full font-semibold">Soon</span>
+                  <span className="text-[10px] bg-gray-100 text-gray-500 px-1.5 py-0.5 rounded-full font-medium border border-gray-200">Soon</span>
                 )}
               </button>
             );
@@ -773,8 +897,18 @@ export default function Features() {
             {/* Left: copy */}
             <div className="flex flex-col gap-6">
               <div>
+                {(() => {
+                  const TitleIcon = iconComponents[activeFeature.id];
+                  return TitleIcon ? (
+                    <TitleIcon
+                      ref={(el: IconHandle | null) => { titleIconRef.current = el; }}
+                      size={36}
+                      className="text-gray-900 mb-4"
+                    />
+                  ) : null;
+                })()}
                 {activeFeature.comingSoon && (
-                  <span className="inline-block text-xs bg-amber-100 text-amber-600 px-2.5 py-1 rounded-full font-semibold mb-3">Coming Soon</span>
+                  <span className="inline-block text-xs bg-gray-100 text-gray-500 px-2.5 py-1 rounded-full font-medium border border-gray-200 mb-3">Coming Soon</span>
                 )}
                 <h3 className="text-3xl sm:text-4xl font-bold text-gray-950 leading-tight mb-4">
                   {activeFeature.headline}
@@ -784,15 +918,20 @@ export default function Features() {
                 </p>
               </div>
 
-              {/* Stats row */}
-              <div className="grid grid-cols-3 gap-4">
-                {activeFeature.stats.map((s, i) => (
-                  <div key={i} className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm text-center">
-                    <div className="text-2xl font-bold text-gray-900">{s.value}</div>
-                    <div className="text-xs text-gray-500 mt-1">{s.label}</div>
+              {/* Badge card */}
+              {activeFeature.badge && (
+                <div className="bg-gradient-to-r from-primary/5 to-violet-50 rounded-2xl p-4 shadow-sm border border-primary/20 flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-semibold text-gray-900">{activeFeature.badge.title}</p>
+                    <p className="text-xs text-gray-500">{activeFeature.badge.subtitle}</p>
                   </div>
-                ))}
-              </div>
+                  {activeFeature.badge.soon ? (
+                    <span className="text-xs bg-gray-100 text-gray-500 px-2.5 py-1 rounded-full font-medium border border-gray-200">Soon</span>
+                  ) : (
+                    <Check className="w-5 h-5 text-primary" />
+                  )}
+                </div>
+              )}
             </div>
 
             {/* Right: bento visual */}

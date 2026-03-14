@@ -48,17 +48,15 @@ function AnimCount({ from, to, triggered }: { from: number; to: number; triggere
   return <span>{display}</span>;
 }
 
-// Instagram notification SVG component
-function LikeNotification({ count, className }: { count: string; className?: string }) {
+// Instagram heart notification SVG component
+function LikeNotification({ className }: { className?: string }) {
   return (
     <div className={`${className}`}>
-      <svg viewBox="0 0 130 85" fill="none" className="w-full h-full drop-shadow-xl">
-        {/* Bubble background - wider for spacing */}
-        <path d="M 110 8 H 16 C 8 8 2 14 2 22 v 36 c 0 8 6 14 14 14 h 20 L 50 85 l 14 -13 h 46 c 8 0 14 -6 14 -14 V 22 C 124 14 118 8 110 8 z" fill="#EE5162"/>
-        {/* Heart icon - left side */}
-        <path d="M 42 28 c -3.6 -3.6 -9.5 -3.6 -13 0 L 26 31 l -3 -3 c -3.6 -3.6 -9.5 -3.6 -13 0 c -3.6 3.6 -3.6 9.5 0 13 l 3 3 L 26 57 L 39 44 l 3 -3 c 3.6 -3.6 3.6 -9.5 0 -13 z" fill="white"/>
-        {/* Number text - more spacing */}
-        <text x="82" y="48" fill="white" fontSize="28" fontWeight="700" fontFamily="system-ui, -apple-system, sans-serif" textAnchor="middle">{count}</text>
+      <svg viewBox="0 0 56 50" fill="none" className="w-full h-full drop-shadow-xl">
+        {/* Bubble background - wide pill with pointer */}
+        <path d="M4 4 h48 a4 4 0 0 1 4 4 v28 a4 4 0 0 1 -4 4 h-18 l-6 10 l-6 -10 h-18 a4 4 0 0 1 -4 -4 v-28 a4 4 0 0 1 4 -4 z" fill="#FE2D55"/>
+        {/* Heart icon - smaller */}
+        <path d="M28 28 l-1.2 -1.1 C22 22.6 18.5 19.5 18.5 15.8 c0 -3 2.4 -5.3 5.3 -5.3 c1.7 0 3.3 0.8 4.2 2 c0.9 -1.2 2.5 -2 4.2 -2 c2.9 0 5.3 2.3 5.3 5.3 c0 3.7 -3.5 6.8 -8.3 11.1 L28 28 z" fill="white"/>
       </svg>
     </div>
   );
@@ -79,7 +77,7 @@ function IPhoneMockup({ isAfter, triggered }: { isAfter: boolean; triggered: boo
             transition={{ delay: 0.3, duration: 0.6, type: "spring", stiffness: 200, damping: 15 }}
           >
             <div className="float-card-1">
-              <LikeNotification count="128" className="w-16 h-12" />
+              <LikeNotification className="w-14 h-12" />
             </div>
           </motion.div>
           <motion.div 
@@ -89,7 +87,7 @@ function IPhoneMockup({ isAfter, triggered }: { isAfter: boolean; triggered: boo
             transition={{ delay: 0.5, duration: 0.6, type: "spring", stiffness: 200, damping: 15 }}
           >
             <div className="float-card-2">
-              <LikeNotification count="47" className="w-14 h-11" />
+              <LikeNotification className="w-12 h-10" />
             </div>
           </motion.div>
           <motion.div 
@@ -99,36 +97,86 @@ function IPhoneMockup({ isAfter, triggered }: { isAfter: boolean; triggered: boo
             transition={{ delay: 0.7, duration: 0.6, type: "spring", stiffness: 200, damping: 15 }}
           >
             <div className="float-card-3">
-              <LikeNotification count="89" className="w-12 h-10" />
+              <LikeNotification className="w-11 h-9" />
             </div>
           </motion.div>
         </>
       )}
       
-      {/* Label */}
-      <div className={`absolute -top-4 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-[11px] font-semibold z-10 whitespace-nowrap ${isAfter ? "bg-emerald-500 text-white" : "bg-gray-200 text-gray-600"}`}>
-        {isAfter ? "After Aurea ✨" : "Before Aurea"}
+      {/* Label - top of phone */}
+      <div className="absolute -top-5 left-1/2 -translate-x-1/2 z-10">
+        {isAfter ? (
+          <motion.div 
+            className="px-4 py-1.5 rounded-full text-sm font-bold whitespace-nowrap text-white relative overflow-hidden shadow-md"
+            initial={{ scale: 1 }}
+            animate={{ scale: [1, 1.03, 1] }}
+            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+            style={{
+              background: 'linear-gradient(135deg, #8B5CF6 0%, #EC4899 50%, #F59E0B 100%)',
+              backgroundSize: '200% 200%',
+            }}
+          >
+            <motion.span
+              className="absolute inset-0"
+              style={{
+                background: 'linear-gradient(135deg, #8B5CF6 0%, #EC4899 50%, #F59E0B 100%)',
+                backgroundSize: '200% 200%',
+              }}
+              animate={{
+                backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+            />
+            <span className="relative z-10">After Aurea ✨</span>
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+              animate={{ x: ['-100%', '100%'] }}
+              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+            />
+          </motion.div>
+        ) : (
+          <div className="px-4 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap bg-gray-200 text-gray-600">
+            Before Aurea
+          </div>
+        )}
       </div>
 
       {/* Phone frame */}
       <div className="relative bg-gray-950 rounded-[48px] p-[3px] shadow-2xl shadow-black/40">
         <div className="bg-white rounded-[46px] overflow-hidden" style={{ height: 650 }}>
-          {/* Notch */}
-          <div className="bg-gray-950 h-8 flex items-center justify-center">
-            <div className="w-20 h-4 bg-gray-950 rounded-full" />
-          </div>
-
-          {/* Instagram header */}
-          <div className="bg-white px-4 pt-3 pb-2 border-b border-gray-100">
-            <div className="flex items-center justify-between">
-              <span className="text-xs text-gray-400">9:41</span>
-              <img 
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/960px-Instagram_logo_2022.svg.png" 
-                alt="Instagram" 
-                className="w-6 h-6 object-contain"
-              />
+          {/* Status bar with Dynamic Island */}
+          <div className="bg-white h-12 flex items-center justify-between px-6 pt-2">
+            {/* Left - Time */}
+            <span className="text-sm font-semibold text-gray-950 w-12">9:41</span>
+            
+            {/* Center - Dynamic Island */}
+            <div className="w-28 h-[34px] bg-gray-950 rounded-full flex items-center pl-3 gap-2">
+              <div className="w-3 h-3 rounded-full bg-gray-800 ring-1 ring-gray-700" />
+            </div>
+            
+            {/* Right - Status icons */}
+            <div className="flex items-center gap-1.5 w-12 justify-end">
+              {/* Signal bars */}
+              <svg width="18" height="12" viewBox="0 0 18 12" className="text-gray-950">
+                <rect x="0" y="8" width="3" height="4" rx="0.5" fill="currentColor"/>
+                <rect x="5" y="5" width="3" height="7" rx="0.5" fill="currentColor"/>
+                <rect x="10" y="2" width="3" height="10" rx="0.5" fill="currentColor"/>
+                <rect x="15" y="0" width="3" height="12" rx="0.5" fill="currentColor"/>
+              </svg>
+              {/* Battery */}
+              <svg width="25" height="12" viewBox="0 0 25 12" className="text-gray-950">
+                <rect x="0" y="1" width="21" height="10" rx="2" stroke="currentColor" strokeWidth="1" fill="none"/>
+                <rect x="2" y="3" width="17" height="6" rx="1" fill="currentColor"/>
+                <rect x="22" y="4" width="2" height="4" rx="0.5" fill="currentColor"/>
+              </svg>
             </div>
           </div>
+
+
 
           {/* Profile area */}
           <div className="px-4 pt-4">
@@ -190,15 +238,15 @@ function IPhoneMockup({ isAfter, triggered }: { isAfter: boolean; triggered: boo
             <div className="grid grid-cols-3 gap-0.5">
               {Array.from({ length: 9 }).map((_, i) => (
                 <div key={i} className="aspect-square rounded-sm overflow-hidden bg-gray-100">
-                  {isAfter ? (
-                    <img 
-                      src={`/images/feed/feed-${i + 1}.jpg`} 
-                      alt="" 
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-gray-100" />
-                  )}
+                  <img 
+                    src={`/images/feed/feed-${i + 1}.jpg`} 
+                    alt="" 
+                    className={`w-full h-full object-cover transition-all duration-500 ${
+                      isAfter 
+                        ? "grayscale-0 opacity-100 contrast-100" 
+                        : "grayscale opacity-50 contrast-75 brightness-90"
+                    }`}
+                  />
                 </div>
               ))}
             </div>
@@ -309,13 +357,26 @@ export default function BeforeAfter() {
             >
               <IPhoneMockup isAfter={showAfter} triggered={triggered} />
               
-              {/* Iridescent radial glow behind phone - optimized for Safari */}
-              <div 
-                className={`absolute inset-0 -z-20 transition-opacity duration-500 ${showAfter ? "opacity-100" : "opacity-0"}`}
-                style={{ willChange: 'opacity' }}
-              >
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[480px] h-[580px] iridescent-glow-optimized rounded-full" />
-              </div>
+              {/* Iridescent radial glow behind phone - animated pulse */}
+              <motion.div 
+                className={`absolute -z-10 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 ${showAfter ? "" : "opacity-0"}`}
+                initial={{ opacity: 0 }}
+                animate={showAfter ? { 
+                  opacity: [0.6, 1, 0.6],
+                } : { opacity: 0 }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                style={{ 
+                  width: '550px',
+                  height: '700px',
+                  background: 'radial-gradient(ellipse at center, rgba(180, 130, 255, 0.85) 0%, rgba(130, 180, 255, 0.65) 30%, rgba(255, 150, 200, 0.5) 55%, transparent 75%)',
+                  filter: 'blur(80px)',
+                  borderRadius: '50%',
+                }}
+              />
             </motion.div>
           </div>
         </motion.div>
