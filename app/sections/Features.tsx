@@ -345,9 +345,10 @@ function BentoPattern() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
-        className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-4 shadow-md border border-primary/20 flex flex-col justify-between"
+        className="relative bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex flex-col justify-between overflow-hidden"
       >
-        <span className="text-xs font-medium text-primary uppercase tracking-wide">Niches</span>
+        <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-full" />
+        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Niches</span>
         <div>
           <span className="text-2xl font-bold text-gray-900"><AnimatedCounter value={47} /></span>
           <p className="text-xs text-gray-500">industries covered</p>
@@ -359,12 +360,13 @@ function BentoPattern() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4 }}
-        className="bg-gradient-to-br from-violet-50 to-purple-50 rounded-2xl p-4 shadow-md border border-purple-100 flex flex-col justify-between"
+        className="relative bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex flex-col justify-between overflow-hidden"
       >
-        <span className="text-xs font-medium text-purple-600 uppercase tracking-wide">Accuracy</span>
+        <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-violet-100 to-transparent rounded-bl-full" />
+        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Accuracy</span>
         <div>
-          <span className="text-2xl font-bold text-purple-700"><AnimatedCounter value={94} suffix="%" /></span>
-          <p className="text-xs text-purple-500">hook detection</p>
+          <span className="text-2xl font-bold text-gray-900"><AnimatedCounter value={94} suffix="%" /></span>
+          <p className="text-xs text-gray-500">hook detection</p>
         </div>
       </motion.div>
 
@@ -423,14 +425,15 @@ function BentoContent() {
         </div>
       </div>
 
-      {/* Stats - updated colors */}
+      {/* Stats */}
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.2 }}
-        className="bg-gradient-to-br from-primary/5 to-primary/15 rounded-2xl p-4 shadow-sm border border-primary/20 flex flex-col justify-between"
+        className="relative bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col justify-between overflow-hidden"
       >
-        <span className="text-xs font-medium text-primary uppercase tracking-wide">Generated</span>
+        <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-full" />
+        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Generated</span>
         <div>
           <span className="text-2xl font-bold text-gray-900">30+</span>
           <p className="text-xs text-gray-500">posts/month</p>
@@ -441,12 +444,13 @@ function BentoContent() {
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.3 }}
-        className="bg-gradient-to-br from-violet-50 to-purple-100 rounded-2xl p-4 shadow-sm border border-purple-200 flex flex-col justify-between"
+        className="relative bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col justify-between overflow-hidden"
       >
-        <span className="text-xs font-medium text-purple-600 uppercase tracking-wide">Control</span>
+        <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-violet-100 to-transparent rounded-bl-full" />
+        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Control</span>
         <div>
-          <span className="text-2xl font-bold text-purple-700">100%</span>
-          <p className="text-xs text-purple-500">editable</p>
+          <span className="text-2xl font-bold text-gray-900">100%</span>
+          <p className="text-xs text-gray-500">editable</p>
         </div>
       </motion.div>
 
@@ -528,14 +532,15 @@ function BentoScheduling() {
         </div>
       </div>
 
-      {/* Stats - updated colors */}
+      {/* Stats */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="bg-gradient-to-br from-primary/5 to-primary/15 rounded-2xl p-4 shadow-md border border-primary/20 flex flex-col justify-between"
+        className="relative bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex flex-col justify-between overflow-hidden"
       >
-        <span className="text-xs font-medium text-primary uppercase tracking-wide">Platforms</span>
+        <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-full" />
+        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Platforms</span>
         <div>
           <span className="text-2xl font-bold text-gray-900">3</span>
           <p className="text-xs text-gray-500">simultaneous</p>
@@ -553,12 +558,13 @@ function BentoScheduling() {
           repeat: Infinity,
           ease: "easeInOut"
         }}
-        className="bg-gradient-to-br from-violet-50 to-purple-100 rounded-2xl p-4 shadow-md border border-purple-200 flex flex-col justify-between"
+        className="relative bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex flex-col justify-between overflow-hidden"
       >
-        <span className="text-xs font-medium text-purple-600 uppercase tracking-wide">Effort</span>
+        <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-violet-100 to-transparent rounded-bl-full" />
+        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Effort</span>
         <div>
-          <span className="text-2xl font-bold text-purple-700">Zero</span>
-          <p className="text-xs text-purple-500">manual work</p>
+          <span className="text-2xl font-bold text-gray-900">Zero</span>
+          <p className="text-xs text-gray-500">manual work</p>
         </div>
       </motion.div>
 
@@ -611,14 +617,15 @@ function BentoAnalytics() {
         </div>
       </div>
 
-      {/* Metric cards - updated colors */}
+      {/* Metric cards */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
-        className="bg-gradient-to-br from-primary/5 to-primary/15 rounded-2xl p-4 shadow-sm border border-primary/20 flex flex-col justify-between"
+        className="relative bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col justify-between overflow-hidden"
       >
-        <span className="text-xs font-medium text-primary uppercase tracking-wide">Engagement</span>
+        <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-full" />
+        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Engagement</span>
         <span className="text-2xl font-bold text-gray-900"><AnimatedCounter value={8} suffix=".7%" /></span>
       </motion.div>
 
@@ -626,10 +633,11 @@ function BentoAnalytics() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4 }}
-        className="bg-gradient-to-br from-violet-50 to-purple-100 rounded-2xl p-4 shadow-sm border border-purple-200 flex flex-col justify-between"
+        className="relative bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col justify-between overflow-hidden"
       >
-        <span className="text-xs font-medium text-purple-600 uppercase tracking-wide">Views/Day</span>
-        <span className="text-2xl font-bold text-purple-700">47K</span>
+        <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-violet-100 to-transparent rounded-bl-full" />
+        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Views/Day</span>
+        <span className="text-2xl font-bold text-gray-900">47K</span>
       </motion.div>
 
       {/* Self-improving badge */}
@@ -683,19 +691,21 @@ function BentoBrand() {
       </div>
 
       {/* Stats */}
-      <div className="bg-gradient-to-br from-primary/5 to-primary/15 rounded-2xl p-4 shadow-md border border-primary/20 flex flex-col justify-between">
-        <span className="text-xs font-medium text-primary uppercase tracking-wide">Setup</span>
+      <div className="relative bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex flex-col justify-between overflow-hidden">
+        <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-full" />
+        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Setup</span>
         <div>
           <span className="text-2xl font-bold text-gray-900">1×</span>
           <p className="text-xs text-gray-500">one time</p>
         </div>
       </div>
 
-      <div className="bg-gradient-to-br from-violet-50 to-purple-100 rounded-2xl p-4 shadow-md border border-purple-200 flex flex-col justify-between">
-        <span className="text-xs font-medium text-purple-600 uppercase tracking-wide">Result</span>
+      <div className="relative bg-white rounded-2xl p-4 shadow-md border border-gray-100 flex flex-col justify-between overflow-hidden">
+        <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-violet-100 to-transparent rounded-bl-full" />
+        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Result</span>
         <div>
-          <span className="text-2xl font-bold text-purple-700">∞</span>
-          <p className="text-xs text-purple-500">on-brand posts</p>
+          <span className="text-2xl font-bold text-gray-900">∞</span>
+          <p className="text-xs text-gray-500">on-brand posts</p>
         </div>
       </div>
 
@@ -743,14 +753,15 @@ function BentoCaption() {
         </div>
       </div>
 
-      {/* Stats - updated colors */}
+      {/* Stats */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="bg-gradient-to-br from-primary/5 to-primary/15 rounded-2xl p-4 shadow-sm border border-primary/20 flex flex-col justify-between"
+        className="relative bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col justify-between overflow-hidden"
       >
-        <span className="text-xs font-medium text-primary uppercase tracking-wide">Updated</span>
+        <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-full" />
+        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Updated</span>
         <div>
           <span className="text-2xl font-bold text-gray-900">Daily</span>
           <p className="text-xs text-gray-500">hashtags</p>
@@ -761,12 +772,13 @@ function BentoCaption() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
-        className="bg-gradient-to-br from-violet-50 to-purple-100 rounded-2xl p-4 shadow-sm border border-purple-200 flex flex-col justify-between"
+        className="relative bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col justify-between overflow-hidden"
       >
-        <span className="text-xs font-medium text-purple-600 uppercase tracking-wide">Platforms</span>
+        <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-violet-100 to-transparent rounded-bl-full" />
+        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Platforms</span>
         <div>
-          <span className="text-2xl font-bold text-purple-700">3×</span>
-          <p className="text-xs text-purple-500">optimised</p>
+          <span className="text-2xl font-bold text-gray-900">3×</span>
+          <p className="text-xs text-gray-500">optimised</p>
         </div>
       </motion.div>
 
@@ -813,20 +825,22 @@ function BentoVoice() {
         </div>
       </div>
 
-      {/* Stats - matching brand colors */}
-      <div className="bg-gradient-to-br from-primary/5 to-primary/15 rounded-2xl p-4 shadow-sm border border-primary/20 flex flex-col justify-between">
-        <span className="text-xs font-medium text-primary uppercase tracking-wide">Setup</span>
+      {/* Stats */}
+      <div className="relative bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col justify-between overflow-hidden">
+        <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-full" />
+        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Setup</span>
         <div>
           <span className="text-2xl font-bold text-gray-900">5min</span>
           <p className="text-xs text-gray-500">recording</p>
         </div>
       </div>
 
-      <div className="bg-gradient-to-br from-violet-50 to-purple-100 rounded-2xl p-4 shadow-sm border border-purple-200 flex flex-col justify-between">
-        <span className="text-xs font-medium text-purple-600 uppercase tracking-wide">Launch</span>
+      <div className="relative bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col justify-between overflow-hidden">
+        <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-violet-100 to-transparent rounded-bl-full" />
+        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Launch</span>
         <div>
-          <span className="text-2xl font-bold text-purple-700">2026</span>
-          <p className="text-xs text-purple-500">coming soon</p>
+          <span className="text-2xl font-bold text-gray-900">2026</span>
+          <p className="text-xs text-gray-500">coming soon</p>
         </div>
       </div>
 
