@@ -607,3 +607,13 @@ body {
   mask-image: radial-gradient(ellipse 50% 100% at center, black 0%, transparent 100%);
   -webkit-mask-image: radial-gradient(ellipse 50% 100% at center, black 0%, transparent 100%);
 }
+
+/* Integrations scroll animations */
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-100% / 3)); }
+}
+@keyframes scroll-right {
+  0% { transform: translateX(calc(-100% / 3)); }
+  100% { transform: translateX(0); }
+}
