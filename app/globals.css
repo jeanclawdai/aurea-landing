@@ -835,3 +835,29 @@ body {
   align-items: center;
   gap: 0.5rem;
 }
+
+/* Rotating glow behind light pills */
+.section-pill-glow {
+  position: absolute;
+  inset: -6px;
+  border-radius: 9999px;
+  background: conic-gradient(
+    from 0deg,
+    #6FA8FF,
+    #A8B8FF,
+    #D4A8FF,
+    #FFA8D4,
+    #FFD4A8,
+    #A8D4FF,
+    #6FA8FF
+  );
+  filter: blur(8px);
+  opacity: 0.35;
+  animation: pill-glow-rotate 4s linear infinite;
+  z-index: 0;
+}
+
+@keyframes pill-glow-rotate {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
