@@ -1,18 +1,13 @@
 import type { Metadata } from "next";
-import { Inter, Geist } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "./context/LanguageContext";
-import { cn } from "@/lib/utils";
-
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   weight: ["300", "400", "500", "600", "700", "800"],
 });
-
-
 
 export const metadata: Metadata = {
   title: "Aurea - AI Marketing Systems for Aesthetic Clinics",
@@ -26,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("scroll-smooth", "font-sans", geist.variable)}>
+    <html lang="en" className="scroll-smooth">
       <head>
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
