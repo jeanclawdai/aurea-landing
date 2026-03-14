@@ -791,7 +791,7 @@ function BentoVoice() {
         <div className="relative z-10">
           <div className="flex items-center gap-2 mb-4">
             <span className="text-sm font-semibold text-white">Voice Synthesis</span>
-            <span className="text-xs bg-amber-400/20 text-amber-400 px-2 py-1 rounded-full font-semibold">Coming Soon</span>
+            <span className="text-xs bg-white/10 text-white/70 px-2 py-1 rounded-full font-medium border border-white/20">Coming Soon</span>
           </div>
           
           {/* Waveform */}
@@ -813,7 +813,7 @@ function BentoVoice() {
         </div>
       </div>
 
-      {/* Stats */}
+      {/* Stats - matching brand colors */}
       <div className="bg-gradient-to-br from-primary/5 to-primary/15 rounded-2xl p-4 shadow-sm border border-primary/20 flex flex-col justify-between">
         <span className="text-xs font-medium text-primary uppercase tracking-wide">Setup</span>
         <div>
@@ -830,13 +830,13 @@ function BentoVoice() {
         </div>
       </div>
 
-      {/* Badge */}
+      {/* Badge - cleaner coming soon */}
       <div className="col-span-3 bg-gradient-to-r from-primary/5 to-violet-50 rounded-2xl p-4 shadow-sm border border-primary/20 flex items-center justify-between">
         <div>
           <p className="text-sm font-semibold text-gray-900">AI Video Generation</p>
           <p className="text-xs text-gray-500">Your face, your voice — zero filming required</p>
         </div>
-        <span className="text-xs bg-amber-100 text-amber-600 px-2 py-1 rounded-full font-semibold">Soon</span>
+        <span className="text-xs bg-gray-100 text-gray-500 px-2.5 py-1 rounded-full font-medium border border-gray-200">Soon</span>
       </div>
     </div>
   );
@@ -860,8 +860,10 @@ export default function Features() {
   const [active, setActive] = useState(features[0].id);
   const activeFeature = features.find(f => f.id === active)!;
 
-  // Icon refs for controlled animations
+  // Icon refs for controlled animations (pills)
   const iconRefs = useRef<Record<string, IconHandle | null>>({});
+  // Icon ref for the detail panel title
+  const titleIconRef = useRef<IconHandle | null>(null);
 
   // Animate active icon on change
   useEffect(() => {
@@ -874,6 +876,10 @@ export default function Features() {
         }
       }
     });
+    // Start title icon animation
+    if (titleIconRef.current) {
+      titleIconRef.current.startAnimation();
+    }
   }, [active]);
 
   return (
@@ -901,7 +907,7 @@ export default function Features() {
         </motion.div>
 
         {/* Filter pills */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
+        <div className="flex flex-wrap justify-center gap-3 mb-16">
           {features.map((f) => {
             const isActive = active === f.id;
             const IconComponent = iconComponents[f.id];
@@ -950,7 +956,7 @@ export default function Features() {
                 <span>{f.label}</span>
                 
                 {f.comingSoon && (
-                  <span className="text-[10px] bg-amber-100 text-amber-600 px-1.5 py-0.5 rounded-full font-semibold">Soon</span>
+                  <span className="text-[10px] bg-gray-100 text-gray-500 px-1.5 py-0.5 rounded-full font-medium border border-gray-200">Soon</span>
                 )}
               </button>
             );
@@ -971,11 +977,23 @@ export default function Features() {
             <div className="flex flex-col gap-6">
               <div>
                 {activeFeature.comingSoon && (
-                  <span className="inline-block text-xs bg-amber-100 text-amber-600 px-2.5 py-1 rounded-full font-semibold mb-3">Coming Soon</span>
+                  <span className="inline-block text-xs bg-gray-100 text-gray-500 px-2.5 py-1 rounded-full font-medium border border-gray-200 mb-3">Coming Soon</span>
                 )}
-                <h3 className="text-3xl sm:text-4xl font-bold text-gray-950 leading-tight mb-4">
-                  {activeFeature.headline}
-                </h3>
+                <div className="flex items-center gap-3 mb-4">
+                  {(() => {
+                    const TitleIcon = iconComponents[activeFeature.id];
+                    return TitleIcon ? (
+                      <TitleIcon
+                        ref={(el: IconHandle | null) => { titleIconRef.current = el; }}
+                        size={32}
+                        className="text-primary flex-shrink-0"
+                      />
+                    ) : null;
+                  })()}
+                  <h3 className="text-3xl sm:text-4xl font-bold text-gray-950 leading-tight">
+                    {activeFeature.headline}
+                  </h3>
+                </div>
                 <p className="text-gray-500 text-lg leading-relaxed">
                   {activeFeature.description}
                 </p>
