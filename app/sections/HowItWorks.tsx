@@ -50,7 +50,7 @@ export default function HowItWorks() {
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-          <span className="section-pill inline-flex items-center px-4 py-1.5 text-xs font-semibold tracking-widest uppercase mb-6">
+          <span className="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase mb-6 bg-white/80 backdrop-blur-sm border border-purple-200/50 text-gray-600 shadow-sm">
             {lang === "pt" ? "COMO FUNCIONA" : "HOW IT WORKS"}
           </span>
           <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-950 leading-tight">

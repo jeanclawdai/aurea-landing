@@ -67,10 +67,10 @@ export default function Hero() {
         className="max-w-4xl mx-auto"
       >
         {/* Eyebrow */}
-        <div className="section-pill-hero inline-flex items-center gap-2 px-4 py-2 text-sm font-medium mb-10">
-          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+        <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium mb-10 bg-white/80 backdrop-blur-sm border border-purple-200/50 text-gray-600 shadow-sm">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
           {lang === "pt" ? "Sistema de Inteligência de Padrões" : "Pattern Intelligence System"}
-        </div>
+        </span>
 
         {/* Main headline */}
         <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-950 leading-[1.05] tracking-tight mb-5">
