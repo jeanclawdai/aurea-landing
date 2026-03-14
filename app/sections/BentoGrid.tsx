@@ -67,7 +67,7 @@ function TweetCard({ tweet }: { tweet: Tweet }) {
 function Marquee({ tweets }: { tweets: Tweet[] }) {
   const doubled = [...tweets, ...tweets];
   return (
-    <div className="overflow-hidden py-4">
+    <div className="overflow-visible py-8">
       <motion.div
         className="flex"
         animate={{ x: ["0%", "-50%"] }}
@@ -109,7 +109,7 @@ export default function SocialProof() {
       </div>
 
       {/* Marquee — edge to edge */}
-      <div className="relative">
+      <div className="relative overflow-x-clip">
         <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-gray-950 to-transparent z-10" />
         <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-gray-950 to-transparent z-10" />
         <Marquee tweets={tweets} />

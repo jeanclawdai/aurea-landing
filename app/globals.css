@@ -559,44 +559,28 @@ body {
     0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
-/* Section title pill with rotating iridescent border */
+/* Section title pill with iridescent hover effect */
 .section-pill {
-  position: relative;
-  z-index: 0;
   background: #fff0f5;
   color: #9f7aea;
-  overflow: hidden;
   border-radius: 9999px;
+  border: 1px solid rgba(200, 180, 255, 0.4);
+  transition: all 0.3s ease;
 }
 
-.section-pill::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 150%;
-  height: 150%;
-  background: conic-gradient(
-    from 0deg,
-    #c3a8ff,
-    #a8d8ff,
-    #ffc8e8,
-    #a8f0e8,
-    #d8c8ff,
-    #c3a8ff
-  );
-  transform: translate(-50%, -50%);
-  animation: borderRotate 4s linear infinite;
-  z-index: -2;
+.section-pill:hover {
+  border-color: rgba(180, 160, 255, 0.6);
+  box-shadow: 
+    0 0 12px rgba(200, 160, 255, 0.3),
+    0 0 24px rgba(160, 200, 255, 0.2);
 }
 
-.section-pill::after {
-  content: '';
-  position: absolute;
-  inset: 1.5px;
-  background: #fff0f5;
+/* Hero pill - pastel purple */
+.section-pill-hero {
+  background: #f3e8ff;
+  color: #7c3aed;
   border-radius: 9999px;
-  z-index: -1;
+  border: 1px solid rgba(167, 139, 250, 0.4);
 }
 
 /* Iridescent tapered divider line */
