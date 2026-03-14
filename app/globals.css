@@ -598,3 +598,28 @@ body {
   border-radius: 9999px;
   z-index: -1;
 }
+
+/* Iridescent tapered divider line */
+@keyframes dividerShimmer {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+.iridescent-divider {
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #c3a8ff 15%,
+    #a8d8ff 30%,
+    #ffc8e8 50%,
+    #a8d8ff 70%,
+    #c3a8ff 85%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: dividerShimmer 4s ease-in-out infinite;
+  mask-image: radial-gradient(ellipse 50% 100% at center, black 0%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 50% 100% at center, black 0%, transparent 100%);
+}

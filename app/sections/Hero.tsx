@@ -126,6 +126,11 @@ export default function Hero() {
           ))}
         </div>
       </motion.div>
+      
+      {/* Iridescent divider */}
+      <div className="absolute bottom-0 left-0 right-0">
+        <div className="iridescent-divider mx-auto" style={{ maxWidth: '80%' }} />
+      </div>
     </section>
   );
 }
