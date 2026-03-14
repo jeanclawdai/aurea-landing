@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useCallback, useEffect } from "react";
+import { SectionPill } from "@/components/ui/section-pill";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useLang } from "../context/LanguageContext";
 // lucide-animated icons disabled - causing hydration issues
@@ -240,9 +241,7 @@ export default function BeforeAfter() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="section-pill inline-flex items-center px-4 py-1.5 text-xs font-semibold tracking-widest uppercase mb-6">
-            {lang === "pt" ? "RESULTADOS REAIS" : "REAL RESULTS"}
-          </span>
+          <SectionPill className="mb-6">{lang === "pt" ? "RESULTADOS REAIS" : "REAL RESULTS"}</SectionPill>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-950 leading-tight mb-3">
             {lang === "pt"
               ? <>O Efeito <span className="font-serif-italic font-normal">Aurea.</span></>

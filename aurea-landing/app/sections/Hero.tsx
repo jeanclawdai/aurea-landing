@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useEffect, useRef } from "react";
+import { SectionPill } from "@/components/ui/section-pill";
 import { useLang } from "../context/LanguageContext";
 import { AtomIcon, type AtomIconHandle } from "@/components/ui/atom-icon";
 
@@ -67,10 +68,10 @@ export default function Hero() {
         className="max-w-4xl mx-auto"
       >
         {/* Eyebrow */}
-        <div className="section-pill-hero inline-flex items-center gap-2 px-4 py-2 text-sm font-medium mb-10">
-          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+        <SectionPill className="mb-10">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse flex-shrink-0" />
           {lang === "pt" ? "Sistema de Inteligência de Padrões" : "Pattern Intelligence System"}
-        </div>
+        </SectionPill>
 
         {/* Main headline */}
         <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-950 leading-[1.05] tracking-tight mb-5">

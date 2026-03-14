@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { SectionPill } from "@/components/ui/section-pill";
 import { useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useLang } from "../context/LanguageContext";
@@ -118,9 +119,7 @@ export default function Features() {
           viewport={{ once: true }}
           className="text-center mb-8"
         >
-          <span className="section-pill inline-flex items-center px-4 py-1.5 text-xs font-semibold tracking-widest uppercase mb-6">
-            {lang === "pt" ? "O QUE FAZEMOS" : "WHAT WE DO"}
-          </span>
+          <SectionPill className="mb-6">{lang === "pt" ? "O QUE FAZEMOS" : "WHAT WE DO"}</SectionPill>
           <h2 className="text-5xl sm:text-6xl font-bold text-gray-950 leading-tight mb-5">
             Viral <span className="font-serif-italic font-normal">Science.</span>
             <br />

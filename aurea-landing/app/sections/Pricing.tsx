@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import { useLang } from "../context/LanguageContext";
+import { SectionPill } from "@/components/ui/section-pill";
 
 const plans = [
   {
@@ -73,9 +74,7 @@ export default function Pricing() {
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-          <span className="section-pill inline-flex items-center px-4 py-1.5 text-xs font-semibold tracking-widest uppercase mb-6">
-            {lang === "pt" ? "PREÇOS" : "PRICING"}
-          </span>
+          <SectionPill className="mb-6">{lang === "pt" ? "PREÇOS" : "PRICING"}</SectionPill>
           <h2 className="text-6xl sm:text-7xl font-bold text-gray-950 leading-tight mb-6">
             {lang === "pt"
               ? <>Simples, <span className="font-serif-italic font-normal">sem surpresas.</span></>

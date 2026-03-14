@@ -2,6 +2,8 @@
 
 import React from "react";
 import { useLang } from "../context/LanguageContext";
+import { SectionPill } from "@/components/ui/section-pill";
+import { AnimatedArrowRight } from "@/components/ui/animated-arrow";
 
 const comparisonDataEn = [
   {
@@ -93,34 +95,11 @@ const comparisonDataPt = [
   },
 ];
 
-function CheckIcon() {
-  return (
-    <svg className="w-5 h-5 text-emerald-500 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-    </svg>
-  );
-}
-
 function CrossIcon() {
   return (
     <svg className="w-5 h-5 text-red-400 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
       <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
     </svg>
-  );
-}
-
-// Simple Aurea logo/icon
-function AureaLogo() {
-  return (
-    <div className="flex flex-col items-center gap-2">
-      {/* Star/sparkle icon */}
-      <svg className="w-8 h-8 text-gray-800" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M12 2L12 6M12 18L12 22M2 12L6 12M18 12L22 12M4.93 4.93L7.76 7.76M16.24 16.24L19.07 19.07M4.93 19.07L7.76 16.24M16.24 7.76L19.07 4.93" strokeLinecap="round" />
-      </svg>
-      <span className="text-xl font-bold text-gray-900">
-        Aurea Flow
-      </span>
-    </div>
   );
 }
 
@@ -134,9 +113,7 @@ export default function Comparison() {
         {/* Section header */}
         <div className="text-center mb-14">
           {/* Section pill */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gray-200 bg-gray-50 text-gray-500 text-sm font-medium mb-6">
-            {lang === "pt" ? "Comparação" : "Comparison"}
-          </div>
+          <SectionPill className="mb-6">{lang === "pt" ? "COMPARAÇÃO" : "COMPARISON"}</SectionPill>
 
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-950 leading-tight mb-5">
             {lang === "pt" ? "Porquê " : "Why "}
@@ -152,8 +129,10 @@ export default function Comparison() {
         {/* Column headers - outside the table */}
         <div className="grid grid-cols-4 mb-6 px-2">
           <div /> {/* Empty for feature column */}
-          <div className="flex justify-center">
-            <AureaLogo />
+          <div className="flex justify-center items-end">
+            <span className="text-xl font-bold text-gray-900">
+              Aurea Flow
+            </span>
           </div>
           <div className="flex justify-center items-end">
             <span className="text-lg font-semibold text-gray-700">
@@ -169,62 +148,52 @@ export default function Comparison() {
 
         {/* Comparison table */}
         <div 
-          className="bg-white rounded-3xl overflow-hidden border border-gray-200"
+          className="bg-white rounded-3xl overflow-hidden border border-gray-200 p-3"
           style={{
             boxShadow: "0 4px 40px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04)"
           }}
         >
-          <div className="grid grid-cols-4">
-            {/* Feature column - full gray background */}
-            <div className="bg-gray-50 rounded-l-3xl">
-              {comparisonData.map((row, index) => (
-                <div 
-                  key={row.feature}
-                  className={`p-5 ${index !== comparisonData.length - 1 ? "border-b border-gray-100" : ""}`}
-                >
+          <div className="grid grid-cols-4 relative">
+            {/* Gray background for first column */}
+            <div className="absolute top-0 bottom-0 left-0 w-1/4 bg-gray-100 rounded-2xl" />
+            
+            {/* Gradient background for Aurea column */}
+            <div 
+              className="absolute top-0 bottom-0 rounded-2xl"
+              style={{
+                left: "25%",
+                width: "25%",
+                background: "linear-gradient(180deg, rgba(168, 130, 255, 0) 0%, rgba(200, 150, 255, 0.06) 15%, rgba(180, 140, 255, 0.05) 50%, rgba(220, 170, 255, 0.06) 85%, rgba(168, 130, 255, 0) 100%)",
+              }}
+            />
+            
+            {/* Table rows */}
+            {comparisonData.map((row, index) => (
+              <React.Fragment key={row.feature}>
+                {/* Feature cell */}
+                <div className={`relative z-10 px-5 py-5 ${index !== comparisonData.length - 1 ? "border-b border-gray-200/50" : ""}`}>
                   <span className="font-medium text-gray-900">{row.feature}</span>
                 </div>
-              ))}
-            </div>
 
-            {/* Aurea column */}
-            <div className="border-l border-gray-100">
-              {comparisonData.map((row, index) => (
-                <div 
-                  key={row.feature}
-                  className={`p-5 flex items-start gap-2 ${index !== comparisonData.length - 1 ? "border-b border-gray-100" : ""}`}
-                >
-                  <CheckIcon />
-                  <span className="text-gray-700 text-sm">{row.aurea}</span>
+                {/* Aurea cell */}
+                <div className={`relative z-10 px-5 py-5 flex items-center gap-3 ${index !== comparisonData.length - 1 ? "border-b border-gray-100" : ""}`}>
+                  <AnimatedArrowRight className="w-5 h-5" />
+                  <span className="text-gray-700 text-sm font-medium">{row.aurea}</span>
                 </div>
-              ))}
-            </div>
 
-            {/* Solo column */}
-            <div className="border-l border-gray-100">
-              {comparisonData.map((row, index) => (
-                <div 
-                  key={row.feature}
-                  className={`p-5 flex items-start gap-2 ${index !== comparisonData.length - 1 ? "border-b border-gray-100" : ""}`}
-                >
+                {/* Solo cell */}
+                <div className={`px-5 py-5 flex items-center gap-3 border-l border-gray-100 ${index !== comparisonData.length - 1 ? "border-b border-gray-100" : ""}`}>
                   <CrossIcon />
                   <span className="text-gray-500 text-sm">{row.solo}</span>
                 </div>
-              ))}
-            </div>
 
-            {/* Agency column */}
-            <div className="border-l border-gray-100">
-              {comparisonData.map((row, index) => (
-                <div 
-                  key={row.feature}
-                  className={`p-5 flex items-start gap-2 ${index !== comparisonData.length - 1 ? "border-b border-gray-100" : ""}`}
-                >
+                {/* Agency cell */}
+                <div className={`px-5 py-5 flex items-center gap-3 border-l border-gray-100 ${index !== comparisonData.length - 1 ? "border-b border-gray-100" : ""}`}>
                   <CrossIcon />
                   <span className="text-gray-500 text-sm">{row.agency}</span>
                 </div>
-              ))}
-            </div>
+              </React.Fragment>
+            ))}
           </div>
         </div>
       </div>
