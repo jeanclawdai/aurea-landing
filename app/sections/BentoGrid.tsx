@@ -33,29 +33,30 @@ type Tweet = typeof tweetsEn[0];
 function TweetCard({ tweet }: { tweet: Tweet }) {
   return (
     <motion.div
-      whileHover={{ y: -4, boxShadow: "0 20px 40px rgba(0,0,0,0.10)" }}
+      whileHover={{ y: -4 }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      className="flex-shrink-0 w-[300px] bg-white rounded-2xl border border-gray-100 p-5 mx-3 shadow-sm cursor-pointer"
+      className="flex-shrink-0 w-[280px] bg-white rounded-2xl p-5 mx-3 shadow-lg shadow-black/5 cursor-pointer iridescent-hover iridescent-glow-hover"
+      style={{ borderRadius: 20 }}
     >
-      <div className="flex items-start justify-between mb-4">
-        <div className="flex items-center gap-3">
-          <div className={`w-9 h-9 rounded-full ${tweet.avatarColor} flex items-center justify-center text-white text-xs font-bold flex-shrink-0`}>
+      <div className="flex items-start justify-between mb-3">
+        <div className="flex items-center gap-2.5">
+          <div className={`w-8 h-8 rounded-full ${tweet.avatarColor} flex items-center justify-center text-white text-[10px] font-bold flex-shrink-0`}>
             {tweet.avatar}
           </div>
           <div>
-            <div className="text-gray-900 font-semibold text-sm leading-tight">{tweet.name}</div>
-            <div className="text-gray-400 text-xs">{tweet.handle}</div>
+            <div className="text-gray-900 font-semibold text-xs leading-tight">{tweet.name}</div>
+            <div className="text-gray-400 text-[10px]">{tweet.handle}</div>
           </div>
         </div>
         <XIcon />
       </div>
-      <p className="text-gray-700 text-sm leading-relaxed mb-4">{tweet.text}</p>
-      <div className="inline-flex items-center px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-100 text-xs font-semibold text-emerald-600 mb-4">
+      <p className="text-gray-700 text-xs leading-relaxed mb-3">{tweet.text}</p>
+      <div className="inline-flex items-center px-3 py-1.5 rounded-full text-[10px] font-bold text-gray-700 mb-3 iridescent-pill">
         {tweet.metric}
       </div>
-      <div className="flex items-center justify-between border-t border-gray-50 pt-3">
-        <span className="text-gray-300 text-xs">{tweet.date}</span>
-        <div className="flex items-center gap-3 text-gray-300 text-xs">
+      <div className="flex items-center justify-between border-t border-gray-100 pt-2.5">
+        <span className="text-gray-300 text-[10px]">{tweet.date}</span>
+        <div className="flex items-center gap-3 text-gray-300 text-[10px]">
           <span className="flex items-center gap-1 hover:text-rose-400 transition-colors cursor-pointer"><HeartIcon />{tweet.likes}</span>
         </div>
       </div>
@@ -66,11 +67,11 @@ function TweetCard({ tweet }: { tweet: Tweet }) {
 function Marquee({ tweets }: { tweets: Tweet[] }) {
   const doubled = [...tweets, ...tweets];
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden py-4">
       <motion.div
         className="flex"
         animate={{ x: ["0%", "-50%"] }}
-        transition={{ duration: 30, ease: "linear", repeat: Infinity }}
+        transition={{ duration: 35, ease: "linear", repeat: Infinity }}
       >
         {doubled.map((tweet, i) => (
           <TweetCard key={i} tweet={tweet} />
@@ -96,7 +97,7 @@ export default function SocialProof() {
           <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/10 text-gray-400 border-0 text-xs font-semibold tracking-widest uppercase mb-6">
             {lang === "pt" ? "PROVA SOCIAL" : "SOCIAL PROOF"}
           </span>
-          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-5">
             {lang === "pt"
               ? <>Outros <span className="font-serif-italic font-normal">adoraram.</span><br />E você também vai.</>
               : <>Others <span className="font-serif-italic font-normal">loved</span> it.<br />You will too.</>}

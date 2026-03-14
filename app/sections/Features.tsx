@@ -102,14 +102,14 @@ export default function Features() {
   const scroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
       scrollRef.current.scrollBy({
-        left: direction === "left" ? -420 : 420,
+        left: direction === "left" ? -370 : 370,
         behavior: "smooth",
       });
     }
   };
 
   return (
-    <section id="features" className="py-32 px-6 overflow-hidden bg-gray-50">
+    <section id="features" className="py-24 px-6 overflow-hidden bg-gray-50">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -121,7 +121,7 @@ export default function Features() {
           <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-gray-100 text-gray-500 text-xs font-semibold tracking-widest uppercase mb-6">
             {lang === "pt" ? "O QUE FAZEMOS" : "WHAT WE DO"}
           </span>
-          <h2 className="text-6xl sm:text-7xl font-bold text-gray-950 leading-tight mb-6">
+          <h2 className="text-5xl sm:text-6xl font-bold text-gray-950 leading-tight mb-5">
             Viral <span className="font-serif-italic font-normal">Science.</span>
             <br />
             Not Generic AI.
@@ -152,11 +152,13 @@ export default function Features() {
         {/* Horizontal scroll cards */}
         <div
           ref={scrollRef}
-          className="flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory -mx-6 px-6 touch-pan-y"
+          className="flex gap-5 pt-4 pb-6 -mx-6 px-6"
           style={{ 
+            overflowX: "auto",
+            overflowY: "visible",
             scrollbarWidth: "none", 
             msOverflowStyle: "none",
-            overscrollBehaviorX: "contain",
+            WebkitOverflowScrolling: "touch",
           }}
         >
           {features.map((feature, index) => (
@@ -166,7 +168,7 @@ export default function Features() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.08 }}
-              className="flex-shrink-0 w-[380px] snap-start"
+              className="flex-shrink-0 w-[340px] snap-start"
             >
               <motion.div
                 whileHover={{ y: -6 }}
@@ -174,19 +176,19 @@ export default function Features() {
                 className="group h-full bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-lg shadow-gray-900/8 cursor-pointer"
               >
                 {/* Image */}
-                <div className={`relative h-[220px] rounded-2xl overflow-hidden m-3 ${gradients[feature.id - 1] || gradients[0]}`}>
+                <div className={`relative h-[190px] rounded-xl overflow-hidden m-2.5 ${gradients[feature.id - 1] || gradients[0]}`}>
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-5xl opacity-40">{featureIcons[feature.id - 1] || '✦'}</span>
+                    <span className="text-4xl opacity-40">{featureIcons[feature.id - 1] || '✦'}</span>
                   </div>
-                  <span className="absolute top-4 left-4 text-6xl font-black text-white/20 leading-none">0{feature.id}</span>
+                  <span className="absolute top-3 left-3 text-5xl font-black text-white/20 leading-none">0{feature.id}</span>
                 </div>
 
                 {/* Content */}
-                <div className="p-7 pt-4">
-                  <h3 className="text-xl font-bold text-gray-950 mb-2 hover:text-gray-600 transition-colors">
+                <div className="p-5 pt-3">
+                  <h3 className="text-lg font-bold text-gray-950 mb-1.5 hover:text-gray-600 transition-colors">
                     {feature.title}
                   </h3>
-                  <p className="text-gray-500 text-base leading-relaxed">
+                  <p className="text-gray-500 text-sm leading-relaxed">
                     {feature.description}
                   </p>
                 </div>

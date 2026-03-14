@@ -67,38 +67,38 @@ function IPhoneMockup({ isAfter, triggered }: { isAfter: boolean; triggered: boo
   const target = isAfter ? afterProfile : beforeProfile;
 
   return (
-    <div className="relative w-[380px] mx-auto">
+    <div className="relative w-[340px] mx-auto">
       {/* Floating notification icons - only on After state */}
       {isAfter && (
         <>
           <motion.div 
-            className="absolute top-16 -left-20 z-20"
+            className="absolute top-14 -left-16 z-20"
             initial={{ opacity: 0, y: 40, scale: 0.6 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ delay: 0.3, duration: 0.6, type: "spring", stiffness: 200, damping: 15 }}
           >
             <div className="float-card-1">
-              <LikeNotification count="128" className="w-20 h-16" />
+              <LikeNotification count="128" className="w-16 h-12" />
             </div>
           </motion.div>
           <motion.div 
-            className="absolute top-44 -right-20 z-20"
+            className="absolute top-40 -right-16 z-20"
             initial={{ opacity: 0, y: 40, scale: 0.6 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ delay: 0.5, duration: 0.6, type: "spring", stiffness: 200, damping: 15 }}
           >
             <div className="float-card-2">
-              <LikeNotification count="47" className="w-18 h-14" />
+              <LikeNotification count="47" className="w-14 h-11" />
             </div>
           </motion.div>
           <motion.div 
-            className="absolute bottom-44 -left-16 z-20"
+            className="absolute bottom-40 -left-12 z-20"
             initial={{ opacity: 0, y: 40, scale: 0.6 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ delay: 0.7, duration: 0.6, type: "spring", stiffness: 200, damping: 15 }}
           >
             <div className="float-card-3">
-              <LikeNotification count="89" className="w-16 h-12" />
+              <LikeNotification count="89" className="w-12 h-10" />
             </div>
           </motion.div>
         </>
@@ -110,8 +110,8 @@ function IPhoneMockup({ isAfter, triggered }: { isAfter: boolean; triggered: boo
       </div>
 
       {/* Phone frame */}
-      <div className="relative bg-gray-950 rounded-[52px] p-[3px] shadow-2xl shadow-black/40">
-        <div className="bg-white rounded-[50px] overflow-hidden" style={{ height: 720 }}>
+      <div className="relative bg-gray-950 rounded-[48px] p-[3px] shadow-2xl shadow-black/40">
+        <div className="bg-white rounded-[46px] overflow-hidden" style={{ height: 650 }}>
           {/* Notch */}
           <div className="bg-gray-950 h-8 flex items-center justify-center">
             <div className="w-20 h-4 bg-gray-950 rounded-full" />
@@ -231,7 +231,7 @@ export default function BeforeAfter() {
   }, []);
 
   return (
-    <section ref={containerRef} className="py-24 px-6 bg-white overflow-hidden">
+    <section ref={containerRef} className="py-20 px-6 bg-white overflow-hidden">
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <motion.div
@@ -243,7 +243,7 @@ export default function BeforeAfter() {
           <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-gray-100 text-gray-500 text-xs font-semibold tracking-widest uppercase mb-6">
             {lang === "pt" ? "RESULTADOS REAIS" : "REAL RESULTS"}
           </span>
-          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-950 leading-tight mb-4">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-950 leading-tight mb-3">
             {lang === "pt"
               ? <>O Efeito <span className="font-serif-italic font-normal">Aurea.</span></>
               : <>The Aurea <span className="font-serif-italic font-normal">Effect.</span></>}
@@ -275,10 +275,10 @@ export default function BeforeAfter() {
           <div className="relative">
             {/* Floating stat cards — appear on After */}
             {[
-              { value: "+2,200%", label: "Growth", icon: "🚀", x: "-left-36 lg:-left-52", y: "top-12", rotate: -4, floatClass: "float-card-1" },
-              { value: "47.2K", label: "Views/day", icon: "👁️", x: "-left-32 lg:-left-48", y: "bottom-20", rotate: 3, floatClass: "float-card-2" },
-              { value: "8.7%", label: "Engagement", icon: "💎", x: "-right-36 lg:-right-52", y: "top-16", rotate: 4, floatClass: "float-card-3" },
-              { value: "+184", label: "Posts/mo", icon: "📸", x: "-right-32 lg:-right-48", y: "bottom-24", rotate: -3, floatClass: "float-card-4" },
+              { value: "+2,200%", label: "Growth", icon: "🚀", x: "-left-28 lg:-left-44", y: "top-10", rotate: -4, floatClass: "float-card-1" },
+              { value: "47.2K", label: "Views/day", icon: "👁️", x: "-left-24 lg:-left-40", y: "bottom-16", rotate: 3, floatClass: "float-card-2" },
+              { value: "8.7%", label: "Engagement", icon: "💎", x: "-right-28 lg:-right-44", y: "top-14", rotate: 4, floatClass: "float-card-3" },
+              { value: "+184", label: "Posts/mo", icon: "📸", x: "-right-24 lg:-right-40", y: "bottom-20", rotate: -3, floatClass: "float-card-4" },
             ].map((card, i) => (
               <motion.div
                 key={i}
@@ -292,10 +292,10 @@ export default function BeforeAfter() {
                 }}
                 transition={{ delay: showAfter ? 0.1 + i * 0.1 : 0, duration: 0.5, ease: [0.22,1,0.36,1] }}
               >
-                <div className="glass-stat-card rounded-2xl px-5 py-4 cursor-pointer group">
-                  <div className="text-2xl mb-1">{card.icon}</div>
-                  <div className="text-2xl font-bold text-gray-900">{card.value}</div>
-                  <div className="text-xs text-gray-500 font-medium uppercase tracking-wide">{card.label}</div>
+                <div className="glass-stat-card rounded-xl px-4 py-3 cursor-pointer group">
+                  <div className="text-xl mb-0.5">{card.icon}</div>
+                  <div className="text-xl font-bold text-gray-900">{card.value}</div>
+                  <div className="text-[10px] text-gray-500 font-medium uppercase tracking-wide">{card.label}</div>
                 </div>
               </motion.div>
             ))}
@@ -315,7 +315,7 @@ export default function BeforeAfter() {
                 className={`absolute inset-0 -z-20 transition-opacity duration-500 ${showAfter ? "opacity-100" : "opacity-0"}`}
                 style={{ willChange: 'opacity' }}
               >
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[650px] iridescent-glow-optimized rounded-full" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[480px] h-[580px] iridescent-glow-optimized rounded-full" />
               </div>
             </motion.div>
           </div>
