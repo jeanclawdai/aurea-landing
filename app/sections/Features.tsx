@@ -5,16 +5,16 @@ import { SectionPill } from "@/components/ui/section-pill";
 import { useState, useRef, useEffect } from "react";
 import { useLang } from "../context/LanguageContext";
 import { Check, Instagram, Youtube } from "lucide-react";
-import Image from "next/image";
+
 
 // Animated icons
-import { BrainIcon, type BrainIconHandle } from "@/components/ui/brain";
-import { SparklesIcon, type SparklesIconHandle } from "@/components/ui/sparkles";
-import { CalendarDaysIcon, type CalendarDaysIconHandle } from "@/components/ui/calendar-days";
-import { ChartScatterIcon, type ChartScatterIconHandle } from "@/components/ui/chart-scatter";
-import { FrameIcon, type FrameIconHandle } from "@/components/ui/frame";
-import { ScanTextIcon, type ScanTextIconHandle } from "@/components/ui/scan-text";
-import { ClapIcon, type ClapIconHandle } from "@/components/ui/clap";
+import { BrainIcon } from "@/components/ui/brain";
+import { SparklesIcon } from "@/components/ui/sparkles";
+import { CalendarDaysIcon } from "@/components/ui/calendar-days";
+import { ChartScatterIcon } from "@/components/ui/chart-scatter";
+import { FrameIcon } from "@/components/ui/frame";
+import { ScanTextIcon } from "@/components/ui/scan-text";
+import { ClapIcon } from "@/components/ui/clap";
 
 // ─── Feature definitions ────────────────────────────────────────────────────
 
