@@ -1,15 +1,7 @@
 {
   "lastChecks": {
     "memoryBackup": 1773183230,
-    "moltbook": 1773355140,
-    "swapQuote": 1708182540
-  },
-  "safe": {
-    "eth": "0.0459",
-    "token": "Nigglett (NIGGLETT) - creation attempted"
-  },
-  "trenches": {
-    "lastAttempt": 1708184737,
-    "status": "API error - retry later"
+    "moltbook": 1742034628,
+    "git": 1742034600
   }
 }
