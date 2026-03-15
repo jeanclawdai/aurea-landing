@@ -13,13 +13,27 @@ const plans = [
     price: "$299",
     pricePeriod: "/month",
     pricePeriodPt: "/mês",
-    desc: "For solo practitioners ready to automate social media.",
-    descPt: "Para clínicos individuais prontos para automatizar.",
+    desc: "For solo practitioners getting started.",
+    descPt: "Para clínicos individuais a começar.",
     popular: false,
-    needs: ["Brand guidelines", "1 voice recording (5 min)", "Instagram/TikTok access"],
-    needsPt: ["Guia de marca", "1 gravação de voz (5 min)", "Acesso Instagram/TikTok"],
-    gets: ["20 AI videos/month", "Voice cloning", "Auto-editing + subtitles", "Smart scheduling", "Basic analytics"],
-    getsPt: ["20 vídeos IA/mês", "Clonagem de voz", "Edição automática + legendas", "Publicação inteligente", "Analytics básico"],
+    gets: [
+      "20 AI posts/month",
+      "Pattern intelligence engine",
+      "Canva integration",
+      "1 platform (IG or TikTok)",
+      "Smart scheduling",
+      "Basic analytics dashboard",
+      "Brand kit setup",
+    ],
+    getsPt: [
+      "20 posts IA/mês",
+      "Motor de inteligência de padrões",
+      "Integração Canva",
+      "1 plataforma (IG ou TikTok)",
+      "Agendamento inteligente",
+      "Dashboard analytics básico",
+      "Configuração brand kit",
+    ],
     cta: "Start Free Trial",
     ctaPt: "Começar Gratuitamente",
   },
@@ -31,33 +45,67 @@ const plans = [
     price: "$599",
     pricePeriod: "/month",
     pricePeriodPt: "/mês",
-    desc: "For clinics ready to scale with unlimited content.",
-    descPt: "Para clínicas prontas para crescer com conteúdo ilimitado.",
+    desc: "For clinics ready to scale.",
+    descPt: "Para clínicas prontas para crescer.",
     popular: true,
-    needs: ["Brand guidelines", "1–3 voice recordings", "All platform access", "Monthly strategy call"],
-    needsPt: ["Guia de marca", "1–3 gravações de voz", "Acesso a todas as plataformas", "Reunião mensal de estratégia"],
-    gets: ["Unlimited AI videos", "Advanced voice cloning", "All platforms (IG, TikTok, YT)", "AI content calendar", "Priority support", "Performance insights"],
-    getsPt: ["Vídeos IA ilimitados", "Clonagem de voz avançada", "Todas as plataformas (IG, TikTok, YT)", "Calendário IA", "Suporte prioritário", "Análise de desempenho"],
+    gets: [
+      "Unlimited AI posts",
+      "Pattern intelligence engine",
+      "Canva integration",
+      "All platforms (IG, TikTok, YouTube)",
+      "AI content calendar",
+      "Advanced analytics & insights",
+      "Daily trending hashtags",
+      "Caption voice matching",
+      "Priority support",
+    ],
+    getsPt: [
+      "Posts IA ilimitados",
+      "Motor de inteligência de padrões",
+      "Integração Canva",
+      "Todas plataformas (IG, TikTok, YouTube)",
+      "Calendário de conteúdo IA",
+      "Analytics & insights avançados",
+      "Hashtags trending diários",
+      "Legendas na tua voz",
+      "Suporte prioritário",
+    ],
     cta: "Start Free Trial",
     ctaPt: "Começar Gratuitamente",
   },
   {
     name: "Studio",
     namePt: "Studio",
-    badge: "Enterprise",
-    badgePt: "Empresa",
-    price: "Custom",
-    pricePeriod: "",
-    pricePeriodPt: "",
-    desc: "For multi-location aesthetic groups.",
-    descPt: "Para grupos com múltiplas clínicas.",
+    badge: "Coming Soon",
+    badgePt: "Em Breve",
+    price: "$999",
+    pricePeriod: "/month",
+    pricePeriodPt: "/mês",
+    desc: "Full AI video with your voice & face.",
+    descPt: "Vídeo IA completo com a tua voz e cara.",
     popular: false,
-    needs: ["Multiple locations", "Team onboarding", "Custom AI training brief"],
-    needsPt: ["Múltiplas localizações", "Formação da equipa", "Brief de treino IA personalizado"],
-    gets: ["Everything in Growth", "Multi-location management", "White-label options", "API access", "Dedicated account manager", "SLA guarantee"],
-    getsPt: ["Tudo do Growth", "Gestão multi-localização", "White-label", "Acesso API", "Gestor de conta dedicado", "Garantia SLA"],
-    cta: "Contact Sales",
-    ctaPt: "Falar com Vendas",
+    gets: [
+      "Everything in Growth",
+      "Voice cloning (5-min setup)",
+      "AI talking-head videos",
+      "Reels & TikToks with your likeness",
+      "Multi-location support",
+      "Dedicated account manager",
+      "Custom AI training",
+      "API access",
+    ],
+    getsPt: [
+      "Tudo do Growth",
+      "Clonagem de voz (setup 5-min)",
+      "Vídeos talking-head IA",
+      "Reels & TikToks com a tua imagem",
+      "Suporte multi-localização",
+      "Gestor de conta dedicado",
+      "Treino IA personalizado",
+      "Acesso API",
+    ],
+    cta: "Join Waitlist",
+    ctaPt: "Entrar na Lista",
   },
 ];
 
@@ -136,36 +184,16 @@ export default function Pricing() {
                 {lang === "pt" ? plan.ctaPt : plan.cta}
               </motion.button>
 
-              {/* Two-column breakdown */}
+              {/* What you get */}
               <div className={`border-t pt-8 ${plan.popular ? "border-white/10" : "border-gray-200"}`}>
-                <div className="grid grid-cols-2 gap-6">
-                  <div>
-                    <div className={`text-xs font-semibold uppercase tracking-wider mb-4 ${plan.popular ? "text-gray-500" : "text-gray-400"}`}>
-                      {lang === "pt" ? "Precisamos de" : "What we need"}
-                    </div>
-                    <ul className="space-y-2">
-                      {(lang === "pt" ? plan.needsPt : plan.needs).map((item) => (
-                        <li key={item} className={`text-xs flex items-start gap-2 ${plan.popular ? "text-gray-400" : "text-gray-500"}`}>
-                          <span className="mt-0.5 opacity-40">→</span>
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <div className={`text-xs font-semibold uppercase tracking-wider mb-4 ${plan.popular ? "text-gray-500" : "text-gray-400"}`}>
-                      {lang === "pt" ? "O que recebes" : "What you get"}
-                    </div>
-                    <ul className="space-y-2">
-                      {(lang === "pt" ? plan.getsPt : plan.gets).map((item) => (
-                        <li key={item} className={`text-xs flex items-start gap-2 ${plan.popular ? "text-gray-300" : "text-gray-600"}`}>
-                          <Check size={12} className={`mt-0.5 flex-shrink-0 ${plan.popular ? "text-gray-500" : "text-gray-400"}`} />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
+                <ul className="space-y-3">
+                  {(lang === "pt" ? plan.getsPt : plan.gets).map((item) => (
+                    <li key={item} className={`text-sm flex items-start gap-3 ${plan.popular ? "text-gray-300" : "text-gray-600"}`}>
+                      <Check size={16} className={`mt-0.5 flex-shrink-0 ${plan.popular ? "text-white" : "text-gray-900"}`} />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </motion.div>
           ))}
