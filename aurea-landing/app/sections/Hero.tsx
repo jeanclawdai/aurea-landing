@@ -15,7 +15,17 @@ const HERO_VIDEO = {
 export default function Hero() {
   const { lang } = useLang();
   const atomRef = useRef<AtomIconHandle>(null);
+  const mobileVideoRef = useRef<HTMLVideoElement>(null);
 
+  // Force autoplay on mobile (iOS workaround)
+  useEffect(() => {
+    const video = mobileVideoRef.current;
+    if (video) {
+      video.play().catch(() => {
+        // Autoplay blocked, user interaction needed
+      });
+    }
+  }, []);
 
   // Auto-animate atom icon
   useEffect(() => {
@@ -44,10 +54,12 @@ export default function Hero() {
       </video>
       {/* Video background - mobile */}
       <video
+        ref={mobileVideoRef}
         autoPlay
         loop
         muted
         playsInline
+        preload="auto"
         className={`absolute inset-0 w-full h-full object-cover -z-10 sm:hidden ${HERO_VIDEO.opacity}`}
       >
         <source src={HERO_VIDEO.mobile} type="video/mp4" />
