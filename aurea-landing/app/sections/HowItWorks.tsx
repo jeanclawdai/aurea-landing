@@ -168,7 +168,7 @@ export default function HowItWorks() {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 20 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
-                className="relative bg-white rounded-3xl p-8 max-w-lg w-full shadow-2xl iridescent-hover"
+                className="relative bg-white rounded-3xl p-8 max-w-lg w-full shadow-2xl iridescent-always"
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Close button */}

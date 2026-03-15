@@ -126,34 +126,37 @@ export default function Comparison() {
           </p>
         </div>
 
-        {/* Column headers - outside the table */}
-        <div className="grid grid-cols-4 mb-6 px-2">
-          <div /> {/* Empty for feature column */}
-          <div className="flex justify-center items-end">
-            <span className="text-xl font-bold text-gray-900">
-              Aurea Flow
-            </span>
-          </div>
-          <div className="flex justify-center items-end">
-            <span className="text-lg font-semibold text-gray-700">
-              Solo Grind
-            </span>
-          </div>
-          <div className="flex justify-center items-end">
-            <span className="text-lg font-semibold text-gray-700">
-              {lang === "pt" ? "Agência Clássica" : "Classic Agency"}
-            </span>
-          </div>
-        </div>
+        {/* Comparison table - horizontal scroll on mobile */}
+        <div className="overflow-x-auto -mx-6 px-6">
+          <div className="min-w-[640px]">
+            {/* Column headers */}
+            <div className="grid grid-cols-4 mb-6 px-2">
+              <div /> {/* Empty for feature column */}
+              <div className="flex justify-center items-end">
+                <span className="text-xl font-bold text-gray-900">
+                  Aurea Flow
+                </span>
+              </div>
+              <div className="flex justify-center items-end">
+                <span className="text-lg font-semibold text-gray-700">
+                  Solo Grind
+                </span>
+              </div>
+              <div className="flex justify-center items-end">
+                <span className="text-lg font-semibold text-gray-700">
+                  {lang === "pt" ? "Agência Clássica" : "Classic Agency"}
+                </span>
+              </div>
+            </div>
 
-        {/* Comparison table */}
-        <div 
-          className="bg-white rounded-3xl overflow-hidden border border-gray-200 p-3"
-          style={{
-            boxShadow: "0 4px 40px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04)"
-          }}
-        >
-          <div className="grid grid-cols-4 relative">
+            {/* Table content */}
+            <div 
+              className="bg-white rounded-3xl overflow-hidden border border-gray-200 p-3"
+              style={{
+                boxShadow: "0 4px 40px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04)"
+              }}
+            >
+              <div className="grid grid-cols-4 relative">
             {/* Gray background for first column */}
             <div className="absolute top-0 bottom-0 left-0 w-1/4 bg-gray-100 rounded-2xl" />
             
@@ -194,8 +197,10 @@ export default function Comparison() {
                 </div>
               </React.Fragment>
             ))}
+            </div>
           </div>
         </div>
+      </div>
       </div>
     </section>
   );

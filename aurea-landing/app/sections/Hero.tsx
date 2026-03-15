@@ -63,7 +63,7 @@ export default function Hero() {
         </h1>
 
         {/* Subtitle */}
-        <p className="text-lg sm:text-xl text-gray-400 font-normal max-w-2xl mx-auto mb-12 leading-relaxed">
+        <p className="text-lg sm:text-xl text-gray-600 font-normal max-w-2xl mx-auto mb-12 leading-relaxed">
           {lang === "pt"
             ? "IA treinada em +10.000 publicações virais. Para clínicas estéticas que querem crescer sem esforço."
             : "AI trained on 10,000+ viral posts. For aesthetic clinics that want to grow without the grind."}

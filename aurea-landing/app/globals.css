@@ -289,13 +289,14 @@ body {
 .iridescent-hover::before {
   content: '';
   position: absolute;
-  inset: -1.5px;
+  inset: -4px;
   border-radius: inherit;
   background: linear-gradient(135deg, #c3a8ff, #a8d8ff, #a8f0e8, #e8a8d8, #ffffff, #d8c8ff, #c3a8ff);
   background-size: 300% 300%;
   animation: iridescent 4s ease infinite;
   z-index: -1;
   opacity: 0;
+  filter: blur(8px);
   transition: opacity 0.3s ease;
 }
 
@@ -304,6 +305,34 @@ body {
 }
 
 .iridescent-hover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: inherit;
+  z-index: -1;
+}
+
+/* Always-on iridescent glow */
+.iridescent-always {
+  position: relative;
+  z-index: 0;
+}
+
+.iridescent-always::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, #c3a8ff, #a8d8ff, #a8f0e8, #e8a8d8, #ffffff, #d8c8ff, #c3a8ff);
+  background-size: 300% 300%;
+  animation: iridescent 4s ease infinite;
+  z-index: -1;
+  opacity: 1;
+  filter: blur(8px);
+}
+
+.iridescent-always::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -401,7 +430,7 @@ body {
   content: '';
   position: absolute;
   inset: 3px;
-  background: #030712;
+  background: #111827;
   border-radius: 13px;
   z-index: -1;
 }

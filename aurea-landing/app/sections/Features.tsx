@@ -5,16 +5,16 @@ import { SectionPill } from "@/components/ui/section-pill";
 import { useState, useRef, useEffect } from "react";
 import { useLang } from "../context/LanguageContext";
 import { Check, Instagram, Youtube } from "lucide-react";
-import Image from "next/image";
+
 
 // Animated icons
-import { BrainIcon, type BrainIconHandle } from "@/components/ui/brain";
-import { SparklesIcon, type SparklesIconHandle } from "@/components/ui/sparkles";
-import { CalendarDaysIcon, type CalendarDaysIconHandle } from "@/components/ui/calendar-days";
-import { ChartScatterIcon, type ChartScatterIconHandle } from "@/components/ui/chart-scatter";
-import { FrameIcon, type FrameIconHandle } from "@/components/ui/frame";
-import { ScanTextIcon, type ScanTextIconHandle } from "@/components/ui/scan-text";
-import { ClapIcon, type ClapIconHandle } from "@/components/ui/clap";
+import { BrainIcon } from "@/components/ui/brain";
+import { SparklesIcon } from "@/components/ui/sparkles";
+import { CalendarDaysIcon } from "@/components/ui/calendar-days";
+import { ChartScatterIcon } from "@/components/ui/chart-scatter";
+import { FrameIcon } from "@/components/ui/frame";
+import { ScanTextIcon } from "@/components/ui/scan-text";
+import { ClapIcon } from "@/components/ui/clap";
 
 // ─── Feature definitions ────────────────────────────────────────────────────
 
@@ -840,7 +840,7 @@ export default function Features() {
                 className={`
                   relative inline-flex items-center gap-2.5 px-5 py-3 rounded-full text-sm font-medium transition-all duration-300
                   ${isActive
-                    ? "bg-pink-50 border-2 border-pink-300 text-gray-900 shadow-lg shadow-pink-100/50"
+                    ? "bg-violet-50 border-2 border-violet-300 text-gray-900 shadow-lg shadow-violet-100/50"
                     : "bg-white border border-gray-200 text-gray-600 hover:border-transparent hover:shadow-md"
                   }
                 `}
@@ -862,7 +862,7 @@ export default function Features() {
                 
                 {/* Checkmark for active */}
                 {isActive && (
-                  <Check className="w-4 h-4 text-pink-500 flex-shrink-0" />
+                  <Check className="w-4 h-4 text-violet-500 flex-shrink-0" />
                 )}
                 
                 {/* Icon */}
@@ -870,7 +870,7 @@ export default function Features() {
                   <IconComponent
                     ref={(el: IconHandle | null) => { iconRefs.current[f.id] = el; }}
                     size={18}
-                    className={isActive ? "text-pink-500" : "text-gray-500"}
+                    className={isActive ? "text-violet-500" : "text-gray-500"}
                   />
                 )}
                 

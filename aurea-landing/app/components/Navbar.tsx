@@ -22,6 +22,8 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
+  const lastScrollY = useRef(0);
   const langRef = useRef<HTMLDivElement>(null);
   const { lang, setLang, t } = useLang();
 
@@ -37,9 +39,18 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      const currentScrollY = window.scrollY;
+      setIsScrolled(currentScrollY > 50);
+      
+      // Hide when scrolling down, show when scrolling up
+      if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+        setIsHidden(true);
+      } else {
+        setIsHidden(false);
+      }
+      lastScrollY.current = currentScrollY;
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -58,7 +69,8 @@ export default function Navbar() {
             "flex items-center justify-between transition-all duration-300 px-6 py-3",
             isScrolled 
               ? "bg-white/70 backdrop-blur-xl border border-white/40 shadow-lg" 
-              : "bg-transparent border border-transparent"
+              : "bg-transparent border border-transparent",
+            isHidden ? "opacity-0 pointer-events-none" : "opacity-100"
           )}
           style={{ borderRadius: 20 }}
         >
