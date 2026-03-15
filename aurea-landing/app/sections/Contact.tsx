@@ -16,7 +16,7 @@ const floatingIcons = [
 export default function Contact() {
   const { lang } = useLang();
   return (
-    <section id="contact" className="py-32 px-6 bg-white dark:bg-[#0a0a0f] relative overflow-hidden">
+    <section id="contact" className="py-16 sm:py-32 px-3 sm:px-6 bg-white dark:bg-[#0a0a0f] relative overflow-hidden">
       {/* Bubble video background with gradient mask */}
       <div 
         className="absolute inset-0 pointer-events-none"
@@ -88,7 +88,7 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="relative bg-white dark:bg-[#111118] rounded-3xl border border-gray-100 dark:border-white/10 p-10 shadow-xl shadow-gray-200/60 dark:shadow-black/40"
+          className="relative bg-white dark:bg-[#111118] rounded-2xl sm:rounded-3xl border border-gray-100 dark:border-white/10 p-5 sm:p-10 shadow-xl shadow-gray-200/60 dark:shadow-black/40"
         >
           <form className="space-y-6">
             <div className="grid sm:grid-cols-2 gap-6">

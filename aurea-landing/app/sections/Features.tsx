@@ -953,28 +953,34 @@ export default function Features() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start"
+            className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10 items-start"
           >
             {/* Left: copy */}
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-4 sm:gap-6">
               <div>
-                {(() => {
-                  const TitleIcon = iconComponents[activeFeature.id];
-                  return TitleIcon ? (
-                    <TitleIcon
-                      ref={(el: IconHandle | null) => { titleIconRef.current = el; }}
-                      size={36}
-                      className="text-gray-900 dark:text-white mb-4"
-                    />
-                  ) : null;
-                })()}
+                {/* Icon + Title inline on mobile */}
+                <div className="flex items-center gap-3 sm:block mb-3 sm:mb-0">
+                  {(() => {
+                    const TitleIcon = iconComponents[activeFeature.id];
+                    return TitleIcon ? (
+                      <TitleIcon
+                        ref={(el: IconHandle | null) => { titleIconRef.current = el; }}
+                        size={28}
+                        className="text-gray-900 dark:text-white sm:mb-4 flex-shrink-0"
+                      />
+                    ) : null;
+                  })()}
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-950 dark:text-white leading-tight sm:hidden">
+                    {activeFeature.headline}
+                  </h3>
+                </div>
                 {activeFeature.comingSoon && (
                   <span className="inline-block text-xs bg-gray-100 dark:bg-white/10 text-gray-500 dark:text-gray-400 px-2.5 py-1 rounded-full font-medium border border-gray-200 dark:border-white/10 mb-3">Coming Soon</span>
                 )}
-                <h3 className="text-3xl sm:text-4xl font-bold text-gray-950 dark:text-white leading-tight mb-4">
+                <h3 className="hidden sm:block text-3xl sm:text-4xl font-bold text-gray-950 dark:text-white leading-tight mb-4">
                   {activeFeature.headline}
                 </h3>
-                <p className="text-gray-500 dark:text-gray-400 text-lg leading-relaxed">
+                <p className="text-gray-500 dark:text-gray-400 text-base sm:text-lg leading-relaxed">
                   {activeFeature.description}
                 </p>
               </div>
@@ -995,9 +1001,9 @@ export default function Features() {
               )}
             </div>
 
-            {/* Right: bento visual */}
+            {/* Right: bento visual - shows below on mobile */}
             <motion.div 
-              className="min-h-[400px]"
+              className="min-h-[280px] sm:min-h-[400px] order-last lg:order-none"
               animate={{ y: [0, 8, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             >

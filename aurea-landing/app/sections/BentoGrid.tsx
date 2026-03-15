@@ -68,11 +68,11 @@ function TweetCard({ tweet }: { tweet: Tweet }) {
 function Marquee({ tweets }: { tweets: Tweet[] }) {
   const doubled = [...tweets, ...tweets];
   return (
-    <div className="overflow-visible py-8">
+    <div className="overflow-visible py-4 sm:py-8">
       <motion.div
         className="flex"
         animate={{ x: ["0%", "-50%"] }}
-        transition={{ duration: 35, ease: "linear", repeat: Infinity }}
+        transition={{ duration: 20, ease: "linear", repeat: Infinity }}
       >
         {doubled.map((tweet, i) => (
           <TweetCard key={i} tweet={tweet} />

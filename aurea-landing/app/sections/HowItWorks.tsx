@@ -101,7 +101,7 @@ export default function HowItWorks() {
   const [activeStep, setActiveStep] = useState<number | null>(null);
 
   return (
-    <section id="how-it-works" className="py-32 px-6 bg-white dark:bg-[#0a0a0f]">
+    <section id="how-it-works" className="py-16 sm:py-32 px-4 sm:px-6 bg-white dark:bg-[#0a0a0f]">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -129,7 +129,7 @@ export default function HowItWorks() {
               transition={{ delay: i * 0.1 }}
               whileHover={{ y: -6 }}
               onClick={() => setActiveStep(i)}
-              className="group bg-gray-50 dark:bg-[#111118] rounded-3xl p-8 border border-gray-100 dark:border-white/10 iridescent-hover cursor-pointer"
+              className="group bg-gray-50 dark:bg-[#111118] rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-gray-100 dark:border-white/10 iridescent-hover cursor-pointer"
             >
               {/* Icon box */}
               <motion.div
@@ -168,7 +168,7 @@ export default function HowItWorks() {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 20 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
-                className="relative bg-white dark:bg-[#111118] rounded-3xl p-8 max-w-lg w-full shadow-2xl iridescent-always"
+                className="relative bg-white dark:bg-[#111118] rounded-2xl sm:rounded-3xl p-5 sm:p-8 max-w-lg w-full shadow-2xl iridescent-always"
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Close button */}
