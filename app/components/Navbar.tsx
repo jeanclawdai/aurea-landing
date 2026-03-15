@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { useLang } from "../context/LanguageContext";
+import { cn } from "@/lib/utils";
 
 const navHrefs = [
   { key: "features" as const, href: "#features" },
@@ -20,6 +21,9 @@ const langOptions = [
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
+  const lastScrollY = useRef(0);
   const langRef = useRef<HTMLDivElement>(null);
   const { lang, setLang, t } = useLang();
 
@@ -33,6 +37,23 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      setIsScrolled(currentScrollY > 50);
+      
+      // Hide when scrolling down, show when scrolling up
+      if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+        setIsHidden(true);
+      } else {
+        setIsHidden(false);
+      }
+      lastScrollY.current = currentScrollY;
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const currentLang = langOptions.find((o) => o.code === lang)!;
 
   return (
@@ -44,7 +65,14 @@ export default function Navbar() {
     >
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <div
-          className={`flex items-center justify-between transition-all duration-300 bg-white/90 backdrop-blur-xl border border-gray-100 shadow-sm liquid-glass px-6 py-3`}
+          className={cn(
+            "flex items-center justify-between transition-all duration-300 px-6 py-3",
+            isScrolled 
+              ? "bg-white/70 backdrop-blur-xl border border-white/40 shadow-lg" 
+              : "bg-transparent border border-transparent",
+            isHidden ? "opacity-0 pointer-events-none" : "opacity-100"
+          )}
+          style={{ borderRadius: 20 }}
         >
           {/* Logo */}
           <a href="#" className="flex items-center gap-2">
@@ -55,7 +83,7 @@ export default function Navbar() {
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-6 lg:gap-8">
             {navHrefs.map((link) => (
               <motion.a
                 key={link.key}

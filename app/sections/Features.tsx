@@ -840,7 +840,7 @@ export default function Features() {
                 className={`
                   relative inline-flex items-center gap-2.5 px-5 py-3 rounded-full text-sm font-medium transition-all duration-300
                   ${isActive
-                    ? "bg-pink-50 border-2 border-pink-300 text-gray-900 shadow-lg shadow-pink-100/50"
+                    ? "bg-violet-50 border-2 border-violet-300 text-gray-900 shadow-lg shadow-violet-100/50"
                     : "bg-white border border-gray-200 text-gray-600 hover:border-transparent hover:shadow-md"
                   }
                 `}
@@ -862,7 +862,7 @@ export default function Features() {
                 
                 {/* Checkmark for active */}
                 {isActive && (
-                  <Check className="w-4 h-4 text-pink-500 flex-shrink-0" />
+                  <Check className="w-4 h-4 text-violet-500 flex-shrink-0" />
                 )}
                 
                 {/* Icon */}
@@ -870,7 +870,7 @@ export default function Features() {
                   <IconComponent
                     ref={(el: IconHandle | null) => { iconRefs.current[f.id] = el; }}
                     size={18}
-                    className={isActive ? "text-pink-500" : "text-gray-500"}
+                    className={isActive ? "text-violet-500" : "text-gray-500"}
                   />
                 )}
                 
@@ -888,10 +888,10 @@ export default function Features() {
         <AnimatePresence mode="wait">
           <motion.div
             key={active}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.3 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
             className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start"
           >
             {/* Left: copy */}
@@ -935,9 +935,13 @@ export default function Features() {
             </div>
 
             {/* Right: bento visual */}
-            <div className="min-h-[400px]">
+            <motion.div 
+              className="min-h-[400px]"
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            >
               {bentoMap[activeFeature.bento]}
-            </div>
+            </motion.div>
           </motion.div>
         </AnimatePresence>
 

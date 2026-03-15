@@ -32,7 +32,10 @@ const FrameIcon = forwardRef<FrameIconHandle, FrameIconProps>(
       isControlledRef.current = true;
 
       return {
-        startAnimation: () => controls.start("animate"),
+        startAnimation: async () => {
+          await controls.start("animate");
+          await controls.start("normal");
+        },
         stopAnimation: () => controls.start("normal"),
       };
     });
