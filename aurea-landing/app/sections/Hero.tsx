@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SectionPill } from "@/components/ui/section-pill";
 import { useLang } from "../context/LanguageContext";
 import { AtomIcon, type AtomIconHandle } from "@/components/ui/atom-icon";
@@ -16,6 +16,7 @@ export default function Hero() {
   const { lang } = useLang();
   const atomRef = useRef<AtomIconHandle>(null);
   const mobileVideoRef = useRef<HTMLVideoElement>(null);
+  const [mobileVideoPlaying, setMobileVideoPlaying] = useState(false);
 
   // Force autoplay on mobile (iOS Safari workaround)
   useEffect(() => {
@@ -26,17 +27,25 @@ export default function Hero() {
       video.setAttribute('playsinline', 'true');
       video.setAttribute('webkit-playsinline', 'true');
       video.load();
+      
+      const onPlaying = () => setMobileVideoPlaying(true);
+      video.addEventListener('playing', onPlaying);
+      
       const playPromise = video.play();
       if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          // Autoplay blocked - try again on user interaction
-          const handleInteraction = () => {
-            video.play();
-            document.removeEventListener('touchstart', handleInteraction);
-          };
-          document.addEventListener('touchstart', handleInteraction, { once: true });
-        });
+        playPromise
+          .then(() => setMobileVideoPlaying(true))
+          .catch(() => {
+            // Autoplay blocked - try again on user interaction
+            const handleInteraction = () => {
+              video.play().then(() => setMobileVideoPlaying(true));
+              document.removeEventListener('touchstart', handleInteraction);
+            };
+            document.addEventListener('touchstart', handleInteraction, { once: true });
+          });
       }
+      
+      return () => video.removeEventListener('playing', onPlaying);
     }
   }, []);
 
@@ -75,7 +84,7 @@ export default function Hero() {
         preload="metadata"
         controls={false}
         disablePictureInPicture
-        className={`absolute inset-0 w-full h-full object-cover -z-10 sm:hidden ${HERO_VIDEO.opacity}`}
+        className={`absolute inset-0 w-full h-full object-cover -z-10 sm:hidden transition-opacity duration-500 ${mobileVideoPlaying ? HERO_VIDEO.opacity : 'opacity-0'}`}
         style={{ pointerEvents: 'none' }}
       >
         <source src={HERO_VIDEO.mobile} type="video/mp4" />
