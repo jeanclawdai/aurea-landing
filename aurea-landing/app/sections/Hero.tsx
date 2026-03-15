@@ -6,7 +6,11 @@ import { SectionPill } from "@/components/ui/section-pill";
 import { useLang } from "../context/LanguageContext";
 import { AtomIcon, type AtomIconHandle } from "@/components/ui/atom-icon";
 
-const HERO_VIDEO = { src: "/hero-balloons.mp4", opacity: "opacity-80" };
+const HERO_VIDEO = { 
+  desktop: "/hero-balloons.mp4", 
+  mobile: "/hero-balloons-mobile.mp4",
+  opacity: "opacity-80" 
+};
 
 export default function Hero() {
   const { lang } = useLang();
@@ -28,15 +32,25 @@ export default function Hero() {
       {/* Animated gradient background */}
       <div className="absolute inset-0 -z-10 hero-gradient-animated" />
       
-      {/* Video background */}
+      {/* Video background - desktop */}
       <video
         autoPlay
         loop
         muted
         playsInline
-        className={`absolute inset-0 w-full h-full object-cover -z-10 ${HERO_VIDEO.opacity}`}
+        className={`absolute inset-0 w-full h-full object-cover -z-10 hidden sm:block ${HERO_VIDEO.opacity}`}
       >
-        <source src={HERO_VIDEO.src} type="video/mp4" />
+        <source src={HERO_VIDEO.desktop} type="video/mp4" />
+      </video>
+      {/* Video background - mobile */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className={`absolute inset-0 w-full h-full object-cover -z-10 sm:hidden ${HERO_VIDEO.opacity}`}
+      >
+        <source src={HERO_VIDEO.mobile} type="video/mp4" />
       </video>
       {/* Grid lines overlay */}
       <div className="absolute inset-0 -z-10 pointer-events-none" style={{
