@@ -17,13 +17,26 @@ export default function Hero() {
   const atomRef = useRef<AtomIconHandle>(null);
   const mobileVideoRef = useRef<HTMLVideoElement>(null);
 
-  // Force autoplay on mobile (iOS workaround)
+  // Force autoplay on mobile (iOS Safari workaround)
   useEffect(() => {
     const video = mobileVideoRef.current;
     if (video) {
-      video.play().catch(() => {
-        // Autoplay blocked, user interaction needed
-      });
+      // iOS requires muted to be set as property, not just attribute
+      video.muted = true;
+      video.setAttribute('playsinline', 'true');
+      video.setAttribute('webkit-playsinline', 'true');
+      video.load();
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Autoplay blocked - try again on user interaction
+          const handleInteraction = () => {
+            video.play();
+            document.removeEventListener('touchstart', handleInteraction);
+          };
+          document.addEventListener('touchstart', handleInteraction, { once: true });
+        });
+      }
     }
   }, []);
 
@@ -59,8 +72,11 @@ export default function Hero() {
         loop
         muted
         playsInline
-        preload="auto"
+        preload="metadata"
+        controls={false}
+        disablePictureInPicture
         className={`absolute inset-0 w-full h-full object-cover -z-10 sm:hidden ${HERO_VIDEO.opacity}`}
+        style={{ pointerEvents: 'none' }}
       >
         <source src={HERO_VIDEO.mobile} type="video/mp4" />
       </video>
