@@ -101,7 +101,7 @@ export default function HowItWorks() {
   const [activeStep, setActiveStep] = useState<number | null>(null);
 
   return (
-    <section id="how-it-works" className="py-32 px-6 bg-white">
+    <section id="how-it-works" className="py-32 px-6 bg-white dark:bg-[#0a0a0f]">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -111,7 +111,7 @@ export default function HowItWorks() {
           className="text-center mb-20"
         >
           <SectionPill className="mb-6">{lang === "pt" ? "COMO FUNCIONA" : "HOW IT WORKS"}</SectionPill>
-          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-950 leading-tight">
+          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-950 dark:text-white leading-tight">
             {lang === "pt"
               ? <>De Criador a <span className="font-serif-italic font-normal">Diretor Criativo</span></>
               : <>From Creator to <span className="font-serif-italic font-normal">Creative Director</span></>}
@@ -129,24 +129,24 @@ export default function HowItWorks() {
               transition={{ delay: i * 0.1 }}
               whileHover={{ y: -6 }}
               onClick={() => setActiveStep(i)}
-              className="group bg-gray-50 rounded-3xl p-8 border border-gray-100 iridescent-hover cursor-pointer"
+              className="group bg-gray-50 dark:bg-[#13131a] rounded-3xl p-8 border border-gray-100 dark:border-white/10 iridescent-hover cursor-pointer"
             >
               {/* Icon box */}
               <motion.div
-                className="w-14 h-14 rounded-2xl border-2 border-gray-200 bg-white flex items-center justify-center mb-8"
+                className="w-14 h-14 rounded-2xl border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10 flex items-center justify-center mb-8"
                 whileHover={{ rotate: 10, scale: 1.15 }}
                 transition={{ type: "spring", stiffness: 300, damping: 15 }}
               >
-                <step.icon className="w-7 h-7 text-gray-700" strokeWidth={1.5} />
+                <step.icon className="w-7 h-7 text-gray-700 dark:text-gray-300" strokeWidth={1.5} />
               </motion.div>
               <div className="text-7xl font-bold mb-4" style={{ color: '#e8e8e8' }}>{step.number}</div>
-              <h3 className="text-2xl font-bold text-gray-950 mb-4">
+              <h3 className="text-2xl font-bold text-gray-950 dark:text-white mb-4">
                 {lang === "pt" ? step.titlePt : step.title}
               </h3>
-              <p className="text-gray-500 leading-relaxed text-lg">
+              <p className="text-gray-500 dark:text-gray-400 leading-relaxed text-lg">
                 {lang === "pt" ? step.descPt : step.desc}
               </p>
-              <p className="text-gray-300 text-xs mt-4 group-hover:text-gray-400 transition-colors">
+              <p className="text-gray-300 dark:text-gray-600 text-xs mt-4 group-hover:text-gray-400 dark:group-hover:text-gray-400 transition-colors">
                 {lang === "pt" ? "Saber mais →" : "Learn more →"}
               </p>
             </motion.div>
@@ -168,7 +168,7 @@ export default function HowItWorks() {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 20 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
-                className="relative bg-white rounded-3xl p-8 max-w-lg w-full shadow-2xl iridescent-always"
+                className="relative bg-white dark:bg-[#13131a] rounded-3xl p-8 max-w-lg w-full shadow-2xl iridescent-always"
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Close button */}
@@ -182,25 +182,25 @@ export default function HowItWorks() {
                 {/* Header */}
                 <div className="flex items-center gap-4 mb-6">
                   <motion.div 
-                    className="w-14 h-14 rounded-2xl border-2 border-gray-200 bg-white flex items-center justify-center"
+                    className="w-14 h-14 rounded-2xl border-2 border-gray-200 dark:border-white/20 bg-white dark:bg-white/10 flex items-center justify-center"
                     animate={{ rotate: [0, 5, 0, -5, 0] }}
                     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                   >
                     {(() => {
                       const StepIcon = steps[activeStep].icon;
-                      return <StepIcon className="w-7 h-7 text-gray-700" strokeWidth={1.5} />;
+                      return <StepIcon className="w-7 h-7 text-gray-700 dark:text-gray-300" strokeWidth={1.5} />;
                     })()}
                   </motion.div>
                   <div>
                     <div className="text-sm font-medium text-gray-400">{lang === "pt" ? "Passo" : "Step"} {steps[activeStep].number}</div>
-                    <h3 className="text-2xl font-bold text-gray-950">
+                    <h3 className="text-2xl font-bold text-gray-950 dark:text-white">
                       {lang === "pt" ? steps[activeStep].titlePt : steps[activeStep].title}
                     </h3>
                   </div>
                 </div>
 
                 {/* Description */}
-                <p className="text-gray-500 mb-6">
+                <p className="text-gray-500 dark:text-gray-400 mb-6">
                   {lang === "pt" ? steps[activeStep].descPt : steps[activeStep].desc}
                 </p>
 
@@ -215,14 +215,14 @@ export default function HowItWorks() {
                       className="flex items-start gap-3"
                     >
                       <motion.div 
-                        className="w-5 h-5 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0 mt-0.5"
+                        className="w-5 h-5 rounded-full bg-gray-100 dark:bg-white/10 flex items-center justify-center flex-shrink-0 mt-0.5"
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         transition={{ delay: 0.2 + i * 0.08, type: "spring", stiffness: 400, damping: 15 }}
                       >
-                        <Check size={12} className="text-gray-600" />
+                        <Check size={12} className="text-gray-600 dark:text-gray-400" />
                       </motion.div>
-                      <span className="text-gray-600">{item}</span>
+                      <span className="text-gray-600 dark:text-gray-300">{item}</span>
                     </motion.div>
                   ))}
                 </div>
@@ -259,7 +259,7 @@ export default function HowItWorks() {
         </div>
 
         {/* Quote */}
-        <blockquote className="text-center text-3xl sm:text-4xl font-light text-gray-600 max-w-3xl mx-auto leading-relaxed">
+        <blockquote className="text-center text-3xl sm:text-4xl font-light text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
           {lang === "pt"
             ? <>&ldquo;Não é automação sem alma — é <span className="font-serif-italic">amplificação</span> da sua visão criativa.&rdquo;</>
             : <>&ldquo;This is not soulless automation — it&apos;s <span className="font-serif-italic">amplification</span> of your creative vision.&rdquo;</>}

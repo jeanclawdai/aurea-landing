@@ -113,7 +113,7 @@ export default function Pricing() {
   const { lang } = useLang();
 
   return (
-    <section id="pricing" className="py-32 px-6 bg-white">
+    <section id="pricing" className="py-32 px-6 bg-white dark:bg-[#0a0a0f]">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
@@ -123,12 +123,12 @@ export default function Pricing() {
           className="text-center mb-20"
         >
           <SectionPill className="mb-6">{lang === "pt" ? "PREÇOS" : "PRICING"}</SectionPill>
-          <h2 className="text-6xl sm:text-7xl font-bold text-gray-950 leading-tight mb-6">
+          <h2 className="text-6xl sm:text-7xl font-bold text-gray-950 dark:text-white leading-tight mb-6">
             {lang === "pt"
               ? <>Simples, <span className="font-serif-italic font-normal">sem surpresas.</span></>
               : <>Simple, <span className="font-serif-italic font-normal">no surprises.</span></>}
           </h2>
-          <p className="text-xl text-gray-400 max-w-xl mx-auto">
+          <p className="text-xl text-gray-400 dark:text-gray-500 max-w-xl mx-auto">
             {lang === "pt"
               ? "Todos os planos incluem 14 dias grátis. Sem cartão de crédito."
               : "All plans include a 14-day free trial. No credit card required."}
@@ -145,17 +145,17 @@ export default function Pricing() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
               whileHover={{ y: -6, transition: { type: "spring", stiffness: 300, damping: 20 } }}
-              className={`rounded-3xl p-10 flex flex-col ${plan.popular ? "bg-gray-950 holographic-border" : "bg-gray-100"}`}
+              className={`rounded-3xl p-10 flex flex-col ${plan.popular ? "bg-gray-950 holographic-border" : "bg-gray-100 dark:bg-[#13131a]"}`}
             >
               {/* Top badge */}
               <div className="mb-8">
-                <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${plan.popular ? "bg-white/10 text-gray-300" : "bg-white text-gray-500"}`}>
+                <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${plan.popular ? "bg-white/10 text-gray-300" : "bg-white dark:bg-white/10 text-gray-500 dark:text-gray-400"}`}>
                   {lang === "pt" ? plan.badgePt : plan.badge}
                 </span>
               </div>
 
               {/* Plan name */}
-              <h3 className={`text-2xl font-extrabold mb-2 ${plan.popular ? "text-white" : "text-gray-950"}`}>
+              <h3 className={`text-2xl font-extrabold mb-2 ${plan.popular ? "text-white" : "text-gray-950 dark:text-white"}`}>
                 {lang === "pt" ? plan.namePt : plan.name}
               </h3>
               <p className={`text-sm mb-8 ${plan.popular ? "text-gray-400" : "text-gray-500"}`}>
@@ -164,7 +164,7 @@ export default function Pricing() {
 
               {/* Price */}
               <div className="mb-10">
-                <span className={`text-6xl font-extrabold ${plan.popular ? "text-white" : "text-gray-950"}`}>
+                <span className={`text-6xl font-extrabold ${plan.popular ? "text-white" : "text-gray-950 dark:text-white"}`}>
                   {plan.price}
                 </span>
                 {plan.pricePeriod && (

@@ -16,18 +16,18 @@ const floatingIcons = [
 export default function Contact() {
   const { lang } = useLang();
   return (
-    <section id="contact" className="py-32 px-6 bg-white relative overflow-hidden">
+    <section id="contact" className="py-32 px-6 bg-white dark:bg-[#0a0a0f] relative overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-50 via-violet-50 to-pink-50 rounded-full blur-3xl opacity-60" />
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-48 bg-gradient-to-t from-blue-100/40 to-transparent blur-2xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-50 via-violet-50 to-pink-50 dark:from-blue-950/20 dark:via-violet-950/20 dark:to-pink-950/20 rounded-full blur-3xl opacity-60" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-48 bg-gradient-to-t from-blue-100/40 dark:from-blue-900/10 to-transparent blur-2xl" />
       </div>
       <div className="max-w-2xl mx-auto relative">
         {/* Floating icons */}
         {floatingIcons.map((item, i) => (
           <motion.div
             key={i}
-            className="absolute hidden lg:flex items-center justify-center w-12 h-12 bg-white rounded-2xl shadow-lg border border-gray-100 text-xl pointer-events-none"
+            className="absolute hidden lg:flex items-center justify-center w-12 h-12 bg-white dark:bg-[#13131a] rounded-2xl shadow-lg border border-gray-100 dark:border-white/10 text-xl pointer-events-none"
             style={{ left: `calc(50% + ${item.x}px)`, top: `calc(50% + ${item.y}px)`, rotate: item.rotate }}
             initial={{ opacity: 0, scale: 0 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -50,7 +50,7 @@ export default function Contact() {
           className="text-center mb-16"
         >
           <SectionPill className="mb-6">{lang === "pt" ? "CONTACTO" : "CONTACT"}</SectionPill>
-          <h2 className="text-5xl sm:text-6xl font-bold text-gray-950 leading-tight mb-6">
+          <h2 className="text-5xl sm:text-6xl font-bold text-gray-950 dark:text-white leading-tight mb-6">
             {lang === "pt" ? (
               <>Vamos <span className="font-serif-italic font-normal">falar.</span></>
             ) : (
@@ -69,52 +69,52 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="relative bg-white rounded-3xl border border-gray-100 p-10 shadow-xl shadow-gray-200/60"
+          className="relative bg-white dark:bg-[#13131a] rounded-3xl border border-gray-100 dark:border-white/10 p-10 shadow-xl shadow-gray-200/60 dark:shadow-black/40"
         >
           <form className="space-y-6">
             <div className="grid sm:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                   {lang === "pt" ? "Nome" : "First Name"}
                 </label>
                 <input type="text"
                   placeholder={lang === "pt" ? "João" : "John"}
-                  className="w-full px-5 py-4 rounded-2xl border border-gray-200 bg-gray-50 focus:border-gray-400 focus:bg-white focus:outline-none transition-all text-gray-900 placeholder:text-gray-300 text-base"
+                  className="w-full px-5 py-4 rounded-2xl border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/5 focus:border-gray-400 dark:focus:border-white/30 focus:bg-white dark:focus:bg-white/10 focus:outline-none transition-all text-gray-900 dark:text-white placeholder:text-gray-300 dark:placeholder:text-gray-600 text-base"
                 />
               </div>
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                   {lang === "pt" ? "Apelido" : "Last Name"}
                 </label>
                 <input type="text"
                   placeholder={lang === "pt" ? "Silva" : "Doe"}
-                  className="w-full px-5 py-4 rounded-2xl border border-gray-200 bg-gray-50 focus:border-gray-400 focus:bg-white focus:outline-none transition-all text-gray-900 placeholder:text-gray-300 text-base"
+                  className="w-full px-5 py-4 rounded-2xl border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/5 focus:border-gray-400 dark:focus:border-white/30 focus:bg-white dark:focus:bg-white/10 focus:outline-none transition-all text-gray-900 dark:text-white placeholder:text-gray-300 dark:placeholder:text-gray-600 text-base"
                 />
               </div>
             </div>
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">Email</label>
+              <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Email</label>
               <input type="email"
                 placeholder={lang === "pt" ? "joao@clinica.pt" : "john@clinic.com"}
-                className="w-full px-5 py-4 rounded-2xl border border-gray-200 bg-gray-50 focus:border-gray-400 focus:bg-white focus:outline-none transition-all text-gray-900 placeholder:text-gray-300 text-base"
+                className="w-full px-5 py-4 rounded-2xl border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/5 focus:border-gray-400 dark:focus:border-white/30 focus:bg-white dark:focus:bg-white/10 focus:outline-none transition-all text-gray-900 dark:text-white placeholder:text-gray-300 dark:placeholder:text-gray-600 text-base"
               />
             </div>
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
+              <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                 {lang === "pt" ? "Nome da Clínica" : "Clinic Name"}
               </label>
               <input type="text"
                 placeholder={lang === "pt" ? "Clínica Estética Lisboa" : "Your Aesthetic Clinic"}
-                className="w-full px-5 py-4 rounded-2xl border border-gray-200 bg-gray-50 focus:border-gray-400 focus:bg-white focus:outline-none transition-all text-gray-900 placeholder:text-gray-300 text-base"
+                className="w-full px-5 py-4 rounded-2xl border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/5 focus:border-gray-400 dark:focus:border-white/30 focus:bg-white dark:focus:bg-white/10 focus:outline-none transition-all text-gray-900 dark:text-white placeholder:text-gray-300 dark:placeholder:text-gray-600 text-base"
               />
             </div>
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
+              <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                 {lang === "pt" ? "Mensagem" : "Message"}
               </label>
               <textarea rows={4}
                 placeholder={lang === "pt" ? "Conta-nos sobre a tua clínica e objetivos..." : "Tell us about your clinic and goals..."}
-                className="w-full px-5 py-4 rounded-2xl border border-gray-200 bg-gray-50 focus:border-gray-400 focus:bg-white focus:outline-none transition-all text-gray-900 placeholder:text-gray-300 text-base resize-none"
+                className="w-full px-5 py-4 rounded-2xl border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/5 focus:border-gray-400 dark:focus:border-white/30 focus:bg-white dark:focus:bg-white/10 focus:outline-none transition-all text-gray-900 dark:text-white placeholder:text-gray-300 dark:placeholder:text-gray-600 text-base resize-none"
               />
             </div>
             <motion.button type="submit"

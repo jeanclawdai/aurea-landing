@@ -280,7 +280,7 @@ export default function BeforeAfter() {
   }, []);
 
   return (
-    <section ref={containerRef} className="py-20 px-6 bg-white overflow-hidden">
+    <section ref={containerRef} className="py-20 px-6 bg-white dark:bg-[#0a0a0f] overflow-hidden">
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <motion.div
@@ -290,12 +290,12 @@ export default function BeforeAfter() {
           className="text-center mb-16"
         >
           <SectionPill className="mb-6">{lang === "pt" ? "RESULTADOS REAIS" : "REAL RESULTS"}</SectionPill>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-950 leading-tight mb-3">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-950 dark:text-white leading-tight mb-3">
             {lang === "pt"
               ? <>O Efeito <span className="font-serif-italic font-normal">Aurea.</span></>
               : <>The Aurea <span className="font-serif-italic font-normal">Effect.</span></>}
           </h2>
-          <p className="text-lg text-gray-400 max-w-xl mx-auto">
+          <p className="text-lg text-gray-400 dark:text-gray-500 max-w-xl mx-auto">
             {lang === "pt"
               ? "Veja a transformação de uma conta real com a Aurea."
               : "See what a real account looks like with Aurea."}
@@ -306,12 +306,12 @@ export default function BeforeAfter() {
         <div className="flex justify-center mb-10">
           <button
             onClick={handleToggle}
-            className="relative flex items-center gap-2 p-1.5 bg-gray-100 rounded-full shadow-md"
+            className="relative flex items-center gap-2 p-1.5 bg-gray-100 dark:bg-[#13131a] rounded-full shadow-md"
           >
-            <span className={`px-8 py-3.5 rounded-full text-base font-semibold transition-all ${!showAfter ? "bg-white shadow-sm text-gray-950" : "text-gray-400"}`}>
+            <span className={`px-8 py-3.5 rounded-full text-base font-semibold transition-all ${!showAfter ? "bg-white dark:bg-white/10 shadow-sm text-gray-950 dark:text-white" : "text-gray-400 dark:text-gray-500"}`}>
               {lang === "pt" ? "Antes" : "Before"}
             </span>
-            <span className={`px-8 py-3.5 rounded-full text-base font-semibold transition-all ${showAfter ? "bg-gray-950 text-white" : "text-gray-400"}`}>
+            <span className={`px-8 py-3.5 rounded-full text-base font-semibold transition-all ${showAfter ? "bg-gray-950 text-white" : "text-gray-400 dark:text-gray-500"}`}>
               {lang === "pt" ? "Depois ✨" : "After ✨"}
             </span>
           </button>
@@ -339,10 +339,10 @@ export default function BeforeAfter() {
                 }}
                 transition={{ delay: showAfter ? 0.1 + i * 0.1 : 0, duration: 0.5, ease: [0.22,1,0.36,1] }}
               >
-                <div className="glass-stat-card rounded-xl px-4 py-3 cursor-pointer group">
+                <div className="glass-stat-card rounded-xl px-4 py-3 cursor-pointer group dark:bg-[#13131a] dark:border dark:border-white/10">
                   <div className="text-xl mb-0.5">{card.icon}</div>
-                  <div className="text-xl font-bold text-gray-900">{card.value}</div>
-                  <div className="text-[10px] text-gray-500 font-medium uppercase tracking-wide">{card.label}</div>
+                  <div className="text-xl font-bold text-gray-900 dark:text-white">{card.value}</div>
+                  <div className="text-[10px] text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wide">{card.label}</div>
                 </div>
               </motion.div>
             ))}

@@ -21,7 +21,7 @@ export default function MobileCTA() {
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
           className="fixed bottom-0 left-0 right-0 z-40 md:hidden"
         >
-          <div className="bg-white/95 backdrop-blur-md border-t border-gray-100 px-4 py-3 safe-area-pb">
+          <div className="bg-white/95 dark:bg-gray-950/95 backdrop-blur-md border-t border-gray-100 dark:border-white/10 px-4 py-3 safe-area-pb">
             <button
               onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
               className="btn-shimmer w-full py-3.5 bg-gray-900 text-white rounded-xl font-semibold text-base shadow-lg"

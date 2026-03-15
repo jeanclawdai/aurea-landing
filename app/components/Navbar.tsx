@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, ChevronDown, Sun, Moon } from "lucide-react";
 import { useLang } from "../context/LanguageContext";
+import { useTheme } from "../context/ThemeContext";
 import { cn } from "@/lib/utils";
 
 const navHrefs = [
@@ -26,6 +27,7 @@ export default function Navbar() {
   const lastScrollY = useRef(0);
   const langRef = useRef<HTMLDivElement>(null);
   const { lang, setLang, t } = useLang();
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -41,7 +43,7 @@ export default function Navbar() {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       setIsScrolled(currentScrollY > 50);
-      
+
       // Hide when scrolling down, show when scrolling up
       if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
         setIsHidden(true);
@@ -67,8 +69,8 @@ export default function Navbar() {
         <div
           className={cn(
             "flex items-center justify-between transition-all duration-300 px-6 py-3",
-            isScrolled 
-              ? "bg-white/70 backdrop-blur-xl border border-white/40 shadow-lg" 
+            isScrolled
+              ? "bg-white/70 dark:bg-gray-950/70 backdrop-blur-xl border border-white/40 dark:border-white/10 shadow-lg"
               : "bg-transparent border border-transparent",
             isHidden ? "opacity-0 pointer-events-none" : "opacity-100"
           )}
@@ -76,10 +78,10 @@ export default function Navbar() {
         >
           {/* Logo */}
           <a href="#" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gray-950 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-gray-950 dark:bg-white/10 flex items-center justify-center">
               <span className="text-white font-bold text-sm">A</span>
             </div>
-            <span className="text-xl font-bold text-gray-950">Aurea</span>
+            <span className="text-xl font-bold text-gray-950 dark:text-white">Aurea</span>
           </a>
 
           {/* Desktop Navigation */}
@@ -90,29 +92,63 @@ export default function Navbar() {
                 href={link.href}
                 whileHover={{ x: 2 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                className="text-gray-500 hover:text-gray-900 text-sm font-medium transition-colors"
+                className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white text-sm font-medium transition-colors"
               >
                 {t.nav[link.key]}
               </motion.a>
             ))}
           </div>
 
-          {/* Desktop: CTA + Language */}
+          {/* Desktop: CTA + Theme Toggle + Language */}
           <div className="hidden md:flex items-center gap-2">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
-              className="bg-gray-950 text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-gray-800 transition-colors"
+              className="bg-gray-950 dark:bg-white text-white dark:text-gray-950 px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
             >
               {t.nav.cta}
+            </motion.button>
+
+            {/* Dark mode toggle */}
+            <motion.button
+              onClick={toggleTheme}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              className="p-2 rounded-lg text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10 transition-all"
+              aria-label="Toggle dark mode"
+            >
+              <AnimatePresence mode="wait" initial={false}>
+                {theme === "dark" ? (
+                  <motion.span
+                    key="sun"
+                    initial={{ opacity: 0, rotate: -90, scale: 0.5 }}
+                    animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                    exit={{ opacity: 0, rotate: 90, scale: 0.5 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Sun size={18} />
+                  </motion.span>
+                ) : (
+                  <motion.span
+                    key="moon"
+                    initial={{ opacity: 0, rotate: 90, scale: 0.5 }}
+                    animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                    exit={{ opacity: 0, rotate: -90, scale: 0.5 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Moon size={18} />
+                  </motion.span>
+                )}
+              </AnimatePresence>
             </motion.button>
 
             {/* Language Dropdown */}
             <div ref={langRef} className="relative">
               <button
                 onClick={() => setIsLangOpen(!isLangOpen)}
-                className="flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-black/5 transition-all"
+                className="flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10 transition-all"
               >
                 <span>{currentLang.flag}</span>
                 <span>{currentLang.label}</span>
@@ -122,14 +158,14 @@ export default function Navbar() {
                 <motion.div
                   initial={{ opacity: 0, y: -4, scale: 0.97 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
-                  className="absolute right-0 top-full mt-1 liquid-glass py-1 min-w-[90px]"
+                  className="absolute right-0 top-full mt-1 liquid-glass dark:bg-gray-950/90 py-1 min-w-[90px]"
                   style={{ borderRadius: 12 }}
                 >
                   {langOptions.map((opt) => (
                     <button
                       key={opt.code}
                       onClick={() => { setLang(opt.code); setIsLangOpen(false); }}
-                      className={`flex items-center gap-2 w-full px-3 py-2 text-sm hover:bg-black/5 transition-colors ${lang === opt.code ? "font-semibold text-gray-900" : "text-gray-600"}`}
+                      className={`flex items-center gap-2 w-full px-3 py-2 text-sm hover:bg-black/5 dark:hover:bg-white/10 transition-colors ${lang === opt.code ? "font-semibold text-gray-900 dark:text-white" : "text-gray-600 dark:text-gray-400"}`}
                     >
                       <span>{opt.flag}</span>
                       <span>{opt.label}</span>
@@ -142,10 +178,10 @@ export default function Navbar() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-gray-700"
+            className="md:hidden p-2 text-gray-700 dark:text-gray-300"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            {isMobileMenuOpen ? <X size={24} className="text-gray-700" /> : <Menu size={24} className="text-gray-700" />}
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
@@ -161,28 +197,61 @@ export default function Navbar() {
                 <a
                   key={link.key}
                   href={link.href}
-                  className="text-gray-600 hover:text-gray-900 transition-colors font-medium"
+                  className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors font-medium"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {t.nav[link.key]}
                 </a>
               ))}
-              <button className="mt-2 px-5 py-3 bg-gray-900 text-white rounded-xl font-medium">
+              <button className="mt-2 px-5 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-950 rounded-xl font-medium">
                 {t.nav.cta}
               </button>
 
-              {/* Mobile Language Toggle */}
-              <div className="flex items-center gap-2 pt-2 border-t border-gray-100">
-                {langOptions.map((opt) => (
-                  <button
-                    key={opt.code}
-                    onClick={() => setLang(opt.code)}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm transition-all ${lang === opt.code ? "bg-gray-900 text-white font-medium" : "text-gray-500 hover:text-gray-800"}`}
-                  >
-                    <span>{opt.flag}</span>
-                    <span>{opt.label}</span>
-                  </button>
-                ))}
+              {/* Mobile Language + Theme Toggle */}
+              <div className="flex items-center justify-between pt-2 border-t border-gray-100 dark:border-white/10">
+                <div className="flex items-center gap-2">
+                  {langOptions.map((opt) => (
+                    <button
+                      key={opt.code}
+                      onClick={() => setLang(opt.code)}
+                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm transition-all ${lang === opt.code ? "bg-gray-900 dark:bg-white text-white dark:text-gray-950 font-medium" : "text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white"}`}
+                    >
+                      <span>{opt.flag}</span>
+                      <span>{opt.label}</span>
+                    </button>
+                  ))}
+                </div>
+
+                {/* Mobile dark mode toggle */}
+                <button
+                  onClick={toggleTheme}
+                  className="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/10 transition-all"
+                  aria-label="Toggle dark mode"
+                >
+                  <AnimatePresence mode="wait" initial={false}>
+                    {theme === "dark" ? (
+                      <motion.span
+                        key="sun-m"
+                        initial={{ opacity: 0, rotate: -90, scale: 0.5 }}
+                        animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                        exit={{ opacity: 0, rotate: 90, scale: 0.5 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <Sun size={18} />
+                      </motion.span>
+                    ) : (
+                      <motion.span
+                        key="moon-m"
+                        initial={{ opacity: 0, rotate: 90, scale: 0.5 }}
+                        animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                        exit={{ opacity: 0, rotate: -90, scale: 0.5 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <Moon size={18} />
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
+                </button>
               </div>
             </div>
           </motion.div>

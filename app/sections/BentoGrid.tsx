@@ -36,7 +36,7 @@ function TweetCard({ tweet }: { tweet: Tweet }) {
     <motion.div
       whileHover={{ y: -4 }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      className="flex-shrink-0 w-[280px] bg-white rounded-2xl p-5 mx-3 shadow-lg shadow-black/5 cursor-pointer iridescent-hover iridescent-glow-hover"
+      className="flex-shrink-0 w-[280px] bg-white dark:bg-[#13131a] dark:border dark:border-white/10 rounded-2xl p-5 mx-3 shadow-lg shadow-black/5 cursor-pointer iridescent-hover iridescent-glow-hover"
       style={{ borderRadius: 20 }}
     >
       <div className="flex items-start justify-between mb-3">
@@ -45,17 +45,17 @@ function TweetCard({ tweet }: { tweet: Tweet }) {
             {tweet.avatar}
           </div>
           <div>
-            <div className="text-gray-900 font-semibold text-xs leading-tight">{tweet.name}</div>
+            <div className="text-gray-900 dark:text-gray-100 font-semibold text-xs leading-tight">{tweet.name}</div>
             <div className="text-gray-400 text-[10px]">{tweet.handle}</div>
           </div>
         </div>
         <XIcon />
       </div>
-      <p className="text-gray-700 text-xs leading-relaxed mb-3">{tweet.text}</p>
-      <div className="inline-flex items-center px-3 py-1.5 rounded-full text-[10px] font-bold text-gray-700 mb-3 iridescent-pill">
+      <p className="text-gray-700 dark:text-gray-300 text-xs leading-relaxed mb-3">{tweet.text}</p>
+      <div className="inline-flex items-center px-3 py-1.5 rounded-full text-[10px] font-bold text-gray-700 dark:text-gray-200 mb-3 iridescent-pill">
         {tweet.metric}
       </div>
-      <div className="flex items-center justify-between border-t border-gray-100 pt-2.5">
+      <div className="flex items-center justify-between border-t border-gray-100 dark:border-white/10 pt-2.5">
         <span className="text-gray-300 text-[10px]">{tweet.date}</span>
         <div className="flex items-center gap-3 text-gray-300 text-[10px]">
           <span className="flex items-center gap-1 hover:text-rose-400 transition-colors cursor-pointer"><HeartIcon />{tweet.likes}</span>
