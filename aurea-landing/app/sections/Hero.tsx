@@ -6,9 +6,12 @@ import { SectionPill } from "@/components/ui/section-pill";
 import { useLang } from "../context/LanguageContext";
 import { AtomIcon, type AtomIconHandle } from "@/components/ui/atom-icon";
 
+const HERO_VIDEO = { src: "/hero-balloons.mp4", opacity: "opacity-80" };
+
 export default function Hero() {
   const { lang } = useLang();
   const atomRef = useRef<AtomIconHandle>(null);
+
 
   // Auto-animate atom icon
   useEffect(() => {
@@ -25,15 +28,15 @@ export default function Hero() {
       {/* Animated gradient background */}
       <div className="absolute inset-0 -z-10 hero-gradient-animated" />
       
-      {/* Bubble video background */}
+      {/* Video background */}
       <video
         autoPlay
         loop
         muted
         playsInline
-        className="absolute inset-0 w-full h-full object-cover -z-10 opacity-30"
+        className={`absolute inset-0 w-full h-full object-cover -z-10 ${HERO_VIDEO.opacity}`}
       >
-        <source src="/hero-bubbles.mp4" type="video/mp4" />
+        <source src={HERO_VIDEO.src} type="video/mp4" />
       </video>
       {/* Grid lines overlay */}
       <div className="absolute inset-0 -z-10 pointer-events-none" style={{
@@ -48,13 +51,13 @@ export default function Hero() {
         className="max-w-4xl mx-auto"
       >
         {/* Eyebrow */}
-        <SectionPill className="mb-10">
+        <SectionPill className="mb-10 hero-pill-light">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse flex-shrink-0" />
           {lang === "pt" ? "Sistema de Inteligência de Padrões" : "Pattern Intelligence System"}
         </SectionPill>
 
         {/* Main headline */}
-        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-950 leading-[1.05] tracking-tight mb-5">
+        <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold text-gray-950 leading-[1.05] tracking-tight mb-5">
           {lang === "pt" ? (
             <>Preveja o que <span className="font-serif-italic font-normal">resulta</span><br />antes de publicar.</>
           ) : (
@@ -94,7 +97,7 @@ export default function Hero() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-3 gap-6 max-w-xl mx-auto border-t border-gray-100 pt-12">
+        <div className="grid grid-cols-3 gap-6 max-w-xl mx-auto border-t border-gray-100 dark:border-white/10 pt-12">
           {[
             { value: "847%", label: lang === "pt" ? "Crescimento médio" : "Avg growth" },
             { value: "10K+", label: lang === "pt" ? "Publicações analisadas" : "Posts analyzed" },

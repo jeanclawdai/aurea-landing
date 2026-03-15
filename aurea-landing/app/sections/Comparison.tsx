@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 import { useLang } from "../context/LanguageContext";
 import { SectionPill } from "@/components/ui/section-pill";
 import { AnimatedArrowRight } from "@/components/ui/animated-arrow";
@@ -108,18 +109,18 @@ export default function Comparison() {
   const comparisonData = lang === "pt" ? comparisonDataPt : comparisonDataEn;
 
   return (
-    <section className="py-20 px-6 bg-white relative">
+    <section className="py-20 px-6 bg-white dark:bg-[#0a0a0f] relative">
       <div className="max-w-5xl mx-auto">
         {/* Section header */}
         <div className="text-center mb-14">
           {/* Section pill */}
           <SectionPill className="mb-6">{lang === "pt" ? "COMPARAÇÃO" : "COMPARISON"}</SectionPill>
 
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-950 leading-tight mb-5">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-950 dark:text-white leading-tight mb-5">
             {lang === "pt" ? "Porquê " : "Why "}
             <span className="font-serif-italic font-normal">Aurea?</span>
           </h2>
-          <p className="text-xl text-gray-400 max-w-xl mx-auto">
+          <p className="text-xl text-gray-400 dark:text-gray-500 max-w-xl mx-auto">
             {lang === "pt" 
               ? "Veja como a Aurea se compara a fazer sozinho ou contratar uma agência."
               : "See how Aurea stacks up against doing it yourself or hiring an agency."}
@@ -127,38 +128,44 @@ export default function Comparison() {
         </div>
 
         {/* Comparison table - horizontal scroll on mobile */}
-        <div className="overflow-x-auto -mx-6 px-6">
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="overflow-x-auto -mx-6 px-6 py-4"
+        >
           <div className="min-w-[640px]">
             {/* Column headers */}
             <div className="grid grid-cols-4 mb-6 px-2">
               <div /> {/* Empty for feature column */}
               <div className="flex justify-center items-end">
-                <span className="text-xl font-bold text-gray-900">
+                <span className="text-xl font-bold text-gray-900 dark:text-white">
                   Aurea Flow
                 </span>
               </div>
               <div className="flex justify-center items-end">
-                <span className="text-lg font-semibold text-gray-700">
+                <span className="text-lg font-semibold text-gray-700 dark:text-gray-300">
                   Solo Grind
                 </span>
               </div>
               <div className="flex justify-center items-end">
-                <span className="text-lg font-semibold text-gray-700">
+                <span className="text-lg font-semibold text-gray-700 dark:text-gray-300">
                   {lang === "pt" ? "Agência Clássica" : "Classic Agency"}
                 </span>
               </div>
             </div>
 
             {/* Table content */}
-            <div 
-              className="bg-white rounded-3xl overflow-hidden border border-gray-200 p-3"
+            <div
+              className="bg-white dark:bg-[#111118] rounded-3xl overflow-hidden border border-gray-200 dark:border-white/10 p-3"
               style={{
                 boxShadow: "0 4px 40px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04)"
               }}
             >
               <div className="grid grid-cols-4 relative">
             {/* Gray background for first column */}
-            <div className="absolute top-0 bottom-0 left-0 w-1/4 bg-gray-100 rounded-2xl" />
+            <div className="absolute top-0 bottom-0 left-0 w-1/4 bg-gray-100 dark:bg-white/5 rounded-2xl" />
             
             {/* Gradient background for Aurea column */}
             <div 
@@ -174,33 +181,33 @@ export default function Comparison() {
             {comparisonData.map((row, index) => (
               <React.Fragment key={row.feature}>
                 {/* Feature cell */}
-                <div className={`relative z-10 px-5 py-5 ${index !== comparisonData.length - 1 ? "border-b border-gray-200/50" : ""}`}>
-                  <span className="font-medium text-gray-900">{row.feature}</span>
+                <div className={`relative z-10 px-5 py-5 ${index !== comparisonData.length - 1 ? "border-b border-gray-200/50 dark:border-white/10" : ""}`}>
+                  <span className="font-medium text-gray-900 dark:text-white">{row.feature}</span>
                 </div>
 
                 {/* Aurea cell */}
-                <div className={`relative z-10 px-5 py-5 flex items-center gap-3 ${index !== comparisonData.length - 1 ? "border-b border-gray-100" : ""}`}>
+                <div className={`relative z-10 px-5 py-5 flex items-center gap-3 ${index !== comparisonData.length - 1 ? "border-b border-gray-100 dark:border-white/10" : ""}`}>
                   <AnimatedArrowRight className="w-5 h-5" />
-                  <span className="text-gray-700 text-sm font-medium">{row.aurea}</span>
+                  <span className="text-gray-700 dark:text-gray-300 text-sm font-medium">{row.aurea}</span>
                 </div>
 
                 {/* Solo cell */}
-                <div className={`px-5 py-5 flex items-center gap-3 border-l border-gray-100 ${index !== comparisonData.length - 1 ? "border-b border-gray-100" : ""}`}>
+                <div className={`px-5 py-5 flex items-center gap-3 border-l border-gray-100 dark:border-white/10 ${index !== comparisonData.length - 1 ? "border-b border-gray-100 dark:border-white/10" : ""}`}>
                   <CrossIcon />
-                  <span className="text-gray-500 text-sm">{row.solo}</span>
+                  <span className="text-gray-500 dark:text-gray-400 text-sm">{row.solo}</span>
                 </div>
 
                 {/* Agency cell */}
-                <div className={`px-5 py-5 flex items-center gap-3 border-l border-gray-100 ${index !== comparisonData.length - 1 ? "border-b border-gray-100" : ""}`}>
+                <div className={`px-5 py-5 flex items-center gap-3 border-l border-gray-100 dark:border-white/10 ${index !== comparisonData.length - 1 ? "border-b border-gray-100 dark:border-white/10" : ""}`}>
                   <CrossIcon />
-                  <span className="text-gray-500 text-sm">{row.agency}</span>
+                  <span className="text-gray-500 dark:text-gray-400 text-sm">{row.agency}</span>
                 </div>
               </React.Fragment>
             ))}
             </div>
           </div>
-        </div>
-      </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
