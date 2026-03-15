@@ -2,8 +2,9 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Sun, Moon } from "lucide-react";
 import { useLang } from "../context/LanguageContext";
+import { useTheme } from "../context/ThemeContext";
 import { cn } from "@/lib/utils";
 
 const navHrefs = [
@@ -26,6 +27,7 @@ export default function Navbar() {
   const lastScrollY = useRef(0);
   const langRef = useRef<HTMLDivElement>(null);
   const { lang, setLang, t } = useLang();
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -108,6 +110,24 @@ export default function Navbar() {
               {t.nav.cta}
             </motion.button>
 
+            {/* Dark Mode Toggle */}
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={toggleTheme}
+              className="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10 transition-all"
+              title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            >
+              <motion.div
+                key={theme}
+                initial={{ rotate: -30, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                transition={{ duration: 0.2 }}
+              >
+                {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+              </motion.div>
+            </motion.button>
+
             {/* Language Dropdown */}
             <div ref={langRef} className="relative">
               <button
@@ -171,18 +191,26 @@ export default function Navbar() {
                 {t.nav.cta}
               </button>
 
-              {/* Mobile Language Toggle */}
-              <div className="flex items-center gap-2 pt-2 border-t border-gray-100">
+              {/* Mobile Language Toggle + Dark Mode */}
+              <div className="flex items-center justify-between pt-2 border-t border-gray-100 dark:border-white/10">
+                <div className="flex items-center gap-2">
                 {langOptions.map((opt) => (
                   <button
                     key={opt.code}
                     onClick={() => setLang(opt.code)}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm transition-all ${lang === opt.code ? "bg-gray-900 text-white font-medium" : "text-gray-500 hover:text-gray-800"}`}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm transition-all ${lang === opt.code ? "bg-gray-900 dark:bg-white dark:text-gray-900 text-white font-medium" : "text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white"}`}
                   >
                     <span>{opt.flag}</span>
                     <span>{opt.label}</span>
                   </button>
                 ))}
+                </div>
+                <button
+                  onClick={toggleTheme}
+                  className="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10 transition-all"
+                >
+                  {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+                </button>
               </div>
             </div>
           </motion.div>
