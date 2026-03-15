@@ -888,10 +888,10 @@ export default function Features() {
         <AnimatePresence mode="wait">
           <motion.div
             key={active}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.3 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
             className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start"
           >
             {/* Left: copy */}
@@ -935,9 +935,13 @@ export default function Features() {
             </div>
 
             {/* Right: bento visual */}
-            <div className="min-h-[400px]">
+            <motion.div 
+              className="min-h-[400px]"
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            >
               {bentoMap[activeFeature.bento]}
-            </div>
+            </motion.div>
           </motion.div>
         </AnimatePresence>
 

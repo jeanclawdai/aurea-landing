@@ -24,43 +24,23 @@ export default function Hero() {
     <section className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-32 pb-24 text-center overflow-hidden">
       {/* Animated gradient background */}
       <div className="absolute inset-0 -z-10 hero-gradient-animated" />
+      
+      {/* Bubble video background */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover -z-10 opacity-30"
+      >
+        <source src="/hero-bubbles.mp4" type="video/mp4" />
+      </video>
       {/* Grid lines overlay */}
       <div className="absolute inset-0 -z-10 pointer-events-none" style={{
         backgroundImage: 'linear-gradient(rgba(111,168,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(111,168,255,0.05) 1px, transparent 1px)',
         backgroundSize: '40px 40px'
       }} />
-      {/* Floating metric cards — positioned around the title */}
-      {[
-        { label: "With Aurea", value: "+847%", sub: "follower growth", accent: "from-violet-100 to-blue-100", shadow: "shadow-violet-200/60", icon: "📈", x: "left-6 xl:left-20", y: "top-[38%]", rotate: -3, delay: 0, breathClass: "card-breathe-1" },
-        { label: "AI-Optimized", value: "10K+", sub: "posts created", accent: "from-blue-100 to-cyan-100", shadow: "shadow-blue-200/60", icon: "✨", x: "left-3 xl:left-14", y: "top-[56%]", rotate: 2, delay: 0.15, breathClass: "card-breathe-2" },
-        { label: "Time Saved", value: "10×", sub: "faster workflow", accent: "from-purple-100 to-pink-100", shadow: "shadow-purple-200/60", icon: "⚡", x: "right-6 xl:right-20", y: "top-[36%]", rotate: 3, delay: 0.3, breathClass: "card-breathe-3" },
-        { label: "Avg Result", value: "8.7%", sub: "engagement rate", accent: "from-pink-100 to-rose-100", shadow: "shadow-pink-200/60", icon: "💎", x: "right-3 xl:right-14", y: "top-[54%]", rotate: -2, delay: 0.45, breathClass: "card-breathe-4" },
-      ].map((card, i) => (
-        <motion.div
-          key={i}
-          className={`absolute hidden lg:block ${card.x} ${card.y} z-10 ${card.breathClass}`}
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0, rotate: card.rotate }}
-          whileHover={{ 
-            scale: 1.1, 
-            rotate: 0, 
-            y: -6,
-            boxShadow: "0 16px 32px rgba(0,0,0,0.12)"
-          }}
-          transition={{ 
-            default: { delay: card.delay + 0.6, duration: 0.7, ease: [0.22,1,0.36,1] },
-            scale: { type: "spring", stiffness: 400, damping: 25 },
-            y: { type: "spring", stiffness: 400, damping: 25 },
-          }}
-        >
-          <div className={`bg-gradient-to-br ${card.accent} rounded-xl border border-white/60 px-4 py-3 w-36 shadow-lg ${card.shadow} backdrop-blur-sm cursor-pointer iridescent-hover`} style={{ borderRadius: 14 }}>
-            <div className="text-lg mb-0.5">{card.icon}</div>
-            <div className="text-xl font-bold text-gray-900 tracking-tight">{card.value}</div>
-            <div className="text-[9px] text-gray-500 font-medium uppercase tracking-wide">{card.sub}</div>
-            <div className="text-[8px] text-gray-400 mt-0.5">{card.label}</div>
-          </div>
-        </motion.div>
-      ))}
+
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
