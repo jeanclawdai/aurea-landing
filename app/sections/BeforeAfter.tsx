@@ -306,7 +306,7 @@ export default function BeforeAfter() {
         <div className="flex justify-center mb-10">
           <button
             onClick={handleToggle}
-            className="relative flex items-center gap-2 p-1.5 bg-gray-100 dark:bg-[#13131a] rounded-full shadow-md"
+            className="relative flex items-center gap-2 p-1.5 bg-gray-100 dark:bg-[#111118] rounded-full shadow-md"
           >
             <span className={`px-8 py-3.5 rounded-full text-base font-semibold transition-all ${!showAfter ? "bg-white dark:bg-white/10 shadow-sm text-gray-950 dark:text-white" : "text-gray-400 dark:text-gray-500"}`}>
               {lang === "pt" ? "Antes" : "Before"}
@@ -339,7 +339,7 @@ export default function BeforeAfter() {
                 }}
                 transition={{ delay: showAfter ? 0.1 + i * 0.1 : 0, duration: 0.5, ease: [0.22,1,0.36,1] }}
               >
-                <div className="glass-stat-card rounded-xl px-4 py-3 cursor-pointer group dark:bg-[#13131a] dark:border dark:border-white/10">
+                <div className="glass-stat-card rounded-xl px-4 py-3 cursor-pointer group dark:bg-[#111118] dark:border dark:border-white/10">
                   <div className="text-xl mb-0.5">{card.icon}</div>
                   <div className="text-xl font-bold text-gray-900 dark:text-white">{card.value}</div>
                   <div className="text-[10px] text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wide">{card.label}</div>

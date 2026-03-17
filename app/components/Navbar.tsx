@@ -70,7 +70,7 @@ export default function Navbar() {
           className={cn(
             "flex items-center justify-between transition-all duration-300 px-6 py-3",
             isScrolled
-              ? "bg-white/70 dark:bg-gray-950/70 backdrop-blur-xl border border-white/40 dark:border-white/10 shadow-lg"
+              ? "bg-white/60 dark:bg-white/10 backdrop-blur-2xl border border-white/60 dark:border-white/20 shadow-lg shadow-black/5"
               : "bg-transparent border border-transparent",
             isHidden ? "opacity-0 pointer-events-none" : "opacity-100"
           )}
@@ -78,8 +78,8 @@ export default function Navbar() {
         >
           {/* Logo */}
           <a href="#" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gray-950 dark:bg-white/10 flex items-center justify-center">
-              <span className="text-white font-bold text-sm">A</span>
+            <div className="w-8 h-8 rounded-lg bg-gray-950 dark:bg-white flex items-center justify-center">
+              <span className="text-white dark:text-gray-950 font-bold text-sm">A</span>
             </div>
             <span className="text-xl font-bold text-gray-950 dark:text-white">Aurea</span>
           </a>
@@ -92,7 +92,7 @@ export default function Navbar() {
                 href={link.href}
                 whileHover={{ x: 2 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white text-sm font-medium transition-colors"
+                className="text-gray-500 hover:text-gray-900 text-sm font-medium transition-colors"
               >
                 {t.nav[link.key]}
               </motion.a>
@@ -105,7 +105,7 @@ export default function Navbar() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
-              className="bg-gray-950 dark:bg-white text-white dark:text-gray-950 px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
+              className="bg-gray-950 text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-gray-800 transition-colors"
             >
               {t.nav.cta}
             </motion.button>
@@ -116,7 +116,7 @@ export default function Navbar() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
-              className="p-2 rounded-lg text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10 transition-all"
+              className="p-2 rounded-lg text-gray-500 hover:text-gray-900 hover:bg-black/5 transition-all"
               aria-label="Toggle dark mode"
             >
               <AnimatePresence mode="wait" initial={false}>
@@ -148,7 +148,7 @@ export default function Navbar() {
             <div ref={langRef} className="relative">
               <button
                 onClick={() => setIsLangOpen(!isLangOpen)}
-                className="flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10 transition-all"
+                className="flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-black/5 transition-all"
               >
                 <span>{currentLang.flag}</span>
                 <span>{currentLang.label}</span>

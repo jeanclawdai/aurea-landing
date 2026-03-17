@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { SectionPill } from "@/components/ui/section-pill";
 import { useState, useRef, useEffect } from "react";
 import { useLang } from "../context/LanguageContext";
-import { Check, Instagram, Youtube } from "lucide-react";
+import { Check, Instagram, Youtube, ChevronDown } from "lucide-react";
 
 
 // Animated icons
@@ -338,7 +338,7 @@ function BentoContent() {
     <div className="grid grid-cols-3 gap-4 h-full">
       {/* Editor mockup */}
       <div className="col-span-2 row-span-2 bg-white dark:bg-[#1a1a28] rounded-2xl shadow-md border border-gray-100 dark:border-white/10 overflow-hidden">
-        <div className="bg-gray-50 dark:bg-[#13131a] border-b border-gray-100 dark:border-white/10 px-4 py-2.5 flex items-center gap-2">
+        <div className="bg-gray-50 dark:bg-[#111118] border-b border-gray-100 dark:border-white/10 px-4 py-2.5 flex items-center gap-2">
           <div className="flex gap-1.5">
             <div className="w-3 h-3 rounded-full bg-red-400" />
             <div className="w-3 h-3 rounded-full bg-yellow-400" />
@@ -354,7 +354,7 @@ function BentoContent() {
               </div>
             ))}
           </div>
-          <div className="flex-1 bg-gradient-to-br from-primary/10 via-purple-50 to-violet-100 dark:from-primary/10 dark:via-purple-950/30 dark:to-violet-950/30 rounded-xl flex items-center justify-center min-h-[180px]">
+          <div className="flex-1 bg-gradient-to-br from-primary/10 via-purple-50 to-rose-100 dark:from-primary/10 dark:via-purple-950/30 dark:to-rose-950/30 rounded-xl flex items-center justify-center min-h-[180px]">
             <div className="text-center">
               <div className="w-12 h-12 rounded-xl bg-white/80 dark:bg-white/10 shadow-sm flex items-center justify-center mx-auto mb-2">
                 <span className="text-xl">✦</span>
@@ -564,60 +564,276 @@ function BentoAnalytics() {
 }
 
 function BentoBrand() {
+  const [step, setStep] = useState(0);
+  
+  // Auto-advance steps
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setStep(s => (s + 1) % 4);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const steps = [
+    { num: 1, label: "Upload", desc: "Add your logo" },
+    { num: 2, label: "Customize", desc: "Pick colors & fonts" },
+    { num: 3, label: "Generate", desc: "AI creates variations" },
+    { num: 4, label: "Publish", desc: "Ready to post" },
+  ];
+
   return (
-    <div className="grid grid-cols-3 gap-4 h-full">
-      {/* Brand preview */}
-      <div className="col-span-2 row-span-2 bg-white dark:bg-[#1a1a28] rounded-2xl p-5 shadow-md border border-gray-100 dark:border-white/10">
-        <span className="text-sm font-semibold text-gray-900 dark:text-white block mb-4">Brand Kit Preview</span>
-        
-        <div className="flex items-center gap-4 mb-5">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-violet-500 flex items-center justify-center text-white font-bold text-xl shadow-md">A</div>
-          <div>
-            <p className="font-semibold text-gray-900 dark:text-white">Clínica Aurora</p>
-            <p className="text-xs text-primary font-medium">Brand identity loaded ✓</p>
-          </div>
-        </div>
-
-        {/* Colors */}
-        <p className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">Colors</p>
-        <div className="flex gap-2 mb-5">
-          {["#6FA8FF","#A8B8FF","#D4A8FF","#1A2A4A","#FFFFFF"].map((c, i) => (
+    <div className="bg-white dark:bg-[#1a1a28] rounded-3xl p-6 shadow-lg border border-gray-100 dark:border-white/10 h-full flex flex-col">
+      {/* Step indicators */}
+      <div className="flex items-center justify-between mb-6">
+        {steps.map((s, i) => (
+          <div key={i} className="flex items-center">
             <motion.div
-              key={i}
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: i * 0.1 }}
-              className="w-9 h-9 rounded-xl border border-gray-100 shadow-sm"
-              style={{ background: c }}
-            />
-          ))}
-        </div>
-
-        {/* Fonts */}
-        <p className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">Typography</p>
-        <div className="flex gap-2">
-          <span className="px-3 py-1.5 bg-gray-50 dark:bg-white/10 rounded-lg text-sm text-gray-700 dark:text-gray-300 font-medium">Inter</span>
-          <span className="px-3 py-1.5 bg-gray-50 dark:bg-white/10 rounded-lg text-sm text-gray-700 dark:text-gray-300 italic" style={{ fontFamily: "serif" }}>Playfair</span>
-        </div>
+              animate={{
+                scale: step === i ? 1.1 : 1,
+                backgroundColor: step >= i ? "#E879F9" : "#E5E7EB",
+              }}
+              className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold"
+              style={{ color: step >= i ? "#fff" : "#9CA3AF" }}
+            >
+              {step > i ? <Check className="w-4 h-4" /> : s.num}
+            </motion.div>
+            {i < 3 && (
+              <motion.div
+                animate={{ backgroundColor: step > i ? "#E879F9" : "#E5E7EB" }}
+                className="w-12 sm:w-16 h-0.5 mx-2"
+              />
+            )}
+          </div>
+        ))}
       </div>
 
-      {/* Stats */}
-      <div className="bg-white dark:bg-[#1a1a28] rounded-2xl p-4 shadow-md border border-gray-100 dark:border-white/10 flex flex-col justify-between">
-        <span className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">Setup</span>
-        <div>
-          <span className="text-2xl font-bold text-gray-900 dark:text-white">1×</span>
-          <p className="text-xs text-gray-500 dark:text-gray-400">one time</p>
-        </div>
+      {/* Step label */}
+      <div className="text-center mb-5">
+        <motion.p
+          key={step}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-sm font-semibold text-gray-900 dark:text-white"
+        >
+          {steps[step].label}
+        </motion.p>
+        <motion.p
+          key={`desc-${step}`}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="text-xs text-gray-500 dark:text-gray-400"
+        >
+          {steps[step].desc}
+        </motion.p>
       </div>
 
-      <div className="bg-white dark:bg-[#1a1a28] rounded-2xl p-4 shadow-md border border-gray-100 dark:border-white/10 flex flex-col justify-between">
-        <span className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">Result</span>
-        <div>
-          <span className="text-2xl font-bold text-gray-900 dark:text-white">∞</span>
-          <p className="text-xs text-gray-500 dark:text-gray-400">on-brand posts</p>
-        </div>
+      {/* Visual area */}
+      <div className="flex-1 relative overflow-hidden rounded-2xl bg-gray-50 dark:bg-white/5 min-h-[280px]">
+        <AnimatePresence mode="wait">
+          {step === 0 && (
+            <motion.div
+              key="upload"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="absolute inset-0 flex flex-col items-center justify-center p-6"
+            >
+              {/* Upload zone */}
+              <motion.div
+                animate={{ borderColor: ["#D1D5DB", "#E879F9", "#D1D5DB"] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="w-full max-w-[200px] aspect-square rounded-2xl border-2 border-dashed flex flex-col items-center justify-center bg-white dark:bg-[#1a1a28]"
+              >
+                <motion.div
+                  animate={{ y: [0, -5, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                  className="w-16 h-16 rounded-2xl bg-gradient-to-br from-rose-300 to-pink-400 flex items-center justify-center text-white text-2xl font-bold mb-3 shadow-lg"
+                >
+                  A
+                </motion.div>
+                <p className="text-xs text-gray-500 dark:text-gray-400">logo.png</p>
+              </motion.div>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mt-4">Drag your logo here</p>
+            </motion.div>
+          )}
+
+          {step === 1 && (
+            <motion.div
+              key="customize"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              className="absolute inset-0 p-6"
+            >
+              <div className="bg-white dark:bg-[#1a1a28] rounded-xl p-4 shadow-sm mb-4">
+                <p className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3">Brand Colors</p>
+                <div className="flex gap-2">
+                  {["#E879F9", "#F0ABFC", "#D4A8FF", "#FFA8D4", "#FFFFFF"].map((c, i) => (
+                    <motion.div
+                      key={c}
+                      initial={{ scale: 0, rotate: -180 }}
+                      animate={{ scale: 1, rotate: 0 }}
+                      transition={{ delay: i * 0.1, type: "spring" }}
+                      className={`w-10 h-10 rounded-xl shadow-sm cursor-pointer transition-transform hover:scale-110 ${i === 0 ? "ring-2 ring-fuchsia-400 ring-offset-2" : ""}`}
+                      style={{ background: c, border: c === "#FFFFFF" ? "1px solid #E5E7EB" : "none" }}
+                    />
+                  ))}
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.5 }}
+                    className="w-10 h-10 rounded-xl border-2 border-dashed border-gray-300 dark:border-gray-600 flex items-center justify-center text-gray-400 text-lg"
+                  >
+                    +
+                  </motion.div>
+                </div>
+              </div>
+
+              <div className="bg-white dark:bg-[#1a1a28] rounded-xl p-4 shadow-sm">
+                <p className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3">Typography</p>
+                <div className="flex gap-2">
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="flex-1 px-4 py-3 bg-fuchsia-50 dark:bg-fuchsia-900/20 rounded-xl border-2 border-fuchsia-300"
+                  >
+                    <p className="font-semibold text-gray-900 dark:text-white">Inter</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">Modern & Clean</p>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                    className="flex-1 px-4 py-3 bg-gray-50 dark:bg-white/5 rounded-xl border border-gray-200 dark:border-white/10"
+                  >
+                    <p className="font-semibold text-gray-900 dark:text-white italic" style={{ fontFamily: "serif" }}>Playfair</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">Elegant Accent</p>
+                  </motion.div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {step === 2 && (
+            <motion.div
+              key="generate"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 flex items-center justify-center p-6"
+            >
+              {/* Content variations being generated */}
+              <div className="grid grid-cols-3 gap-3 w-full max-w-[320px]">
+                {[0, 1, 2, 3, 4, 5].map((i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: i * 0.15 }}
+                    className="aspect-square rounded-xl bg-gradient-to-br from-fuchsia-100 to-pink-100 dark:from-fuchsia-900/30 dark:to-pink-900/30 relative overflow-hidden"
+                  >
+                    {/* Shimmer effect */}
+                    <motion.div
+                      animate={{ x: ["-100%", "100%"] }}
+                      transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.1 }}
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
+                    />
+                    {i < 3 && (
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.5 + i * 0.2 }}
+                        className="absolute inset-2 rounded-lg bg-white/80 dark:bg-white/20 flex items-center justify-center"
+                      >
+                        <Check className="w-5 h-5 text-fuchsia-500" />
+                      </motion.div>
+                    )}
+                  </motion.div>
+                ))}
+              </div>
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.8 }}
+                className="absolute bottom-6 text-sm text-gray-600 dark:text-gray-400"
+              >
+                Generating 6 variations...
+              </motion.p>
+            </motion.div>
+          )}
+
+          {step === 3 && (
+            <motion.div
+              key="publish"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 p-4"
+            >
+              {/* Final content cards */}
+              <div className="grid grid-cols-3 gap-2 h-full">
+                {[
+                  { bg: "from-rose-400 to-pink-500", label: "Post 1" },
+                  { bg: "from-fuchsia-400 to-purple-500", label: "Story" },
+                  { bg: "from-pink-400 to-rose-500", label: "Reel" },
+                ].map((item, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.15 }}
+                    className={`rounded-xl bg-gradient-to-br ${item.bg} p-3 flex flex-col justify-between relative overflow-hidden`}
+                  >
+                    {/* Logo watermark */}
+                    <div className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center text-white text-xs font-bold">
+                      A
+                    </div>
+                    
+                    <div>
+                      <p className="text-white/80 text-[10px] uppercase tracking-wide">{item.label}</p>
+                      <p className="text-white text-xs font-semibold">Ready ✓</p>
+                    </div>
+
+                    {/* Brand colors dot */}
+                    <div className="absolute top-3 right-3 flex gap-1">
+                      <div className="w-2 h-2 rounded-full bg-white/40" />
+                      <div className="w-2 h-2 rounded-full bg-white/60" />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Result badge */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+                className="absolute bottom-4 left-4 right-4 bg-white dark:bg-[#1a1a28] rounded-xl px-4 py-3 shadow-lg flex items-center justify-between"
+              >
+                <div>
+                  <p className="text-sm font-semibold text-gray-900 dark:text-white">3 posts ready</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">All on-brand, zero effort</p>
+                </div>
+                <div className="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
+                  <Check className="w-5 h-5 text-green-600 dark:text-green-400" />
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
+      {/* Manual step navigation */}
+      <div className="flex justify-center gap-2 mt-4">
+        {steps.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setStep(i)}
+            className={`w-2 h-2 rounded-full transition-all ${step === i ? "bg-fuchsia-400 w-6" : "bg-gray-300 dark:bg-gray-600 hover:bg-gray-400"}`}
+          />
+        ))}
+      </div>
     </div>
   );
 }
@@ -640,15 +856,21 @@ function BentoCaption() {
 
         <p className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">Optimised Hashtags</p>
         <div className="flex flex-wrap gap-1.5">
-          {["#esteticaavancada", "#peleperfeita", "#tratamentofacial", "#clinicapremium", "#resultadosreais"].map((tag, i) => (
+          {[
+            { tag: "#esteticaavancada", color: "text-[#E879F9] bg-[#E879F9]/10" },
+            { tag: "#peleperfeita", color: "text-[#F0ABFC] bg-[#F0ABFC]/10" },
+            { tag: "#tratamentofacial", color: "text-[#D4A8FF] bg-[#D4A8FF]/10" },
+            { tag: "#clinicapremium", color: "text-[#FFA8D4] bg-[#FFA8D4]/10" },
+            { tag: "#resultadosreais", color: "text-[#F9A8D4] bg-[#F9A8D4]/10" },
+          ].map((item, i) => (
             <motion.span
               key={i}
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.5 + i * 0.1 }}
-              className="text-xs text-primary bg-primary/10 px-2.5 py-1 rounded-full"
+              className={`text-xs px-2.5 py-1 rounded-full font-medium ${item.color}`}
             >
-              {tag}
+              {item.tag}
             </motion.span>
           ))}
         </div>
@@ -716,7 +938,7 @@ function BentoVoice() {
 
       {/* Voice waveform */}
       <div className="col-span-2 bg-gradient-to-br from-gray-900 to-gray-950 rounded-2xl p-5 shadow-md relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-violet-900/30" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-rose-900/30" />
         <div className="relative z-10">
           <div className="flex items-center gap-2 mb-4">
             <span className="text-sm font-semibold text-white">Voice Synthesis</span>
@@ -770,6 +992,7 @@ export default function Features() {
   const { lang } = useLang();
   const features = lang === "pt" ? featuresPt : featuresEn;
   const [active, setActive] = useState(features[0].id);
+  const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
   const activeFeature = features.find(f => f.id === active)!;
 
   // Icon refs for controlled animations (pills)
@@ -804,7 +1027,7 @@ export default function Features() {
   }, [active]);
 
   return (
-    <section id="features" className="py-24 px-6 overflow-hidden bg-gray-50 dark:bg-[#13131a]">
+    <section id="features" className="py-24 px-6 overflow-hidden bg-gray-50 dark:bg-[#0a0a0f]">
       <div className="max-w-6xl mx-auto">
 
         {/* Header */}
@@ -827,8 +1050,62 @@ export default function Features() {
           </p>
         </motion.div>
 
-        {/* Filter pills */}
-        <div className="flex flex-wrap justify-center gap-3 mb-20">
+        {/* Mobile dropdown */}
+        <div className="md:hidden mb-12 relative">
+          <button
+            onClick={() => setMobileDropdownOpen(!mobileDropdownOpen)}
+            className="w-full flex items-center justify-between gap-3 px-5 py-4 rounded-2xl bg-white dark:bg-[#1a1a28] border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white font-medium shadow-sm"
+          >
+            <div className="flex items-center gap-3">
+              {(() => {
+                const IconComponent = iconComponents[active];
+                return IconComponent ? <IconComponent size={20} className="text-pink-400" /> : null;
+              })()}
+              <span>{activeFeature.label}</span>
+            </div>
+            <ChevronDown size={20} className={`text-gray-400 transition-transform ${mobileDropdownOpen ? 'rotate-180' : ''}`} />
+          </button>
+          
+          <AnimatePresence>
+            {mobileDropdownOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-[#1a1a28] border border-gray-200 dark:border-white/10 rounded-2xl shadow-xl z-50 overflow-hidden"
+              >
+                {features.map((f) => {
+                  const IconComponent = iconComponents[f.id];
+                  const isActive = active === f.id;
+                  return (
+                    <button
+                      key={f.id}
+                      onClick={() => {
+                        setActive(f.id);
+                        setMobileDropdownOpen(false);
+                      }}
+                      className={`w-full flex items-center gap-3 px-5 py-3.5 text-left transition-colors ${
+                        isActive 
+                          ? 'iridescent-pill-active text-gray-800 dark:text-white' 
+                          : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5'
+                      }`}
+                    >
+                      {IconComponent && <IconComponent size={18} className={isActive ? 'text-pink-400' : 'text-gray-400'} />}
+                      <span className="font-medium">{f.label}</span>
+                      {f.comingSoon && (
+                        <span className="ml-auto text-xs bg-gray-100 dark:bg-white/10 text-gray-500 px-2 py-0.5 rounded-full">Soon</span>
+                      )}
+                      {isActive && <Check size={16} className="ml-auto text-pink-400" />}
+                    </button>
+                  );
+                })}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        {/* Desktop filter pills */}
+        <div className="hidden md:flex flex-wrap justify-center gap-3 mb-20">
           {features.map((f) => {
             const isActive = active === f.id;
             const IconComponent = iconComponents[f.id];
@@ -840,8 +1117,8 @@ export default function Features() {
                 className={`
                   relative inline-flex items-center gap-2.5 px-5 py-3 rounded-full text-sm font-medium transition-all duration-300
                   ${isActive
-                    ? "bg-violet-50 dark:bg-violet-950/50 border-2 border-violet-300 dark:border-violet-700 text-gray-900 dark:text-white shadow-lg shadow-violet-100/50 dark:shadow-violet-900/20"
-                    : "bg-white dark:bg-[#1a1a28] border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-400 hover:border-transparent hover:shadow-md"
+                    ? "iridescent-pill-active border-2 border-white/40 dark:border-white/20 text-gray-800 dark:text-white shadow-lg"
+                    : "bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-400 hover:border-transparent hover:shadow-md"
                   }
                 `}
                 onMouseEnter={() => {
@@ -862,7 +1139,7 @@ export default function Features() {
                 
                 {/* Checkmark for active */}
                 {isActive && (
-                  <Check className="w-4 h-4 text-violet-500 flex-shrink-0" />
+                  <Check className="w-4 h-4 text-pink-400 flex-shrink-0" />
                 )}
                 
                 {/* Icon */}
@@ -870,7 +1147,7 @@ export default function Features() {
                   <IconComponent
                     ref={(el: IconHandle | null) => { iconRefs.current[f.id] = el; }}
                     size={18}
-                    className={isActive ? "text-violet-500" : "text-gray-500"}
+                    className={isActive ? "text-pink-400" : "text-gray-500 dark:text-gray-400"}
                   />
                 )}
                 
@@ -892,35 +1169,41 @@ export default function Features() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start"
+            className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10 items-start"
           >
             {/* Left: copy */}
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-4 sm:gap-6">
               <div>
-                {(() => {
-                  const TitleIcon = iconComponents[activeFeature.id];
-                  return TitleIcon ? (
-                    <TitleIcon
-                      ref={(el: IconHandle | null) => { titleIconRef.current = el; }}
-                      size={36}
-                      className="text-gray-900 mb-4"
-                    />
-                  ) : null;
-                })()}
+                {/* Icon + Title inline on mobile */}
+                <div className="flex items-center gap-3 sm:block mb-3 sm:mb-0">
+                  {(() => {
+                    const TitleIcon = iconComponents[activeFeature.id];
+                    return TitleIcon ? (
+                      <TitleIcon
+                        ref={(el: IconHandle | null) => { titleIconRef.current = el; }}
+                        size={28}
+                        className="text-gray-900 dark:text-white sm:mb-4 flex-shrink-0"
+                      />
+                    ) : null;
+                  })()}
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-950 dark:text-white leading-tight sm:hidden">
+                    {activeFeature.headline}
+                  </h3>
+                </div>
                 {activeFeature.comingSoon && (
                   <span className="inline-block text-xs bg-gray-100 dark:bg-white/10 text-gray-500 dark:text-gray-400 px-2.5 py-1 rounded-full font-medium border border-gray-200 dark:border-white/10 mb-3">Coming Soon</span>
                 )}
-                <h3 className="text-3xl sm:text-4xl font-bold text-gray-950 dark:text-white leading-tight mb-4">
+                <h3 className="hidden sm:block text-3xl sm:text-4xl font-bold text-gray-950 dark:text-white leading-tight mb-4">
                   {activeFeature.headline}
                 </h3>
-                <p className="text-gray-500 dark:text-gray-400 text-lg leading-relaxed">
+                <p className="text-gray-500 dark:text-gray-400 text-base sm:text-lg leading-relaxed">
                   {activeFeature.description}
                 </p>
               </div>
 
               {/* Badge card */}
               {activeFeature.badge && (
-                <div className="bg-gradient-to-r from-primary/5 to-violet-50 dark:from-primary/10 dark:to-violet-950/30 rounded-2xl p-4 shadow-sm border border-primary/20 dark:border-primary/20 flex items-center justify-between">
+                <div className="bg-white/60 dark:bg-white/5 backdrop-blur-sm rounded-2xl p-4 shadow-sm border border-rose-100/60 dark:border-white/10 flex items-center justify-between">
                   <div>
                     <p className="text-sm font-semibold text-gray-900 dark:text-white">{activeFeature.badge.title}</p>
                     <p className="text-xs text-gray-500 dark:text-gray-400">{activeFeature.badge.subtitle}</p>
@@ -934,9 +1217,9 @@ export default function Features() {
               )}
             </div>
 
-            {/* Right: bento visual */}
+            {/* Right: bento visual - shows below on mobile */}
             <motion.div 
-              className="min-h-[400px]"
+              className="min-h-[280px] sm:min-h-[400px] order-last lg:order-none"
               animate={{ y: [0, 8, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             >

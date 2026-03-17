@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 :root {
-  --primary: #6FA8FF;
+  --primary: #FDA4AF;
   --secondary: #CFE3FF;
   --accent: #A8B8FF;
   --background-start: #FFFFFF;
@@ -37,7 +37,11 @@ body {
 
   .section-white { background: #FFFFFF; }
   .section-off { background: #F6F8FF; }
-  .section-dark-soft { background: #0F1117; }
+  .section-dark-soft { background: #0a0a0f; }
+  
+  /* Dark mode color tokens */
+  /* Section backgrounds: #0a0a0f */
+  /* Card backgrounds: #111118 */
 
   .glass-card {
     background: rgba(255, 255, 255, 0.7);
@@ -392,16 +396,12 @@ body {
 .card-breathe-4 { animation: cardBreathe 4.2s ease-in-out infinite 1.5s; }
 
 /* Rotating border button */
-@keyframes borderRotate {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
 .rotating-border-btn {
   position: relative;
   z-index: 0;
   overflow: hidden;
   border-radius: 16px;
+  isolation: isolate;
 }
 
 .rotating-border-btn::before {
@@ -410,29 +410,79 @@ body {
   top: 50%;
   left: 50%;
   width: 200%;
-  height: 200%;
+  aspect-ratio: 1;
   background: conic-gradient(
     from 0deg,
-    #c3a8ff,
-    #a8d8ff,
-    #a8f0e8,
-    #e8a8d8,
-    #ffffff,
-    #d8c8ff,
-    #c3a8ff
+    #c3a8ff 0deg,
+    #a8d8ff 60deg,
+    #a8f0e8 120deg,
+    #e8a8d8 180deg,
+    #ffc8e8 240deg,
+    #d8c8ff 300deg,
+    #c3a8ff 360deg
   );
   transform: translate(-50%, -50%);
-  animation: borderRotate 3s linear infinite;
+  animation: borderRotate 6s linear infinite;
   z-index: -2;
 }
 
 .rotating-border-btn::after {
   content: '';
   position: absolute;
-  inset: 3px;
-  background: #111827;
-  border-radius: 13px;
+  inset: 2px;
+  background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+  border-radius: 14px;
   z-index: -1;
+}
+
+/* Thinner border variant for mobile */
+.rotating-border-btn-thin::after {
+  inset: 1.5px;
+  border-radius: 14.5px;
+}
+
+/* Subtle light ray shimmer */
+.rotating-border-btn .btn-shimmer-ray {
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.rotating-border-btn .btn-shimmer-ray::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    transparent 100%
+  );
+  animation: shimmerRay 3s ease-in-out infinite;
+}
+
+@keyframes shimmerRay {
+  0% {
+    left: -100%;
+  }
+  50%, 100% {
+    left: 150%;
+  }
+}
+
+@keyframes borderRotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
 }
 
 /* Iridescent radial glow - animated hue shift - BRIGHT */
@@ -573,6 +623,38 @@ body {
   background-size: 200% 100%;
   animation: pillShimmer 4s ease-in-out infinite;
   border: 1px solid rgba(200, 180, 255, 0.4);
+}
+
+/* Active filter pill - iridescent */
+.iridescent-pill-active {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 240, 245, 0.95) 0%,
+    rgba(245, 240, 255, 0.95) 25%,
+    rgba(255, 245, 250, 0.95) 50%,
+    rgba(240, 245, 255, 0.95) 75%,
+    rgba(255, 240, 248, 0.95) 100%
+  );
+  background-size: 300% 300%;
+  animation: iridescentShift 6s ease infinite;
+}
+
+.dark .iridescent-pill-active {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 182, 193, 0.15) 0%,
+    rgba(200, 180, 255, 0.15) 25%,
+    rgba(255, 192, 203, 0.15) 50%,
+    rgba(180, 200, 255, 0.15) 75%,
+    rgba(255, 182, 200, 0.15) 100%
+  );
+  background-size: 300% 300%;
+  animation: iridescentShift 6s ease infinite;
+}
+
+@keyframes iridescentShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 /* Iridescent glow on hover */
@@ -997,7 +1079,7 @@ button:hover .pill-glow-hover {
 
 /* Section backgrounds */
 .dark .section-white { background: #0a0a0f; }
-.dark .section-off { background: #13131a; }
+.dark .section-off { background: #111118; }
 
 /* Glass card */
 .dark .glass-card {
@@ -1039,21 +1121,8 @@ button:hover .pill-glow-hover {
   background: linear-gradient(180deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.0) 100%);
 }
 
-/* Hero gradient – deep dark version */
-.dark .hero-gradient-animated {
-  background: linear-gradient(
-    135deg,
-    #0a0a0f,
-    #0d0a1a,
-    #0a0d1a,
-    #0d0a0f,
-    #0a0a1a,
-    #0d0a1a,
-    #0a0a0f
-  );
-  background-size: 400% 400%;
-  animation: gradientShift 20s ease infinite;
-}
+/* Hero gradient – keep light version in dark mode (videos will provide the dark feel) */
+/* .dark .hero-gradient-animated removed — using same light gradient */
 
 /* AI grid bg */
 .dark .ai-grid-bg {
@@ -1087,18 +1156,8 @@ button:hover .pill-glow-hover {
   box-shadow: 0 2px 8px rgba(111, 168, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
-/* Iridescent btn (hero secondary CTA) */
-.dark .iridescent-btn {
-  background: linear-gradient(135deg, #1a1428 0%, #0d1428 50%, #1a1020 100%);
-  border: 1px solid rgba(200, 180, 255, 0.2);
-  color: #e0d8ff;
-}
-
-.dark .iridescent-btn:hover {
-  background: linear-gradient(135deg, #241c3a 0%, #0d1a38 50%, #241020 100%);
-  border-color: rgba(180, 160, 255, 0.4);
-  box-shadow: 0 8px 24px rgba(140, 100, 255, 0.25), 0 4px 12px rgba(100, 140, 255, 0.15);
-}
+/* Iridescent btn (hero secondary CTA) – keep light style in dark mode */
+/* .dark .iridescent-btn removed — using same light pastel gradient */
 
 /* Sparkle divider color in dark */
 .dark .sparkle-divider {
@@ -1106,7 +1165,9 @@ button:hover .pill-glow-hover {
 }
 
 /* Section pill component variants */
-.dark .section-pill-light {
+.dark .section-pill-light:not(.hero-pill-light) {
   background: rgba(20, 20, 32, 0.85);
   color: rgba(255, 255, 255, 0.75);
 }
+
+

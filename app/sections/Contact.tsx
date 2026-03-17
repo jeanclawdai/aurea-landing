@@ -16,8 +16,27 @@ const floatingIcons = [
 export default function Contact() {
   const { lang } = useLang();
   return (
-    <section id="contact" className="py-32 px-6 bg-white dark:bg-[#0a0a0f] relative overflow-hidden">
-      {/* Background gradient */}
+    <section id="contact" className="py-16 sm:py-32 px-3 sm:px-6 bg-white dark:bg-[#0a0a0f] relative overflow-hidden">
+      {/* Bubble video background with gradient mask */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          maskImage: 'linear-gradient(to bottom, transparent 0%, black 30%, black 100%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 30%, black 100%)',
+        }}
+      >
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-40 dark:opacity-60"
+        >
+          <source src="/hero-bubbles.mp4" type="video/mp4" />
+        </video>
+      </div>
+      
+      {/* Background gradient overlay */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-50 via-violet-50 to-pink-50 dark:from-blue-950/20 dark:via-violet-950/20 dark:to-pink-950/20 rounded-full blur-3xl opacity-60" />
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-48 bg-gradient-to-t from-blue-100/40 dark:from-blue-900/10 to-transparent blur-2xl" />
@@ -27,7 +46,7 @@ export default function Contact() {
         {floatingIcons.map((item, i) => (
           <motion.div
             key={i}
-            className="absolute hidden lg:flex items-center justify-center w-12 h-12 bg-white dark:bg-[#13131a] rounded-2xl shadow-lg border border-gray-100 dark:border-white/10 text-xl pointer-events-none"
+            className="absolute hidden lg:flex items-center justify-center w-12 h-12 bg-white dark:bg-[#111118] rounded-2xl shadow-lg border border-gray-100 dark:border-white/10 text-xl pointer-events-none"
             style={{ left: `calc(50% + ${item.x}px)`, top: `calc(50% + ${item.y}px)`, rotate: item.rotate }}
             initial={{ opacity: 0, scale: 0 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -69,7 +88,7 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="relative bg-white dark:bg-[#13131a] rounded-3xl border border-gray-100 dark:border-white/10 p-10 shadow-xl shadow-gray-200/60 dark:shadow-black/40"
+          className="relative bg-white dark:bg-[#111118] rounded-2xl sm:rounded-3xl border border-gray-100 dark:border-white/10 p-5 sm:p-10 shadow-xl shadow-gray-200/60 dark:shadow-black/40"
         >
           <form className="space-y-6">
             <div className="grid sm:grid-cols-2 gap-6">
@@ -150,6 +169,11 @@ export default function Contact() {
           <span className="hidden sm:block">·</span>
           <span>{lang === "pt" ? "Resposta em 24h" : "Reply within 24h"}</span>
         </motion.div>
+      </div>
+      
+      {/* Iridescent divider */}
+      <div className="absolute bottom-0 left-0 right-0">
+        <div className="iridescent-divider mx-auto" style={{ maxWidth: '80%' }} />
       </div>
     </section>
   );

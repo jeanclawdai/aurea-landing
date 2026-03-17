@@ -113,7 +113,7 @@ export default function Pricing() {
   const { lang } = useLang();
 
   return (
-    <section id="pricing" className="py-32 px-6 bg-white dark:bg-[#0a0a0f]">
+    <section id="pricing" className="py-16 sm:py-32 px-4 sm:px-6 bg-white dark:bg-[#0a0a0f]">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
@@ -145,7 +145,7 @@ export default function Pricing() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
               whileHover={{ y: -6, transition: { type: "spring", stiffness: 300, damping: 20 } }}
-              className={`rounded-3xl p-10 flex flex-col ${plan.popular ? "bg-gray-950 holographic-border" : "bg-gray-100 dark:bg-[#13131a]"}`}
+              className={`rounded-2xl sm:rounded-3xl p-6 sm:p-10 flex flex-col ${plan.popular ? "bg-gray-950 holographic-border" : "bg-gray-100 dark:bg-[#1a1a24]"}`}
             >
               {/* Top badge */}
               <div className="mb-8">

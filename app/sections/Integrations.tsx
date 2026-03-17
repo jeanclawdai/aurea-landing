@@ -114,7 +114,7 @@ export default function Integrations() {
   const { lang } = useLang();
   
   return (
-    <section className="section-dark-soft py-20 overflow-hidden relative">
+    <section className="bg-[#0a0a0f] py-20 overflow-hidden relative">
       {/* Subtle background glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#6FA8FF] opacity-5 rounded-full blur-[120px]" />

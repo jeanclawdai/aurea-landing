@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 import { useLang } from "../context/LanguageContext";
 import { SectionPill } from "@/components/ui/section-pill";
 import { AnimatedArrowRight } from "@/components/ui/animated-arrow";
@@ -108,7 +109,7 @@ export default function Comparison() {
   const comparisonData = lang === "pt" ? comparisonDataPt : comparisonDataEn;
 
   return (
-    <section className="py-20 px-6 bg-white dark:bg-[#0a0a0f] relative">
+    <section className="py-12 sm:py-20 px-3 sm:px-6 bg-white dark:bg-[#0a0a0f] relative">
       <div className="max-w-5xl mx-auto">
         {/* Section header */}
         <div className="text-center mb-14">
@@ -127,7 +128,13 @@ export default function Comparison() {
         </div>
 
         {/* Comparison table - horizontal scroll on mobile */}
-        <div className="overflow-x-auto -mx-6 px-6">
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="overflow-x-auto -mx-6 px-6 py-4"
+        >
           <div className="min-w-[640px]">
             {/* Column headers */}
             <div className="grid grid-cols-4 mb-6 px-2">
@@ -151,7 +158,7 @@ export default function Comparison() {
 
             {/* Table content */}
             <div
-              className="bg-white dark:bg-[#13131a] rounded-3xl overflow-hidden border border-gray-200 dark:border-white/10 p-3"
+              className="bg-white dark:bg-[#111118] rounded-2xl sm:rounded-3xl overflow-hidden border border-gray-200 dark:border-white/10 p-1.5 sm:p-3"
               style={{
                 boxShadow: "0 4px 40px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04)"
               }}
@@ -174,24 +181,24 @@ export default function Comparison() {
             {comparisonData.map((row, index) => (
               <React.Fragment key={row.feature}>
                 {/* Feature cell */}
-                <div className={`relative z-10 px-5 py-5 ${index !== comparisonData.length - 1 ? "border-b border-gray-200/50 dark:border-white/10" : ""}`}>
+                <div className={`relative z-10 px-2.5 py-2.5 sm:px-5 sm:py-5 ${index !== comparisonData.length - 1 ? "border-b border-gray-200/50 dark:border-white/10" : ""}`}>
                   <span className="font-medium text-gray-900 dark:text-white">{row.feature}</span>
                 </div>
 
                 {/* Aurea cell */}
-                <div className={`relative z-10 px-5 py-5 flex items-center gap-3 ${index !== comparisonData.length - 1 ? "border-b border-gray-100 dark:border-white/10" : ""}`}>
+                <div className={`relative z-10 px-2.5 py-2.5 sm:px-5 sm:py-5 flex items-center gap-3 ${index !== comparisonData.length - 1 ? "border-b border-gray-100 dark:border-white/10" : ""}`}>
                   <AnimatedArrowRight className="w-5 h-5" />
                   <span className="text-gray-700 dark:text-gray-300 text-sm font-medium">{row.aurea}</span>
                 </div>
 
                 {/* Solo cell */}
-                <div className={`px-5 py-5 flex items-center gap-3 border-l border-gray-100 dark:border-white/10 ${index !== comparisonData.length - 1 ? "border-b border-gray-100 dark:border-white/10" : ""}`}>
+                <div className={`px-2.5 py-2.5 sm:px-5 sm:py-5 flex items-center gap-3 border-l border-gray-100 dark:border-white/10 ${index !== comparisonData.length - 1 ? "border-b border-gray-100 dark:border-white/10" : ""}`}>
                   <CrossIcon />
                   <span className="text-gray-500 dark:text-gray-400 text-sm">{row.solo}</span>
                 </div>
 
                 {/* Agency cell */}
-                <div className={`px-5 py-5 flex items-center gap-3 border-l border-gray-100 dark:border-white/10 ${index !== comparisonData.length - 1 ? "border-b border-gray-100 dark:border-white/10" : ""}`}>
+                <div className={`px-2.5 py-2.5 sm:px-5 sm:py-5 flex items-center gap-3 border-l border-gray-100 dark:border-white/10 ${index !== comparisonData.length - 1 ? "border-b border-gray-100 dark:border-white/10" : ""}`}>
                   <CrossIcon />
                   <span className="text-gray-500 dark:text-gray-400 text-sm">{row.agency}</span>
                 </div>
@@ -199,8 +206,8 @@ export default function Comparison() {
             ))}
             </div>
           </div>
-        </div>
-      </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

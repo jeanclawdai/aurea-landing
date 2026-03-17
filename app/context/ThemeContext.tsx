@@ -16,27 +16,29 @@ const ThemeContext = createContext<ThemeContextValue>({
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>("light");
+  const [mounted, setMounted] = useState(false);
 
-  // On mount: read localStorage or fall back to system preference
   useEffect(() => {
-    const stored = localStorage.getItem("theme") as Theme | null;
-    if (stored === "light" || stored === "dark") {
-      setTheme(stored);
-    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    // Always default to light unless user explicitly toggled dark
+    const stored = localStorage.getItem("aurea-theme");
+    if (stored === "dark") {
       setTheme("dark");
+    } else {
+      setTheme("light");
     }
+    setMounted(true);
   }, []);
 
-  // Apply/remove `dark` class on <html> and persist
   useEffect(() => {
+    if (!mounted) return;
     const root = document.documentElement;
     if (theme === "dark") {
       root.classList.add("dark");
     } else {
       root.classList.remove("dark");
     }
-    localStorage.setItem("theme", theme);
-  }, [theme]);
+    localStorage.setItem("aurea-theme", theme);
+  }, [theme, mounted]);
 
   const toggleTheme = () => setTheme((prev) => (prev === "light" ? "dark" : "light"));
 
