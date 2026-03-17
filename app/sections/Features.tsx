@@ -26,6 +26,11 @@ const featuresEn = [
     headline: "Know what goes viral before you post",
     description: "Our core engine is trained on 10,000+ viral posts across aesthetic clinics and beauty brands. It extracts the exact hooks, pacing, caption structures, and CTAs that make content explode — so every post you publish is built on data, not guesswork.",
     badge: { title: "10,000+ Viral Posts Analyzed", subtitle: "Hooks, pacing & CTAs extracted from top performers" },
+    benefits: [
+      { icon: "🎯", label: "10K+ viral posts" },
+      { icon: "🧠", label: "47 niches covered" },
+      { icon: "📈", label: "94% accuracy" },
+    ],
     bento: "pattern",
   },
   {
@@ -35,6 +40,11 @@ const featuresEn = [
     headline: "From idea to published post in minutes",
     description: "Generate static posts, carousels, and Reels scripts automatically. Every piece is fully editable via our Canva integration — tweak fonts, colors, and layouts with full creative control. Approve, edit, or reject. You stay the creative director.",
     badge: { title: "Posts, Carousels & Reels Scripts", subtitle: "30+ pieces/month, fully editable in Canva" },
+    benefits: [
+      { icon: "⚡", label: "30+ posts/month" },
+      { icon: "✏️", label: "Fully editable" },
+      { icon: "🎨", label: "Canva integration" },
+    ],
     bento: "content",
   },
   {
@@ -44,6 +54,11 @@ const featuresEn = [
     headline: "Post at the perfect moment, every time",
     description: "AI predicts the best days and times to post based on your audience's behaviour patterns. One click schedules and publishes simultaneously across Instagram, TikTok, and YouTube — with platform-optimised formats and metadata handled automatically.",
     badge: { title: "AI-Optimized Timing", subtitle: "Posts when your audience is most active" },
+    benefits: [
+      { icon: "🤖", label: "AI-optimized timing" },
+      { icon: "📱", label: "3 platforms" },
+      { icon: "⚡", label: "1-click publish" },
+    ],
     bento: "scheduling",
   },
   {
@@ -53,6 +68,11 @@ const featuresEn = [
     headline: "See what works. Double down on it",
     description: "Track reach, engagement, follower growth, and booking conversions across all platforms from one dashboard. Aurea learns from your top-performing posts and automatically feeds those patterns back into future content — a self-improving content loop.",
     badge: { title: "Unified Dashboard", subtitle: "Reach, engagement & bookings across all platforms" },
+    benefits: [
+      { icon: "📊", label: "Unified dashboard" },
+      { icon: "🔄", label: "Self-improving AI" },
+      { icon: "📈", label: "Booking tracking" },
+    ],
     bento: "analytics",
   },
   {
@@ -62,6 +82,11 @@ const featuresEn = [
     headline: "Always on-brand. Zero effort",
     description: "Upload your logo, fonts, and brand colors once. Every piece of content Aurea generates — forever — is automatically styled to your brand. No more off-brand posts, no more manual formatting. Your identity, baked in at the foundation.",
     badge: { title: "Logo, Fonts & Colors", subtitle: "Upload once, applied forever — zero rework" },
+    benefits: [
+      { icon: "⚡", label: "5 min setup" },
+      { icon: "∞", label: "Infinite posts" },
+      { icon: "✨", label: "Always on-brand" },
+    ],
     bento: "brand",
   },
   {
@@ -71,6 +96,11 @@ const featuresEn = [
     headline: "Captions that sound like you",
     description: "Aurea writes captions in your unique brand voice — not generic AI copy. Each caption is paired with a data-driven hashtag set optimised per platform and niche, updated daily based on what's trending in aesthetic medicine right now.",
     badge: { title: "Daily Trending Hashtags", subtitle: "Platform-optimized, niche-specific, auto-updated" },
+    benefits: [
+      { icon: "✍️", label: "Your brand voice" },
+      { icon: "📅", label: "Daily updates" },
+      { icon: "🎯", label: "Niche-optimized" },
+    ],
     bento: "caption",
   },
   {
@@ -80,6 +110,11 @@ const featuresEn = [
     headline: "Your voice. Your face. Zero filming",
     description: "Coming soon: Clone your voice with a 5-minute recording. Generate talking-head videos with your likeness using AI. Publish Reels and TikToks featuring you — without ever picking up a camera. The future of personal brand content.",
     badge: { title: "5-Min Voice Clone", subtitle: "Generate talking-head videos with your likeness" , soon: true },
+    benefits: [
+      { icon: "🎙️", label: "5-min clone" },
+      { icon: "🎬", label: "AI videos" },
+      { icon: "📹", label: "Zero filming" },
+    ],
     bento: "voice",
   },
 ];
@@ -92,6 +127,11 @@ const featuresPt = [
     headline: "Sabe o que fica viral antes de publicar",
     description: "O motor central da Aurea é treinado em mais de 10.000 publicações virais de clínicas estéticas e marcas de beleza. Extrai os hooks exactos, ritmos, estruturas de legenda e CTAs que fazem o conteúdo explodir.",
     badge: { title: "10.000+ Posts Virais Analisados", subtitle: "Hooks, ritmo e CTAs extraídos dos melhores" },
+    benefits: [
+      { icon: "🎯", label: "10K+ posts virais" },
+      { icon: "🧠", label: "47 nichos" },
+      { icon: "📈", label: "94% precisão" },
+    ],
     bento: "pattern",
   },
   {
@@ -101,6 +141,11 @@ const featuresPt = [
     headline: "De ideia a post publicado em minutos",
     description: "Gera posts estáticos, carrosséis e scripts de Reels automaticamente. Cada peça é totalmente editável via integração Canva — ajusta fontes, cores e layouts com controlo criativo total.",
     badge: { title: "Posts, Carrosséis & Scripts", subtitle: "30+ peças/mês, totalmente editáveis no Canva" },
+    benefits: [
+      { icon: "⚡", label: "30+ posts/mês" },
+      { icon: "✏️", label: "Editável" },
+      { icon: "🎨", label: "Integração Canva" },
+    ],
     bento: "content",
   },
   {
@@ -110,6 +155,11 @@ const featuresPt = [
     headline: "Publica no momento perfeito, sempre",
     description: "A IA prevê os melhores dias e horas para publicar com base nos padrões de comportamento da tua audiência. Um clique agenda e publica simultaneamente no Instagram, TikTok e YouTube.",
     badge: { title: "Timing Optimizado por IA", subtitle: "Publica quando a tua audiência está mais activa" },
+    benefits: [
+      { icon: "🤖", label: "Timing por IA" },
+      { icon: "📱", label: "3 plataformas" },
+      { icon: "⚡", label: "1 clique" },
+    ],
     bento: "scheduling",
   },
   {
@@ -119,6 +169,11 @@ const featuresPt = [
     headline: "Vê o que funciona. Aposta nisso",
     description: "Acompanha alcance, engagement, crescimento de seguidores e conversões de reservas em todas as plataformas num único dashboard. A Aurea aprende com os teus melhores posts.",
     badge: { title: "Dashboard Unificado", subtitle: "Alcance, engagement e reservas em todas as plataformas" },
+    benefits: [
+      { icon: "📊", label: "Dashboard único" },
+      { icon: "🔄", label: "IA auto-melhora" },
+      { icon: "📈", label: "Track reservas" },
+    ],
     bento: "analytics",
   },
   {
@@ -128,6 +183,11 @@ const featuresPt = [
     headline: "Sempre na identidade da marca",
     description: "Faz upload do teu logotipo, fontes e cores uma vez. Todo o conteúdo que a Aurea gerar — para sempre — será automaticamente estilizado com a tua marca.",
     badge: { title: "Logo, Fontes & Cores", subtitle: "Carrega uma vez, aplicado para sempre" },
+    benefits: [
+      { icon: "⚡", label: "5 min setup" },
+      { icon: "∞", label: "Posts infinitos" },
+      { icon: "✨", label: "Sempre on-brand" },
+    ],
     bento: "brand",
   },
   {
@@ -137,6 +197,11 @@ const featuresPt = [
     headline: "Legendas que soam a ti",
     description: "A Aurea escreve legendas na tua voz de marca única — não copy genérico de IA. Cada legenda é acompanhada de hashtags baseados em dados, optimizados por plataforma e nicho.",
     badge: { title: "Hashtags Trending Diários", subtitle: "Optimizados por plataforma, actualizados automaticamente" },
+    benefits: [
+      { icon: "✍️", label: "Tua voz" },
+      { icon: "📅", label: "Updates diários" },
+      { icon: "🎯", label: "Nicho-optimizado" },
+    ],
     bento: "caption",
   },
   {
@@ -146,6 +211,11 @@ const featuresPt = [
     headline: "A tua voz. A tua cara. Sem filmar",
     description: "Em breve: clona a tua voz com uma gravação de 5 minutos. Gera vídeos talking-head com a tua aparência usando IA. Publica Reels e TikToks com a tua presença — sem câmara.",
     badge: { title: "Clone de Voz em 5min", subtitle: "Gera vídeos talking-head com a tua aparência", soon: true },
+    benefits: [
+      { icon: "🎙️", label: "Clone 5min" },
+      { icon: "🎬", label: "Vídeos IA" },
+      { icon: "📹", label: "Sem câmara" },
+    ],
     bento: "voice",
   },
 ];
@@ -570,15 +640,15 @@ function BentoBrand() {
   useEffect(() => {
     const timer = setInterval(() => {
       setStep(s => (s + 1) % 4);
-    }, 3000);
+    }, 4500);
     return () => clearInterval(timer);
   }, []);
 
   const steps = [
     { num: 1, label: "Upload", desc: "Add your logo" },
     { num: 2, label: "Customize", desc: "Pick colors & fonts" },
-    { num: 3, label: "Generate", desc: "AI creates variations" },
-    { num: 4, label: "Publish", desc: "Ready to post" },
+    { num: 3, label: "Generate", desc: "Create layout variations" },
+    { num: 4, label: "Apply", desc: "Brand kit saved" },
   ];
 
   return (
@@ -721,44 +791,58 @@ function BentoBrand() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="absolute inset-0 flex items-center justify-center p-6"
+              className="absolute inset-0 flex flex-col items-center justify-center p-6 gap-4"
             >
-              {/* Content variations being generated */}
-              <div className="grid grid-cols-3 gap-3 w-full max-w-[320px]">
-                {[0, 1, 2, 3, 4, 5].map((i) => (
+              {/* Layout variation previews */}
+              <div className="flex gap-3 items-end">
+                {[
+                  { label: "Square", w: "w-20", h: "h-20", ratio: "1:1" },
+                  { label: "Story", w: "w-14", h: "h-24", ratio: "9:16" },
+                  { label: "Carousel", w: "w-24", h: "h-20", ratio: "4:5" },
+                ].map((layout, i) => (
                   <motion.div
                     key={i}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: i * 0.15 }}
-                    className="aspect-square rounded-xl bg-gradient-to-br from-fuchsia-100 to-pink-100 dark:from-fuchsia-900/30 dark:to-pink-900/30 relative overflow-hidden"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.2 }}
+                    className="flex flex-col items-center gap-2"
                   >
-                    {/* Shimmer effect */}
-                    <motion.div
-                      animate={{ x: ["-100%", "100%"] }}
-                      transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.1 }}
-                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
-                    />
-                    {i < 3 && (
+                    <div className={`${layout.w} ${layout.h} rounded-xl bg-gradient-to-br from-fuchsia-200 to-pink-200 dark:from-fuchsia-800/40 dark:to-pink-800/40 relative overflow-hidden border-2 border-white dark:border-white/20 shadow-lg`}>
+                      {/* Mini content preview */}
+                      <div className="absolute inset-2 flex flex-col justify-between">
+                        <div className="w-5 h-5 rounded-md bg-white/60 dark:bg-white/20" />
+                        <div className="space-y-1">
+                          <div className="w-full h-1.5 rounded bg-white/40" />
+                          <div className="w-2/3 h-1.5 rounded bg-white/30" />
+                        </div>
+                      </div>
+                      {/* Shimmer */}
                       <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.5 + i * 0.2 }}
-                        className="absolute inset-2 rounded-lg bg-white/80 dark:bg-white/20 flex items-center justify-center"
+                        animate={{ x: ["-100%", "100%"] }}
+                        transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.2 }}
+                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                      />
+                      {/* Checkmark */}
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ delay: 1 + i * 0.2, type: "spring" }}
+                        className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-green-500 flex items-center justify-center"
                       >
-                        <Check className="w-5 h-5 text-fuchsia-500" />
+                        <Check className="w-3 h-3 text-white" />
                       </motion.div>
-                    )}
+                    </div>
+                    <span className="text-xs text-gray-500 dark:text-gray-400">{layout.label}</span>
                   </motion.div>
                 ))}
               </div>
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.8 }}
-                className="absolute bottom-6 text-sm text-gray-600 dark:text-gray-400"
+                transition={{ delay: 1.5 }}
+                className="text-sm text-gray-600 dark:text-gray-400"
               >
-                Generating 6 variations...
+                3 formats ready for approval
               </motion.p>
             </motion.div>
           )}
@@ -812,8 +896,8 @@ function BentoBrand() {
                 className="absolute bottom-4 left-4 right-4 bg-white dark:bg-[#1a1a28] rounded-xl px-4 py-3 shadow-lg flex items-center justify-between"
               >
                 <div>
-                  <p className="text-sm font-semibold text-gray-900 dark:text-white">3 posts ready</p>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">All on-brand, zero effort</p>
+                  <p className="text-sm font-semibold text-gray-900 dark:text-white">Brand kit saved</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">Applied to all future posts</p>
                 </div>
                 <div className="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
                   <Check className="w-5 h-5 text-green-600 dark:text-green-400" />
@@ -1201,19 +1285,43 @@ export default function Features() {
                 </p>
               </div>
 
-              {/* Badge card */}
-              {activeFeature.badge && (
-                <div className="bg-white/60 dark:bg-white/5 backdrop-blur-sm rounded-2xl p-4 shadow-sm border border-rose-100/60 dark:border-white/10 flex items-center justify-between">
-                  <div>
-                    <p className="text-sm font-semibold text-gray-900 dark:text-white">{activeFeature.badge.title}</p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">{activeFeature.badge.subtitle}</p>
+              {/* Badge card - animated benefits */}
+              {activeFeature.benefits && (
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="bg-gradient-to-r from-fuchsia-50 to-pink-50 dark:from-fuchsia-900/20 dark:to-pink-900/20 rounded-2xl p-4 shadow-sm border border-fuchsia-100/60 dark:border-fuchsia-500/20 overflow-hidden relative"
+                >
+                  {/* Shimmer effect */}
+                  <motion.div
+                    animate={{ x: ["-100%", "200%"] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12"
+                  />
+                  <div className="relative z-10 flex items-center justify-between">
+                    <div className="flex items-center gap-4">
+                      {activeFeature.benefits.map((benefit, i) => (
+                        <motion.div
+                          key={i}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: i * 0.1 }}
+                          className="flex items-center gap-1.5"
+                        >
+                          <span className="text-base">{benefit.icon}</span>
+                          <span className="text-xs font-medium text-gray-700 dark:text-gray-300">{benefit.label}</span>
+                        </motion.div>
+                      ))}
+                    </div>
+                    {activeFeature.comingSoon ? (
+                      <span className="text-xs bg-gray-100 dark:bg-white/10 text-gray-500 dark:text-gray-400 px-2.5 py-1 rounded-full font-medium border border-gray-200 dark:border-white/10">Soon</span>
+                    ) : (
+                      <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
+                        <Check className="w-4 h-4 text-green-600 dark:text-green-400" />
+                      </div>
+                    )}
                   </div>
-                  {activeFeature.badge.soon ? (
-                    <span className="text-xs bg-gray-100 dark:bg-white/10 text-gray-500 dark:text-gray-400 px-2.5 py-1 rounded-full font-medium border border-gray-200 dark:border-white/10">Soon</span>
-                  ) : (
-                    <Check className="w-5 h-5 text-primary" />
-                  )}
-                </div>
+                </motion.div>
               )}
             </div>
 
