@@ -4,7 +4,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { SectionPill } from "@/components/ui/section-pill";
 import { useState, useRef, useEffect } from "react";
 import { useLang } from "../context/LanguageContext";
-import { Check, Instagram, Youtube, ChevronDown } from "lucide-react";
+import { 
+  Check, Instagram, Youtube, ChevronDown,
+  Target, Brain, TrendingUp, Zap, Pencil, Palette,
+  Bot, Smartphone, MousePointerClick, LayoutDashboard,
+  RefreshCw, CalendarCheck, Infinity, Sparkles, PenTool,
+  Calendar, Mic, Clapperboard, VideoOff,
+  Eye, Heart, Users, ArrowUpRight, Clock, MessageCircle
+} from "lucide-react";
 
 
 // Animated icons
@@ -24,12 +31,12 @@ const featuresEn = [
     label: "Pattern Intelligence",
     comingSoon: false,
     headline: "Know what goes viral before you post",
-    description: "Our core engine is trained on 10,000+ viral posts across aesthetic clinics and beauty brands. It extracts the exact hooks, pacing, caption structures, and CTAs that make content explode — so every post you publish is built on data, not guesswork.",
-    badge: { title: "10,000+ Viral Posts Analyzed", subtitle: "Hooks, pacing & CTAs extracted from top performers" },
+    description: "Connect your account and we analyze thousands of top-performing posts in your niche. Our AI builds a custom algorithm tailored to your brand — extracting the hooks, formats, and strategies that actually work for accounts like yours.",
+    badge: { title: "Custom Niche Analysis", subtitle: "Data-driven insights tailored to your brand" },
     benefits: [
-      { icon: "🎯", label: "10K+ viral posts" },
-      { icon: "🧠", label: "47 niches covered" },
-      { icon: "📈", label: "94% accuracy" },
+      { icon: "Target", label: "Niche-specific" },
+      { icon: "Brain", label: "Deep analysis" },
+      { icon: "TrendingUp", label: "Custom strategy" },
     ],
     bento: "pattern",
   },
@@ -41,9 +48,9 @@ const featuresEn = [
     description: "Generate static posts, carousels, and Reels scripts automatically. Every piece is fully editable via our Canva integration — tweak fonts, colors, and layouts with full creative control. Approve, edit, or reject. You stay the creative director.",
     badge: { title: "Posts, Carousels & Reels Scripts", subtitle: "30+ pieces/month, fully editable in Canva" },
     benefits: [
-      { icon: "⚡", label: "30+ posts/month" },
-      { icon: "✏️", label: "Fully editable" },
-      { icon: "🎨", label: "Canva integration" },
+      { icon: "Zap", label: "30+ posts/month" },
+      { icon: "Pencil", label: "Fully editable" },
+      { icon: "Palette", label: "Canva integration" },
     ],
     bento: "content",
   },
@@ -55,9 +62,9 @@ const featuresEn = [
     description: "AI predicts the best days and times to post based on your audience's behaviour patterns. One click schedules and publishes simultaneously across Instagram, TikTok, and YouTube — with platform-optimised formats and metadata handled automatically.",
     badge: { title: "AI-Optimized Timing", subtitle: "Posts when your audience is most active" },
     benefits: [
-      { icon: "🤖", label: "AI-optimized timing" },
-      { icon: "📱", label: "3 platforms" },
-      { icon: "⚡", label: "1-click publish" },
+      { icon: "Bot", label: "AI-optimized timing" },
+      { icon: "Smartphone", label: "3 platforms" },
+      { icon: "MousePointerClick", label: "1-click publish" },
     ],
     bento: "scheduling",
   },
@@ -69,9 +76,9 @@ const featuresEn = [
     description: "Track reach, engagement, follower growth, and booking conversions across all platforms from one dashboard. Aurea learns from your top-performing posts and automatically feeds those patterns back into future content — a self-improving content loop.",
     badge: { title: "Unified Dashboard", subtitle: "Reach, engagement & bookings across all platforms" },
     benefits: [
-      { icon: "📊", label: "Unified dashboard" },
-      { icon: "🔄", label: "Self-improving AI" },
-      { icon: "📈", label: "Booking tracking" },
+      { icon: "LayoutDashboard", label: "Unified dashboard" },
+      { icon: "RefreshCw", label: "Self-improving AI" },
+      { icon: "CalendarCheck", label: "Booking tracking" },
     ],
     bento: "analytics",
   },
@@ -83,9 +90,9 @@ const featuresEn = [
     description: "Upload your logo, fonts, and brand colors once. Every piece of content Aurea generates — forever — is automatically styled to your brand. No more off-brand posts, no more manual formatting. Your identity, baked in at the foundation.",
     badge: { title: "Logo, Fonts & Colors", subtitle: "Upload once, applied forever — zero rework" },
     benefits: [
-      { icon: "⚡", label: "5 min setup" },
-      { icon: "∞", label: "Infinite posts" },
-      { icon: "✨", label: "Always on-brand" },
+      { icon: "Zap", label: "5 min setup" },
+      { icon: "Infinity", label: "Infinite posts" },
+      { icon: "Sparkles", label: "Always on-brand" },
     ],
     bento: "brand",
   },
@@ -97,9 +104,9 @@ const featuresEn = [
     description: "Aurea writes captions in your unique brand voice — not generic AI copy. Each caption is paired with a data-driven hashtag set optimised per platform and niche, updated daily based on what's trending in aesthetic medicine right now.",
     badge: { title: "Daily Trending Hashtags", subtitle: "Platform-optimized, niche-specific, auto-updated" },
     benefits: [
-      { icon: "✍️", label: "Your brand voice" },
-      { icon: "📅", label: "Daily updates" },
-      { icon: "🎯", label: "Niche-optimized" },
+      { icon: "PenTool", label: "Your brand voice" },
+      { icon: "Calendar", label: "Daily updates" },
+      { icon: "Target", label: "Niche-optimized" },
     ],
     bento: "caption",
   },
@@ -111,9 +118,9 @@ const featuresEn = [
     description: "Coming soon: Clone your voice with a 5-minute recording. Generate talking-head videos with your likeness using AI. Publish Reels and TikToks featuring you — without ever picking up a camera. The future of personal brand content.",
     badge: { title: "5-Min Voice Clone", subtitle: "Generate talking-head videos with your likeness" , soon: true },
     benefits: [
-      { icon: "🎙️", label: "5-min clone" },
-      { icon: "🎬", label: "AI videos" },
-      { icon: "📹", label: "Zero filming" },
+      { icon: "Mic", label: "5-min clone" },
+      { icon: "Clapperboard", label: "AI videos" },
+      { icon: "VideoOff", label: "Zero filming" },
     ],
     bento: "voice",
   },
@@ -125,12 +132,12 @@ const featuresPt = [
     label: "Inteligência de Padrões",
     comingSoon: false,
     headline: "Sabe o que fica viral antes de publicar",
-    description: "O motor central da Aurea é treinado em mais de 10.000 publicações virais de clínicas estéticas e marcas de beleza. Extrai os hooks exactos, ritmos, estruturas de legenda e CTAs que fazem o conteúdo explodir.",
-    badge: { title: "10.000+ Posts Virais Analisados", subtitle: "Hooks, ritmo e CTAs extraídos dos melhores" },
+    description: "Liga a tua conta e analisamos milhares de posts de sucesso no teu nicho. A nossa IA constrói um algoritmo personalizado para a tua marca — extraindo os hooks, formatos e estratégias que realmente funcionam para contas como a tua.",
+    badge: { title: "Análise Personalizada", subtitle: "Insights baseados em dados para a tua marca" },
     benefits: [
-      { icon: "🎯", label: "10K+ posts virais" },
-      { icon: "🧠", label: "47 nichos" },
-      { icon: "📈", label: "94% precisão" },
+      { icon: "Target", label: "Nicho específico" },
+      { icon: "Brain", label: "Análise profunda" },
+      { icon: "TrendingUp", label: "Estratégia custom" },
     ],
     bento: "pattern",
   },
@@ -142,9 +149,9 @@ const featuresPt = [
     description: "Gera posts estáticos, carrosséis e scripts de Reels automaticamente. Cada peça é totalmente editável via integração Canva — ajusta fontes, cores e layouts com controlo criativo total.",
     badge: { title: "Posts, Carrosséis & Scripts", subtitle: "30+ peças/mês, totalmente editáveis no Canva" },
     benefits: [
-      { icon: "⚡", label: "30+ posts/mês" },
-      { icon: "✏️", label: "Editável" },
-      { icon: "🎨", label: "Integração Canva" },
+      { icon: "Zap", label: "30+ posts/mês" },
+      { icon: "Pencil", label: "Editável" },
+      { icon: "Palette", label: "Integração Canva" },
     ],
     bento: "content",
   },
@@ -156,9 +163,9 @@ const featuresPt = [
     description: "A IA prevê os melhores dias e horas para publicar com base nos padrões de comportamento da tua audiência. Um clique agenda e publica simultaneamente no Instagram, TikTok e YouTube.",
     badge: { title: "Timing Optimizado por IA", subtitle: "Publica quando a tua audiência está mais activa" },
     benefits: [
-      { icon: "🤖", label: "Timing por IA" },
-      { icon: "📱", label: "3 plataformas" },
-      { icon: "⚡", label: "1 clique" },
+      { icon: "Bot", label: "Timing por IA" },
+      { icon: "Smartphone", label: "3 plataformas" },
+      { icon: "MousePointerClick", label: "1 clique" },
     ],
     bento: "scheduling",
   },
@@ -170,9 +177,9 @@ const featuresPt = [
     description: "Acompanha alcance, engagement, crescimento de seguidores e conversões de reservas em todas as plataformas num único dashboard. A Aurea aprende com os teus melhores posts.",
     badge: { title: "Dashboard Unificado", subtitle: "Alcance, engagement e reservas em todas as plataformas" },
     benefits: [
-      { icon: "📊", label: "Dashboard único" },
-      { icon: "🔄", label: "IA auto-melhora" },
-      { icon: "📈", label: "Track reservas" },
+      { icon: "LayoutDashboard", label: "Dashboard único" },
+      { icon: "RefreshCw", label: "IA auto-melhora" },
+      { icon: "CalendarCheck", label: "Track reservas" },
     ],
     bento: "analytics",
   },
@@ -184,9 +191,9 @@ const featuresPt = [
     description: "Faz upload do teu logotipo, fontes e cores uma vez. Todo o conteúdo que a Aurea gerar — para sempre — será automaticamente estilizado com a tua marca.",
     badge: { title: "Logo, Fontes & Cores", subtitle: "Carrega uma vez, aplicado para sempre" },
     benefits: [
-      { icon: "⚡", label: "5 min setup" },
-      { icon: "∞", label: "Posts infinitos" },
-      { icon: "✨", label: "Sempre on-brand" },
+      { icon: "Zap", label: "5 min setup" },
+      { icon: "Infinity", label: "Posts infinitos" },
+      { icon: "Sparkles", label: "Sempre on-brand" },
     ],
     bento: "brand",
   },
@@ -198,9 +205,9 @@ const featuresPt = [
     description: "A Aurea escreve legendas na tua voz de marca única — não copy genérico de IA. Cada legenda é acompanhada de hashtags baseados em dados, optimizados por plataforma e nicho.",
     badge: { title: "Hashtags Trending Diários", subtitle: "Optimizados por plataforma, actualizados automaticamente" },
     benefits: [
-      { icon: "✍️", label: "Tua voz" },
-      { icon: "📅", label: "Updates diários" },
-      { icon: "🎯", label: "Nicho-optimizado" },
+      { icon: "PenTool", label: "Tua voz" },
+      { icon: "Calendar", label: "Updates diários" },
+      { icon: "Target", label: "Nicho-optimizado" },
     ],
     bento: "caption",
   },
@@ -212,9 +219,9 @@ const featuresPt = [
     description: "Em breve: clona a tua voz com uma gravação de 5 minutos. Gera vídeos talking-head com a tua aparência usando IA. Publica Reels e TikToks com a tua presença — sem câmara.",
     badge: { title: "Clone de Voz em 5min", subtitle: "Gera vídeos talking-head com a tua aparência", soon: true },
     benefits: [
-      { icon: "🎙️", label: "Clone 5min" },
-      { icon: "🎬", label: "Vídeos IA" },
-      { icon: "📹", label: "Sem câmara" },
+      { icon: "Mic", label: "Clone 5min" },
+      { icon: "Clapperboard", label: "Vídeos IA" },
+      { icon: "VideoOff", label: "Sem câmara" },
     ],
     bento: "voice",
   },
@@ -315,87 +322,338 @@ function TypewriterText({ text, className }: { text: string; className?: string 
 // ─── Bento Visuals ───────────────────────────────────────────────────────────
 
 function BentoPattern() {
-  const hooks = [
-    { text: "5 signs your skin needs hydration", score: "8.7%" },
-    { text: "POV: You found the right clinic", score: "6.2%" },
-    { text: "Before & after 30 days", score: "11.3%" },
+  const [step, setStep] = useState(0);
+  const [resetKey, setResetKey] = useState(0);
+  
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setStep(s => (s + 1) % 4);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [resetKey]);
+  
+  const goToStep = (i: number) => {
+    setStep(i);
+    setResetKey(k => k + 1); // Reset timer when user clicks
+  };
+
+  const steps = [
+    { label: "Connect", desc: "Link your Instagram account" },
+    { label: "Scanning", desc: "Analyzing 10K+ viral posts" },
+    { label: "Extracting", desc: "Finding winning patterns" },
+    { label: "Scoring", desc: "Rating your content potential" },
   ];
+
+  // Heatmap data for different views
+  const heatmapSets = [
+    [0.2, 0.3, 0.4, 0.3, 0.5, 0.4, 0.3, 0.4, 0.5, 0.6, 0.5, 0.4, 0.6, 0.7, 0.6, 0.5, 0.7, 0.8, 0.7, 0.6, 0.8, 0.9, 0.85, 0.7, 0.9, 0.95, 0.9, 0.8],
+    [0.9, 0.3, 0.7, 0.5, 0.8, 0.2, 0.6, 0.4, 0.85, 0.1, 0.75, 0.55, 0.95, 0.35, 0.65, 0.45, 0.8, 0.25, 0.7, 0.5, 0.9, 0.15, 0.6, 0.4, 0.85, 0.3, 0.75, 0.55],
+    [0.95, 0.9, 0.85, 0.7, 0.6, 0.5, 0.4, 0.92, 0.88, 0.8, 0.65, 0.55, 0.45, 0.35, 0.9, 0.85, 0.75, 0.6, 0.5, 0.4, 0.3, 0.88, 0.8, 0.7, 0.55, 0.45, 0.35, 0.25],
+  ];
+
+  const hooks = [
+    { text: "5 signs your skin needs hydration", score: 8.7, trend: "+2.1%" },
+    { text: "POV: You found the right clinic", score: 6.2, trend: "+0.8%" },
+    { text: "Before & after 30 days", score: 11.3, trend: "+4.2%" },
+  ];
+
+  // Typewriter for username
+  const [typedUsername, setTypedUsername] = useState("");
+  const username = "@aurea_agency";
   
-  // Deterministic heatmap values
-  const heatmapValues = [0.9, 0.3, 0.7, 0.5, 0.8, 0.2, 0.6, 0.4, 0.85, 0.1, 0.75, 0.55, 0.95, 0.35, 0.65, 0.45, 0.8, 0.25, 0.7, 0.5, 0.9, 0.15, 0.6, 0.4, 0.85, 0.3, 0.75, 0.55, 0.92, 0.2, 0.68, 0.48, 0.88, 0.28, 0.72];
-  
+  useEffect(() => {
+    if (step === 0) {
+      setTypedUsername("");
+      let i = 0;
+      const typeInterval = setInterval(() => {
+        if (i < username.length) {
+          setTypedUsername(username.slice(0, i + 1));
+          i++;
+        } else {
+          clearInterval(typeInterval);
+        }
+      }, 120);
+      return () => clearInterval(typeInterval);
+    }
+  }, [step]);
+
   return (
-    <div className="grid grid-cols-3 gap-4 h-full">
-      {/* Main heatmap card */}
-      <div className="col-span-2 row-span-2 bg-white dark:bg-[#1a1a28] rounded-2xl p-5 shadow-md border border-gray-100 dark:border-white/10">
-        <div className="flex items-center justify-between mb-4">
-          <span className="text-sm font-semibold text-gray-900 dark:text-white">Viral Score Heatmap</span>
-          <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full">Live</span>
-        </div>
-        <div className="grid grid-cols-7 gap-1.5 mb-4">
-          {heatmapValues.map((intensity, i) => {
-            const bg = intensity > 0.75 ? "bg-primary" : intensity > 0.5 ? "bg-primary/60" : intensity > 0.25 ? "bg-primary/30" : "bg-gray-100 dark:bg-white/10";
-            return (
+    <div className="bg-white dark:bg-[#1a1a28] rounded-3xl p-6 shadow-lg border border-gray-100 dark:border-white/10 h-full flex flex-col">
+      {/* Visual area */}
+      <div className="flex-1 relative overflow-hidden rounded-2xl bg-gray-50 dark:bg-white/5 min-h-[260px]">
+        <AnimatePresence mode="wait">
+          {step === 0 && (
+            <motion.div
+              key="connect"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 p-5 flex flex-col items-center justify-center"
+            >
+              {/* Account input simulation */}
+              <div className="w-full max-w-[220px]">
+                {/* Instagram-style input */}
+                <div className="bg-white dark:bg-[#1a1a28] rounded-xl border-2 border-gray-200 dark:border-white/20 p-4 shadow-sm mb-4">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 p-0.5">
+                      <div className="w-full h-full rounded-full bg-white dark:bg-[#1a1a28] flex items-center justify-center">
+                        <Instagram className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Instagram Account</p>
+                      <div className="flex items-center gap-1 bg-gray-50 dark:bg-white/5 rounded-lg px-3 py-2">
+                        <span className="text-sm font-medium text-gray-900 dark:text-white">
+                          {typedUsername}
+                        </span>
+                        <motion.span
+                          animate={{ opacity: [1, 0, 1] }}
+                          transition={{ duration: 0.8, repeat: 9999 }}
+                          className="w-0.5 h-4 bg-fuchsia-500"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  {/* Connect button */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: typedUsername.length === username.length ? 1 : 0.5 }}
+                    className="w-full py-2.5 rounded-lg bg-gradient-to-r from-fuchsia-500 to-pink-500 text-center"
+                  >
+                    <span className="text-xs font-semibold text-white">Analyze Account</span>
+                  </motion.div>
+                </div>
+                {/* Loading indicator */}
+                {typedUsername.length === username.length && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5 }}
+                    className="flex items-center justify-center gap-2"
+                  >
+                    <motion.div
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 1, repeat: 9999, ease: "linear" }}
+                      className="w-4 h-4 border-2 border-fuchsia-500 border-t-transparent rounded-full"
+                    />
+                    <span className="text-xs text-gray-500 dark:text-gray-400">Connecting...</span>
+                  </motion.div>
+                )}
+              </div>
+            </motion.div>
+          )}
+
+          {step === 1 && (
+            <motion.div
+              key="scanning"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 p-5 flex flex-col"
+            >
+              {/* Account badge */}
               <motion.div
-                key={i}
-                initial={{ scale: 0, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: i * 0.02, duration: 0.3 }}
-                className={`h-5 rounded-md ${bg}`}
-              />
-            );
-          })}
-        </div>
-        <div className="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400">
-          <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-primary" />High</span>
-          <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-primary/60" />Medium</span>
-          <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-gray-100 dark:bg-white/10" />Low</span>
-        </div>
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="flex items-center gap-2 mb-3 bg-white dark:bg-[#1a1a28] rounded-full px-3 py-1.5 shadow-sm border border-gray-100 dark:border-white/10 self-start"
+              >
+                <div className="w-5 h-5 rounded-full bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400" />
+                <span className="text-xs font-medium text-gray-700 dark:text-gray-300">@aurea_agency</span>
+                <Check className="w-3 h-3 text-green-500" />
+              </motion.div>
+              
+              {/* Scanning animation - posts flying in */}
+              <div className="flex-1 relative overflow-hidden">
+                {[...Array(5)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ x: "100%", opacity: 0 }}
+                    animate={{ x: "-100%", opacity: [0, 1, 1, 0] }}
+                    transition={{ duration: 2, delay: i * 0.3, repeat: 9999, repeatDelay: 1 }}
+                    className="absolute flex items-center gap-3 bg-white dark:bg-[#1a1a28] rounded-xl px-3 py-2 shadow-sm border border-gray-100 dark:border-white/10"
+                    style={{ top: `${10 + i * 18}%` }}
+                  >
+                    <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-fuchsia-200 to-pink-200 dark:from-fuchsia-800/40 dark:to-pink-800/40" />
+                    <div className="space-y-1">
+                      <div className="w-20 h-1.5 rounded bg-gray-200 dark:bg-white/20" />
+                      <div className="w-14 h-1.5 rounded bg-gray-100 dark:bg-white/10" />
+                    </div>
+                  </motion.div>
+                ))}
+                {/* Center scanner line */}
+                <motion.div
+                  animate={{ y: ["-100%", "200%"] }}
+                  transition={{ duration: 2, repeat: 9999 }}
+                  className="absolute left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-fuchsia-500 to-transparent"
+                />
+              </div>
+              <div className="text-center">
+                <motion.span
+                  animate={{ opacity: [0.5, 1, 0.5] }}
+                  transition={{ duration: 1.5, repeat: 9999 }}
+                  className="text-xs text-gray-500 dark:text-gray-400"
+                >
+                  Scanning 10,247 posts...
+                </motion.span>
+              </div>
+            </motion.div>
+          )}
+
+          {step === 2 && (
+            <motion.div
+              key="extracting"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 p-5"
+            >
+              {/* Account badge */}
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="flex items-center gap-2 mb-3 bg-white dark:bg-[#1a1a28] rounded-full px-3 py-1.5 shadow-sm border border-gray-100 dark:border-white/10 self-start"
+              >
+                <div className="w-5 h-5 rounded-full bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400" />
+                <span className="text-xs font-medium text-gray-700 dark:text-gray-300">@aurea_agency</span>
+                <Check className="w-3 h-3 text-green-500" />
+              </motion.div>
+              
+              {/* Heatmap visualization */}
+              <div className="mb-4">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-xs font-semibold text-gray-700 dark:text-gray-300">Pattern Heatmap</span>
+                  <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full">Live</span>
+                </div>
+                <div className="grid grid-cols-7 gap-1.5">
+                  {heatmapSets[1].map((intensity, i) => {
+                    const bg = intensity > 0.75 ? "bg-primary" : intensity > 0.5 ? "bg-primary/60" : intensity > 0.25 ? "bg-primary/30" : "bg-gray-200 dark:bg-white/10";
+                    return (
+                      <motion.div
+                        key={i}
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ delay: i * 0.02 }}
+                        className={`h-5 rounded-md ${bg}`}
+                      />
+                    );
+                  })}
+                </div>
+              </div>
+              {/* Extracted patterns */}
+              <div className="space-y-2">
+                {["Hook timing: 0-3s", "CTA placement: end", "Emotion: curiosity"].map((pattern, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.5 + i * 0.15 }}
+                    className="flex items-center gap-2 text-xs"
+                  >
+                    <div className="w-5 h-5 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
+                      <Check className="w-3 h-3 text-green-600 dark:text-green-400" />
+                    </div>
+                    <span className="text-gray-600 dark:text-gray-400">{pattern}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+
+          {step === 3 && (
+            <motion.div
+              key="scoring"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 p-4 flex flex-col"
+            >
+              {/* Header with account */}
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center gap-2">
+                  <div className="w-5 h-5 rounded-full bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400" />
+                  <span className="text-xs font-medium text-gray-700 dark:text-gray-300">@aurea_agency</span>
+                </div>
+                <span className="text-[10px] font-semibold text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/30 px-2 py-0.5 rounded-full">Complete ✓</span>
+              </div>
+
+              {/* Growth metrics grid */}
+              <div className="grid grid-cols-2 gap-2">
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 }}
+                  className="bg-white dark:bg-[#1a1a28] rounded-xl p-2.5 shadow-sm border border-gray-100 dark:border-white/10"
+                >
+                  <div className="w-5 h-5 rounded-md bg-fuchsia-100 dark:bg-fuchsia-900/30 flex items-center justify-center text-fuchsia-500 mb-1">
+                    <TrendingUp className="w-3 h-3" />
+                  </div>
+                  <span className="text-base font-bold text-gray-900 dark:text-white block">+340%</span>
+                  <span className="text-[9px] text-gray-500 dark:text-gray-400">Growth Potential</span>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="bg-white dark:bg-[#1a1a28] rounded-xl p-2.5 shadow-sm border border-gray-100 dark:border-white/10"
+                >
+                  <div className="w-5 h-5 rounded-md bg-fuchsia-100 dark:bg-fuchsia-900/30 flex items-center justify-center text-fuchsia-500 mb-1">
+                    <Sparkles className="w-3 h-3" />
+                  </div>
+                  <span className="text-base font-bold text-gray-900 dark:text-white block">94/100</span>
+                  <span className="text-[9px] text-gray-500 dark:text-gray-400">Viral Score</span>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="bg-white dark:bg-[#1a1a28] rounded-xl p-2.5 shadow-sm border border-gray-100 dark:border-white/10"
+                >
+                  <div className="w-5 h-5 rounded-md bg-fuchsia-100 dark:bg-fuchsia-900/30 flex items-center justify-center text-fuchsia-500 mb-1">
+                    <Target className="w-3 h-3" />
+                  </div>
+                  <span className="text-base font-bold text-gray-900 dark:text-white block">98%</span>
+                  <span className="text-[9px] text-gray-500 dark:text-gray-400">Niche Fit</span>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="bg-white dark:bg-[#1a1a28] rounded-xl p-2.5 shadow-sm border border-gray-100 dark:border-white/10"
+                >
+                  <div className="w-5 h-5 rounded-md bg-fuchsia-100 dark:bg-fuchsia-900/30 flex items-center justify-center text-fuchsia-500 mb-1">
+                    <Zap className="w-3 h-3" />
+                  </div>
+                  <span className="text-base font-bold text-gray-900 dark:text-white block">127</span>
+                  <span className="text-[9px] text-gray-500 dark:text-gray-400">Content Ideas</span>
+                </motion.div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
-      {/* Stat card 1 - Niches */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3 }}
-        className="bg-white dark:bg-[#1a1a28] rounded-2xl p-4 shadow-md border border-gray-100 dark:border-white/10 flex flex-col justify-between"
-      >
-        <span className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">Niches</span>
-        <div>
-          <span className="text-2xl font-bold text-gray-900 dark:text-white"><AnimatedCounter value={47} /></span>
-          <p className="text-xs text-gray-500 dark:text-gray-400">industries covered</p>
-        </div>
-      </motion.div>
+      {/* Step label */}
+      <div className="text-center mt-4 mb-2">
+        <motion.p key={step} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-sm font-semibold text-gray-900 dark:text-white">
+          {steps[step].label}
+        </motion.p>
+        <motion.p key={`desc-${step}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-xs text-gray-500 dark:text-gray-400">
+          {steps[step].desc}
+        </motion.p>
+      </div>
 
-      {/* Stat card 2 - Accuracy */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4 }}
-        className="bg-white dark:bg-[#1a1a28] rounded-2xl p-4 shadow-md border border-gray-100 dark:border-white/10 flex flex-col justify-between"
-      >
-        <span className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">Accuracy</span>
-        <div>
-          <span className="text-2xl font-bold text-gray-900 dark:text-white"><AnimatedCounter value={94} suffix="%" /></span>
-          <p className="text-xs text-gray-500 dark:text-gray-400">hook detection</p>
-        </div>
-      </motion.div>
-
-      {/* Top hooks */}
-      <div className="col-span-3 bg-white dark:bg-[#1a1a28] rounded-2xl p-5 shadow-md border border-gray-100 dark:border-white/10">
-        <span className="text-sm font-semibold text-gray-900 dark:text-white block mb-3">Top Performing Hooks</span>
-        <div className="space-y-2.5">
-          {hooks.map((h, i) => (
-            <motion.div
+      {/* Step indicator - minimal */}
+      <div className="flex items-center justify-center">
+        <div className="flex items-center gap-1.5">
+          {steps.map((_, i) => (
+            <div
               key={i}
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.5 + i * 0.1 }}
-              className="flex items-center justify-between"
-            >
-              <span className="text-sm text-gray-600 dark:text-gray-400 truncate flex-1">{h.text}</span>
-              <span className="text-sm font-semibold text-primary ml-3">{h.score}</span>
-            </motion.div>
+              className={`h-2 rounded-full cursor-pointer transition-all duration-300 ${step === i ? "w-6 bg-fuchsia-400 opacity-100" : step > i ? "w-2 bg-fuchsia-400 opacity-50" : "w-2 bg-gray-300 dark:bg-gray-600 opacity-30"}`}
+              onClick={() => goToStep(i)}
+            />
           ))}
         </div>
       </div>
@@ -404,77 +662,282 @@ function BentoPattern() {
 }
 
 function BentoContent() {
+  const [step, setStep] = useState(0);
+  const [resetKey, setResetKey] = useState(0);
+  
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setStep(s => (s + 1) % 4);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [resetKey]);
+  
+  const goToStep = (i: number) => {
+    setStep(i);
+    setResetKey(k => k + 1);
+  };
+
+  const steps = [
+    { label: "Choose Type", desc: "Post, carousel, or Reel" },
+    { label: "Generate", desc: "AI creates your content" },
+    { label: "Edit", desc: "Customize in Canva" },
+    { label: "Approve", desc: "Ready to publish" },
+  ];
+
+  const contentTypes = [
+    { type: "Post", icon: "📷", ratio: "1:1", selected: true },
+    { type: "Carousel", icon: "📚", ratio: "4:5", selected: false },
+    { type: "Reel", icon: "🎬", ratio: "9:16", selected: false },
+  ];
+
   return (
-    <div className="grid grid-cols-3 gap-4 h-full">
-      {/* Editor mockup */}
-      <div className="col-span-2 row-span-2 bg-white dark:bg-[#1a1a28] rounded-2xl shadow-md border border-gray-100 dark:border-white/10 overflow-hidden">
-        <div className="bg-gray-50 dark:bg-[#111118] border-b border-gray-100 dark:border-white/10 px-4 py-2.5 flex items-center gap-2">
-          <div className="flex gap-1.5">
-            <div className="w-3 h-3 rounded-full bg-red-400" />
-            <div className="w-3 h-3 rounded-full bg-yellow-400" />
-            <div className="w-3 h-3 rounded-full bg-green-400" />
-          </div>
-          <span className="text-xs text-gray-500 dark:text-gray-400 mx-auto font-medium">Aurea × Canva Editor</span>
-        </div>
-        <div className="p-4 flex gap-4">
-          <div className="flex flex-col gap-2 w-24 flex-shrink-0">
-            {["Media", "Text", "Brand", "Layout"].map((item, i) => (
-              <div key={i} className={`text-xs py-2 px-3 rounded-lg transition-colors ${i === 2 ? "bg-primary/10 text-primary font-semibold" : "text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-white/5"}`}>
-                {item}
+    <div className="bg-white dark:bg-[#1a1a28] rounded-3xl p-6 shadow-lg border border-gray-100 dark:border-white/10 h-full flex flex-col">
+      {/* Visual area */}
+      <div className="flex-1 relative overflow-hidden rounded-2xl bg-gray-50 dark:bg-white/5 min-h-[260px]">
+        <AnimatePresence mode="wait">
+          {step === 0 && (
+            <motion.div
+              key="choose"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 p-5 flex flex-col items-center justify-center"
+            >
+              <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">What would you like to create?</p>
+              <div className="flex gap-4">
+                {contentTypes.map((c, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                    whileHover={{ scale: 1.05 }}
+                    className={`p-4 rounded-2xl cursor-pointer transition-all ${c.selected ? "bg-fuchsia-100 dark:bg-fuchsia-900/30 border-2 border-fuchsia-400" : "bg-white dark:bg-[#1a1a28] border border-gray-200 dark:border-white/10"}`}
+                  >
+                    <div className="text-3xl mb-2 text-center">{c.icon}</div>
+                    <p className="text-sm font-semibold text-gray-900 dark:text-white text-center">{c.type}</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 text-center">{c.ratio}</p>
+                  </motion.div>
+                ))}
               </div>
-            ))}
-          </div>
-          <div className="flex-1 bg-gradient-to-br from-primary/10 via-purple-50 to-rose-100 dark:from-primary/10 dark:via-purple-950/30 dark:to-rose-950/30 rounded-xl flex items-center justify-center min-h-[180px]">
-            <div className="text-center">
-              <div className="w-12 h-12 rounded-xl bg-white/80 dark:bg-white/10 shadow-sm flex items-center justify-center mx-auto mb-2">
-                <span className="text-xl">✦</span>
+            </motion.div>
+          )}
+
+          {step === 1 && (
+            <motion.div
+              key="generate"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 p-5 flex flex-col items-center justify-center"
+            >
+              {/* Generation animation */}
+              <div className="relative w-32 h-32 mb-4">
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 3, repeat: 9999, ease: "linear" }}
+                  className="absolute inset-0 rounded-2xl border-2 border-dashed border-fuchsia-300"
+                />
+                <motion.div
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.5 }}
+                  className="absolute inset-2 rounded-xl bg-gradient-to-br from-fuchsia-200 to-pink-200 dark:from-fuchsia-800/40 dark:to-pink-800/40 flex items-center justify-center"
+                >
+                  <motion.div
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 1.5, repeat: 9999 }}
+                    className="text-4xl"
+                  >
+                    ✦
+                  </motion.div>
+                </motion.div>
               </div>
-              <div className="text-sm font-bold text-gray-800 dark:text-gray-200">Your Brand</div>
-              <div className="text-xs text-gray-500 dark:text-gray-400">Visual here</div>
-            </div>
-          </div>
-        </div>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.8 }}
+                className="space-y-2 text-center"
+              >
+                <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Generating your post...</p>
+                <div className="flex items-center justify-center gap-1">
+                  {[0, 1, 2].map((i) => (
+                    <motion.div
+                      key={i}
+                      animate={{ opacity: [0.3, 1, 0.3] }}
+                      transition={{ duration: 1, repeat: 9999, delay: i * 0.2 }}
+                      className="w-2 h-2 rounded-full bg-fuchsia-400"
+                    />
+                  ))}
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+
+          {step === 2 && (
+            <motion.div
+              key="edit"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 overflow-hidden"
+            >
+              {/* Canva-like editor */}
+              <div className="h-full flex flex-col">
+                <div className="bg-gray-100 dark:bg-[#111118] border-b border-gray-200 dark:border-white/10 px-3 py-2 flex items-center gap-2">
+                  <div className="flex gap-1">
+                    <div className="w-2.5 h-2.5 rounded-full bg-red-400" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-green-400" />
+                  </div>
+                  <span className="text-[10px] text-gray-500 dark:text-gray-400 mx-auto">Aurea × Canva</span>
+                </div>
+                <div className="flex-1 flex">
+                  {/* Sidebar */}
+                  <div className="w-20 bg-white dark:bg-[#1a1a28] border-r border-gray-100 dark:border-white/10 p-2 space-y-1">
+                    {["Text", "Media", "Brand", "Layout"].map((item, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: i * 0.1 }}
+                        className={`text-[10px] py-1.5 px-2 rounded-lg text-center ${i === 2 ? "bg-fuchsia-100 dark:bg-fuchsia-900/30 text-fuchsia-600 dark:text-fuchsia-400 font-medium" : "text-gray-500 dark:text-gray-400"}`}
+                      >
+                        {item}
+                      </motion.div>
+                    ))}
+                  </div>
+                  {/* Canvas */}
+                  <div className="flex-1 p-4 flex items-center justify-center bg-gray-50 dark:bg-white/5">
+                    <motion.div
+                      initial={{ scale: 0.9, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      className="w-28 h-28 rounded-xl bg-gradient-to-br from-fuchsia-300 to-pink-400 shadow-lg relative overflow-hidden"
+                    >
+                      <div className="absolute inset-3 flex flex-col justify-between">
+                        <div className="w-6 h-6 rounded-md bg-white/30" />
+                        <div className="space-y-1">
+                          <div className="w-full h-1.5 rounded bg-white/50" />
+                          <div className="w-2/3 h-1.5 rounded bg-white/30" />
+                        </div>
+                      </div>
+                      {/* Selection handles */}
+                      <motion.div
+                        animate={{ opacity: [0.5, 1, 0.5] }}
+                        transition={{ duration: 1.5, repeat: 9999 }}
+                        className="absolute inset-0 border-2 border-blue-500 rounded-xl"
+                      />
+                      <div className="absolute -top-1 -left-1 w-3 h-3 bg-blue-500 rounded-full" />
+                      <div className="absolute -top-1 -right-1 w-3 h-3 bg-blue-500 rounded-full" />
+                      <div className="absolute -bottom-1 -left-1 w-3 h-3 bg-blue-500 rounded-full" />
+                      <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-blue-500 rounded-full" />
+                    </motion.div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {step === 3 && (
+            <motion.div
+              key="approve"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 p-5 flex flex-col"
+            >
+              {/* Final preview */}
+              <div className="flex-1 flex items-center justify-center">
+                <motion.div
+                  initial={{ scale: 0.8 }}
+                  animate={{ scale: 1 }}
+                  className="relative"
+                >
+                  <div className="w-36 h-36 rounded-2xl bg-gradient-to-br from-fuchsia-400 to-pink-500 shadow-xl overflow-hidden">
+                    <div className="absolute inset-3 flex flex-col justify-between">
+                      <div className="w-8 h-8 rounded-lg bg-white/30" />
+                      <div className="space-y-1.5">
+                        <div className="w-full h-2 rounded bg-white/60" />
+                        <div className="w-3/4 h-2 rounded bg-white/40" />
+                      </div>
+                    </div>
+                  </div>
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.5, type: "spring" }}
+                    className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-green-500 flex items-center justify-center shadow-lg"
+                  >
+                    <Check className="w-5 h-5 text-white" />
+                  </motion.div>
+                </motion.div>
+              </div>
+              {/* Action buttons */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7 }}
+                className="flex gap-2 justify-center"
+              >
+                <div className="px-4 py-2 rounded-xl bg-gray-200 dark:bg-white/10 text-xs font-medium text-gray-600 dark:text-gray-400">
+                  Edit more
+                </div>
+                <div className="px-4 py-2 rounded-xl bg-fuchsia-500 text-xs font-medium text-white">
+                  Approve ✓
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
-      {/* Stats */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.2 }}
-        className="bg-white dark:bg-[#1a1a28] rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-white/10 flex flex-col justify-between"
-      >
-        <span className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">Generated</span>
-        <div>
-          <span className="text-2xl font-bold text-gray-900 dark:text-white">30+</span>
-          <p className="text-xs text-gray-500 dark:text-gray-400">posts/month</p>
-        </div>
-      </motion.div>
+      {/* Step label */}
+      <div className="text-center mt-4 mb-2">
+        <motion.p key={step} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-sm font-semibold text-gray-900 dark:text-white">
+          {steps[step].label}
+        </motion.p>
+        <motion.p key={`desc-${step}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-xs text-gray-500 dark:text-gray-400">
+          {steps[step].desc}
+        </motion.p>
+      </div>
 
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.3 }}
-        className="bg-white dark:bg-[#1a1a28] rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-white/10 flex flex-col justify-between"
-      >
-        <span className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">Control</span>
-        <div>
-          <span className="text-2xl font-bold text-gray-900 dark:text-white">100%</span>
-          <p className="text-xs text-gray-500 dark:text-gray-400">editable</p>
+      {/* Step indicator - minimal */}
+      <div className="flex items-center justify-center">
+        <div className="flex items-center gap-1.5">
+          {steps.map((_, i) => (
+            <div
+              key={i}
+              className={`h-2 rounded-full cursor-pointer transition-all duration-300 ${step === i ? "w-6 bg-fuchsia-400 opacity-100" : step > i ? "w-2 bg-fuchsia-400 opacity-50" : "w-2 bg-gray-300 dark:bg-gray-600 opacity-30"}`}
+              onClick={() => goToStep(i)}
+            />
+          ))}
         </div>
-      </motion.div>
-
+      </div>
     </div>
   );
 }
 
 function BentoScheduling() {
-  const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-  const posts = [
-    { day: "Mon", time: "09:00", platform: "ig", title: "Before/After Reel", ai: true },
-    { day: "Tue", time: "18:00", platform: "tt", title: "Hook Series #4", ai: true },
-    { day: "Wed", time: "12:00", platform: "yt", title: "Treatment Guide", ai: false },
-    { day: "Thu", time: "09:00", platform: "ig", title: "Client Story", ai: true },
-    { day: "Fri", time: "17:00", platform: "tt", title: "POV Content", ai: true },
+  const [step, setStep] = useState(0);
+  const [resetKey, setResetKey] = useState(0);
+  
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setStep(s => (s + 1) % 4);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [resetKey]);
+  
+  const goToStep = (i: number) => {
+    setStep(i);
+    setResetKey(k => k + 1);
+  };
+
+  const steps = [
+    { label: "Analyze", desc: "Learning your audience" },
+    { label: "Optimize", desc: "Finding best times" },
+    { label: "Schedule", desc: "Set your content calendar" },
+    { label: "Publish", desc: "Auto-post everywhere" },
   ];
 
   const platformIcons: Record<string, React.ReactNode> = {
@@ -485,156 +948,483 @@ function BentoScheduling() {
   
   const platformColors: Record<string, string> = {
     ig: "bg-gradient-to-r from-purple-500 to-pink-500 text-white",
-    tt: "bg-gray-900 text-white",
+    tt: "bg-gray-900 dark:bg-white text-white dark:text-gray-900",
     yt: "bg-red-500 text-white",
   };
 
-  return (
-    <div className="grid grid-cols-3 gap-4 h-full">
-      {/* Calendar card */}
-      <div className="col-span-2 row-span-2 bg-white dark:bg-[#1a1a28] rounded-2xl p-5 shadow-md border border-gray-100 dark:border-white/10">
-        <div className="flex items-center justify-between mb-4">
-          <span className="text-sm font-semibold text-gray-900 dark:text-white">This Week</span>
-          <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full">AI Optimised</span>
-        </div>
-        
-        {/* Day headers */}
-        <div className="grid grid-cols-7 gap-2 mb-3">
-          {days.map((d, i) => (
-            <div key={i} className={`text-center text-xs font-medium py-1.5 rounded-lg ${[0, 3].includes(i) ? "bg-primary/10 text-primary" : "text-gray-400 dark:text-gray-500"}`}>
-              {d}
-            </div>
-          ))}
-        </div>
+  const posts = [
+    { time: "09:00", platform: "ig", title: "Before/After Reel" },
+    { time: "12:00", platform: "tt", title: "Hook Series #4" },
+    { time: "18:00", platform: "yt", title: "Treatment Guide" },
+  ];
 
-        {/* Posts list - animated rows */}
-        <div className="space-y-2">
-          {posts.map((p, i) => (
+  return (
+    <div className="bg-white dark:bg-[#1a1a28] rounded-3xl p-6 shadow-lg border border-gray-100 dark:border-white/10 h-full flex flex-col">
+      {/* Visual area */}
+      <div className="flex-1 relative overflow-hidden rounded-2xl bg-gray-50 dark:bg-white/5 min-h-[260px]">
+        <AnimatePresence mode="wait">
+          {step === 0 && (
             <motion.div
-              key={i}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ 
-                delay: i * 0.15,
-                duration: 0.4,
-                repeat: Infinity,
-                repeatDelay: 5,
-              }}
-              className="flex items-center gap-3 py-2 px-3 rounded-xl bg-gray-50 dark:bg-white/5 hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
+              key="analyze"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 p-5 flex flex-col items-center justify-center"
             >
-              <span className="text-xs text-gray-400 dark:text-gray-500 w-10">{p.time}</span>
-              <span className={`p-1.5 rounded-lg ${platformColors[p.platform]}`}>
-                {platformIcons[p.platform]}
-              </span>
-              <span className="text-sm text-gray-700 dark:text-gray-300 flex-1">{p.title}</span>
-              {p.ai && <span className="text-xs text-primary font-medium">✦ AI</span>}
+              {/* Audience activity heatmap */}
+              <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">Audience Activity</p>
+              <div className="grid grid-cols-7 gap-1 mb-3">
+                {["M", "T", "W", "T", "F", "S", "S"].map((d, i) => (
+                  <div key={i} className="text-[10px] text-center text-gray-400 dark:text-gray-500 font-medium">{d}</div>
+                ))}
+              </div>
+              <div className="grid grid-cols-7 gap-1">
+                {[0.8, 0.3, 0.6, 0.9, 0.4, 0.2, 0.5, 0.7, 0.4, 0.8, 0.3, 0.6, 0.9, 0.5, 0.2, 0.7, 0.5, 0.8, 0.3, 0.9, 0.6, 0.4, 0.7, 0.5, 0.8, 0.3, 0.6, 0.9].map((intensity, i) => {
+                  const bg = intensity > 0.7 ? "bg-fuchsia-500" : intensity > 0.4 ? "bg-fuchsia-300" : "bg-fuchsia-100 dark:bg-fuchsia-900/30";
+                  return (
+                    <motion.div
+                      key={i}
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ delay: i * 0.02 }}
+                      className={`w-6 h-6 rounded-md ${bg}`}
+                    />
+                  );
+                })}
+              </div>
+              <p className="text-[10px] text-gray-400 dark:text-gray-500 mt-3">Darker = more active</p>
             </motion.div>
+          )}
+
+          {step === 1 && (
+            <motion.div
+              key="optimize"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 p-5"
+            >
+              {/* Best times discovery */}
+              <p className="text-xs font-medium text-gray-700 dark:text-gray-300 mb-3">Optimal posting times</p>
+              <div className="space-y-3">
+                {[
+                  { day: "Monday", time: "09:00 AM", score: 94 },
+                  { day: "Wednesday", time: "12:00 PM", score: 87 },
+                  { day: "Friday", time: "06:00 PM", score: 91 },
+                ].map((slot, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.2 }}
+                    className="bg-white dark:bg-[#1a1a28] rounded-xl p-3 shadow-sm border border-gray-100 dark:border-white/10"
+                  >
+                    <div className="flex items-center justify-between mb-1.5">
+                      <span className="text-xs font-medium text-gray-700 dark:text-gray-300">{slot.day}</span>
+                      <span className="text-xs text-fuchsia-500 font-semibold">{slot.time}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="flex-1 h-1.5 bg-gray-100 dark:bg-white/10 rounded-full overflow-hidden">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          animate={{ width: `${slot.score}%` }}
+                          transition={{ delay: 0.5 + i * 0.2, duration: 0.6 }}
+                          className="h-full bg-gradient-to-r from-fuchsia-500 to-pink-500 rounded-full"
+                        />
+                      </div>
+                      <span className="text-[10px] font-medium text-gray-500 dark:text-gray-400">{slot.score}%</span>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+
+          {step === 2 && (
+            <motion.div
+              key="schedule"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 p-5"
+            >
+              {/* Calendar view */}
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-xs font-semibold text-gray-700 dark:text-gray-300">This Week</span>
+                <span className="text-[10px] font-medium text-fuchsia-500 bg-fuchsia-100 dark:bg-fuchsia-900/30 px-2 py-1 rounded-full">AI Optimized</span>
+              </div>
+              <div className="space-y-2">
+                {posts.map((p, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.15 }}
+                    className="flex items-center gap-3 py-2.5 px-3 rounded-xl bg-white dark:bg-[#1a1a28] shadow-sm border border-gray-100 dark:border-white/10"
+                  >
+                    <span className="text-xs text-gray-400 dark:text-gray-500 w-12">{p.time}</span>
+                    <span className={`p-1.5 rounded-lg ${platformColors[p.platform]}`}>
+                      {platformIcons[p.platform]}
+                    </span>
+                    <span className="text-xs text-gray-700 dark:text-gray-300 flex-1">{p.title}</span>
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ delay: 0.5 + i * 0.1 }}
+                      className="w-5 h-5 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center"
+                    >
+                      <Check className="w-3 h-3 text-green-600 dark:text-green-400" />
+                    </motion.div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+
+          {step === 3 && (
+            <motion.div
+              key="publish"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 p-5 flex flex-col items-center justify-center"
+            >
+              {/* Publishing animation */}
+              <div className="relative mb-6">
+                <motion.div
+                  animate={{ scale: [1, 1.1, 1] }}
+                  transition={{ duration: 2, repeat: 9999 }}
+                  className="w-20 h-20 rounded-2xl bg-gradient-to-br from-fuchsia-400 to-pink-500 flex items-center justify-center shadow-xl"
+                >
+                  <span className="text-3xl text-white">✦</span>
+                </motion.div>
+                {/* Platform icons orbiting */}
+                {[
+                  { icon: <Instagram className="w-4 h-4" />, color: "from-purple-500 to-pink-500", angle: 0 },
+                  { icon: <TikTokIcon className="w-4 h-4" />, color: "from-gray-800 to-gray-900", angle: 120 },
+                  { icon: <Youtube className="w-4 h-4" />, color: "from-red-500 to-red-600", angle: 240 },
+                ].map((p, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ scale: 0 }}
+                    animate={{ 
+                      scale: 1,
+                      x: Math.cos((p.angle + i * 30) * Math.PI / 180) * 50,
+                      y: Math.sin((p.angle + i * 30) * Math.PI / 180) * 50,
+                    }}
+                    transition={{ delay: 0.3 + i * 0.2 }}
+                    className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-xl bg-gradient-to-br ${p.color} flex items-center justify-center text-white shadow-lg`}
+                  >
+                    {p.icon}
+                  </motion.div>
+                ))}
+              </div>
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1 }}
+                className="text-sm font-medium text-gray-700 dark:text-gray-300"
+              >
+                Publishing to 3 platforms...
+              </motion.p>
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.5 }}
+                className="flex items-center gap-1 mt-2"
+              >
+                <Check className="w-4 h-4 text-green-500" />
+                <span className="text-xs text-green-600 dark:text-green-400 font-medium">All scheduled!</span>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+
+      {/* Step label */}
+      <div className="text-center mt-4 mb-2">
+        <motion.p key={step} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-sm font-semibold text-gray-900 dark:text-white">
+          {steps[step].label}
+        </motion.p>
+        <motion.p key={`desc-${step}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-xs text-gray-500 dark:text-gray-400">
+          {steps[step].desc}
+        </motion.p>
+      </div>
+
+      {/* Step indicator - minimal */}
+      <div className="flex items-center justify-center">
+        <div className="flex items-center gap-1.5">
+          {steps.map((_, i) => (
+            <div
+              key={i}
+              className={`h-2 rounded-full cursor-pointer transition-all duration-300 ${step === i ? "w-6 bg-fuchsia-400 opacity-100" : step > i ? "w-2 bg-fuchsia-400 opacity-50" : "w-2 bg-gray-300 dark:bg-gray-600 opacity-30"}`}
+              onClick={() => goToStep(i)}
+            />
           ))}
         </div>
       </div>
-
-      {/* Stats */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }}
-        className="bg-white dark:bg-[#1a1a28] rounded-2xl p-4 shadow-md border border-gray-100 dark:border-white/10 flex flex-col justify-between"
-      >
-        <span className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">Platforms</span>
-        <div>
-          <span className="text-2xl font-bold text-gray-900 dark:text-white">3</span>
-          <p className="text-xs text-gray-500 dark:text-gray-400">simultaneous</p>
-        </div>
-      </motion.div>
-
-      {/* Effort card - animated grow/rotate */}
-      <motion.div
-        animate={{
-          scale: [1, 1.02, 1],
-          rotate: [0, 1, 0, -1, 0],
-        }}
-        transition={{
-          duration: 3,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-        className="bg-white dark:bg-[#1a1a28] rounded-2xl p-4 shadow-md border border-gray-100 dark:border-white/10 flex flex-col justify-between"
-      >
-        <span className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">Effort</span>
-        <div>
-          <span className="text-2xl font-bold text-gray-900 dark:text-white">Zero</span>
-          <p className="text-xs text-gray-500 dark:text-gray-400">manual work</p>
-        </div>
-      </motion.div>
-
     </div>
   );
 }
 
 function BentoAnalytics() {
+  const [step, setStep] = useState(0);
+  const [resetKey, setResetKey] = useState(0);
+  
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setStep(s => (s + 1) % 4);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [resetKey]);
+  
+  const goToStep = (i: number) => {
+    setStep(i);
+    setResetKey(k => k + 1);
+  };
+
+  const steps = [
+    { label: "Collect", desc: "Gathering performance data" },
+    { label: "Analyze", desc: "Finding patterns" },
+    { label: "Learn", desc: "AI improves your strategy" },
+    { label: "Report", desc: "See your results" },
+  ];
+
   const weeks = [22, 31, 28, 45, 38, 67, 89, 72, 95, 88, 102, 118];
   const max = Math.max(...weeks);
-  const [animationKey, setAnimationKey] = useState(0);
-
-  // Restart animation periodically
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setAnimationKey(prev => prev + 1);
-    }, 6000);
-    return () => clearInterval(interval);
-  }, []);
 
   return (
-    <div className="grid grid-cols-3 gap-4 h-full">
-      {/* Growth chart - updated colors */}
-      <div className="col-span-2 row-span-2 bg-gradient-to-br from-gray-900 to-gray-950 rounded-2xl p-5 shadow-md">
-        <div className="flex items-center justify-between mb-4">
-          <span className="text-sm font-semibold text-white">Follower Growth</span>
-          <span className="text-sm font-bold text-primary">+847%</span>
-        </div>
-        <div className="flex items-end gap-1.5 h-24 mb-3">
-          {weeks.map((v, i) => (
+    <div className="bg-white dark:bg-[#1a1a28] rounded-3xl p-6 shadow-lg border border-gray-100 dark:border-white/10 h-full flex flex-col">
+      {/* Visual area */}
+      <div className="flex-1 relative overflow-hidden rounded-2xl bg-gray-50 dark:bg-white/5 min-h-[260px]">
+        <AnimatePresence mode="wait">
+          {step === 0 && (
             <motion.div
-              key={`${animationKey}-${i}`}
-              initial={{ height: 0 }}
-              animate={{ height: `${(v / max) * 100}%` }}
-              transition={{ delay: i * 0.08, duration: 0.5 }}
-              className={`flex-1 rounded-sm ${i === weeks.length - 1 ? "bg-primary" : "bg-primary/30"}`}
+              key="collect"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 p-5 flex flex-col items-center justify-center"
+            >
+              {/* Data collection animation */}
+              <div className="relative w-32 h-32 mb-4">
+                {/* Center hub */}
+                <div className="absolute inset-8 rounded-full bg-fuchsia-100 dark:bg-fuchsia-900/30 flex items-center justify-center">
+                  <motion.div
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 1.5, repeat: 9999 }}
+                    className="w-8 h-8 rounded-full bg-fuchsia-500 flex items-center justify-center"
+                  >
+                    <LayoutDashboard className="w-4 h-4 text-white" />
+                  </motion.div>
+                </div>
+                {/* Data points flying in */}
+                {[...Array(8)].map((_, i) => {
+                  const angle = (i * 45) * Math.PI / 180;
+                  return (
+                    <motion.div
+                      key={i}
+                      initial={{ x: Math.cos(angle) * 80, y: Math.sin(angle) * 80, opacity: 0 }}
+                      animate={{ x: 0, y: 0, opacity: [0, 1, 0] }}
+                      transition={{ duration: 1.5, repeat: 9999, delay: i * 0.2 }}
+                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-fuchsia-400"
+                    />
+                  );
+                })}
+              </div>
+              <p className="text-xs text-gray-500 dark:text-gray-400">Syncing from Instagram, TikTok, YouTube...</p>
+            </motion.div>
+          )}
+
+          {step === 1 && (
+            <motion.div
+              key="analyze"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 p-5 flex flex-col"
+            >
+              {/* Header */}
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-xs font-medium text-gray-700 dark:text-gray-300">Performance Overview</span>
+                <span className="text-[10px] text-fuchsia-500 bg-fuchsia-100 dark:bg-fuchsia-900/30 px-2 py-1 rounded-full font-medium">Live</span>
+              </div>
+              
+              {/* Key metrics - cleaner layout */}
+              <div className="grid grid-cols-2 gap-3 flex-1">
+                {[
+                  { label: "Total Reach", value: "124K", change: "+23%", icon: <Eye className="w-4 h-4" /> },
+                  { label: "Engagement", value: "8.7%", change: "+1.2%", icon: <Heart className="w-4 h-4" /> },
+                  { label: "New Followers", value: "+847", change: "+12%", icon: <Users className="w-4 h-4" /> },
+                  { label: "Conversions", value: "34", change: "+18%", icon: <ArrowUpRight className="w-4 h-4" /> },
+                ].map((metric, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                    className="bg-white dark:bg-[#1a1a28] rounded-xl p-3 shadow-sm border border-gray-100 dark:border-white/10 flex flex-col"
+                  >
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-7 h-7 rounded-lg bg-fuchsia-100 dark:bg-fuchsia-900/30 flex items-center justify-center text-fuchsia-500">
+                        {metric.icon}
+                      </div>
+                      <span className="text-[10px] text-gray-500 dark:text-gray-400">{metric.label}</span>
+                    </div>
+                    <div className="flex items-baseline gap-2 mt-auto">
+                      <span className="text-xl font-bold text-gray-900 dark:text-white">{metric.value}</span>
+                      <span className="text-[10px] font-semibold text-green-500">{metric.change}</span>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+
+          {step === 2 && (
+            <motion.div
+              key="learn"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 p-5 flex flex-col"
+            >
+              {/* Header */}
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-7 h-7 rounded-lg bg-fuchsia-500 flex items-center justify-center">
+                  <Sparkles className="w-4 h-4 text-white" />
+                </div>
+                <div>
+                  <p className="text-xs font-semibold text-gray-900 dark:text-white">AI Insights</p>
+                  <p className="text-[10px] text-gray-500 dark:text-gray-400">Learning from your best content</p>
+                </div>
+              </div>
+              
+              {/* Insights cards */}
+              <div className="flex-1 space-y-2.5">
+                {[
+                  { insight: "Before/after posts get 3× more engagement", icon: <TrendingUp className="w-4 h-4" /> },
+                  { insight: "Best posting time: 9–11 AM", icon: <Clock className="w-4 h-4" /> },
+                  { insight: "Questions boost comments by 47%", icon: <MessageCircle className="w-4 h-4" /> },
+                ].map((item, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.2 }}
+                    className="flex items-center gap-3 bg-white dark:bg-[#1a1a28] rounded-xl p-3 shadow-sm border border-gray-100 dark:border-white/10"
+                  >
+                    <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-fuchsia-100 dark:bg-fuchsia-900/30 text-fuchsia-500">
+                      {item.icon}
+                    </div>
+                    <span className="text-xs text-gray-700 dark:text-gray-300 flex-1 font-medium">{item.insight}</span>
+                  </motion.div>
+                ))}
+              </div>
+              
+              {/* Applied badge */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1 }}
+                className="flex items-center justify-center gap-2 mt-3 py-2 bg-fuchsia-50 dark:bg-fuchsia-900/20 rounded-xl border border-fuchsia-200 dark:border-fuchsia-500/20"
+              >
+                <Sparkles className="w-3.5 h-3.5 text-fuchsia-500" />
+                <span className="text-xs font-medium text-fuchsia-600 dark:text-fuchsia-400">Insights applied to your strategy</span>
+              </motion.div>
+            </motion.div>
+          )}
+
+          {step === 3 && (
+            <motion.div
+              key="report"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 p-5 flex flex-col"
+            >
+              {/* Header */}
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-2">
+                  <div className="w-7 h-7 rounded-lg bg-fuchsia-500 flex items-center justify-center">
+                    <TrendingUp className="w-4 h-4 text-white" />
+                  </div>
+                  <span className="text-xs font-semibold text-gray-900 dark:text-white">Growth Report</span>
+                </div>
+                <span className="text-xs font-bold text-green-500 bg-green-100 dark:bg-green-900/30 px-2 py-1 rounded-full">+847%</span>
+              </div>
+              
+              {/* Chart */}
+              <div className="bg-white dark:bg-[#1a1a28] rounded-xl p-4 flex-1 flex flex-col shadow-sm border border-gray-100 dark:border-white/10">
+                <div className="flex items-end gap-1.5 flex-1 min-h-[100px]">
+                  {weeks.map((v, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ height: 0 }}
+                      animate={{ height: `${(v / max) * 100}%` }}
+                      transition={{ delay: i * 0.05, duration: 0.4 }}
+                      className={`flex-1 rounded-md ${i === weeks.length - 1 ? "bg-fuchsia-500" : "bg-fuchsia-200 dark:bg-fuchsia-500/30"}`}
+                    />
+                  ))}
+                </div>
+                <div className="flex justify-between text-[10px] text-gray-400 dark:text-gray-500 mt-3 pt-3 border-t border-gray-100 dark:border-white/10">
+                  <span>Jan</span><span>Mar</span><span>Jun</span><span>Sep</span><span>Now</span>
+                </div>
+              </div>
+              
+              {/* Bottom stats */}
+              <div className="grid grid-cols-3 gap-2 mt-3">
+                {[
+                  { label: "Reach", value: "2.4M" },
+                  { label: "Engagement", value: "8.7%" },
+                  { label: "Followers", value: "12.4K" },
+                ].map((stat, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5 + i * 0.1 }}
+                    className="text-center py-2 bg-white dark:bg-[#1a1a28] rounded-lg shadow-sm border border-gray-100 dark:border-white/10"
+                  >
+                    <p className="text-sm font-bold text-gray-900 dark:text-white">{stat.value}</p>
+                    <p className="text-[10px] text-gray-500 dark:text-gray-400">{stat.label}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+
+      {/* Step label */}
+      <div className="text-center mt-4 mb-2">
+        <motion.p key={step} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-sm font-semibold text-gray-900 dark:text-white">
+          {steps[step].label}
+        </motion.p>
+        <motion.p key={`desc-${step}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-xs text-gray-500 dark:text-gray-400">
+          {steps[step].desc}
+        </motion.p>
+      </div>
+
+      {/* Step indicator - minimal */}
+      <div className="flex items-center justify-center">
+        <div className="flex items-center gap-1.5">
+          {steps.map((_, i) => (
+            <div
+              key={i}
+              className={`h-2 rounded-full cursor-pointer transition-all duration-300 ${step === i ? "w-6 bg-fuchsia-400 opacity-100" : step > i ? "w-2 bg-fuchsia-400 opacity-50" : "w-2 bg-gray-300 dark:bg-gray-600 opacity-30"}`}
+              onClick={() => goToStep(i)}
             />
           ))}
         </div>
-        <div className="flex justify-between text-xs text-white/40">
-          <span>Jan</span><span>Jun</span><span>Now</span>
-        </div>
       </div>
-
-      {/* Metric cards */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3 }}
-        className="bg-white dark:bg-[#1a1a28] rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-white/10 flex flex-col justify-between"
-      >
-        <span className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">Engagement</span>
-        <span className="text-2xl font-bold text-gray-900 dark:text-white"><AnimatedCounter value={8} suffix=".7%" /></span>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4 }}
-        className="bg-white dark:bg-[#1a1a28] rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-white/10 flex flex-col justify-between"
-      >
-        <span className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">Views/Day</span>
-        <span className="text-2xl font-bold text-gray-900 dark:text-white">47K</span>
-      </motion.div>
-
     </div>
   );
 }
 
 function BentoBrand() {
   const [step, setStep] = useState(0);
+  const [resetKey, setResetKey] = useState(0);
   
   // Auto-advance steps
   useEffect(() => {
@@ -642,7 +1432,12 @@ function BentoBrand() {
       setStep(s => (s + 1) % 4);
     }, 4500);
     return () => clearInterval(timer);
-  }, []);
+  }, [resetKey]);
+  
+  const goToStep = (i: number) => {
+    setStep(i);
+    setResetKey(k => k + 1);
+  };
 
   const steps = [
     { num: 1, label: "Upload", desc: "Add your logo" },
@@ -653,50 +1448,6 @@ function BentoBrand() {
 
   return (
     <div className="bg-white dark:bg-[#1a1a28] rounded-3xl p-6 shadow-lg border border-gray-100 dark:border-white/10 h-full flex flex-col">
-      {/* Step indicators */}
-      <div className="flex items-center justify-between mb-6">
-        {steps.map((s, i) => (
-          <div key={i} className="flex items-center">
-            <motion.div
-              animate={{
-                scale: step === i ? 1.1 : 1,
-                backgroundColor: step >= i ? "#E879F9" : "#E5E7EB",
-              }}
-              className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold"
-              style={{ color: step >= i ? "#fff" : "#9CA3AF" }}
-            >
-              {step > i ? <Check className="w-4 h-4" /> : s.num}
-            </motion.div>
-            {i < 3 && (
-              <motion.div
-                animate={{ backgroundColor: step > i ? "#E879F9" : "#E5E7EB" }}
-                className="w-12 sm:w-16 h-0.5 mx-2"
-              />
-            )}
-          </div>
-        ))}
-      </div>
-
-      {/* Step label */}
-      <div className="text-center mb-5">
-        <motion.p
-          key={step}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-sm font-semibold text-gray-900 dark:text-white"
-        >
-          {steps[step].label}
-        </motion.p>
-        <motion.p
-          key={`desc-${step}`}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="text-xs text-gray-500 dark:text-gray-400"
-        >
-          {steps[step].desc}
-        </motion.p>
-      </div>
-
       {/* Visual area */}
       <div className="flex-1 relative overflow-hidden rounded-2xl bg-gray-50 dark:bg-white/5 min-h-[280px]">
         <AnimatePresence mode="wait">
@@ -711,12 +1462,12 @@ function BentoBrand() {
               {/* Upload zone */}
               <motion.div
                 animate={{ borderColor: ["#D1D5DB", "#E879F9", "#D1D5DB"] }}
-                transition={{ duration: 2, repeat: Infinity }}
+                transition={{ duration: 2, repeat: 9999 }}
                 className="w-full max-w-[200px] aspect-square rounded-2xl border-2 border-dashed flex flex-col items-center justify-center bg-white dark:bg-[#1a1a28]"
               >
                 <motion.div
                   animate={{ y: [0, -5, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
+                  transition={{ duration: 1.5, repeat: 9999 }}
                   className="w-16 h-16 rounded-2xl bg-gradient-to-br from-rose-300 to-pink-400 flex items-center justify-center text-white text-2xl font-bold mb-3 shadow-lg"
                 >
                   A
@@ -819,7 +1570,7 @@ function BentoBrand() {
                       {/* Shimmer */}
                       <motion.div
                         animate={{ x: ["-100%", "100%"] }}
-                        transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.2 }}
+                        transition={{ duration: 1.5, repeat: 9999, delay: i * 0.2 }}
                         className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
                       />
                       {/* Checkmark */}
@@ -908,154 +1659,561 @@ function BentoBrand() {
         </AnimatePresence>
       </div>
 
-      {/* Manual step navigation */}
-      <div className="flex justify-center gap-2 mt-4">
-        {steps.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setStep(i)}
-            className={`w-2 h-2 rounded-full transition-all ${step === i ? "bg-fuchsia-400 w-6" : "bg-gray-300 dark:bg-gray-600 hover:bg-gray-400"}`}
-          />
-        ))}
+      {/* Step label */}
+      <div className="text-center mt-4 mb-2">
+        <motion.p key={step} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-sm font-semibold text-gray-900 dark:text-white">
+          {steps[step].label}
+        </motion.p>
+        <motion.p key={`desc-${step}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-xs text-gray-500 dark:text-gray-400">
+          {steps[step].desc}
+        </motion.p>
+      </div>
+
+      {/* Step indicator - minimal */}
+      <div className="flex items-center justify-center">
+        <div className="flex items-center gap-1.5">
+          {steps.map((_, i) => (
+            <div
+              key={i}
+              className={`h-2 rounded-full cursor-pointer transition-all duration-300 ${step === i ? "w-6 bg-fuchsia-400 opacity-100" : step > i ? "w-2 bg-fuchsia-400 opacity-50" : "w-2 bg-gray-300 dark:bg-gray-600 opacity-30"}`}
+              onClick={() => goToStep(i)}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
 }
 
 function BentoCaption() {
-  const captionText = "Your skin tells a story of resilience. After years of searching, you finally found the right care. This is what transformation looks like when science meets artistry.";
+  const [step, setStep] = useState(0);
+  const [resetKey, setResetKey] = useState(0);
   
-  return (
-    <div className="grid grid-cols-3 gap-4 h-full">
-      {/* Caption preview */}
-      <div className="col-span-2 row-span-2 bg-white dark:bg-[#1a1a28] rounded-2xl p-5 shadow-md border border-gray-100 dark:border-white/10">
-        <div className="flex items-center gap-2 mb-4">
-          <span className="text-sm font-semibold text-gray-900 dark:text-white">Generated Caption</span>
-          <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full font-medium">Your voice</span>
-        </div>
-        
-        <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4 min-h-[80px]">
-          <TypewriterText text={captionText} />
-        </p>
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setStep(s => (s + 1) % 4);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [resetKey]);
+  
+  const goToStep = (i: number) => {
+    setStep(i);
+    setResetKey(k => k + 1);
+  };
 
-        <p className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">Optimised Hashtags</p>
-        <div className="flex flex-wrap gap-1.5">
-          {[
-            { tag: "#esteticaavancada", color: "text-[#E879F9] bg-[#E879F9]/10" },
-            { tag: "#peleperfeita", color: "text-[#F0ABFC] bg-[#F0ABFC]/10" },
-            { tag: "#tratamentofacial", color: "text-[#D4A8FF] bg-[#D4A8FF]/10" },
-            { tag: "#clinicapremium", color: "text-[#FFA8D4] bg-[#FFA8D4]/10" },
-            { tag: "#resultadosreais", color: "text-[#F9A8D4] bg-[#F9A8D4]/10" },
-          ].map((item, i) => (
-            <motion.span
-              key={i}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.5 + i * 0.1 }}
-              className={`text-xs px-2.5 py-1 rounded-full font-medium ${item.color}`}
+  const steps = [
+    { label: "Learn Voice", desc: "Analyzing your style" },
+    { label: "Write", desc: "Generating in your voice" },
+    { label: "Optimize", desc: "Adding trending hashtags" },
+    { label: "Ready", desc: "Caption complete" },
+  ];
+
+  const voiceTraits = [
+    { trait: "Warm & empathetic", match: 94 },
+    { trait: "Professional but approachable", match: 89 },
+    { trait: "Educational focus", match: 87 },
+  ];
+
+  const hashtags = [
+    { tag: "#esteticaavancada", reach: "2.4M" },
+    { tag: "#peleperfeita", reach: "890K" },
+    { tag: "#tratamentofacial", reach: "1.2M" },
+    { tag: "#clinicapremium", reach: "340K" },
+    { tag: "#resultadosreais", reach: "560K" },
+  ];
+
+  return (
+    <div className="bg-white dark:bg-[#1a1a28] rounded-3xl p-6 shadow-lg border border-gray-100 dark:border-white/10 h-full flex flex-col">
+      {/* Visual area */}
+      <div className="flex-1 relative overflow-hidden rounded-2xl bg-gray-50 dark:bg-white/5 min-h-[260px]">
+        <AnimatePresence mode="wait">
+          {step === 0 && (
+            <motion.div
+              key="voice"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 p-5 flex flex-col items-center justify-center"
             >
-              {item.tag}
-            </motion.span>
+              {/* Central scanning animation */}
+              <div className="relative mb-6">
+                {/* Outer ring */}
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 8, repeat: 9999, ease: "linear" }}
+                  className="w-28 h-28 rounded-full border-2 border-dashed border-fuchsia-300 dark:border-fuchsia-500/40"
+                />
+                {/* Inner ring */}
+                <motion.div
+                  animate={{ rotate: -360 }}
+                  transition={{ duration: 6, repeat: 9999, ease: "linear" }}
+                  className="absolute inset-3 rounded-full border-2 border-fuchsia-400/60"
+                />
+                {/* Center icon */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <motion.div
+                    animate={{ scale: [1, 1.1, 1] }}
+                    transition={{ duration: 2, repeat: 9999 }}
+                    className="w-14 h-14 rounded-2xl bg-gradient-to-br from-fuchsia-500 to-pink-500 flex items-center justify-center shadow-lg"
+                  >
+                    <PenTool className="w-7 h-7 text-white" />
+                  </motion.div>
+                </div>
+                {/* Orbiting dots */}
+                {[0, 1, 2].map((i) => (
+                  <motion.div
+                    key={i}
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 3, repeat: 9999, ease: "linear", delay: i * 1 }}
+                    className="absolute inset-0"
+                    style={{ transformOrigin: "center" }}
+                  >
+                    <div 
+                      className="absolute w-2.5 h-2.5 rounded-full bg-fuchsia-400"
+                      style={{ top: 0, left: "50%", transform: "translateX(-50%)" }}
+                    />
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Text */}
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+              >
+                Scanning your brand voice
+              </motion.p>
+              
+              {/* Traits appearing */}
+              <div className="flex flex-wrap justify-center gap-2 mt-3">
+                {["Warm", "Professional", "Engaging", "Trustworthy"].map((trait, i) => (
+                  <motion.span
+                    key={i}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.8 + i * 0.2 }}
+                    className="text-[10px] font-medium px-2.5 py-1 rounded-full bg-fuchsia-100 dark:bg-fuchsia-900/30 text-fuchsia-600 dark:text-fuchsia-400"
+                  >
+                    {trait}
+                  </motion.span>
+                ))}
+              </div>
+            </motion.div>
+          )}
+
+          {step === 1 && (
+            <motion.div
+              key="write"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 p-5 flex flex-col"
+            >
+              {/* AI Writing card with animated border */}
+              <div className="relative flex-1">
+                {/* Animated gradient border */}
+                <div className="absolute -inset-[1px] rounded-2xl overflow-hidden">
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 3, repeat: 9999, ease: "linear" }}
+                    className="absolute inset-[-50%] bg-[conic-gradient(from_0deg,transparent_0%,#E879F9_10%,#F0ABFC_20%,transparent_30%)]"
+                  />
+                </div>
+                
+                {/* Card content */}
+                <div className="relative bg-white dark:bg-[#1a1a28] rounded-2xl p-4 h-full flex flex-col">
+                  {/* Header */}
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-2">
+                      <motion.div
+                        animate={{ scale: [1, 1.2, 1] }}
+                        transition={{ duration: 1.5, repeat: 9999 }}
+                        className="w-6 h-6 rounded-lg bg-fuchsia-500 flex items-center justify-center"
+                      >
+                        <Sparkles className="w-3.5 h-3.5 text-white" />
+                      </motion.div>
+                      <span className="text-xs font-semibold text-gray-900 dark:text-white">AI Writing</span>
+                    </div>
+                    <span className="text-[10px] font-medium text-fuchsia-500 bg-fuchsia-100 dark:bg-fuchsia-900/30 px-2 py-0.5 rounded-full">Your voice</span>
+                  </div>
+                  
+                  {/* Caption text */}
+                  <div className="flex-1">
+                    <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                      <TypewriterText text="Your skin tells a story of resilience. After years of searching, you finally found the right care. This is what transformation looks like when science meets artistry. ✨" />
+                    </p>
+                  </div>
+                  
+                  {/* Writing indicator */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.5 }}
+                    className="flex items-center gap-2 mt-3 pt-3 border-t border-gray-100 dark:border-white/10"
+                  >
+                    <div className="flex gap-1">
+                      {[0, 1, 2].map((i) => (
+                        <motion.div
+                          key={i}
+                          animate={{ scale: [1, 1.3, 1], opacity: [0.5, 1, 0.5] }}
+                          transition={{ duration: 0.8, repeat: 9999, delay: i * 0.15 }}
+                          className="w-1.5 h-1.5 rounded-full bg-fuchsia-500"
+                        />
+                      ))}
+                    </div>
+                    <span className="text-[10px] text-gray-500 dark:text-gray-400">Generating caption...</span>
+                  </motion.div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {step === 2 && (
+            <motion.div
+              key="hashtags"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 p-5"
+            >
+              {/* Hashtag optimization */}
+              <p className="text-xs font-medium text-gray-700 dark:text-gray-300 mb-3">Trending in Aesthetic Medicine</p>
+              <div className="space-y-2">
+                {hashtags.map((h, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                    className="flex items-center justify-between bg-white dark:bg-[#1a1a28] rounded-xl px-3 py-2.5 shadow-sm border border-gray-100 dark:border-white/10"
+                  >
+                    <span className="text-xs font-medium text-fuchsia-500">{h.tag}</span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-[10px] text-gray-400 dark:text-gray-500">{h.reach} reach</span>
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ delay: 0.3 + i * 0.1 }}
+                        className="w-4 h-4 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center"
+                      >
+                        <Check className="w-2.5 h-2.5 text-green-600 dark:text-green-400" />
+                      </motion.div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+
+          {step === 3 && (
+            <motion.div
+              key="ready"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 p-5 flex flex-col"
+            >
+              {/* Final caption preview */}
+              <div className="bg-white dark:bg-[#1a1a28] rounded-xl p-4 shadow-sm border border-gray-100 dark:border-white/10 flex-1">
+                <p className="text-xs text-gray-700 dark:text-gray-300 leading-relaxed mb-3">
+                  Your skin tells a story of resilience. After years of searching, you finally found the right care. ✨
+                </p>
+                <div className="flex flex-wrap gap-1">
+                  {hashtags.slice(0, 4).map((h, i) => (
+                    <motion.span
+                      key={i}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: i * 0.1 }}
+                      className="text-[10px] px-2 py-0.5 rounded-full font-medium text-fuchsia-500 bg-fuchsia-100 dark:bg-fuchsia-900/30"
+                    >
+                      {h.tag}
+                    </motion.span>
+                  ))}
+                </div>
+              </div>
+              {/* Success badge */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+                className="flex items-center justify-center gap-2 mt-3 bg-green-100 dark:bg-green-900/30 rounded-xl px-4 py-2"
+              >
+                <Check className="w-4 h-4 text-green-600 dark:text-green-400" />
+                <span className="text-xs font-medium text-green-700 dark:text-green-400">Caption ready to use</span>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+
+      {/* Step label */}
+      <div className="text-center mt-4 mb-2">
+        <motion.p key={step} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-sm font-semibold text-gray-900 dark:text-white">
+          {steps[step].label}
+        </motion.p>
+        <motion.p key={`desc-${step}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-xs text-gray-500 dark:text-gray-400">
+          {steps[step].desc}
+        </motion.p>
+      </div>
+
+      {/* Step indicator - minimal */}
+      <div className="flex items-center justify-center">
+        <div className="flex items-center gap-1.5">
+          {steps.map((_, i) => (
+            <div
+              key={i}
+              className={`h-2 rounded-full cursor-pointer transition-all duration-300 ${step === i ? "w-6 bg-fuchsia-400 opacity-100" : step > i ? "w-2 bg-fuchsia-400 opacity-50" : "w-2 bg-gray-300 dark:bg-gray-600 opacity-30"}`}
+              onClick={() => goToStep(i)}
+            />
           ))}
         </div>
       </div>
-
-      {/* Stats */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }}
-        className="bg-white dark:bg-[#1a1a28] rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-white/10 flex flex-col justify-between"
-      >
-        <span className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">Updated</span>
-        <div>
-          <span className="text-2xl font-bold text-gray-900 dark:text-white">Daily</span>
-          <p className="text-xs text-gray-500 dark:text-gray-400">hashtags</p>
-        </div>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3 }}
-        className="bg-white dark:bg-[#1a1a28] rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-white/10 flex flex-col justify-between"
-      >
-        <span className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">Platforms</span>
-        <div>
-          <span className="text-2xl font-bold text-gray-900 dark:text-white">3×</span>
-          <p className="text-xs text-gray-500 dark:text-gray-400">optimised</p>
-        </div>
-      </motion.div>
-
     </div>
   );
 }
 
 function BentoVoice() {
+  const [step, setStep] = useState(0);
+  const [resetKey, setResetKey] = useState(0);
+  
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setStep(s => (s + 1) % 4);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [resetKey]);
+  
+  const goToStep = (i: number) => {
+    setStep(i);
+    setResetKey(k => k + 1);
+  };
+
+  const steps = [
+    { label: "Record", desc: "5 minutes of your voice" },
+    { label: "Clone", desc: "AI learns your voice" },
+    { label: "Generate", desc: "Create video content" },
+    { label: "Publish", desc: "Your face, your voice" },
+  ];
+
   return (
-    <div className="grid grid-cols-3 gap-4 h-full opacity-90">
-      {/* AI Video demo */}
-      <div className="col-span-2 rounded-2xl shadow-lg overflow-hidden relative h-32">
-        <video
-          src="/ai-video-demo.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover"
-        />
-        
-        {/* Label overlay */}
-        <div className="absolute bottom-2 left-3 right-3">
-          <p className="text-white font-medium text-xs drop-shadow-md">AI Video Preview</p>
-        </div>
+    <div className="bg-white dark:bg-[#1a1a28] rounded-3xl p-6 shadow-lg border border-gray-100 dark:border-white/10 h-full flex flex-col relative overflow-hidden">
+      {/* Coming soon overlay shimmer */}
+      <motion.div
+        animate={{ x: ["-100%", "200%"] }}
+        transition={{ duration: 4, repeat: 9999, ease: "easeInOut" }}
+        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent pointer-events-none z-10"
+      />
+      
+      {/* Coming soon badge */}
+      <div className="absolute top-4 right-4 z-20">
+        <span className="text-[10px] bg-fuchsia-100 dark:bg-fuchsia-900/30 text-fuchsia-600 dark:text-fuchsia-400 px-2.5 py-1 rounded-full font-semibold border border-fuchsia-200 dark:border-fuchsia-500/30">
+          Coming 2026
+        </span>
       </div>
 
-      {/* Stats */}
-      <div className="bg-white dark:bg-[#1a1a28] rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-white/10 flex flex-col justify-between">
-        <span className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">Setup</span>
-        <div>
-          <span className="text-2xl font-bold text-gray-900 dark:text-white">5min</span>
-          <p className="text-xs text-gray-500 dark:text-gray-400">recording</p>
-        </div>
-      </div>
-
-      {/* Voice waveform */}
-      <div className="col-span-2 bg-gradient-to-br from-gray-900 to-gray-950 rounded-2xl p-5 shadow-md relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-rose-900/30" />
-        <div className="relative z-10">
-          <div className="flex items-center gap-2 mb-4">
-            <span className="text-sm font-semibold text-white">Voice Synthesis</span>
-            <span className="text-xs bg-white/10 text-white/70 px-2 py-1 rounded-full font-medium border border-white/20">Coming Soon</span>
-          </div>
-          
-          {/* Waveform */}
-          <div className="flex items-center gap-0.5 h-16 mb-3">
-            {Array.from({length: 50}).map((_, i) => {
-              const h = Math.sin(i * 0.4) * 50 + 50;
-              return (
+      {/* Visual area */}
+      <div className="flex-1 relative overflow-hidden rounded-2xl bg-gray-50 dark:bg-white/5 min-h-[260px]">
+        <AnimatePresence mode="wait">
+          {step === 0 && (
+            <motion.div
+              key="record"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 p-5 flex flex-col items-center justify-center"
+            >
+              {/* Microphone with recording animation */}
+              <div className="relative mb-4">
                 <motion.div
-                  key={i}
-                  animate={{ height: [`${h}%`, `${100 - h}%`, `${h}%`] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: i * 0.05 }}
-                  className="flex-1 rounded-full bg-primary/60"
-                />
-              );
-            })}
-          </div>
-          
-          <p className="text-white/60 text-xs">5-minute recording → unlimited content</p>
-        </div>
+                  animate={{ scale: [1, 1.1, 1] }}
+                  transition={{ duration: 1.5, repeat: 9999 }}
+                  className="w-20 h-20 rounded-full bg-fuchsia-100 dark:bg-fuchsia-900/30 flex items-center justify-center"
+                >
+                  <Mic className="w-10 h-10 text-fuchsia-500" />
+                </motion.div>
+                {/* Recording rings */}
+                {[1, 2, 3].map((ring) => (
+                  <motion.div
+                    key={ring}
+                    animate={{ scale: [1, 1.5], opacity: [0.6, 0] }}
+                    transition={{ duration: 1.5, repeat: 9999, delay: ring * 0.3 }}
+                    className="absolute inset-0 rounded-full border-2 border-fuchsia-400"
+                  />
+                ))}
+              </div>
+              <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Recording your voice</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">Just 5 minutes needed</p>
+              {/* Progress */}
+              <div className="mt-4 w-32">
+                <div className="h-1.5 bg-gray-200 dark:bg-white/10 rounded-full overflow-hidden">
+                  <motion.div
+                    animate={{ width: ["0%", "100%"] }}
+                    transition={{ duration: 3, repeat: 9999 }}
+                    className="h-full bg-fuchsia-500 rounded-full"
+                  />
+                </div>
+                <p className="text-[10px] text-gray-400 dark:text-gray-500 text-center mt-1">2:34 / 5:00</p>
+              </div>
+            </motion.div>
+          )}
+
+          {step === 1 && (
+            <motion.div
+              key="clone"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 p-5 flex flex-col items-center justify-center"
+            >
+              {/* AI processing animation */}
+              <div className="relative w-32 h-32 mb-4">
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 8, repeat: 9999, ease: "linear" }}
+                  className="absolute inset-0"
+                >
+                  {[...Array(8)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      className="absolute w-3 h-3 rounded-full bg-fuchsia-400"
+                      style={{
+                        top: `${50 + 40 * Math.sin((i * Math.PI * 2) / 8)}%`,
+                        left: `${50 + 40 * Math.cos((i * Math.PI * 2) / 8)}%`,
+                        transform: "translate(-50%, -50%)",
+                      }}
+                      animate={{ scale: [0.8, 1.2, 0.8], opacity: [0.5, 1, 0.5] }}
+                      transition={{ duration: 1, repeat: 9999, delay: i * 0.1 }}
+                    />
+                  ))}
+                </motion.div>
+                {/* Center */}
+                <div className="absolute inset-8 rounded-full bg-gradient-to-br from-fuchsia-500 to-pink-500 flex items-center justify-center">
+                  <span className="text-2xl text-white">✦</span>
+                </div>
+              </div>
+              <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Learning your voice</p>
+              <motion.p
+                animate={{ opacity: [0.5, 1, 0.5] }}
+                transition={{ duration: 2, repeat: 9999 }}
+                className="text-xs text-fuchsia-500"
+              >
+                Analyzing speech patterns...
+              </motion.p>
+            </motion.div>
+          )}
+
+          {step === 2 && (
+            <motion.div
+              key="generate"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 p-5"
+            >
+              {/* Video generation preview */}
+              <div className="bg-gradient-to-br from-gray-900 to-gray-950 rounded-xl p-4 h-full flex flex-col">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="text-xs font-semibold text-white">AI Video Studio</span>
+                </div>
+                {/* Waveform */}
+                <div className="flex items-center gap-0.5 h-12 mb-3">
+                  {Array.from({ length: 40 }).map((_, i) => {
+                    const h = Math.sin(i * 0.3) * 40 + 50;
+                    return (
+                      <motion.div
+                        key={i}
+                        animate={{ height: [`${h}%`, `${100 - h}%`, `${h}%`] }}
+                        transition={{ duration: 1.5, repeat: 9999, delay: i * 0.03 }}
+                        className="flex-1 rounded-full bg-fuchsia-500/60"
+                      />
+                    );
+                  })}
+                </div>
+                {/* Avatar placeholder */}
+                <div className="flex-1 flex items-center justify-center">
+                  <div className="relative">
+                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-fuchsia-300 to-pink-400 shadow-lg" />
+                    <motion.div
+                      animate={{ scale: [1, 1.05, 1] }}
+                      transition={{ duration: 0.5, repeat: 9999 }}
+                      className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-8 h-3 bg-fuchsia-400 rounded-full opacity-50"
+                    />
+                  </div>
+                </div>
+                <p className="text-white/60 text-[10px] text-center">Generating talking-head video...</p>
+              </div>
+            </motion.div>
+          )}
+
+          {step === 3 && (
+            <motion.div
+              key="publish"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 p-5 flex flex-col items-center justify-center"
+            >
+              {/* Final result */}
+              <motion.div
+                initial={{ scale: 0.8 }}
+                animate={{ scale: 1 }}
+                className="relative mb-4"
+              >
+                <div className="w-28 h-40 rounded-2xl bg-gradient-to-br from-gray-900 to-gray-950 shadow-xl overflow-hidden">
+                  {/* Phone frame */}
+                  <div className="absolute top-2 left-1/2 -translate-x-1/2 w-12 h-1 bg-gray-700 rounded-full" />
+                  {/* Video preview */}
+                  <div className="absolute inset-3 top-5 rounded-xl bg-gradient-to-br from-fuchsia-400 to-pink-500 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-full bg-white/30" />
+                  </div>
+                  {/* Play button */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-8 h-8 rounded-full bg-white/90 flex items-center justify-center">
+                      <div className="w-0 h-0 border-t-4 border-b-4 border-l-6 border-transparent border-l-gray-800 ml-0.5" />
+                    </div>
+                  </div>
+                </div>
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 0.5, type: "spring" }}
+                  className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-green-500 flex items-center justify-center shadow-lg"
+                >
+                  <Check className="w-5 h-5 text-white" />
+                </motion.div>
+              </motion.div>
+              <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your AI video is ready</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">Zero filming required</p>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
-      <div className="bg-white dark:bg-[#1a1a28] rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-white/10 flex flex-col justify-between">
-        <span className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">Launch</span>
-        <div>
-          <span className="text-2xl font-bold text-gray-900 dark:text-white">2026</span>
-          <p className="text-xs text-gray-500 dark:text-gray-400">coming soon</p>
-        </div>
+      {/* Step label */}
+      <div className="text-center mt-4 mb-2">
+        <motion.p key={step} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-sm font-semibold text-gray-900 dark:text-white">
+          {steps[step].label}
+        </motion.p>
+        <motion.p key={`desc-${step}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-xs text-gray-500 dark:text-gray-400">
+          {steps[step].desc}
+        </motion.p>
       </div>
 
+      {/* Step indicator - minimal */}
+      <div className="flex items-center justify-center">
+        <div className="flex items-center gap-1.5">
+          {steps.map((_, i) => (
+            <div
+              key={i}
+              className={`h-2 rounded-full cursor-pointer transition-all duration-300 ${step === i ? "w-6 bg-fuchsia-400 opacity-100" : step > i ? "w-2 bg-fuchsia-400 opacity-50" : "w-2 bg-gray-300 dark:bg-gray-600 opacity-30"}`}
+              onClick={() => goToStep(i)}
+            />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
@@ -1111,8 +2269,19 @@ export default function Features() {
   }, [active]);
 
   return (
-    <section id="features" className="py-24 px-6 overflow-hidden bg-gray-50 dark:bg-[#0a0a0f]">
-      <div className="max-w-6xl mx-auto">
+    <section id="features" className="py-24 px-6 overflow-hidden bg-gray-50 dark:bg-[#0a0a0f] relative">
+      {/* Grid background */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: `linear-gradient(to right, rgba(156, 163, 175, 0.08) 1px, transparent 1px),
+                            linear-gradient(to bottom, rgba(156, 163, 175, 0.08) 1px, transparent 1px)`,
+          backgroundSize: '40px 40px',
+          maskImage: 'linear-gradient(to bottom, black 0%, black 70%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 70%, transparent 100%)',
+        }}
+      />
+      <div className="max-w-6xl mx-auto relative z-10">
 
         {/* Header */}
         <motion.div
@@ -1202,7 +2371,7 @@ export default function Features() {
                   relative inline-flex items-center gap-2.5 px-5 py-3 rounded-full text-sm font-medium transition-all duration-300
                   ${isActive
                     ? "iridescent-pill-active border-2 border-white/40 dark:border-white/20 text-gray-800 dark:text-white shadow-lg"
-                    : "bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-400 hover:border-transparent hover:shadow-md"
+                    : "bg-white dark:bg-[#0a0a0f] border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-400 hover:text-gray-900 hover:dark:text-white iridescent-hover"
                   }
                 `}
                 onMouseEnter={() => {
@@ -1216,10 +2385,7 @@ export default function Features() {
                   }
                 }}
               >
-                {/* Iridescent hover glow - only on non-active */}
-                {!isActive && (
-                  <span className="absolute inset-0 rounded-full opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none pill-glow-hover" />
-                )}
+
                 
                 {/* Checkmark for active */}
                 {isActive && (
@@ -1295,30 +2461,49 @@ export default function Features() {
                   {/* Shimmer effect */}
                   <motion.div
                     animate={{ x: ["-100%", "200%"] }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                    transition={{ duration: 3, repeat: 9999, ease: "easeInOut" }}
                     className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12"
                   />
                   <div className="relative z-10 flex items-center justify-between">
                     <div className="flex items-center gap-4">
-                      {activeFeature.benefits.map((benefit, i) => (
-                        <motion.div
-                          key={i}
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ delay: i * 0.1 }}
-                          className="flex items-center gap-1.5"
-                        >
-                          <span className="text-base">{benefit.icon}</span>
-                          <span className="text-xs font-medium text-gray-700 dark:text-gray-300">{benefit.label}</span>
-                        </motion.div>
-                      ))}
+                      {activeFeature.benefits.map((benefit, i) => {
+                        const iconMap: Record<string, React.ReactNode> = {
+                          Target: <Target className="w-4 h-4" />,
+                          Brain: <Brain className="w-4 h-4" />,
+                          TrendingUp: <TrendingUp className="w-4 h-4" />,
+                          Zap: <Zap className="w-4 h-4" />,
+                          Pencil: <Pencil className="w-4 h-4" />,
+                          Palette: <Palette className="w-4 h-4" />,
+                          Bot: <Bot className="w-4 h-4" />,
+                          Smartphone: <Smartphone className="w-4 h-4" />,
+                          MousePointerClick: <MousePointerClick className="w-4 h-4" />,
+                          LayoutDashboard: <LayoutDashboard className="w-4 h-4" />,
+                          RefreshCw: <RefreshCw className="w-4 h-4" />,
+                          CalendarCheck: <CalendarCheck className="w-4 h-4" />,
+                          Infinity: <Infinity className="w-4 h-4" />,
+                          Sparkles: <Sparkles className="w-4 h-4" />,
+                          PenTool: <PenTool className="w-4 h-4" />,
+                          Calendar: <Calendar className="w-4 h-4" />,
+                          Mic: <Mic className="w-4 h-4" />,
+                          Clapperboard: <Clapperboard className="w-4 h-4" />,
+                          VideoOff: <VideoOff className="w-4 h-4" />,
+                        };
+                        return (
+                          <motion.div
+                            key={i}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: i * 0.1 }}
+                            className="flex items-center gap-1.5"
+                          >
+                            <span className="text-fuchsia-500 dark:text-fuchsia-400">{iconMap[benefit.icon]}</span>
+                            <span className="text-xs font-medium text-gray-700 dark:text-gray-300">{benefit.label}</span>
+                          </motion.div>
+                        );
+                      })}
                     </div>
-                    {activeFeature.comingSoon ? (
+                    {activeFeature.comingSoon && (
                       <span className="text-xs bg-gray-100 dark:bg-white/10 text-gray-500 dark:text-gray-400 px-2.5 py-1 rounded-full font-medium border border-gray-200 dark:border-white/10">Soon</span>
-                    ) : (
-                      <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
-                        <Check className="w-4 h-4 text-green-600 dark:text-green-400" />
-                      </div>
                     )}
                   </div>
                 </motion.div>
@@ -1329,7 +2514,7 @@ export default function Features() {
             <motion.div 
               className="min-h-[280px] sm:min-h-[400px] order-last lg:order-none"
               animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              transition={{ duration: 4, repeat: 9999, ease: "easeInOut" }}
             >
               {bentoMap[activeFeature.bento]}
             </motion.div>

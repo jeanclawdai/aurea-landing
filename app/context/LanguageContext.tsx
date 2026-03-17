@@ -5,7 +5,7 @@ type Lang = "en" | "pt";
 
 const translations = {
   en: {
-    nav: { features: "Features", howItWorks: "How it Works", pricing: "Pricing", contact: "Contact", cta: "Get Started" },
+    nav: { features: "Features", howItWorks: "How it Works", pricing: "Pricing", contact: "Contact", cta: "Login" },
     hero: {
       headline1: "Predict What Works",
       headline2: "Before You Post.",
@@ -44,7 +44,7 @@ const translations = {
     },
   },
   pt: {
-    nav: { features: "Funcionalidades", howItWorks: "Como Funciona", pricing: "Preços", contact: "Contacto", cta: "Começar Grátis" },
+    nav: { features: "Funcionalidades", howItWorks: "Como Funciona", pricing: "Preços", contact: "Contacto", cta: "Entrar" },
     hero: {
       headline1: "Preveja o Que Resulta",
       headline2: "Antes de Publicar.",

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown, Sun, Moon } from "lucide-react";
+import { Menu, X, ChevronDown, Sun, Moon, ArrowRight, Mail, Lock, Eye, EyeOff, Sparkles } from "lucide-react";
 import { useLang } from "../context/LanguageContext";
 import { useTheme } from "../context/ThemeContext";
 import { cn } from "@/lib/utils";
@@ -24,6 +24,10 @@ export default function Navbar() {
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const lastScrollY = useRef(0);
   const langRef = useRef<HTMLDivElement>(null);
   const { lang, setLang, t } = useLang();
@@ -101,11 +105,13 @@ export default function Navbar() {
 
           {/* Desktop: CTA + Theme Toggle + Language */}
           <div className="hidden md:flex items-center gap-2">
+            {/* Login CTA */}
             <motion.button
+              onClick={() => setIsLoginOpen(true)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
-              className="bg-gray-950 text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-gray-800 transition-colors"
+              className="bg-gray-950 dark:bg-white text-white dark:text-gray-950 px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
             >
               {t.nav.cta}
             </motion.button>
@@ -203,7 +209,10 @@ export default function Navbar() {
                   {t.nav[link.key]}
                 </a>
               ))}
-              <button className="mt-2 px-5 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-950 rounded-xl font-medium">
+              <button
+                onClick={() => { setIsLoginOpen(true); setIsMobileMenuOpen(false); }}
+                className="mt-2 px-5 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-950 rounded-xl font-medium"
+              >
                 {t.nav.cta}
               </button>
 
@@ -257,6 +266,142 @@ export default function Navbar() {
           </motion.div>
         )}
       </div>
+
+      {/* Login Modal */}
+      <AnimatePresence>
+        {isLoginOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+            onClick={() => setIsLoginOpen(false)}
+          >
+            {/* Backdrop */}
+            <div className="absolute inset-0 bg-black/60 backdrop-blur-md" />
+
+            {/* Modal */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-md bg-white dark:bg-[#0f0f1a] rounded-3xl shadow-2xl overflow-hidden"
+            >
+              {/* Top gradient bar */}
+              <div className="h-1 w-full" style={{
+                background: "linear-gradient(90deg, #E879F9, #A78BFA, #60A5FA, #E879F9)",
+                backgroundSize: "200% 100%",
+              }} />
+
+              <div className="p-8">
+                {/* Close */}
+                <button
+                  onClick={() => setIsLoginOpen(false)}
+                  className="absolute top-5 right-5 p-2 rounded-xl text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/10 transition-all"
+                >
+                  <X size={18} />
+                </button>
+
+                {/* Logo */}
+                <div className="flex items-center gap-2.5 mb-8">
+                  <div className="w-9 h-9 rounded-xl bg-gray-950 dark:bg-white flex items-center justify-center">
+                    <span className="text-white dark:text-gray-950 font-bold text-sm">A</span>
+                  </div>
+                  <span className="text-xl font-bold text-gray-950 dark:text-white">Aurea</span>
+                </div>
+
+                {/* Headline */}
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">Welcome back</h2>
+                <p className="text-sm text-gray-500 dark:text-gray-400 mb-8">Sign in to your dashboard</p>
+
+                {/* Form */}
+                <div className="space-y-4">
+                  {/* Email */}
+                  <div className="group relative">
+                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-fuchsia-500 transition-colors">
+                      <Mail size={16} />
+                    </div>
+                    <input
+                      type="email"
+                      placeholder="Email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="w-full pl-11 pr-4 py-3.5 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white placeholder-gray-400 text-sm focus:outline-none focus:border-fuchsia-400 focus:ring-2 focus:ring-fuchsia-400/20 transition-all"
+                    />
+                  </div>
+
+                  {/* Password */}
+                  <div className="group relative">
+                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-fuchsia-500 transition-colors">
+                      <Lock size={16} />
+                    </div>
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      className="w-full pl-11 pr-12 py-3.5 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white placeholder-gray-400 text-sm focus:outline-none focus:border-fuchsia-400 focus:ring-2 focus:ring-fuchsia-400/20 transition-all"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                    >
+                      {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                    </button>
+                  </div>
+
+                  {/* Forgot */}
+                  <div className="flex justify-end">
+                    <button className="text-xs text-fuchsia-500 hover:text-fuchsia-600 transition-colors">
+                      Forgot password?
+                    </button>
+                  </div>
+
+                  {/* Submit */}
+                  <motion.button
+                    whileHover={{ scale: 1.01 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => window.location.href = "/dashboard"}
+                    className="relative w-full py-3.5 rounded-xl text-sm font-semibold text-white overflow-hidden group"
+                  >
+                    <motion.div
+                      animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+                      transition={{ duration: 4, repeat: 9999, ease: "linear" }}
+                      className="absolute inset-0"
+                      style={{
+                        background: "linear-gradient(90deg, #1a1a2e, #E879F9, #A78BFA, #1a1a2e)",
+                        backgroundSize: "300% 100%",
+                      }}
+                    />
+                    <span className="relative z-10 flex items-center justify-center gap-2">
+                      Sign in
+                      <ArrowRight size={15} />
+                    </span>
+                  </motion.button>
+                </div>
+
+                {/* Divider */}
+                <div className="flex items-center gap-3 my-6">
+                  <div className="flex-1 h-px bg-gray-100 dark:bg-white/10" />
+                  <span className="text-xs text-gray-400">or</span>
+                  <div className="flex-1 h-px bg-gray-100 dark:bg-white/10" />
+                </div>
+
+                {/* Sign up */}
+                <p className="text-center text-sm text-gray-500 dark:text-gray-400">
+                  Don't have an account?{" "}
+                  <button className="text-fuchsia-500 hover:text-fuchsia-600 font-medium transition-colors">
+                    Get started free
+                  </button>
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 }

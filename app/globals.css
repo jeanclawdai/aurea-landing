@@ -4,6 +4,14 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom cursor - override everything */
+*, *::before, *::after,
+a, button, input, textarea, select, label,
+[role="button"], [tabindex],
+[style*="cursor"] {
+  cursor: url('/cursor.png') 29 22, auto !important;
+}
+
 :root {
   --primary: #FDA4AF;
   --secondary: #CFE3FF;
@@ -1057,15 +1065,24 @@ body {
 }
 /* Feature filter pill hover glow */
 .pill-glow-hover {
-  background: linear-gradient(90deg, #6FA8FF, #A8B8FF, #D4A8FF, #FFA8D4, #6FA8FF);
+  background: linear-gradient(90deg, #E879F9, #F0ABFC, #A78BFA, #E879F9);
   background-size: 300% 100%;
   animation: pill-glow-slide 4s ease infinite;
-  filter: blur(12px);
+  filter: blur(8px);
   z-index: -1;
 }
 
 button:hover .pill-glow-hover {
-  opacity: 0.5 !important;
+  opacity: 0.4 !important;
+}
+
+.dark .pill-glow-hover {
+  background: linear-gradient(90deg, #E879F9, #F0ABFC, #A78BFA, #E879F9);
+  filter: blur(10px);
+}
+
+.dark button:hover .pill-glow-hover {
+  opacity: 0.3 !important;
 }
 
 /* ===================== */
