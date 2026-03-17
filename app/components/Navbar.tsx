@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown, Sun, Moon, ArrowRight, Mail, Lock, Eye, EyeOff, Sparkles } from "lucide-react";
+import { Menu, X, ChevronDown, Sun, Moon, ArrowRight, Mail, Lock, Eye, EyeOff } from "lucide-react";
 import { useLang } from "../context/LanguageContext";
 import { useTheme } from "../context/ThemeContext";
 import { cn } from "@/lib/utils";
@@ -392,7 +392,7 @@ export default function Navbar() {
 
                 {/* Sign up */}
                 <p className="text-center text-sm text-gray-500 dark:text-gray-400">
-                  Don't have an account?{" "}
+                  Don&apos;t have an account?{" "}
                   <button className="text-fuchsia-500 hover:text-fuchsia-600 font-medium transition-colors">
                     Get started free
                   </button>

@@ -257,6 +257,7 @@ function TikTokIcon({ className }: { className?: string }) {
 
 // ─── Animated Counter ────────────────────────────────────────────────────────
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function AnimatedCounter({ value, suffix = "" }: { value: number; suffix?: string }) {
   const [count, setCount] = useState(0);
   
@@ -351,6 +352,7 @@ function BentoPattern() {
     [0.95, 0.9, 0.85, 0.7, 0.6, 0.5, 0.4, 0.92, 0.88, 0.8, 0.65, 0.55, 0.45, 0.35, 0.9, 0.85, 0.75, 0.6, 0.5, 0.4, 0.3, 0.88, 0.8, 0.7, 0.55, 0.45, 0.35, 0.25],
   ];
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const hooks = [
     { text: "5 signs your skin needs hydration", score: 8.7, trend: "+2.1%" },
     { text: "POV: You found the right clinic", score: 6.2, trend: "+0.8%" },
@@ -1708,6 +1710,7 @@ function BentoCaption() {
     { label: "Ready", desc: "Caption complete" },
   ];
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const voiceTraits = [
     { trait: "Warm & empathetic", match: 94 },
     { trait: "Professional but approachable", match: 89 },
