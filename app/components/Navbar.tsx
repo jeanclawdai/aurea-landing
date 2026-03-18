@@ -106,15 +106,15 @@ export default function Navbar() {
           {/* Desktop: CTA + Theme Toggle + Language */}
           <div className="hidden md:flex items-center gap-2">
             {/* Login CTA */}
-            <motion.button
-              onClick={() => setIsLoginOpen(true)}
+            <motion.a
+              href="https://aurea-app-one.vercel.app/login"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
               className="bg-gray-950 dark:bg-white text-white dark:text-gray-950 px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
             >
               {t.nav.cta}
-            </motion.button>
+            </motion.a>
 
             {/* Dark mode toggle */}
             <motion.button
@@ -209,12 +209,13 @@ export default function Navbar() {
                   {t.nav[link.key]}
                 </a>
               ))}
-              <button
-                onClick={() => { setIsLoginOpen(true); setIsMobileMenuOpen(false); }}
-                className="mt-2 px-5 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-950 rounded-xl font-medium"
+              <a
+                href="https://aurea-app-one.vercel.app/login"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="mt-2 px-5 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-950 rounded-xl font-medium text-center"
               >
                 {t.nav.cta}
-              </button>
+              </a>
 
               {/* Mobile Language + Theme Toggle */}
               <div className="flex items-center justify-between pt-2 border-t border-gray-100 dark:border-white/10">
