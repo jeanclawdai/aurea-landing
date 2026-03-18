@@ -9,9 +9,9 @@ const translations = {
     hero: {
       headline1: "Predict What Works",
       headline2: "Before You Post.",
-      subtitle: "A pattern intelligence system trained on 10,000+ top-performing posts from top creators.",
-      cta1: "Start Free Trial",
-      cta2: "Analyze Profile →",
+      subtitle: "Powered by the world's best AI. Trained on your niche. Outperforming every human creative team.",
+      cta1: "Get Started",
+      cta2: "See How It Works →",
       stat1Label: "Avg Follower Growth",
       stat2Label: "Posts Analyzed",
       stat3Label: "Faster Creation",
@@ -19,7 +19,7 @@ const translations = {
     features: {
       eyebrow: "WHAT WE DO",
       headline: "Viral Science. Not Generic AI.",
-      subtitle: "We analyze what actually goes viral in aesthetic medicine — and give your clinic the same unfair advantage.",
+      subtitle: "We don't generate generic AI content. We analyze what actually works in your market and build a custom strategy around your brand.",
     },
     beforeAfter: {
       eyebrow: "REAL RESULTS",
@@ -48,9 +48,9 @@ const translations = {
     hero: {
       headline1: "Preveja o Que Resulta",
       headline2: "Antes de Publicar.",
-      subtitle: "Um sistema de inteligência de padrões treinado em mais de 10.000 publicações de topo de criadores de sucesso.",
-      cta1: "Começar Grátis",
-      cta2: "Analisar Perfil →",
+      subtitle: "Alimentado pela melhor IA do mundo. Treinado no teu nicho. A superar qualquer equipa criativa humana.",
+      cta1: "Começar",
+      cta2: "Ver Como Funciona →",
       stat1Label: "Crescimento Médio de Seguidores",
       stat2Label: "Publicações Analisadas",
       stat3Label: "Criação Mais Rápida",
@@ -58,7 +58,7 @@ const translations = {
     features: {
       eyebrow: "O QUE FAZEMOS",
       headline: "Ciência Viral. Não IA Genérica.",
-      subtitle: "Analisamos o que realmente se torna viral na medicina estética — e damos à sua clínica a mesma vantagem.",
+      subtitle: "Não geramos conteúdo genérico. Analisamos o que funciona no teu mercado e construímos uma estratégia à medida da tua marca.",
     },
     beforeAfter: {
       eyebrow: "RESULTADOS REAIS",
